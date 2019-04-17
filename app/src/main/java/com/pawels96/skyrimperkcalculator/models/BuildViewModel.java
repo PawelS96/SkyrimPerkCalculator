@@ -1,18 +1,18 @@
-package com.pawelsobieszczuk.skyrimperkcalculatorforordinator.models;
+package com.pawels96.skyrimperkcalculator.models;
 
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
 
-import com.pawelsobieszczuk.skyrimperkcalculatorforordinator.DatabaseHelper;
-import com.pawelsobieszczuk.skyrimperkcalculatorforordinator.enums.PerkSystem;
+import com.pawels96.skyrimperkcalculator.DatabaseHelper;
+import com.pawels96.skyrimperkcalculator.enums.PerkSystem;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
-import static com.pawelsobieszczuk.skyrimperkcalculatorforordinator.Utils.DEFAULT_BUILD_NAME;
-import static com.pawelsobieszczuk.skyrimperkcalculatorforordinator.Utils.listToMap;
+import static com.pawels96.skyrimperkcalculator.Utils.DEFAULT_BUILD_NAME;
+import static com.pawels96.skyrimperkcalculator.Utils.listToMap;
 
 public class BuildViewModel extends ViewModel {
 

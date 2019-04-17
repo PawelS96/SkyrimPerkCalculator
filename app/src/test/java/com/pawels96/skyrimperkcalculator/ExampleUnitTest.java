@@ -1,4 +1,4 @@
-package com.pawelsobieszczuk.skyrimperkcalculatorforordinator;
+package com.pawels96.skyrimperkcalculator;
 
 import org.junit.Test;
 

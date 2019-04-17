@@ -1,15 +1,15 @@
-package com.pawelsobieszczuk.skyrimperkcalculatorforordinator.models;
+package com.pawels96.skyrimperkcalculator.models;
 
-import com.pawelsobieszczuk.skyrimperkcalculatorforordinator.enums.IPerk;
-import com.pawelsobieszczuk.skyrimperkcalculatorforordinator.enums.PerkSystem;
-import com.pawelsobieszczuk.skyrimperkcalculatorforordinator.enums.SkillEnum;
-import com.pawelsobieszczuk.skyrimperkcalculatorforordinator.enums.SkillType;
+import com.pawels96.skyrimperkcalculator.enums.IPerk;
+import com.pawels96.skyrimperkcalculator.enums.PerkSystem;
+import com.pawels96.skyrimperkcalculator.enums.SkillEnum;
+import com.pawels96.skyrimperkcalculator.enums.SkillType;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import static com.pawelsobieszczuk.skyrimperkcalculatorforordinator.models.Perk.connectPerks;
+import static com.pawels96.skyrimperkcalculator.models.Perk.connectPerks;
 
 public class Skill {
 

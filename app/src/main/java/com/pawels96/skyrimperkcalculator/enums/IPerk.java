@@ -1,6 +1,6 @@
-package com.pawelsobieszczuk.skyrimperkcalculatorforordinator.enums;
+package com.pawels96.skyrimperkcalculator.enums;
 
-import com.pawelsobieszczuk.skyrimperkcalculatorforordinator.models.PerkInfo;
+import com.pawels96.skyrimperkcalculator.models.PerkInfo;
 
 import java.io.Serializable;
 

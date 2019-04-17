@@ -1,4 +1,4 @@
-package com.pawelsobieszczuk.skyrimperkcalculatorforordinator;
+package com.pawels96.skyrimperkcalculator;
 
 
 import android.content.ContentValues;
@@ -9,17 +9,17 @@ import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import com.pawelsobieszczuk.skyrimperkcalculatorforordinator.enums.IPerk;
-import com.pawelsobieszczuk.skyrimperkcalculatorforordinator.enums.PerkSystem;
-import com.pawelsobieszczuk.skyrimperkcalculatorforordinator.enums.SkillEnum;
-import com.pawelsobieszczuk.skyrimperkcalculatorforordinator.models.Build;
+import com.pawels96.skyrimperkcalculator.enums.IPerk;
+import com.pawels96.skyrimperkcalculator.enums.PerkSystem;
+import com.pawels96.skyrimperkcalculator.enums.SkillEnum;
+import com.pawels96.skyrimperkcalculator.models.Build;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.pawelsobieszczuk.skyrimperkcalculatorforordinator.Utils.DEFAULT_BUILD_NAME;
-import static com.pawelsobieszczuk.skyrimperkcalculatorforordinator.enums.PerkSystem.ORDINATOR;
-import static com.pawelsobieszczuk.skyrimperkcalculatorforordinator.enums.PerkSystem.VANILLA;
+import static com.pawels96.skyrimperkcalculator.Utils.DEFAULT_BUILD_NAME;
+import static com.pawels96.skyrimperkcalculator.enums.PerkSystem.ORDINATOR;
+import static com.pawels96.skyrimperkcalculator.enums.PerkSystem.VANILLA;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 

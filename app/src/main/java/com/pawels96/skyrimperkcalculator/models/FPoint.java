@@ -1,4 +1,4 @@
-package com.pawelsobieszczuk.skyrimperkcalculatorforordinator.models;
+package com.pawels96.skyrimperkcalculator.models;
 
 public class FPoint {
 

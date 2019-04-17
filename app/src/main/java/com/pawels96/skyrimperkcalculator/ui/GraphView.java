@@ -1,4 +1,4 @@
-package com.pawelsobieszczuk.skyrimperkcalculatorforordinator.ui;
+package com.pawels96.skyrimperkcalculator.ui;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -10,19 +10,19 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
-import com.pawelsobieszczuk.skyrimperkcalculatorforordinator.R;
-import com.pawelsobieszczuk.skyrimperkcalculatorforordinator.enums.IPerk;
-import com.pawelsobieszczuk.skyrimperkcalculatorforordinator.enums.PerkSystem;
-import com.pawelsobieszczuk.skyrimperkcalculatorforordinator.models.FPoint;
-import com.pawelsobieszczuk.skyrimperkcalculatorforordinator.models.Perk;
-import com.pawelsobieszczuk.skyrimperkcalculatorforordinator.models.Skill;
+import com.pawels96.skyrimperkcalculator.R;
+import com.pawels96.skyrimperkcalculator.enums.IPerk;
+import com.pawels96.skyrimperkcalculator.enums.PerkSystem;
+import com.pawels96.skyrimperkcalculator.models.FPoint;
+import com.pawels96.skyrimperkcalculator.models.Perk;
+import com.pawels96.skyrimperkcalculator.models.Skill;
 
 import java.util.HashMap;
 import java.util.List;
 
-import static com.pawelsobieszczuk.skyrimperkcalculatorforordinator.Utils.getPerkName;
-import static com.pawelsobieszczuk.skyrimperkcalculatorforordinator.models.Perk.areNodesSelected;
-import static com.pawelsobieszczuk.skyrimperkcalculatorforordinator.models.Skill.getCoordinates;
+import static com.pawels96.skyrimperkcalculator.Utils.getPerkName;
+import static com.pawels96.skyrimperkcalculator.models.Perk.areNodesSelected;
+import static com.pawels96.skyrimperkcalculator.models.Skill.getCoordinates;
 
 public class GraphView extends View {
 

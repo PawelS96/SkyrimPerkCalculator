@@ -1,6 +1,6 @@
-package com.pawelsobieszczuk.skyrimperkcalculatorforordinator.models;
+package com.pawels96.skyrimperkcalculator.models;
 
-import com.pawelsobieszczuk.skyrimperkcalculatorforordinator.enums.IPerk;
+import com.pawels96.skyrimperkcalculator.enums.IPerk;
 
 import java.util.ArrayList;
 import java.util.List;

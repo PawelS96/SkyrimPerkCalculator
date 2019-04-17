@@ -804,8 +804,8 @@
 
     <string name="d_ord_onh_one_handed_mastery">One-handed weapons do 25/50% more damage./, and critical strikes with one-handed weapons do 2% more critical damage per level of One-Handed.</string>
     <string name="d_ord_onh_disciplined_fighter">Reduces the Stamina cost of power attacks with one-handed weapons by 15 points.</string>
-    <string name="d_ord_onh_bite_marks">Unblocked attacks with daggers deal an additional 1/2/3 point/s of bleed damage per second for 30/45/60 seconds to living targets. This effect stacks.</string>
-    <string name="d_ord_onh_bleed_like_a_lamb">Attacks with war axes deal an additional 1/2/3 points of damage per second for 3 seconds to living targets. When the bleeding stops, they take damage equal to 15/20/25% of the Health they lost while bleeding.</string>
+    <string name="d_ord_onh_bite_marks"><![CDATA[Unblocked attacks with daggers deal an additional &#189;/3 point/s of bleed damage per second for 30/45/60 seconds to living targets. This effect stacks.]]></string>
+    <string name="d_ord_onh_bleed_like_a_lamb"><![CDATA[Attacks with war axes deal an additional &#189;/3 points of damage per second for 3 seconds to living targets. When the bleeding stops, they take damage equal to 15/20/25% of the Health they lost while bleeding.]]></string>
     <string name="d_ord_onh_clash_of_champions">Attacks with swords reduce the target\'s attack damage by 10/15/20% for 3 seconds.</string>
     <string name="d_ord_onh_denting_blows">Attacks with maces reduce the armor rating of armored enemies by 50/75/100 points for 15 seconds.</string>
     <string name="d_ord_onh_ravage">Dual wielding attacks are 20/35% faster.</string>
@@ -949,7 +949,7 @@
 
     <string name="d_ord_twh_two_handed_mastery">Two-handed weapons do 25/50% more damage./, and critical strikes with two-handed weapons do 2% more critical damage per level of Two-Handed.</string>
     <string name="d_ord_twh_trained_fighter">Reduces the Stamina cost of power attacks with two-handed weapons by 20 points.</string>
-    <string name="d_ord_twh_bleed_like_a_dog">Attacks with battle axes deal an additional 2/3/4 points of damage per second for 3 seconds to living targets. When the bleeding stops, they take damage equal to 20/25/30% of the Health they lost while bleeding.</string>
+    <string name="d_ord_twh_bleed_like_a_dog"><![CDATA[Attacks with battle axes deal an additional 2/&#190; points of damage per second for 3 seconds to living targets. When the bleeding stops, they take damage equal to 20/25/30% of the Health they lost while bleeding.]]></string>
     <string name="d_ord_twh_clash_of_heroes">Attacks with greatswords reduce the target\'s attack damage by 15/20/25% for 3 seconds.</string>
     <string name="d_ord_twh_crushing_blows">Attacks with warhammers reduce the armor rating of armored enemies by 75/100/125 points for 15 seconds.</string>
     <string name="d_ord_twh_batter">Power attacks with a warhammer have 15/25% chance of a critical strike. All critical strikes with a warhammer deal double critical damage.</string>

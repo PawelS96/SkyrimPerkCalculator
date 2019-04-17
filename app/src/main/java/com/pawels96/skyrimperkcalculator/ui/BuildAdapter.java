@@ -1,4 +1,4 @@
-package com.pawelsobieszczuk.skyrimperkcalculatorforordinator.ui;
+package com.pawels96.skyrimperkcalculator.ui;
 
 import android.content.Context;
 import android.text.SpannableString;
@@ -13,16 +13,16 @@ import android.widget.Button;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
-import com.pawelsobieszczuk.skyrimperkcalculatorforordinator.R;
-import com.pawelsobieszczuk.skyrimperkcalculatorforordinator.enums.SkillType;
-import com.pawelsobieszczuk.skyrimperkcalculatorforordinator.models.Build;
+import com.pawels96.skyrimperkcalculator.R;
+import com.pawels96.skyrimperkcalculator.enums.SkillType;
+import com.pawels96.skyrimperkcalculator.models.Build;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import static com.pawelsobieszczuk.skyrimperkcalculatorforordinator.Utils.PREFS_MULTIPLIER;
-import static com.pawelsobieszczuk.skyrimperkcalculatorforordinator.Utils.PREFS_NAME;
+import static com.pawels96.skyrimperkcalculator.Utils.PREFS_MULTIPLIER;
+import static com.pawels96.skyrimperkcalculator.Utils.PREFS_NAME;
 
 public class BuildAdapter extends BaseAdapter {
 

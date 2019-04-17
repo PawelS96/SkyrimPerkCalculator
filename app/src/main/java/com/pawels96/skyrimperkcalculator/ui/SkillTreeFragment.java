@@ -1,4 +1,4 @@
-package com.pawelsobieszczuk.skyrimperkcalculatorforordinator.ui;
+package com.pawels96.skyrimperkcalculator.ui;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -11,13 +11,13 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.TextView;
 
-import com.pawelsobieszczuk.skyrimperkcalculatorforordinator.R;
-import com.pawelsobieszczuk.skyrimperkcalculatorforordinator.enums.SkillEnum;
-import com.pawelsobieszczuk.skyrimperkcalculatorforordinator.models.Perk;
+import com.pawels96.skyrimperkcalculator.R;
+import com.pawels96.skyrimperkcalculator.enums.SkillEnum;
+import com.pawels96.skyrimperkcalculator.models.Perk;
 
 import static android.content.Context.LAYOUT_INFLATER_SERVICE;
-import static com.pawelsobieszczuk.skyrimperkcalculatorforordinator.Utils.getPerkDescription;
-import static com.pawelsobieszczuk.skyrimperkcalculatorforordinator.Utils.getPerkName;
+import static com.pawels96.skyrimperkcalculator.Utils.getPerkDescription;
+import static com.pawels96.skyrimperkcalculator.Utils.getPerkName;
 
 
 public class SkillTreeFragment extends Fragment {

@@ -1,7 +1,7 @@
-package com.pawelsobieszczuk.skyrimperkcalculatorforordinator.enums.skills_vanilla;
+package com.pawels96.skyrimperkcalculator.enums.skills_vanilla;
 
-import com.pawelsobieszczuk.skyrimperkcalculatorforordinator.enums.IPerk;
-import com.pawelsobieszczuk.skyrimperkcalculatorforordinator.models.PerkInfo;
+import com.pawels96.skyrimperkcalculator.enums.IPerk;
+import com.pawels96.skyrimperkcalculator.models.PerkInfo;
 
 public enum Lockpicking implements IPerk {
 

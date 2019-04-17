@@ -1,4 +1,4 @@
-package com.pawelsobieszczuk.skyrimperkcalculatorforordinator.ui;
+package com.pawels96.skyrimperkcalculator.ui;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.DialogInterface;
@@ -22,25 +22,25 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.pawelsobieszczuk.skyrimperkcalculatorforordinator.DatabaseHelper;
-import com.pawelsobieszczuk.skyrimperkcalculatorforordinator.R;
-import com.pawelsobieszczuk.skyrimperkcalculatorforordinator.enums.PerkSystem;
-import com.pawelsobieszczuk.skyrimperkcalculatorforordinator.enums.SkillEnum;
-import com.pawelsobieszczuk.skyrimperkcalculatorforordinator.models.Build;
-import com.pawelsobieszczuk.skyrimperkcalculatorforordinator.models.BuildViewModel;
-import com.pawelsobieszczuk.skyrimperkcalculatorforordinator.models.Perk;
+import com.pawels96.skyrimperkcalculator.DatabaseHelper;
+import com.pawels96.skyrimperkcalculator.R;
+import com.pawels96.skyrimperkcalculator.enums.PerkSystem;
+import com.pawels96.skyrimperkcalculator.enums.SkillEnum;
+import com.pawels96.skyrimperkcalculator.models.Build;
+import com.pawels96.skyrimperkcalculator.models.BuildViewModel;
+import com.pawels96.skyrimperkcalculator.models.Perk;
 
-import static com.pawelsobieszczuk.skyrimperkcalculatorforordinator.Utils.DEFAULT_BUILD_NAME;
-import static com.pawelsobieszczuk.skyrimperkcalculatorforordinator.Utils.PREFS_BUILD_SELECTED;
-import static com.pawelsobieszczuk.skyrimperkcalculatorforordinator.Utils.PREFS_MULTIPLIER;
-import static com.pawelsobieszczuk.skyrimperkcalculatorforordinator.Utils.PREFS_NAME;
-import static com.pawelsobieszczuk.skyrimperkcalculatorforordinator.Utils.PREFS_PERK_SYSTEM;
-import static com.pawelsobieszczuk.skyrimperkcalculatorforordinator.Utils.PREFS_SKILL_SELECTED;
-import static com.pawelsobieszczuk.skyrimperkcalculatorforordinator.Utils.enableViewPagerLoop;
-import static com.pawelsobieszczuk.skyrimperkcalculatorforordinator.Utils.getFragmentTag;
-import static com.pawelsobieszczuk.skyrimperkcalculatorforordinator.enums.PerkSystem.ORDINATOR;
-import static com.pawelsobieszczuk.skyrimperkcalculatorforordinator.enums.PerkSystem.VANILLA;
-import static com.pawelsobieszczuk.skyrimperkcalculatorforordinator.models.Build.cloneB;
+import static com.pawels96.skyrimperkcalculator.Utils.DEFAULT_BUILD_NAME;
+import static com.pawels96.skyrimperkcalculator.Utils.PREFS_BUILD_SELECTED;
+import static com.pawels96.skyrimperkcalculator.Utils.PREFS_MULTIPLIER;
+import static com.pawels96.skyrimperkcalculator.Utils.PREFS_NAME;
+import static com.pawels96.skyrimperkcalculator.Utils.PREFS_PERK_SYSTEM;
+import static com.pawels96.skyrimperkcalculator.Utils.PREFS_SKILL_SELECTED;
+import static com.pawels96.skyrimperkcalculator.Utils.enableViewPagerLoop;
+import static com.pawels96.skyrimperkcalculator.Utils.getFragmentTag;
+import static com.pawels96.skyrimperkcalculator.enums.PerkSystem.ORDINATOR;
+import static com.pawels96.skyrimperkcalculator.enums.PerkSystem.VANILLA;
+import static com.pawels96.skyrimperkcalculator.models.Build.cloneB;
 
 
 public class MainActivity extends AppCompatActivity

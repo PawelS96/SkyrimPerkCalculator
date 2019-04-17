@@ -1,12 +1,12 @@
-package com.pawelsobieszczuk.skyrimperkcalculatorforordinator.ui;
+package com.pawels96.skyrimperkcalculator.ui;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.pawelsobieszczuk.skyrimperkcalculatorforordinator.enums.SkillEnum;
+import com.pawels96.skyrimperkcalculator.enums.SkillEnum;
 
-import static com.pawelsobieszczuk.skyrimperkcalculatorforordinator.ui.SkillTreeFragment.newInstance;
+import static com.pawels96.skyrimperkcalculator.ui.SkillTreeFragment.newInstance;
 
 public class SkillFragmentAdapter
 

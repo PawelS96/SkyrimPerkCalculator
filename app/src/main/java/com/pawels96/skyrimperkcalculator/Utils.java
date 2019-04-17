@@ -1,10 +1,10 @@
-package com.pawelsobieszczuk.skyrimperkcalculatorforordinator;
+package com.pawels96.skyrimperkcalculator;
 
 import android.content.Context;
 import android.support.v4.view.ViewPager;
 
-import com.pawelsobieszczuk.skyrimperkcalculatorforordinator.enums.IPerk;
-import com.pawelsobieszczuk.skyrimperkcalculatorforordinator.models.Build;
+import com.pawels96.skyrimperkcalculator.enums.IPerk;
+import com.pawels96.skyrimperkcalculator.models.Build;
 
 import java.util.HashMap;
 import java.util.List;

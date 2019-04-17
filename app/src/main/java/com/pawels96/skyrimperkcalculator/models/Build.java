@@ -1,16 +1,16 @@
-package com.pawelsobieszczuk.skyrimperkcalculatorforordinator.models;
+package com.pawels96.skyrimperkcalculator.models;
 
-import com.pawelsobieszczuk.skyrimperkcalculatorforordinator.enums.IPerk;
-import com.pawelsobieszczuk.skyrimperkcalculatorforordinator.enums.PerkSystem;
-import com.pawelsobieszczuk.skyrimperkcalculatorforordinator.enums.SkillEnum;
-import com.pawelsobieszczuk.skyrimperkcalculatorforordinator.enums.SkillType;
+import com.pawels96.skyrimperkcalculator.enums.IPerk;
+import com.pawels96.skyrimperkcalculator.enums.PerkSystem;
+import com.pawels96.skyrimperkcalculator.enums.SkillEnum;
+import com.pawels96.skyrimperkcalculator.enums.SkillType;
 
 import java.util.HashMap;
 
-import static com.pawelsobieszczuk.skyrimperkcalculatorforordinator.enums.SkillType.COMBAT;
-import static com.pawelsobieszczuk.skyrimperkcalculatorforordinator.enums.SkillType.MAGIC;
-import static com.pawelsobieszczuk.skyrimperkcalculatorforordinator.enums.SkillType.STEALTH;
-import static com.pawelsobieszczuk.skyrimperkcalculatorforordinator.models.Skill.buildSkill;
+import static com.pawels96.skyrimperkcalculator.enums.SkillType.COMBAT;
+import static com.pawels96.skyrimperkcalculator.enums.SkillType.MAGIC;
+import static com.pawels96.skyrimperkcalculator.enums.SkillType.STEALTH;
+import static com.pawels96.skyrimperkcalculator.models.Skill.buildSkill;
 
 public class Build {
 
