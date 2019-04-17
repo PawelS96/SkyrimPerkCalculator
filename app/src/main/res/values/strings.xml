@@ -1,0 +1,56 @@
+<resources>
+    <string name="app_name">Skyrim Perk Calculator</string>
+
+    <string name="msg_build_saved">Build saved</string>
+    <string name="msg_build_deleted">Build deleted</string>
+    <string name="msg_name_in_use">Name is already in use</string>
+    <string name="msg_name_empty">Name can\'t be empty</string>
+    <string name="msg_name_your_build">Name your build</string>
+    <string name="msg_name_changed">Name changed</string>
+    <string name="msg_error">Something went wrong</string>
+    <string name="msg_cant_delete">Can\'t delete your last build</string>
+    <string name="msg_copy_build">Copy current build</string>
+
+    <string name="active_perks">Active perks</string>
+    <string name="required_skill">Required skill</string>
+    <string name="new_build">New</string>
+    <string name="load">Load</string>
+    <string name="options">Options</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="delete">Delete</string>
+    <string name="edit">Edit</string>
+
+    <string name="delete_build">Delete build?</string>
+
+    <string name="vertical_ellipsis">&#8942;</string>
+
+    <string name="skill_alchemy">Alchemy</string>
+    <string name="skill_alteration">Alteration</string>
+    <string name="skill_archery">Archery</string>
+    <string name="skill_block">Block</string>
+    <string name="skill_conjuration">Conjuration</string>
+    <string name="skill_destruction">Destruction</string>
+    <string name="skill_enchanting">Enchanting</string>
+    <string name="skill_heavy_armor">Heavy Armor</string>
+    <string name="skill_illusion">Illusion</string>
+    <string name="skill_light_armor">Light Armor</string>
+    <string name="skill_lockpicking">Lockpicking</string>
+    <string name="skill_one_handed">One-handed</string>
+    <string name="skill_pickpocket">Pickpocket</string>
+    <string name="skill_restoration">Restoration</string>
+    <string name="skill_smithing">Smithing</string>
+    <string name="skill_sneak">Sneak</string>
+    <string name="skill_speech">Speech</string>
+    <string name="skill_two_handed">Two-handed</string>
+    <string name="level">Level</string>
+    <string name="perks">Perks</string>
+    <string name="all_active_perks">All active perks</string>
+    <string name="required_lvl">Required level</string>
+    <string name="rename">Rename</string>
+    <string name="description">Description</string>
+    <string name="ordinator_perk_overhaul">Ordinator Perk Overhaul</string>
+    <string name="vanilla_skyrim">Vanilla Skyrim</string>
+    <string name="perks_per_level">Perks per level</string>
+
+</resources>

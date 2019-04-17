@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black"
+    android:orientation="vertical"
+    tools:context=".ui.MainActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+    <android.support.design.widget.TabLayout
+
+        android:background="@android:color/black"
+        android:id="@+id/tabs"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        app:tabMode="scrollable">
+
+        <android.support.design.widget.TabItem
+            android:background="@color/skillStealth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/skill_lockpicking" />
+
+        <android.support.design.widget.TabItem
+            android:background="@drawable/round_backgr"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/skill_pickpocket" />
+
+        <android.support.design.widget.TabItem
+            android:background="@drawable/round_backgr"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/skill_sneak" />
+
+        <android.support.design.widget.TabItem
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/skill_alchemy" />
+
+        <android.support.design.widget.TabItem
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/skill_light_armor" />
+
+        <android.support.design.widget.TabItem
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/skill_speech" />
+
+        <android.support.design.widget.TabItem
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/skill_archery" />
+
+        <android.support.design.widget.TabItem
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/skill_one_handed" />
+
+        <android.support.design.widget.TabItem
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/skill_two_handed" />
+
+        <android.support.design.widget.TabItem
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/skill_heavy_armor" />
+
+        <android.support.design.widget.TabItem
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/skill_block" />
+
+        <android.support.design.widget.TabItem
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/skill_smithing" />
+
+        <android.support.design.widget.TabItem
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/skill_alteration" />
+
+        <android.support.design.widget.TabItem
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/skill_destruction" />
+
+        <android.support.design.widget.TabItem
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/skill_restoration" />
+
+        <android.support.design.widget.TabItem
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/skill_conjuration" />
+
+        <android.support.design.widget.TabItem
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/skill_enchanting" />
+
+        <android.support.design.widget.TabItem
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/skill_illusion" />
+
+
+
+    </android.support.design.widget.TabLayout>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.view.ViewPager
+        android:layout_below="@id/appbar"
+        android:layout_above="@id/textViews"
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </android.support.v4.view.ViewPager>
+
+
+    <LinearLayout
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_above="@id/buttons"
+        android:layout_marginBottom="15dp"
+        android:id="@+id/textViews"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:textColor="@color/colorFont"
+            android:id="@+id/allPerks"
+            android:textAlignment="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:textColor="@color/colorFont"
+            android:textAlignment="center"
+
+            android:id="@+id/reqLevel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+
+
+
+
+    <RelativeLayout
+        android:id="@+id/buttons"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:background="@drawable/round_backgr"
+            android:text="@string/new_build"
+            android:textAllCaps="true"
+            android:textColor="@color/colorFont"
+            android:layout_toStartOf="@id/loadButton"
+            android:layout_marginEnd="15dp"
+
+            android:id="@+id/saveButton"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp" />
+
+        <Button
+            android:background="@drawable/round_backgr"
+            android:text="@string/load"
+            android:textAllCaps="true"
+
+            android:textColor="@color/colorFont"
+            android:layout_centerHorizontal="true"
+
+            android:id="@+id/loadButton"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp" />
+
+        <Button
+            android:text="@string/options"
+            android:textAllCaps="true"
+
+            android:textColor="@color/colorFont"
+            android:layout_toEndOf="@id/loadButton"
+            android:layout_marginStart="15dp"
+            android:background="@drawable/round_backgr"
+            android:id="@+id/optionsButton"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp" />
+
+
+
+    </RelativeLayout>
+</RelativeLayout>

@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="p_van_alt_novice_alteration">Novice Alteration</string>
+    <string name="p_van_alt_alteration_dual_casting">Alteration Dual Casting</string>
+    <string name="p_van_alt_apprentice_alteration">Apprentice Alteration</string>
+    <string name="p_van_alt_magic_resistance">Magic Resistance</string>
+    <string name="p_van_alt_adept_alteration">Adept Alteration</string>
+    <string name="p_van_alt_expert_alteration">Expert Alteration</string>
+    <string name="p_van_alt_atronach">Atronach</string>
+    <string name="p_van_alt_master_alteration">Master Alteration</string>
+    <string name="p_van_alt_stability">Stability</string>
+    <string name="p_van_alt_mage_armor">Mage Armor</string>
+
+    <string name="d_van_alt_novice_alteration">Cast Novice level Alteration spells for half magicka.</string>
+    <string name="d_van_alt_alteration_dual_casting">Dual casting an Alteration spell overcharges the effects into an even more powerful version.</string>
+    <string name="d_van_alt_apprentice_alteration">Cast Apprentice level Alteration spells for half magicka.</string>
+    <string name="d_van_alt_magic_resistance">Blocks 10/20/30% of a spell\'s effects.</string>
+    <string name="d_van_alt_adept_alteration">Cast Adept level Alteration spells for half magicka.</string>
+    <string name="d_van_alt_expert_alteration">Cast Expert level Alteration spells for half magicka.</string>
+    <string name="d_van_alt_atronach">Absorb 30% of the magicka of any spells that hit you.</string>
+    <string name="d_van_alt_master_alteration">Cast Master level Alteration spells for half magicka.</string>
+    <string name="d_van_alt_stability">Alteration spells have 50% greater duration.</string>
+    <string name="d_van_alt_mage_armor">Protection spells like Stoneflesh are 2/2.5/3 times as strong if not wearing armor.</string>
+
+    <string name="p_van_con_novice_conjuration">Novice Conjuration</string>
+    <string name="p_van_con_apprentice_conjuration">Apprentice Conjuration</string>
+    <string name="p_van_con_adept_conjuration">Adept Conjuration</string>
+    <string name="p_van_con_expert_conjuration">Expert Conjuration</string>
+    <string name="p_van_con_master_conjuration">Master Conjuration</string>
+    <string name="p_van_con_conjuration_dual_casting">Conjuration Dual Casting</string>
+    <string name="p_van_con_mystic_binding">Mystic Binding</string>
+    <string name="p_van_con_soul_stealer">Soul Stealer</string>
+    <string name="p_van_con_oblivion_binding">Oblivion Binding</string>
+    <string name="p_van_con_necromancy">Necromancy</string>
+    <string name="p_van_con_dark_souls">Dark Souls</string>
+    <string name="p_van_con_summoner">Summoner</string>
+    <string name="p_van_con_atromancy">Atromancy</string>
+    <string name="p_van_con_elemental_potency">Elemental Potency</string>
+    <string name="p_van_con_twin_souls">Twin Souls</string>
+
+    <string name="d_van_con_novice_conjuration">Cast Novice level Conjuration spells for half magicka.</string>
+    <string name="d_van_con_apprentice_conjuration">Cast Apprentice level Conjuration spells for half magicka.</string>
+    <string name="d_van_con_adept_conjuration">Cast Adept level Conjuration spells for half magicka.</string>
+    <string name="d_van_con_expert_conjuration">Cast Expert level Conjuration spells for half magicka.</string>
+    <string name="d_van_con_master_conjuration">Cast Master level Conjuration spells for half magicka.</string>
+    <string name="d_van_con_conjuration_dual_casting">Dual casting a Conjuration spell overcharges the spell, allowing it to last longer.</string>
+    <string name="d_van_con_mystic_binding">Bound weapons do more damage.</string>
+    <string name="d_van_con_soul_stealer">Bound weapons cast Soul Trap on targets.</string>
+    <string name="d_van_con_oblivion_binding">Bound weapons will banish summoned creatures and turn raised ones.</string>
+    <string name="d_van_con_necromancy">Greater duration for reanimated undead.</string>
+    <string name="d_van_con_dark_souls">Reanimated undead have 100 points more health.</string>
+    <string name="d_van_con_summoner">Can summon atronachs or raise undead twice/three times as far away.</string>
+    <string name="d_van_con_atromancy">Double duration for conjured Atronachs.</string>
+    <string name="d_van_con_elemental_potency">Conjured Atronachs are 50% more powerful.</string>
+    <string name="d_van_con_twin_souls">You can have two atronachs or reanimated zombies.</string>
+
+    <string name="p_van_des_novice_destruction">Novice Destruction</string>
+    <string name="p_van_des_apprentice_destruction">Apprentice Destruction</string>
+    <string name="p_van_des_adept_destruction">Adept Destruction</string>
+    <string name="p_van_des_expert_destruction">Expert Destruction</string>
+    <string name="p_van_des_master_destruction">Master Destruction</string>
+    <string name="p_van_des_rune_master">Rune Master</string>
+    <string name="p_van_des_augmented_flames">Augmented Flames</string>
+    <string name="p_van_des_intense_flames">Intense Flames</string>
+    <string name="p_van_des_augmented_frost">Augmented Frost</string>
+    <string name="p_van_des_deep_freeze">Deep Freeze</string>
+    <string name="p_van_des_augmented_shock">Augmented Shock</string>
+    <string name="p_van_des_disintegrate">Disintegrate</string>
+    <string name="p_van_des_destruction_dual_casting">Destruction Dual Casting</string>
+    <string name="p_van_des_impact">Impact</string>
+
+    <string name="d_van_des_novice_destruction">Cast Novice level Destruction spells for half magicka.</string>
+    <string name="d_van_des_apprentice_destruction">Cast Apprentice level Destruction spells for half magicka.</string>
+    <string name="d_van_des_adept_destruction">Cast Adept level Destruction spells for half magicka.</string>
+    <string name="d_van_des_expert_destruction">Cast Expert level Destruction spells for half magicka.</string>
+    <string name="d_van_des_master_destruction">Cast Master level Destruction spells for half magicka.</string>
+    <string name="d_van_des_rune_master">Can place runes five times farther away.</string>
+    <string name="d_van_des_augmented_flames">Fire spells do 25/50% more damage.</string>
+    <string name="d_van_des_intense_flames">Fire damage causes targets to flee if their health is low (under 20%).</string>
+    <string name="d_van_des_augmented_frost">Frost spells do 25/50% more damage.</string>
+    <string name="d_van_des_deep_freeze">Frost damage paralyzes targets if their health is low (under 20%).</string>
+    <string name="d_van_des_augmented_shock">Shock spells do 25/50% more damage.</string>
+    <string name="d_van_des_disintegrate">Shock spells disintegrate targets if their health is low (under 15%).</string>
+    <string name="d_van_des_destruction_dual_casting">Dual casting a Destruction spell overcharges the effects into an even more powerful version.</string>
+    <string name="d_van_des_impact">Most destruction spells will stagger an opponent when dual cast.</string>
+
+    <string name="p_van_enc_enchanter">Enchanter</string>
+    <string name="p_van_enc_fire_enchanter">Fire Enchanter</string>
+    <string name="p_van_enc_frost_enchanter">Frost Enchanter</string>
+    <string name="p_van_enc_storm_enchanter">Storm Enchanter</string>
+    <string name="p_van_enc_insightful_enchanter">Insightful Enchanter</string>
+    <string name="p_van_enc_corpus_enchanter">Corpus Enchanter</string>
+    <string name="p_van_enc_extra_effect">Extra Effect</string>
+    <string name="p_van_enc_soul_squeezer">Soul Squeezer</string>
+    <string name="p_van_enc_soul_siphon">Soul Siphon</string>
+
+    <string name="d_van_enc_enchanter">New enchantments are 20/40/60/80/100% stronger.</string>
+    <string name="d_van_enc_fire_enchanter">Fire enchantments on weapons and armor are 25% stronger.</string>
+    <string name="d_van_enc_frost_enchanter">Frost enchantments on weapons and armor are 25% stronger.</string>
+    <string name="d_van_enc_storm_enchanter">Shock enchantments on weapons and armor are 25% stronger.</string>
+    <string name="d_van_enc_insightful_enchanter">Skill enchantments on armor are 25% stronger.</string>
+    <string name="d_van_enc_corpus_enchanter">Health, magicka, and stamina enchantments on armor are 25% stronger.</string>
+    <string name="d_van_enc_extra_effect">Can put two enchantments on the same item.</string>
+    <string name="d_van_enc_soul_squeezer">Soul gems provide extra magicka for recharging.</string>
+    <string name="d_van_enc_soul_siphon">Death blows to creatures, but not people, trap 5% of the victim\'s soul, recharging the weapon.</string>
+
+    <string name="p_van_ilu_novice_illusion">Novice Illusion</string>
+    <string name="p_van_ilu_animage">Animage</string>
+    <string name="p_van_ilu_kindred_mage">Kindred Mage</string>
+    <string name="p_van_ilu_quiet_casting">Quiet Casting</string>
+    <string name="p_van_ilu_apprentice_illusion">Apprentice Illusion</string>
+    <string name="p_van_ilu_adept_illusion">Adept Illusion</string>
+    <string name="p_van_ilu_expert_illusion">Expert Illusion</string>
+    <string name="p_van_ilu_master_illusion">Master Illusion</string>
+    <string name="p_van_ilu_hypnotic_gaze">Hypnotic Gaze</string>
+    <string name="p_van_ilu_aspect_of_terror">Aspect of Terror</string>
+    <string name="p_van_ilu_rage">Rage</string>
+    <string name="p_van_ilu_master_of_the_mind">Master of the Mind</string>
+    <string name="p_van_ilu_illusion_dual_casting">Illusion Dual Casting</string>
+
+    <string name="d_van_ilu_novice_illusion">Cast Novice level Illusion spells for half magicka.</string>
+    <string name="d_van_ilu_animage">Illusion spells now work on higher level animals.</string>
+    <string name="d_van_ilu_kindred_mage">All Illusion spells work on higher level people.</string>
+    <string name="d_van_ilu_quiet_casting">All spells you cast from any school of magic are silent to others.</string>
+    <string name="d_van_ilu_apprentice_illusion">Cast Apprentice level Illusion spells for half magicka.</string>
+    <string name="d_van_ilu_adept_illusion">Cast Adept level Illusion spells for half magicka.</string>
+    <string name="d_van_ilu_expert_illusion">Cast Expert level Illusion spells for half magicka.</string>
+    <string name="d_van_ilu_master_illusion">Cast Master level Illusion spells for half magicka.</string>
+    <string name="d_van_ilu_hypnotic_gaze">Calm spells now work on higher level opponents. Cumulative with Kindred Mage and Animage.</string>
+    <string name="d_van_ilu_aspect_of_terror">Fear spells work on higher level opponents. Cumulative with Kindred Mage and Animage.</string>
+    <string name="d_van_ilu_rage">Frenzy spells work on higher level opponents. Cumulative with Kindred Mage and Animage.</string>
+    <string name="d_van_ilu_master_of_the_mind">Illusion spells work on undead, daedra, and automatons.</string>
+    <string name="d_van_ilu_illusion_dual_casting">Dual casting an Illusion spell overcharges the effects into an even more powerful version.</string>
+
+    <string name="p_van_rst_novice_restoration">Novice Restoration</string>
+    <string name="p_van_rst_apprentice_restoration">Apprentice Restoration</string>
+    <string name="p_van_rst_adept_restoration">Adept Restoration</string>
+    <string name="p_van_rst_expert_restoration">Expert Restoration</string>
+    <string name="p_van_rst_master_restoration">Master Restoration</string>
+    <string name="p_van_rst_recovery">Recovery</string>
+    <string name="p_van_rst_avoid_death">Avoid Death</string>
+    <string name="p_van_rst_regeneration">Regeneration</string>
+    <string name="p_van_rst_necromage">Necromage</string>
+    <string name="p_van_rst_respite">Respite</string>
+    <string name="p_van_rst_restoration_dual_casting">Restoration Dual Casting</string>
+    <string name="p_van_rst_ward_absorb">Ward Absorb</string>
+
+    <string name="d_van_rst_novice_restoration">Cast Novice level Restoration spells for half magicka.</string>
+    <string name="d_van_rst_apprentice_restoration">Cast Apprentice level Restoration spells for half magicka.</string>
+    <string name="d_van_rst_adept_restoration">Cast Adept level Restoration spells for half magicka.</string>
+    <string name="d_van_rst_expert_restoration">Cast Expert level Restoration spells for half magicka.</string>
+    <string name="d_van_rst_master_restoration">Cast Master level Restoration spells for half magicka.</string>
+    <string name="d_van_rst_recovery">Magicka regenerates 25/50% faster.</string>
+    <string name="d_van_rst_avoid_death">Once a day, heals 250 points automatically if you fall below 10% health. (Only if the damage does not kill you)</string>
+    <string name="d_van_rst_regeneration">Healing spells cure 50% more.</string>
+    <string name="d_van_rst_necromage">All spells are more effective against undead. (+25% effect and +50% effect duration)</string>
+    <string name="d_van_rst_respite">Healing spells also restore Stamina.</string>
+    <string name="d_van_rst_restoration_dual_casting">Dual casting a Restoration spell overcharges the effects into an even more powerful version (220% spell effect for 280% magicka cost)</string>
+    <string name="d_van_rst_ward_absorb">Wards recharge your magicka when hit with spells.</string>
+
+    <string name="p_van_arc_overdraw">Overdraw</string>
+    <string name="p_van_arc_critical_shot">Critical Shot</string>
+    <string name="p_van_arc_hunters_discipline">Hunter\'s Discipline</string>
+    <string name="p_van_arc_ranger">Ranger</string>
+    <string name="p_van_arc_eagle_eye">Eagle Eye</string>
+    <string name="p_van_arc_power_shot">Power Shot</string>
+    <string name="p_van_arc_quick_shot">Quick Shot</string>
+    <string name="p_van_arc_steady_hand">Steady Hand</string>
+    <string name="p_van_arc_bullseye">Bullseye</string>
+
+    <string name="d_van_arc_overdraw">Bows do 20/40/60/80/100% more damage.</string>
+    <string name="d_van_arc_critical_shot">10/15/20% chance of a critical hit that does extra damage/25%/50% more critical damage.</string>
+    <string name="d_van_arc_hunters_discipline">Recover twice as many arrows from dead bodies.</string>
+    <string name="d_van_arc_ranger">Able to move faster with a drawn bow.</string>
+    <string name="d_van_arc_eagle_eye">Pressing Block while aiming will zoom in your view.</string>
+    <string name="d_van_arc_power_shot">Arrows stagger all but the largest opponents 50% of the time.</string>
+    <string name="d_van_arc_quick_shot">Can draw a bow 30% faster.</string>
+    <string name="d_van_arc_steady_hand">Zooming in with a bow slows time by 25/50%.</string>
+    <string name="d_van_arc_bullseye">15% chance of paralyzing the target for a few seconds.</string>
+
+    <string name="p_van_blc_shield_wall">Shield Wall</string>
+    <string name="p_van_blc_deflect_arrows">Deflect Arrows</string>
+    <string name="p_van_blc_elemental_protection">Elemental Protection</string>
+    <string name="p_van_blc_block_runner">Block Runner</string>
+    <string name="p_van_blc_power_bash">Power Bash</string>
+    <string name="p_van_blc_deadly_bash">Deadly Bash</string>
+    <string name="p_van_blc_disarming_bash">Disarming Bash</string>
+    <string name="p_van_blc_shield_charge">Shield Charge</string>
+    <string name="p_van_blc_quick_reflexes">Quick Reflexes</string>
+
+    <string name="d_van_blc_shield_wall">Blocking is 20/25/30/35/40% more effective.</string>
+    <string name="d_van_blc_deflect_arrows">Arrows that hit the shield do no damage.</string>
+    <string name="d_van_blc_elemental_protection">Blocking with a shield reduces incoming fire, frost, and shock damage by 50%.</string>
+    <string name="d_van_blc_block_runner">Able to move faster with a shield or weapon raised.</string>
+    <string name="d_van_blc_power_bash">Able to do a power bash.</string>
+    <string name="d_van_blc_deadly_bash">Bashing does five times more damage.</string>
+    <string name="d_van_blc_disarming_bash">Chance to disarm when power bashing.</string>
+    <string name="d_van_blc_shield_charge">Sprinting with a shield raised knocks down most targets.</string>
+    <string name="d_van_blc_quick_reflexes">Time slows down if you are blocking during an enemy\'s power attack.</string>
+
+    <string name="p_van_har_juggernaut">Juggernaut</string>
+    <string name="p_van_har_fists_of_steel">Fists of Steel</string>
+    <string name="p_van_har_cushioned">Cushioned</string>
+    <string name="p_van_har_conditioning">Conditioning</string>
+    <string name="p_van_har_well_fitted">Well Fitted</string>
+    <string name="p_van_har_tower_of_strength">Tower of Strength</string>
+    <string name="p_van_har_matching_set">Matching Set</string>
+    <string name="p_van_har_reflect_blows">Reflect Blows</string>
+
+    <string name="d_van_har_juggernaut">Increases armor rating for Heavy Armor by 20/40/60/80/100%.</string>
+    <string name="d_van_har_fists_of_steel">Unarmed attacks with Heavy Armor gauntlets do their armor rating in extra damage.</string>
+    <string name="d_van_har_cushioned">Half damage from falling if wearing all Heavy Armor: head, chest, hands, feet.</string>
+    <string name="d_van_har_conditioning">Heavy Armor weighs nothing and doesn\'t slow you down when worn.</string>
+    <string name="d_van_har_well_fitted">25% Armor bonus if wearing all Heavy Armor: head, chest, hands, feet.</string>
+    <string name="d_van_har_tower_of_strength">50% less stagger when wearing only Heavy Armor.</string>
+    <string name="d_van_har_matching_set">Additional 25% Armor bonus if wearing a matched set of Heavy Armor.</string>
+    <string name="d_van_har_reflect_blows">10% chance to reflect melee damage back to the enemy while wearing all Heavy Armor: head, chest, hands, feet.</string>
+
+    <string name="p_van_smt_steel_smithing">Steel Smithing</string>
+    <string name="p_van_smt_arcane_blacksmith">Arcane Blacksmith</string>
+    <string name="p_van_smt_dwarven_smithing">Dwarven Smithing</string>
+    <string name="p_van_smt_orcish_smithing">Orcish Smithing</string>
+    <string name="p_van_smt_ebony_smithing">Ebony Smithing</string>
+    <string name="p_van_smt_daedric_smithing">Daedric Smithing</string>
+    <string name="p_van_smt_elven_smithing">Elven Smithing</string>
+    <string name="p_van_smt_advanced_armors">Advanced Armors</string>
+    <string name="p_van_smt_glass_smithing">Glass Smithing</string>
+    <string name="p_van_smt_dragon_armor">Dragon Armor</string>
+
+    <string name="d_van_smt_steel_smithing">Can create Steel armor and weapons at forges, and improve them twice as much.</string>
+    <string name="d_van_smt_arcane_blacksmith">You can improve magical weapons and armor.</string>
+    <string name="d_van_smt_dwarven_smithing">Can create Dwarven armor and weapons at forges, and improve them twice as much.</string>
+    <string name="d_van_smt_orcish_smithing">Can create Orcish armor and weapons at forges, and improve them twice as much.</string>
+    <string name="d_van_smt_ebony_smithing">Can create Ebony armor and weapons at forges, and improve them twice as much.</string>
+    <string name="d_van_smt_daedric_smithing">Can create Daedric armor and weapons at forges, and improve them twice as much.</string>
+    <string name="d_van_smt_elven_smithing">Can create Elven armor and weapons at forges, and improve them twice as much.</string>
+    <string name="d_van_smt_advanced_armors">Can create Scaled and Plate armor at forges, and improve them twice as much.</string>
+    <string name="d_van_smt_glass_smithing">Can create Glass armor and weapons at forges, and improve them twice as much.</string>
+    <string name="d_van_smt_dragon_armor">Can create Dragon armor at forges, and improve them twice as much.</string>
+
+
+    <string name="p_van_onh_armsman">Armsman</string>
+    <string name="p_van_onh_bladesman">Bladesman</string>
+    <string name="p_van_onh_bone_breaker">Bone Breaker</string>
+    <string name="p_van_onh_dual_flurry">Dual Flurry</string>
+    <string name="p_van_onh_dual_savagery">Dual Savagery</string>
+    <string name="p_van_onh_fighting_stance">Fighting Stance</string>
+    <string name="p_van_onh_critical_charge">Critical Charge</string>
+    <string name="p_van_onh_savage_strike">Savage Strike</string>
+    <string name="p_van_onh_paralyzing_strike">Paralyzing Strike</string>
+    <string name="p_van_onh_hack_and_slash">Hack and Slash</string>
+
+    <string name="d_van_onh_armsman">One-Handed weapons do 20/40/60/80/100% more damage.</string>
+    <string name="d_van_onh_bladesman">Attacks with swords have a 10/15/20% chance of doing critical damage.</string>
+    <string name="d_van_onh_bone_breaker">Attacks with maces ignore 25/50/75% of armor.</string>
+    <string name="d_van_onh_dual_flurry">Dual wielding attacks are 20/35% faster.</string>
+    <string name="d_van_onh_dual_savagery">Dual wielding power attacks do 50% bonus damage.</string>
+    <string name="d_van_onh_fighting_stance">Power attacks with one-handed weapons cost 25% less stamina.</string>
+    <string name="d_van_onh_critical_charge">Can do a one-handed power attack while sprinting that does double critical damage.</string>
+    <string name="d_van_onh_savage_strike">Standing power attacks do 25% bonus damage with a chance to decapitate your enemies.</string>
+    <string name="d_van_onh_paralyzing_strike">Backwards power attack has a 25%** chance to paralyze the target.</string>
+    <string name="d_van_onh_hack_and_slash">Attacks with war axes cause extra/more/even more bleeding damage.</string>
+
+    <string name="p_van_twh_barbarian">Barbarian</string>
+    <string name="p_van_twh_champions_stance">Champion\'s Stance</string>
+    <string name="p_van_twh_devastating_blow">Devastating Blow</string>
+    <string name="p_van_twh_great_critical_charge">Great Critical Charge</string>
+    <string name="p_van_twh_sweep">Sweep</string>
+    <string name="p_van_twh_warmaster">Warmaster</string>
+    <string name="p_van_twh_deep_wounds">Deep Wounds</string>
+    <string name="p_van_twh_limbsplitter">Limbsplitter</string>
+    <string name="p_van_twh_skullcrusher">Skullcrusher</string>
+
+    <string name="d_van_twh_barbarian">Two-Handed weapons do 20/40/60/80/100% more damage.</string>
+    <string name="d_van_twh_champions_stance">Power attacks with two-handed weapons cost 25% less stamina.</string>
+    <string name="d_van_twh_devastating_blow">Standing power attacks do 25% bonus damage with a chance to decapitate your enemies.</string>
+    <string name="d_van_twh_great_critical_charge">Can do a two-handed power attack while sprinting that does double critical damage.</string>
+    <string name="d_van_twh_sweep">Sideways power attacks with two-handed weapons hit all targets in front of you.</string>
+    <string name="d_van_twh_warmaster">Backwards power attack has a 25% chance to paralyze the target.</string>
+    <string name="d_van_twh_deep_wounds">Attacks with greatswords have a 10/15/20% chance of doing critical damage.</string>
+    <string name="d_van_twh_limbsplitter">Attacks with battle axes cause extra/more/even more bleeding damage.</string>
+    <string name="d_van_twh_skullcrusher">Attacks with warhammers ignore 25/50/75% of armor.</string>
+
+    <string name="p_van_alc_alchemist">Alchemist</string>
+    <string name="p_van_alc_physician">Physician</string>
+    <string name="p_van_alc_benefactor">Benefactor</string>
+    <string name="p_van_alc_experimenter">Experimenter</string>
+    <string name="p_van_alc_poisoner">Poisoner</string>
+    <string name="p_van_alc_concentrated_poison">Concentrated Poison</string>
+    <string name="p_van_alc_green_thumb">Green Thumb</string>
+    <string name="p_van_alc_snakeblood">Snakeblood</string>
+    <string name="p_van_alc_purity">Purity</string>
+
+    <string name="d_van_alc_alchemist">Potions and poisons you make are 20% stronger.</string>
+    <string name="d_van_alc_physician">Potions and poisons you make are 40/60/80/100% stronger.</string>
+    <string name="d_van_alc_benefactor">Potions you mix that restore Health, Magicka or Stamina are 25% more powerful.</string>
+    <string name="d_van_alc_experimenter">Potions you mix with beneficial effects have an additional 25% greater magnitude.</string>
+    <string name="d_van_alc_poisoner">Eating an ingredient reveals first two/first three/all effects.</string>
+    <string name="d_van_alc_concentrated_poison">Poisons you mix are 25% more effective.</string>
+    <string name="d_van_alc_green_thumb">Poisons applied to weapons last for twice as many hits.</string>
+    <string name="d_van_alc_snakeblood">Two ingredients are gathered from plants.</string>
+    <string name="d_van_alc_purity">50% resistance to all poisons.</string>
+
+    <string name="p_van_lar_agile_defender">Agile Defender</string>
+    <string name="p_van_lar_custom_fit">Custom Fit</string>
+    <string name="p_van_lar_matching_set">Matching Set</string>
+    <string name="p_van_lar_unhindered">Unhindered</string>
+    <string name="p_van_lar_wind_walker">Wind Walker</string>
+    <string name="p_van_lar_deft_movement">Deft Movement</string>
+
+    <string name="d_van_lar_agile_defender">Increase armor rating for Light armor by 20/40/60/80/100%.</string>
+    <string name="d_van_lar_custom_fit">25% Armor bonus if wearing all Light Armor: head, chest, hands, feet.</string>
+    <string name="d_van_lar_matching_set">Additional 25% Armor bonus if wearing a matched set of Light Armor.</string>
+    <string name="d_van_lar_unhindered">Light Armor weighs nothing and doesn\'t slow you down when worn.</string>
+    <string name="d_van_lar_wind_walker">Stamina regenerates 50% faster in all Light Armor: head, chest, hands, feet.</string>
+    <string name="d_van_lar_deft_movement">10% chance of avoiding all damage from a melee attack while wearing all Light Armor: head, chest, hands, feet.</string>
+
+
+    <string name="p_van_lck_novice_locks">Novice Locks</string>
+    <string name="p_van_lck_apprentice_locks">Apprentice Locks</string>
+    <string name="p_van_lck_quick_hands">Quick Hands</string>
+    <string name="p_van_lck_wax_key">Wax Key</string>
+    <string name="p_van_lck_adept_locks">Adept Locks</string>
+    <string name="p_van_lck_expert_locks">Expert Locks</string>
+    <string name="p_van_lck_golden_touch">Golden Touch</string>
+    <string name="p_van_lck_treasure_hunter">Treasure Hunter</string>
+    <string name="p_van_lck_locksmith">Locksmith</string>
+    <string name="p_van_lck_unbreakable">Unbreakable</string>
+    <string name="p_van_lck_master_locks">Master Locks</string>
+
+    <string name="d_van_lck_novice_locks">Novice locks are much easier to pick.</string>
+    <string name="d_van_lck_apprentice_locks">Apprentice locks are much easier to pick.</string>
+    <string name="d_van_lck_quick_hands">Able to pick locks without being noticed.</string>
+    <string name="d_van_lck_wax_key">Automatically gives you a copy of a picked lock\'s key if it has one.</string>
+    <string name="d_van_lck_adept_locks">Adept locks are much easier to pick.</string>
+    <string name="d_van_lck_expert_locks">Expert locks are much easier to pick.</string>
+    <string name="d_van_lck_golden_touch">Find more gold in chests.</string>
+    <string name="d_van_lck_treasure_hunter">50% greater chance of finding special treasure.</string>
+    <string name="d_van_lck_locksmith">Pick starts close to the lock opening position.</string>
+    <string name="d_van_lck_unbreakable">Lockpicks never break.</string>
+    <string name="d_van_lck_master_locks">Master locks are much easier to pick.</string>
+
+
+    <string name="p_van_pck_light_fingers">Light Fingers</string>
+    <string name="p_van_pck_night_thief">Night Thief</string>
+    <string name="p_van_pck_cutpurse">Cutpurse</string>
+    <string name="p_van_pck_keymaster">Keymaster</string>
+    <string name="p_van_pck_misdirection">Misdirection</string>
+    <string name="p_van_pck_perfect_touch">Perfect Touch</string>
+    <string name="p_van_pck_extra_pockets">Extra Pockets</string>
+    <string name="p_van_pck_poisoned">Poisoned</string>
+
+    <string name="d_van_pck_light_fingers">Pickpocketing bonus of 20/40/60/80/100%. Item weight and value reduce pickpocketing odds.</string>
+    <string name="d_van_pck_night_thief">+25% chance to pickpocket if the target is asleep.</string>
+    <string name="d_van_pck_cutpurse">Pickpocketing gold is 50% easier.</string>
+    <string name="d_van_pck_keymaster">Pickpocketing keys almost always works.</string>
+    <string name="d_van_pck_misdirection">Can pickpocket equipped weapons.</string>
+    <string name="d_van_pck_perfect_touch">Can pickpocket equipped items.</string>
+    <string name="d_van_pck_extra_pockets">Carrying capacity is increased by 100.</string>
+    <string name="d_van_pck_poisoned">Silently harm enemies by placing poisons in their pockets.</string>
+
+    <string name="p_van_snk_stealth">Stealth</string>
+    <string name="p_van_snk_backstab">Backstab</string>
+    <string name="p_van_snk_deadly_aim">Deadly Aim</string>
+    <string name="p_van_snk_assassins_blade">Assassin\'s Blade</string>
+    <string name="p_van_snk_muffled_movement">Muffled Movement</string>
+    <string name="p_van_snk_light_foot">Light Foot</string>
+    <string name="p_van_snk_silent_roll">Silent Roll</string>
+    <string name="p_van_snk_silence">Silence</string>
+    <string name="p_van_snk_shadow_warrior">Shadow Warrior</string>
+
+    <string name="d_van_snk_stealth">You are 20/25/30/35/40% harder to detect when sneaking.</string>
+    <string name="d_van_snk_backstab">Sneak attacks with one-handed weapons now do six times damage.</string>
+    <string name="d_van_snk_deadly_aim">Sneak attacks with bows now do three times damage.</string>
+    <string name="d_van_snk_assassins_blade">Sneak attacks with daggers now do a total of fifteen times normal damage.</string>
+    <string name="d_van_snk_muffled_movement">Wearing armor makes half as much noise when you move.</string>
+    <string name="d_van_snk_light_foot">You won\'t trigger pressure plates.</string>
+    <string name="d_van_snk_silent_roll">Sprinting while sneaking executes a silent forward roll.</string>
+    <string name="d_van_snk_silence">Walking and running does not affect detection.</string>
+    <string name="d_van_snk_shadow_warrior">Crouching stops combat for a moment and forces distant opponents to search for a target.</string>
+
+    <string name="p_van_spc_haggling">Haggling</string>
+    <string name="p_van_spc_allure">Allure</string>
+    <string name="p_van_spc_merchant">Merchant</string>
+    <string name="p_van_spc_investor">Investor</string>
+    <string name="p_van_spc_fence">Fence</string>
+    <string name="p_van_spc_master_trader">Master Trader</string>
+    <string name="p_van_spc_bribery">Bribery</string>
+    <string name="p_van_spc_persuasion">Persuasion</string>
+    <string name="p_van_spc_intimidation">Intimidation</string>
+
+    <string name="d_van_spc_haggling">Buying and selling prices are 10/15/20/25/30% better.</string>
+    <string name="d_van_spc_allure">10% better prices with the opposite sex.</string>
+    <string name="d_van_spc_merchant">Can sell any type of item to any kind of merchant.</string>
+    <string name="d_van_spc_investor">Can invest 500 gold with a shopkeeper to increase his available gold permanently.</string>
+    <string name="d_van_spc_fence">Can barter stolen goods with any merchant you have invested in.</string>
+    <string name="d_van_spc_master_trader">Every merchant in the world gains 1000 gold for bartering.</string>
+    <string name="d_van_spc_bribery">Can bribe guards to ignore crimes.</string>
+    <string name="d_van_spc_persuasion">Persuasion attempts are 30% easier.</string>
+    <string name="d_van_spc_intimidation">Intimidation is twice as likely to be successful.</string>
+
+</resources>

@@ -1,0 +1,64 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="CustomDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:background">@color/colorGrayDark</item>
+        <item name="android:textColor">@color/colorFont</item>
+        <item name="android:textColorPrimary">@color/colorFont</item>
+    </style>
+
+    <style name="SkillButton">
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:layout_width">90dp</item>
+        <item name="android:layout_height">90dp</item>
+        <item name="android:layout_columnSpan">1</item>
+        <item name="android:layout_rowSpan">1</item>
+    </style>
+
+    <style name="SkillPerkCount">
+        <item name="android:textColor">@color/colorFont</item>
+        <item name="android:layout_centerInParent">true</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+
+    </style>
+
+    <style name="SkillLabel">
+        <item name="android:textColor">@color/colorFont</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">4dp</item>
+        <item name="android:textSize">12sp</item>
+
+    </style>
+
+    <style name="ListButton">
+        <item name="android:clickable">false</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/colorFont</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:text">@string/vertical_ellipsis</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+
+</resources>

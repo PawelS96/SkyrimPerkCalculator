@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#11a5e0</color>
+    <color name="colorPrimaryDark">#3F51B5</color>
+    <color name="colorAccent">#3075e5</color>
+    <color name="colorGray">#484949</color>
+    <color name="colorFont">#ffffff</color>
+    <color name="colorFontAlt">#adb3bc</color>
+    <color name="colorGrayDark">#212226</color>
+
+    <color name="colorBlue">#3075e5</color>
+
+    <color name="skillMagic">#2a497a</color>
+    <color name="skillCombat">#7a2c28</color>
+    <color name="skillStealth">#386d1c</color>
+
+    <color name="skillMagicBright">#1a6df2</color>
+    <color name="skillCombatBright">#e82117</color>
+    <color name="skillStealthBright">#51ce0e</color>
+
+</resources>

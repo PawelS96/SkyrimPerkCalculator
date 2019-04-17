@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorGrayDark"
+    android:orientation="horizontal"
+    android:descendantFocusability="blocksDescendants"
+    android:padding="8dp">
+
+    <LinearLayout
+        android:id="@+id/lol"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@id/context_menu"
+        android:orientation="vertical">
+
+        <TextView
+
+            android:clickable="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+
+
+            android:id="@+id/build_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@color/colorFont"
+            android:textSize="18sp" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+
+                android:clickable="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+
+                android:id="@+id/level"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/colorFontAlt"
+                android:textSize="14sp" />
+
+            <TextView
+
+                android:clickable="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+
+                android:id="@+id/build_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.5"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/colorFontAlt"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/context_menu"
+        style="@style/ListButton"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true" />
+
+</RelativeLayout>
