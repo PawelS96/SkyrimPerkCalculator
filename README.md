@@ -7,4 +7,4 @@ Mobile app for browsing skill trees and designing character builds in The Elder 
 
 ![ScreenShot](https://i.imgur.com/l9ZOi2e.jpg)
 
-![ScreenShot](https://i.imgur.com/IWHE5An.jpg)
+<a href="https://imgur.com/IWHE5An"><img src="https://i.imgur.com/IWHE5An.jpg" title="source: imgur.com" width="100"/></a>
