@@ -114,7 +114,7 @@ public class Build {
         return lvl;
     }
 
-    public static Build cloneB(Build objToClone){
+    public static Build clone(Build objToClone){
 
         Build build = new Build(objToClone.getPerkSystem());
 

@@ -1,11 +1,11 @@
 package com.pawels96.skyrimperkcalculator.ui;
 
+import android.app.Dialog;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
@@ -36,11 +36,9 @@ import static com.pawels96.skyrimperkcalculator.Utils.PREFS_MULTIPLIER;
 import static com.pawels96.skyrimperkcalculator.Utils.PREFS_NAME;
 import static com.pawels96.skyrimperkcalculator.Utils.PREFS_PERK_SYSTEM;
 import static com.pawels96.skyrimperkcalculator.Utils.PREFS_SKILL_SELECTED;
-import static com.pawels96.skyrimperkcalculator.Utils.enableViewPagerLoop;
 import static com.pawels96.skyrimperkcalculator.Utils.getFragmentTag;
 import static com.pawels96.skyrimperkcalculator.enums.PerkSystem.ORDINATOR;
 import static com.pawels96.skyrimperkcalculator.enums.PerkSystem.VANILLA;
-import static com.pawels96.skyrimperkcalculator.models.Build.cloneB;
 
 
 public class MainActivity extends AppCompatActivity
@@ -48,7 +46,7 @@ public class MainActivity extends AppCompatActivity
 
     private Build build;
     private TextView allPerks, reqLevel;
-    private ViewPager viewPager;
+    private LoopingViewPager viewPager;
     private SharedPreferences sp;
     private float multiplier;
     private DatabaseHelper helper;
@@ -97,7 +95,13 @@ public class MainActivity extends AppCompatActivity
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(viewPager));
         viewPager.setCurrentItem(sp.getInt(PREFS_SKILL_SELECTED, 0));
         skillFragmentAdapter.notifyDataSetChanged();
-        enableViewPagerLoop(viewPager, 18);
+        viewPager.enableLoop(18);
+        viewPager.setListener(new LoopingViewPager.MovementListener() {
+            @Override
+            public void onActionDown() {
+                getFragment(viewPager.getCurrentItem()).cancelHold();
+            }
+        });
 
         allPerks = findViewById(R.id.allPerks);
         reqLevel = findViewById(R.id.reqLevel);
@@ -140,8 +144,6 @@ public class MainActivity extends AppCompatActivity
         sp.edit().putInt(PREFS_SKILL_SELECTED, viewPager.getCurrentItem()).apply();
         sp.edit().putString(PREFS_BUILD_SELECTED, build.getName()).apply();
         sp.edit().putString(PREFS_PERK_SYSTEM, build.getPerkSystem().toString()).apply();
-
-
     }
 
     private void updateBuildInfo() {
@@ -152,6 +154,9 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void showSavePopup(final Build buildToSave, final boolean rename) {
+
+        if (listDialog != null)
+            listDialog.dismiss();
 
         final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this, R.style.CustomDialogTheme);
 
@@ -181,6 +186,15 @@ public class MainActivity extends AppCompatActivity
         dialogBuilder.setView(customView);
         final AlertDialog dialog = dialogBuilder.create();
 
+        dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+
+                getWindow().setSoftInputMode(
+                        WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+            }
+        });
+
         dialog.setOnShowListener((new DialogInterface.OnShowListener() {
 
             @Override
@@ -199,7 +213,7 @@ public class MainActivity extends AppCompatActivity
 
                         else {
 
-                            if (helper.isNameAvailable(name)) {
+                            if (helper.isNameAvailable(name, build.getPerkSystem())) {
 
                                 if (rename) {
                                     String oldName = buildToSave.getName();
@@ -209,9 +223,11 @@ public class MainActivity extends AppCompatActivity
                                         adapter.setCurrentBuildName(name);
                                     showMessage(R.string.msg_name_changed);
                                     adapter.notifyDataSetChanged();
+                                    showBuildList();
+
                                 } else {
                                     boolean copy = copyCurrent.isChecked();
-                                    Build newBuild = copy ? cloneB(build) : buildToSave;
+                                    Build newBuild = copy ? Build.clone(build) : buildToSave;
 
                                     newBuild.setName(name);
                                     helper.updateBuild(build);
@@ -219,7 +235,6 @@ public class MainActivity extends AppCompatActivity
                                     helper.saveBuild(newBuild);
                                     model.addToMap(newBuild);
                                     refreshFragments();
-                                    showMessage(R.string.msg_build_saved);
                                 }
 
                                 dialog.dismiss();
@@ -249,7 +264,7 @@ public class MainActivity extends AppCompatActivity
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
 
-                        boolean deleted = helper.deleteBuild(buildToDelete.getName());
+                        boolean deleted = helper.deleteBuild(buildToDelete);
 
                         if (deleted) {
                             model.deleteFromMap(buildToDelete);
@@ -257,6 +272,8 @@ public class MainActivity extends AppCompatActivity
                             build = model.getRandom();
                             adapter.setCurrentBuildName(build.getName());
                             adapter.notifyDataSetChanged();
+                            refreshFragments();
+                            updateBuildInfo();
                             showMessage(R.string.msg_build_deleted);
                         } else showMessage(R.string.msg_error);
                     }
@@ -273,6 +290,7 @@ public class MainActivity extends AppCompatActivity
         dialogBuilder.create().show();
     }
 
+    private Dialog listDialog;
 
     private void showBuildList() {
 
@@ -309,7 +327,7 @@ public class MainActivity extends AppCompatActivity
 
         dialogBuilder.setView(customView);
 
-        final AlertDialog dialog = dialogBuilder.create();
+        listDialog = dialogBuilder.create();
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -319,11 +337,11 @@ public class MainActivity extends AppCompatActivity
                 MainActivity.this.build = (Build) lv.getAdapter().getItem(position);
                 refreshFragments();
 
-                dialog.dismiss();
+                listDialog.dismiss();
             }
         });
 
-        dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+        listDialog.setOnShowListener(new DialogInterface.OnShowListener() {
             @Override
             public void onShow(DialogInterface dialog) {
                 lv.setAdapter(adapter);
@@ -331,7 +349,7 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        dialog.show();
+        listDialog.show();
     }
 
     private void refreshFragments() {
@@ -351,6 +369,9 @@ public class MainActivity extends AppCompatActivity
 
     private void showDescriptionPopup(final Build build) {
 
+        if (listDialog != null)
+            listDialog.dismiss();
+
         final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this, R.style.CustomDialogTheme);
         LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         View customView = inflater.inflate(R.layout.popup_build_description, null);
@@ -363,6 +384,14 @@ public class MainActivity extends AppCompatActivity
         dialogBuilder.setTitle(build.getName());
         dialogBuilder.setCancelable(true);
         dialogBuilder.setView(customView);
+
+        dialogBuilder.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                getWindow().setSoftInputMode(
+                        WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+            }
+        });
 
         dialogBuilder.setPositiveButton(getString(R.string.edit),
                 new DialogInterface.OnClickListener() {
@@ -391,6 +420,7 @@ public class MainActivity extends AppCompatActivity
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 dialog.dismiss();
+                                showBuildList();
                             }
                         });
 
@@ -450,7 +480,6 @@ public class MainActivity extends AppCompatActivity
                     build = model.getRandom();
                     refreshFragments();
                 }
-
             }
         };
 
@@ -459,7 +488,7 @@ public class MainActivity extends AppCompatActivity
 
         int progress = (int) (multiplier * 10) + 1;
         perksSeekbar.setProgress(progress);
-        perksValue.setText(Float.toString(multiplier));
+        perksValue.setText(": " + String.format("%.1f", multiplier));
         perksSeekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
             float value;
@@ -468,7 +497,7 @@ public class MainActivity extends AppCompatActivity
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 value = (float) progress / 10 + 0.1f;
 
-                perksValue.setText(String.format("%.1f", value));
+                perksValue.setText(": " + String.format("%.1f", value));
                 multiplier = value;
                 updateBuildInfo();
             }
@@ -501,15 +530,6 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onPerkChanged(SkillEnum skill, Perk perk, int state) {
 
-        // helper.update(build.getName(), perk.getPerk().toString(), state);
-        /*model.
-                getBuilds().
-                get(build.getName()).
-                getSkill(skill).
-                get(perk.getPerk()).
-                setState(state);
-        */
-
         build.
                 getSkill(skill).
                 get(perk.getPerk()).
@@ -521,7 +541,7 @@ public class MainActivity extends AppCompatActivity
         Toast.makeText(MainActivity.this, getStr(msg), Toast.LENGTH_SHORT).show();
     }
 
-    private String getStr(int id){
+    private String getStr(int id) {
         return getResources().getString(id);
     }
 }

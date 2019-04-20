@@ -122,14 +122,14 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <android.support.v4.view.ViewPager
+    <com.pawels96.skyrimperkcalculator.ui.LoopingViewPager
         android:layout_below="@id/appbar"
         android:layout_above="@id/textViews"
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-    </android.support.v4.view.ViewPager>
+    </com.pawels96.skyrimperkcalculator.ui.LoopingViewPager>
 
 
     <LinearLayout
@@ -184,7 +184,7 @@
 
         <Button
             android:background="@drawable/round_backgr"
-            android:text="@string/load"
+            android:text="@string/builds"
             android:textAllCaps="true"
 
             android:textColor="@color/colorFont"

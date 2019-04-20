@@ -45,8 +45,7 @@ public class GraphView extends View {
 
     public interface OnNodeClickedListener {
         void onNodeClicked(Perk perk);
-
-        void onNodePressed(Perk perk);
+        void onNodeHolding(Perk perk);
     }
 
     private PerkSystem system;
@@ -245,10 +244,11 @@ public class GraphView extends View {
     }
 
     private static boolean isHolding(float currentX, float currentY, float clickedX, float clickedY) {
-        return currentX < clickedX + nodeRadius * 2
-                && currentX > clickedX - nodeRadius * 2
-                && currentY < clickedY + nodeRadius * 2
-                && currentY > clickedY - nodeRadius * 2;
+
+        return currentX < clickedX + nodeRadius * 3
+                && currentX > clickedX - nodeRadius * 3
+                && currentY < clickedY + nodeRadius * 3
+                && currentY > clickedY - nodeRadius * 3;
     }
 
     private void onPerkClicked(IPerk perk) {
@@ -270,14 +270,19 @@ public class GraphView extends View {
         switch (event.getAction()) {
 
             case MotionEvent.ACTION_MOVE:
+
                 currentX = event.getX();
                 currentY = event.getY();
+
                 return true;
 
             case MotionEvent.ACTION_DOWN:
 
                 clickedX = event.getX();
                 clickedY = event.getY();
+
+                currentX = event.getX();
+                currentY = event.getY();
 
                 touchedPerk = getClickedPerk(event.getX(), event.getY());
 
@@ -288,12 +293,12 @@ public class GraphView extends View {
                         if (touchedPerk != null) {
 
                             if (isHolding(currentX, currentY, clickedX, clickedY))
-                                listener.onNodePressed(skill.get(touchedPerk));
+                               listener.onNodeHolding(skill.get(touchedPerk));
                             touchedPerk = null;
                         }
                     }
 
-                }, 500);
+                }, 300);
 
                 return true;
 
@@ -301,11 +306,16 @@ public class GraphView extends View {
 
                 if (touchedPerk != null) {
                     onPerkClicked(touchedPerk);
+                    cancelHold();
                     touchedPerk = null;
                 }
                 break;
         }
         return super.onTouchEvent(event);
+    }
+
+    public void cancelHold(){
+        handler.removeCallbacksAndMessages(null);
     }
 
 }

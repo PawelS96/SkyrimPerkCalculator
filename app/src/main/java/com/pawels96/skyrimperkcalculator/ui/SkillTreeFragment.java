@@ -92,6 +92,10 @@ public class SkillTreeFragment extends Fragment {
         mListener = null;
     }
 
+    public void cancelHold(){
+        graphView.cancelHold();
+    }
+
     private GraphView.OnNodeClickedListener listener = new GraphView.OnNodeClickedListener() {
         @Override
         public void onNodeClicked(Perk perk) {
@@ -100,7 +104,7 @@ public class SkillTreeFragment extends Fragment {
         }
 
         @Override
-        public void onNodePressed(Perk perk) {
+        public void onNodeHolding(Perk perk) {
             showPerkDescription(perk);
         }
     };

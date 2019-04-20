@@ -5,11 +5,11 @@ import com.pawels96.skyrimperkcalculator.models.PerkInfo;
 
 public enum Ord_Destruction implements IPerk {
 
-    ORD_DES_DESTRUCTION_MASTERY               (0.5f,    0.95f ,  20,40),
-    ORD_DES_COMBUSTION                        (0.35f,   0.75f ,  20,40),
+    ORD_DES_DESTRUCTION_MASTERY               (0.5f,    0.95f ,  0,20),
+    ORD_DES_COMBUSTION                        (0.35f,   0.75f ,  20,50),
     ORD_DES_DESTRUCTION_DUAL_CASTING          (0.2f,    0.93f ,  20) ,
-    ORD_DES_IONIZED_PATH                      (0.65f,   0.75f ,  20,40),
-    ORD_DES_MERCILESS_COLD                    (0.5f,    0.7f ,   20,40),
+    ORD_DES_IONIZED_PATH                      (0.65f,   0.75f ,  20,50),
+    ORD_DES_MERCILESS_COLD                    (0.5f,    0.7f ,   20,50),
     ORD_DES_FORCE_OF_NATURE                   (0.3f,    0.85f ,  30) ,
     ORD_DES_FROSTFALL                         (0.5f,    0.55f ,  30) ,
     ORD_DES_SCARRING_BURNS                    (0.27f,   0.65f ,  30) ,
@@ -40,9 +40,7 @@ public enum Ord_Destruction implements IPerk {
     ORD_DES_WINTERS_MAJESTY                   (0.4f,    0.12f ,  90) ,
     ORD_DES_ABSOLUTE_POWER                    (0.75f,   0.1f ,   100),
     ORD_DES_CATACLYSM                         (0.2f,    0.1f ,   100),
-    ORD_DES_GLACIAL_PRISON                    (0.5f,    0.055f,   100);
-
-    //TODO update skill levels
+    ORD_DES_GLACIAL_PRISON                    (0.5f,    0.055f,  100);
 
     Ord_Destruction(float x, float y, int... skill) {
         info = new PerkInfo(skill, x, y);

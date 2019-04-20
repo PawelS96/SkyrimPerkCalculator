@@ -1,7 +1,6 @@
 package com.pawels96.skyrimperkcalculator;
 
 import android.content.Context;
-import android.support.v4.view.ViewPager;
 
 import com.pawels96.skyrimperkcalculator.enums.IPerk;
 import com.pawels96.skyrimperkcalculator.models.Build;
@@ -54,34 +53,4 @@ public class Utils {
         return map;
     }
 
-    public static void enableViewPagerLoop(final ViewPager v, final int pages){
-
-        v.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-
-            int previousState, currentState;
-
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-                int currentPage = v.getCurrentItem();
-                if (currentPage == pages - 1 || currentPage == 0) {
-                    previousState = currentState;
-                    currentState = state;
-                    if (previousState == 1 && currentState == 0) {
-                        v.setCurrentItem(currentPage == 0 ? pages - 1 : 0);
-                    }
-                }
-            }
-        });
-
-
-    }
 }

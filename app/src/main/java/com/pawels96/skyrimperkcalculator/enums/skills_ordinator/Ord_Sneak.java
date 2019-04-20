@@ -5,7 +5,7 @@ import com.pawels96.skyrimperkcalculator.models.PerkInfo;
 
 public enum Ord_Sneak implements IPerk {
 
-    ORD_SNK_SNEAK_MASTERY             (0.5f ,    0.95f ,  20,40),
+    ORD_SNK_SNEAK_MASTERY             (0.5f ,    0.95f ,  0,20),
     ORD_SNK_SNEAK_ATTACK              (0.75f ,   0.7f ,   20),
     ORD_SNK_TRIPWIRE                  (0.2f ,    0.75f ,  20) ,
     ORD_SNK_DEMOLITION_JOB            (0.75f ,   0.9f ,   30),
@@ -16,7 +16,7 @@ public enum Ord_Sneak implements IPerk {
     ORD_SNK_DYNAMIC_ENTRY             (0.4f ,    0.55f ,  40),
     ORD_SNK_INFILTRATOR               (0.6f ,    0.65f ,  40),
     ORD_SNK_WHIPLASH                  (0.25f ,   0.6f ,   40),
-    ORD_SNK_BACKSTAB                  (0.85f ,   0.45f ,  50,70),
+    ORD_SNK_BACKSTAB                  (0.85f ,   0.45f ,  50,80),
     ORD_SNK_LIGHT_FOOT                (0.1f ,    0.65f ,  50),
     ORD_SNK_RIGHT_BEHIND_YOU          (0.55f ,   0.5f ,   50),
     ORD_SNK_DISENGAGE                 (0.45f ,   0.45f ,  60),
@@ -31,9 +31,6 @@ public enum Ord_Sneak implements IPerk {
     ORD_SNK_GREASED_LIGHTNING         (0.25f ,   0.2f ,   90),
     ORD_SNK_SHADOW_WARRIOR            (0.5f ,    0.1f ,   90),
     ORD_SNK_LAUGHING_GHOST            (0.8f ,    0.1f ,   100);
-
-    //TODO update skill levels
-
 
     Ord_Sneak(float x, float y, int... skill) {
         info = new PerkInfo(skill, x, y);

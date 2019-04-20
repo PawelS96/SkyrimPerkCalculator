@@ -5,7 +5,7 @@ import com.pawels96.skyrimperkcalculator.models.PerkInfo;
 
 public enum Ord_Illusion implements IPerk {
 
-    ORD_ILU_ILLUSION_MASTERY          (0.5f,    0.95f ,  20,40),
+    ORD_ILU_ILLUSION_MASTERY          (0.5f,    0.95f ,  0,20),
     ORD_ILU_DREAM_THIEF               (0.85f,   0.78f ,  20),
     ORD_ILU_ILLUSION_DUAL_CASTING     (0.2f,    0.88f ,  20),
     ORD_ILU_COMMANDING_PRESENCE       (0.7f,    0.65f ,  30),

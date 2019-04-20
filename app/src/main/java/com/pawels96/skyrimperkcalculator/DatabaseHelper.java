@@ -30,10 +30,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         super(context, DBNAME, null, DBVER);
     }
 
-    public boolean isNameAvailable(String name) {
+    public boolean isNameAvailable(String name, PerkSystem system) {
         SQLiteDatabase db = getReadableDatabase();
+        String table = getTable(system);
 
-        Cursor cursor = db.rawQuery("SELECT name FROM ordinator_build WHERE name='" + name + "'", null);
+        Cursor cursor = db.rawQuery("SELECT name FROM " + table + " WHERE name='" + name + "'", null);
 
         boolean result = true;
 
@@ -90,7 +91,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             String sql = "UPDATE " + table + " SET name='" + newName + "' WHERE name='" + build.getName() + "'";
             DB.execSQL(sql);
             return true;
-
         } catch (Exception e) {
             return false;
         } finally {
@@ -98,16 +98,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    public boolean deleteBuild(String name) {
+    public boolean deleteBuild(Build build) {
 
         SQLiteDatabase DB = getWritableDatabase();
+        String table = getTable(build.getPerkSystem());
 
         try {
-            DB.execSQL("DELETE FROM ordinator_build WHERE name='" + name + "'");
+            DB.execSQL("DELETE FROM " + table + " WHERE name='" + build.getName() + "'");
             return true;
 
         } catch (SQLiteException e) {
-            Log.d("ERROR", e.getMessage());
             return false;
         } finally {
             DB.close();
@@ -123,8 +123,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public List<Build> getAllBuilds(PerkSystem perkSystem) {
 
-       // Log.d("PERKSYSTEM", perkSystem.toString());
-
         List<Build> builds = new ArrayList<>();
 
         SQLiteDatabase db = getReadableDatabase();
@@ -133,9 +131,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery("SELECT * FROM " + table, null);
 
         if (cursor.moveToFirst()) {
-
             do {
-
                 Build build = new Build(perkSystem);
 
                 for (SkillEnum s : SkillEnum.values()) {
@@ -147,7 +143,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
                 build.setName(cursor.getString(cursor.getColumnIndex("name")));
                 build.setDescription(cursor.getString(cursor.getColumnIndex("description")));
-
                 builds.add(build);
             }
             while (cursor.moveToNext());
@@ -205,56 +200,4 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
     }
 
-   /* public void update(String build, String perk, int state) {
-
-        SQLiteDatabase db = getWritableDatabase();
-        String sql = "UPDATE build SET " + perk + "=" + state + " WHERE skillEnum='" + build + "'";
-
-        try {
-            db.execSQL(sql);
-        } catch (SQLiteException e) {
-            Log.d("ERROR", e.getMessage());
-        }
-        db.close();
-
-    }*/
-
-    /*
-    public Build loadBuild(String name) {
-
-        Build build = null;
-
-        SQLiteDatabase db = getReadableDatabase();
-
-        Cursor cursor = db.rawQuery("SELECT * FROM build WHERE name='" + name + "'", null);
-
-        if (cursor.moveToFirst()) {
-
-            build = new Build();
-
-            do {
-                for (SkillEnum s : SkillEnum.values()) {
-                    for (IPerk p : build.getSkill(s).getPerks().keySet()) {
-                        int state = cursor.getInt(cursor.getColumnIndex(p.toString()));
-                        build.getSkill(s).get(p).setState(state);
-                    }
-                }
-            }
-            while (cursor.moveToNext());
-        }
-        cursor.close();
-        db.close();
-        return build;
-    }
-*/
-
-
 }
-
-
-
-
-
-
-
-

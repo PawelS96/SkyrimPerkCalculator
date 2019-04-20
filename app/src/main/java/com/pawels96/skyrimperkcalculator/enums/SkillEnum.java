@@ -121,7 +121,7 @@ import static com.pawels96.skyrimperkcalculator.enums.skills_ordinator.Ord_Block
 import static com.pawels96.skyrimperkcalculator.enums.skills_ordinator.Ord_Block.ORD_BLC_CAST_ASIDE;
 import static com.pawels96.skyrimperkcalculator.enums.skills_ordinator.Ord_Block.ORD_BLC_DEFLECT_ARROWS;
 import static com.pawels96.skyrimperkcalculator.enums.skills_ordinator.Ord_Block.ORD_BLC_DELIVERANCE;
-import static com.pawels96.skyrimperkcalculator.enums.skills_ordinator.Ord_Block.ORD_BLC_DOMINION2;
+import static com.pawels96.skyrimperkcalculator.enums.skills_ordinator.Ord_Block.ORD_BLC_DOMINION;
 import static com.pawels96.skyrimperkcalculator.enums.skills_ordinator.Ord_Block.ORD_BLC_DRAGON_SCALES;
 import static com.pawels96.skyrimperkcalculator.enums.skills_ordinator.Ord_Block.ORD_BLC_DRAGON_TAIL;
 import static com.pawels96.skyrimperkcalculator.enums.skills_ordinator.Ord_Block.ORD_BLC_HOLD_THE_LINE;
@@ -1034,7 +1034,7 @@ public enum SkillEnum implements Serializable {
 
                 map.put(ORD_BLC_BLOCK_MASTERY, new IPerk[]{ORD_BLC_TIMED_BLOCK, ORD_BLC_QUICK_REFLEXES, ORD_BLC_DEFLECT_ARROWS, ORD_BLC_POWER_BASH});
                 map.put(ORD_BLC_TIMED_BLOCK, new IPerk[]{ORD_BLC_BLOCK_RUNNER, ORD_BLC_POKE_THE_DRAGON});
-                map.put(ORD_BLC_DEFLECT_ARROWS, new IPerk[]{ORD_BLC_DOMINION2});
+                map.put(ORD_BLC_DEFLECT_ARROWS, new IPerk[]{ORD_BLC_DOMINION});
                 map.put(ORD_BLC_POKE_THE_DRAGON, new IPerk[]{ORD_BLC_APOCALYPSE_PROOF});
                 map.put(ORD_BLC_APOCALYPSE_PROOF, new IPerk[]{ORD_BLC_TIMING_STREAK, ORD_BLC_DRAGON_TAIL});
                 map.put(ORD_BLC_POWER_BASH, new IPerk[]{ORD_BLC_SKULL_RATTLERB});
@@ -1446,7 +1446,5 @@ public enum SkillEnum implements Serializable {
         }
 
         return map;
-
     }
-
 }

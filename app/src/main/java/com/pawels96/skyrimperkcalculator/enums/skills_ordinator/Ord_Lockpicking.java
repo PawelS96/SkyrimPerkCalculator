@@ -5,7 +5,7 @@ import com.pawels96.skyrimperkcalculator.models.PerkInfo;
 
 public enum Ord_Lockpicking implements IPerk {
 
-    ORD_LCK_MASTERY                     (0.5f,     0.95f,     20, 40),
+    ORD_LCK_MASTERY                     (0.5f,     0.95f,     0, 20),
     ORD_LCK_GAME_OF_FATE                (0.1f,     0.9f,      20),
     ORD_LCK_BEAR_TRAPS                  (0.6f,     0.85f,     20),
     ORD_LCK_LOCKDOWN                    (0.1f,     0.7f,      30),

@@ -5,7 +5,7 @@ import com.pawels96.skyrimperkcalculator.models.PerkInfo;
 
 public enum Ord_Alchemy implements IPerk {
 
-    ORD_ALC_MASTERY                 (0.3f, 0.95f, 20,40),
+    ORD_ALC_MASTERY                 (0.3f, 0.95f, 0,20),
     ORD_ALC_STIMULANTS              (0.55f, 0.75f, 20),
     ORD_ALC_PHYSICIAN               (0.85f, 0.9f, 20),
     ORD_ALC_ADVANCED_LAB            (0.25f, 0.7f, 30),

@@ -5,12 +5,12 @@ import com.pawels96.skyrimperkcalculator.models.PerkInfo;
 
 public enum Ord_Restoration implements IPerk {
 
-    ORD_RST_RESTORATION_MASTERY                (0.5f,    0.95f,   20,40),
+    ORD_RST_RESTORATION_MASTERY                (0.5f,    0.95f,   0,20),
     ORD_RST_DESCENDING_LIGHT                   (0.5f,    0.75f,   20),
     ORD_RST_RESTORATION_DUAL_CASTING           (0.75f,   0.9f,    20),
     ORD_RST_EDGEWALKER                         (0.3f,    0.75f,   30),
-    ORD_RST_HALLOWED_BURIAL                    (0.6f,    0.55f,   30,50),
-    ORD_RST_SPIRIT_TUTORS                      (0.75f,   0.725f,   30),
+    ORD_RST_HALLOWED_BURIAL                    (0.6f,    0.55f,   30,60),
+    ORD_RST_SPIRIT_TUTORS                      (0.75f,   0.725f,  30),
     ORD_RST_VIGILANT                           (0.425f,  0.575f,  30),
     ORD_RST_NECROMANTICON                      (0.15f,   0.65f,   40),
     ORD_RST_EXORCIST                           (0.6f,    0.45f,   40),
@@ -39,8 +39,6 @@ public enum Ord_Restoration implements IPerk {
     ORD_RST_GODS_AND_MORTALS                   (0.9f,    0.12f,   90),
     ORD_RST_TOME_OF_MANY_PAGES                 (0.3f,    0.9f,    90),
     ORD_RST_APOTHEOSIS                         (0.55f,   0.05f,   100);
-
-    //TODO update skill levels
 
     Ord_Restoration(float x, float y, int... skill) {
         info = new PerkInfo(skill, x, y);
