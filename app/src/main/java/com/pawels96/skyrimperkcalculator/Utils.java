@@ -3,6 +3,8 @@ package com.pawels96.skyrimperkcalculator;
 import android.content.Context;
 
 import com.pawels96.skyrimperkcalculator.enums.IPerk;
+import com.pawels96.skyrimperkcalculator.enums.PerkSystem;
+import com.pawels96.skyrimperkcalculator.enums.SkillEnum;
 import com.pawels96.skyrimperkcalculator.models.Build;
 
 import java.util.HashMap;
@@ -37,6 +39,21 @@ public class Utils {
             e.printStackTrace();
             return info;
         }
+    }
+
+    public static String getSkillName(SkillEnum s, Context c){
+
+        String name = String.valueOf(s).toLowerCase();
+        int id;
+
+        try {
+            id = c.getResources().getIdentifier(name, "string", c.getPackageName());
+            return c.getResources().getString(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return name;
+        }
+
     }
 
     public static String getFragmentTag(int viewPagerID, int position) {

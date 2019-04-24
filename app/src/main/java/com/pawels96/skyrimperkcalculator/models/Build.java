@@ -5,7 +5,10 @@ import com.pawels96.skyrimperkcalculator.enums.PerkSystem;
 import com.pawels96.skyrimperkcalculator.enums.SkillEnum;
 import com.pawels96.skyrimperkcalculator.enums.SkillType;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 
 import static com.pawels96.skyrimperkcalculator.enums.SkillType.COMBAT;
 import static com.pawels96.skyrimperkcalculator.enums.SkillType.MAGIC;
@@ -56,6 +59,17 @@ public class Build {
         for (SkillEnum s : SkillEnum.values())
             skills.put(s, buildSkill(s, perkSystem));
 
+    }
+
+    public List<Skill> getSkills(){
+
+        List<Skill> list = new ArrayList<>();
+
+        for (SkillEnum s : SkillEnum.values()) {
+            list.add(getSkill(s));
+        }
+
+        return list;
     }
 
     public HashMap<SkillType, Integer> getPerkDistribution(){

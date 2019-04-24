@@ -170,17 +170,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <Button
-            android:background="@drawable/round_backgr"
-            android:text="@string/new_build"
-            android:textAllCaps="true"
-            android:textColor="@color/colorFont"
-            android:layout_toStartOf="@id/loadButton"
-            android:layout_marginEnd="15dp"
 
-            android:id="@+id/saveButton"
-            android:layout_width="wrap_content"
-            android:layout_height="20dp" />
 
         <Button
             android:background="@drawable/round_backgr"
@@ -188,9 +178,22 @@
             android:textAllCaps="true"
 
             android:textColor="@color/colorFont"
+            android:layout_marginEnd="15dp"
+            android:id="@+id/loadButton"
+            android:layout_toStartOf="@id/skillsButton"
+
+            android:layout_width="wrap_content"
+            android:layout_height="20dp" />
+
+        <Button
+            android:background="@drawable/round_backgr"
+            android:text="@string/skills"
+            android:textAllCaps="true"
+            android:textColor="@color/colorFont"
+
             android:layout_centerHorizontal="true"
 
-            android:id="@+id/loadButton"
+            android:id="@+id/skillsButton"
             android:layout_width="wrap_content"
             android:layout_height="20dp" />
 
@@ -199,7 +202,7 @@
             android:textAllCaps="true"
 
             android:textColor="@color/colorFont"
-            android:layout_toEndOf="@id/loadButton"
+            android:layout_toEndOf="@id/skillsButton"
             android:layout_marginStart="15dp"
             android:background="@drawable/round_backgr"
             android:id="@+id/optionsButton"

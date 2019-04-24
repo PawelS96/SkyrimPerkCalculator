@@ -27,7 +27,7 @@ import static com.pawels96.skyrimperkcalculator.Utils.PREFS_NAME;
 public class BuildAdapter extends BaseAdapter {
 
     private List<Build> builds;
-    private LayoutInflater songInflater;
+    private LayoutInflater inflater;
 
     private int stealth, combat, magic;
     private float multiplier;
@@ -70,7 +70,7 @@ public class BuildAdapter extends BaseAdapter {
 
         multiplier = c.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE).getFloat(PREFS_MULTIPLIER, 1f);
 
-        songInflater = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        inflater = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
@@ -94,7 +94,7 @@ public class BuildAdapter extends BaseAdapter {
         final Holder holder;
 
         if (view == null) {
-            view = songInflater.inflate(R.layout.list_item_build, parent, false);
+            view = inflater.inflate(R.layout.list_item_build, parent, false);
 
             holder = new Holder();
             holder.name = view.findViewById(R.id.build_name);

@@ -2,6 +2,7 @@ package com.pawels96.skyrimperkcalculator.models;
 
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
+import android.util.Log;
 
 import com.pawels96.skyrimperkcalculator.DatabaseHelper;
 import com.pawels96.skyrimperkcalculator.enums.PerkSystem;

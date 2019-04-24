@@ -14,7 +14,7 @@ public enum Ord_Illusion implements IPerk {
     ORD_ILU_NIGHT_EYE                 (0.3f,    0.8f ,   30),
     ORD_ILU_CROWN_OF_THE_FALSE_KING   (0.6f,    0.45f ,  40),
     ORD_ILU_KINDRED_MAGE              (0.9f,    0.6f ,   40),
-    ORD_ILU_QUIET_BEFORE_THE_STORM    (0.8f,    0.88f ,  40),
+    ORD_ILU_QUIET_BEFORE_THE_STORM    (0.8f,    0.88f ,  40, 70),
     ORD_ILU_WILTING                   (0.4f,    0.6f ,   40),
     ORD_ILU_FICKLE_FATE               (0.8f,    0.5f ,   50),
     ORD_ILU_NEMESIS                   (0.1f,    0.45f ,  50),

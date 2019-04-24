@@ -74,7 +74,6 @@ public class Skill {
         return Integer.toString(getSelectedPerksCount()) + "/" + Integer.toString(maxPerks);
     }
 
-
     public List<Perk> getChildrenList() {
 
         ArrayList<Perk> list = new ArrayList<>();

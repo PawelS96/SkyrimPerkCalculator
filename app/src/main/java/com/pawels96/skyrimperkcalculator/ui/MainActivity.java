@@ -31,6 +31,9 @@ import com.pawels96.skyrimperkcalculator.enums.SkillEnum;
 import com.pawels96.skyrimperkcalculator.models.Build;
 import com.pawels96.skyrimperkcalculator.models.BuildViewModel;
 import com.pawels96.skyrimperkcalculator.models.Perk;
+import com.pawels96.skyrimperkcalculator.models.Skill;
+
+import java.util.List;
 
 import static com.pawels96.skyrimperkcalculator.Utils.DEFAULT_BUILD_NAME;
 import static com.pawels96.skyrimperkcalculator.Utils.PREFS_BUILD_SELECTED;
@@ -103,7 +106,7 @@ public class MainActivity extends AppCompatActivity
 
         updateBuildInfo();
 
-        Button save = findViewById(R.id.saveButton);
+        Button save = findViewById(R.id.skillsButton);
         Button load = findViewById(R.id.loadButton);
         Button options = findViewById(R.id.optionsButton);
 
@@ -112,8 +115,9 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View v) {
                 switch (v.getId()) {
 
-                    case R.id.saveButton:
-                        showSavePopup(new Build(build.getPerkSystem()), false);
+                    case R.id.skillsButton:
+                       // showSavePopup(new Build(build.getPerkSystem()), false);
+                        showSkillsPopup();
                         break;
                     case R.id.loadButton:
                         showBuildList();
@@ -127,6 +131,53 @@ public class MainActivity extends AppCompatActivity
         save.setOnClickListener(listener);
         load.setOnClickListener(listener);
         options.setOnClickListener(listener);
+    }
+
+
+
+
+    private void showSkillsPopup(){
+
+            final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+
+            LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+            View customView = inflater.inflate(R.layout.list_builds, null);
+
+            final ListView lv = customView.findViewById(R.id.listView);
+
+            List<Skill> skills = build.getSkills();
+
+
+            final SkillAdapter skillAdapter = new SkillAdapter(this, skills);
+
+            lv.setAdapter(skillAdapter);
+        skillAdapter.notifyDataSetChanged();
+
+            dialogBuilder.setView(customView);
+
+            final Dialog listDialog = dialogBuilder.create();
+
+            lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                    viewPager.setCurrentItem(position, false);
+                    listDialog.dismiss();
+                }
+            });
+
+            listDialog.setOnShowListener(new DialogInterface.OnShowListener() {
+                @Override
+                public void onShow(DialogInterface dialog) {
+                    lv.setAdapter(skillAdapter);
+                    skillAdapter.notifyDataSetChanged();
+                }
+            });
+
+            listDialog.show();
+
+
+
     }
 
     @Override
@@ -290,7 +341,7 @@ public class MainActivity extends AppCompatActivity
 
     private void showBuildList() {
 
-        final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+        final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this, R.style.CustomDialogTheme);
 
         LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         View customView = inflater.inflate(R.layout.list_builds, null);
@@ -322,6 +373,13 @@ public class MainActivity extends AppCompatActivity
         adapter.notifyDataSetChanged();
 
         dialogBuilder.setView(customView);
+
+        dialogBuilder.setPositiveButton(getString(R.string.new_build), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                showSavePopup(new Build(build.getPerkSystem()), false);
+            }
+        });
 
         final Dialog listDialog = dialogBuilder.create();
 
@@ -473,7 +531,7 @@ public class MainActivity extends AppCompatActivity
 
         int progress = (int) (multiplier * 10) + 1;
         perksSeekbar.setProgress(progress);
-        perksValue.setText(": " + String.format("%.1f", multiplier));
+        perksValue.setText(": " + String.format("%.1f", multiplier).replace(",", "."));
         perksSeekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
             float value;
@@ -481,7 +539,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 value = (float) progress / 10 + 0.1f;
-                perksValue.setText(": " + String.format("%.1f", value));
+                perksValue.setText(": " + String.format("%.1f", value).replace(",", "."));
                 multiplier = value;
                 updateBuildInfo();
             }
