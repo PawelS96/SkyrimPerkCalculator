@@ -154,8 +154,6 @@ public enum SkillEnum implements Serializable {
                         return Ord_LightArmor.values();
                     case SKILL_RESTORATION:
                         return Ord_Restoration.values();
-                    default:
-                        return Ord_Lockpicking.values();
                 }
 
             case VANILLA:
@@ -198,12 +196,10 @@ public enum SkillEnum implements Serializable {
                         return LightArmor.values();
                     case SKILL_RESTORATION:
                         return Restoration.values();
-                    default:
-                        return Lockpicking.values();
                 }
 
             default:
-                return Lockpicking.values();
+                return null;
         }
     }
 

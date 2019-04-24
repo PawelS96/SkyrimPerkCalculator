@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">Skyrim Perk Calculator</string>
 
-    <string name="msg_build_saved">Build saved</string>
+    <string name="msg_saved">Saved</string>
+    <string name="msg_build_saved">Build created</string>
     <string name="msg_build_deleted">Build deleted</string>
     <string name="msg_name_in_use">Name is already in use</string>
     <string name="msg_name_empty">Name can\'t be empty</string>

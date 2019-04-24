@@ -8,5 +8,4 @@ public class FPoint {
         this.x = x;
         this.y = y;
     }
-
 }

@@ -7,7 +7,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 import com.pawels96.skyrimperkcalculator.enums.IPerk;
 import com.pawels96.skyrimperkcalculator.enums.PerkSystem;
@@ -84,7 +83,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public boolean renameBuild(Build build, String newName) {
 
         SQLiteDatabase DB = getWritableDatabase();
-
         String table = getTable(build.getPerkSystem());
 
         try {
@@ -156,11 +154,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         StringBuilder builder = new StringBuilder();
 
-        for (SkillEnum s : SkillEnum.values()) {
-            for (IPerk p : s.getPerks(perkSystem)) {
+        for (SkillEnum s : SkillEnum.values())
+            for (IPerk p : s.getPerks(perkSystem))
                 builder.append(p.toString()).append(" INTEGER,");
-            }
-        }
 
         String columns = builder.substring(0, builder.lastIndexOf(",") - 1);
         String tableName = perkSystem.toString().toLowerCase() + "_build";
@@ -170,11 +166,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "name VARCHAR," +
                 "description VARCHAR," +
                 columns + ")";
-        try {
-            db.execSQL(createSongTable);
-        } catch (SQLiteException e) {
-            Log.d("DB_ERROR", e.getMessage());
-        }
+
+        db.execSQL(createSongTable);
     }
 
     @Override

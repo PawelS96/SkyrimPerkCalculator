@@ -85,10 +85,6 @@ public class Skill {
         return list;
     }
 
-    public void add(Perk n) {
-        perks.put(n.getPerk(), n);
-    }
-
     public Perk get(IPerk name) {
         return perks.get(name);
     }

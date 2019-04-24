@@ -29,33 +29,34 @@ public class GraphView extends View {
     private Paint selectedStealthPaint;
     private Paint selectedCombatPaint;
     private Paint selectedMagicPaint;
-
     private Paint notSelectedPaint;
     private Paint textPaint;
 
     private float w, h;
     private static int nodeRadius = 15;
     private int textSize = 17;
+    private float currentX, currentY;
+    private float clickedX, clickedY;
+
     private Context context;
+    private Handler handler;
 
     private HashMap<IPerk, FPoint> coordinates;
-
+    private IPerk touchedPerk = null;
+    private PerkSystem system;
     private Skill skill;
-    private Handler handler;
+
+    private GraphView.OnNodeClickedListener listener;
+    private Rect textBounds = new Rect();
 
     public interface OnNodeClickedListener {
         void onNodeClicked(Perk perk);
         void onNodeHolding(Perk perk);
     }
 
-    private PerkSystem system;
-
     public Skill getSkill() {
         return skill;
     }
-
-    private GraphView.OnNodeClickedListener listener;
-    private Rect textBounds = new Rect();
 
     public void setListener(GraphView.OnNodeClickedListener listener) {
         this.listener = listener;
@@ -159,7 +160,6 @@ public class GraphView extends View {
         drawConnections(canvas, skill.getChildrenList());
         drawNodes(canvas);
         drawLabels(canvas);
-
     }
 
     private void drawNodes(Canvas canvas) {
@@ -238,7 +238,6 @@ public class GraphView extends View {
                     && y > point.y * h - nodeRadius * 2)
 
                 return perk;
-
         }
         return null;
     }
@@ -254,15 +253,9 @@ public class GraphView extends View {
     private void onPerkClicked(IPerk perk) {
 
         skill.get(perk).nextState();
-
         invalidate();
         listener.onNodeClicked(skill.get(perk));
     }
-
-    private IPerk touchedPerk = null;
-
-    private float currentX, currentY;
-    private float clickedX, clickedY;
 
     @Override
     public boolean onTouchEvent(final MotionEvent event) {
@@ -317,5 +310,4 @@ public class GraphView extends View {
     public void cancelHold(){
         handler.removeCallbacksAndMessages(null);
     }
-
 }

@@ -15,6 +15,9 @@ import static com.pawels96.skyrimperkcalculator.models.Skill.buildSkill;
 public class Build {
 
     private PerkSystem perkSystem;
+    private String name;
+    private HashMap<SkillEnum, Skill> skills;
+    private String description = null;
 
     public void setPerkSystem(PerkSystem perkSystem) {
         this.perkSystem = perkSystem;
@@ -24,15 +27,13 @@ public class Build {
         return perkSystem;
     }
 
-    private HashMap<SkillEnum, Skill> skills;
-
-    private String name;
-
     public String getName() {
         return name;
     }
 
-    private String description = null;
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public String getDescription() {
         return description;
@@ -55,10 +56,6 @@ public class Build {
         for (SkillEnum s : SkillEnum.values())
             skills.put(s, buildSkill(s, perkSystem));
 
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public HashMap<SkillType, Integer> getPerkDistribution(){
@@ -126,5 +123,4 @@ public class Build {
         }
         return build;
     }
-
 }

@@ -188,5 +188,4 @@ public class BuildAdapter extends BaseAdapter {
         public TextView perks;
     }
 
-
 }
