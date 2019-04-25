@@ -147,13 +147,13 @@ public class MainActivity extends AppCompatActivity
 
             List<Skill> skills = build.getSkills();
 
-
             final SkillAdapter skillAdapter = new SkillAdapter(this, skills);
+        dialogBuilder.setView(customView);
 
             lv.setAdapter(skillAdapter);
-        skillAdapter.notifyDataSetChanged();
-
-            dialogBuilder.setView(customView);
+            skillAdapter.notifyDataSetChanged();
+            lv.setDividerHeight(1);
+            lv.setSelection(viewPager.getCurrentItem());
 
             final Dialog listDialog = dialogBuilder.create();
 
@@ -163,14 +163,6 @@ public class MainActivity extends AppCompatActivity
 
                     viewPager.setCurrentItem(position, false);
                     listDialog.dismiss();
-                }
-            });
-
-            listDialog.setOnShowListener(new DialogInterface.OnShowListener() {
-                @Override
-                public void onShow(DialogInterface dialog) {
-                    lv.setAdapter(skillAdapter);
-                    skillAdapter.notifyDataSetChanged();
                 }
             });
 
@@ -313,13 +305,16 @@ public class MainActivity extends AppCompatActivity
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
 
+                        boolean current = buildToDelete == build;//adapter.getCurrentBuildName().equals(buildToDelete.getName());
                         boolean deleted = helper.deleteBuild(buildToDelete);
 
                         if (deleted) {
                             model.deleteFromMap(buildToDelete);
                             adapter.delete(buildToDelete);
-                            build = model.getRandom();
-                            adapter.setCurrentBuildName(build.getName());
+                            if (current) {
+                                build = (Build) adapter.getItem(0);
+                                adapter.setCurrentBuildName(build.getName());
+                            }
                             adapter.notifyDataSetChanged();
                             refreshFragments();
                             updateBuildInfo();
@@ -368,10 +363,6 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        lv.setAdapter(adapter);
-        adapter.setCurrentBuildName(build.getName());
-        adapter.notifyDataSetChanged();
-
         dialogBuilder.setView(customView);
 
         dialogBuilder.setPositiveButton(getString(R.string.new_build), new DialogInterface.OnClickListener() {
@@ -395,11 +386,17 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
+        lv.setPadding(0, 5, 0, 0);
+
         listDialog.setOnShowListener(new DialogInterface.OnShowListener() {
             @Override
             public void onShow(DialogInterface dialog) {
                 lv.setAdapter(adapter);
+                adapter.setCurrentBuildName(build.getName());
+
                 adapter.notifyDataSetChanged();
+                lv.setSelection(adapter.getCurrentBuildIndex());
+
             }
         });
 
@@ -455,6 +452,7 @@ public class MainActivity extends AppCompatActivity
                             public void onClick(DialogInterface dialog, int which) {
                                 MainActivity.this.build.setDescription(et.getText().toString());
                                 helper.updateBuild(MainActivity.this.build);
+                                adapter.notifyDataSetChanged();
                                 hideKeyboard(customView2);
                                 dialog.dismiss();
                                 showMessage(R.string.msg_saved);

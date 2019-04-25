@@ -35,6 +35,7 @@ public class BuildAdapter extends BaseAdapter {
     private Context c;
 
     private String currentBuildName;
+    private int index;
 
     public void setCurrentBuildName(String currentBuildName) {
         this.currentBuildName = currentBuildName;
@@ -48,6 +49,21 @@ public class BuildAdapter extends BaseAdapter {
         void onRename(Build build);
         void onDelete(Build build, boolean canDelete);
         void showDescription(Build build);
+    }
+
+    @Override
+    public void notifyDataSetChanged() {
+        super.notifyDataSetChanged();
+
+        for (Build b : builds)
+            if (b.getName().equals(currentBuildName)){
+                index = builds.indexOf(b);
+                break;
+            }
+    }
+
+    public int getCurrentBuildIndex(){
+        return index;
     }
 
     public void delete(Build build){
@@ -101,6 +117,7 @@ public class BuildAdapter extends BaseAdapter {
             holder.button = view.findViewById(R.id.context_menu);
             holder.level = view.findViewById(R.id.level);
             holder.perks = view.findViewById(R.id.build_info);
+            holder.description = view.findViewById(R.id.description);
 
             view.setTag(holder);
         }
@@ -139,6 +156,16 @@ public class BuildAdapter extends BaseAdapter {
         holder.perks.setText(builder, TextView.BufferType.SPANNABLE);
         String levelText = c.getString(R.string.level) + ": " + lvl;
         holder.level.setText(levelText);
+
+        String description = build.getDescription();
+
+        if (description == null || description.isEmpty())
+            holder.description.setVisibility(View.GONE);
+        else {
+            holder.description.setVisibility(View.VISIBLE);
+
+            holder.description.setText(description);
+        }
 
         holder.button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -186,6 +213,7 @@ public class BuildAdapter extends BaseAdapter {
         public TextView name;
         public TextView level;
         public TextView perks;
+        public TextView description;
     }
 
 }

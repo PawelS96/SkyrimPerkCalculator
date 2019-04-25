@@ -159,18 +159,12 @@
 
     </LinearLayout>
 
-
-
-
-
     <RelativeLayout
         android:id="@+id/buttons"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
-
 
         <Button
             android:background="@drawable/round_backgr"
@@ -183,7 +177,7 @@
             android:layout_toStartOf="@id/skillsButton"
 
             android:layout_width="wrap_content"
-            android:layout_height="20dp" />
+            android:layout_height="24dp" />
 
         <Button
             android:background="@drawable/round_backgr"
@@ -195,7 +189,7 @@
 
             android:id="@+id/skillsButton"
             android:layout_width="wrap_content"
-            android:layout_height="20dp" />
+            android:layout_height="24dp" />
 
         <Button
             android:text="@string/options"
@@ -207,7 +201,7 @@
             android:background="@drawable/round_backgr"
             android:id="@+id/optionsButton"
             android:layout_width="wrap_content"
-            android:layout_height="20dp" />
+            android:layout_height="24dp" />
 
 
 

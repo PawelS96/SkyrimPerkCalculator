@@ -4,6 +4,7 @@ import android.content.Context;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.style.ForegroundColorSpan;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -38,6 +39,9 @@ public class SkillAdapter extends BaseAdapter {
         this.c = c;
         this.skills = skills;
 
+        for (Skill s : skills)
+            Log.d(getSkillName(s.getSkillEnum(), c), Integer.toString(s.getSelectedPerksCount()))
+;
         inflater = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
@@ -76,9 +80,8 @@ public class SkillAdapter extends BaseAdapter {
 
         holder.name.setText(getSkillName(skill.getSkillEnum(), c));
         int perks = skill.getSelectedPerksCount();
-        if (perks > 0)
-        holder.perks.setText(Integer.toString(perks));
-
+        String perksString = perks > 0 ? Integer.toString(perks) : "";
+        holder.perks.setText(perksString);
 
         return view;
     }
