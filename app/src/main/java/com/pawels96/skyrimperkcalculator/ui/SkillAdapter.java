@@ -39,9 +39,6 @@ public class SkillAdapter extends BaseAdapter {
         this.c = c;
         this.skills = skills;
 
-        for (Skill s : skills)
-            Log.d(getSkillName(s.getSkillEnum(), c), Integer.toString(s.getSelectedPerksCount()))
-;
         inflater = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 

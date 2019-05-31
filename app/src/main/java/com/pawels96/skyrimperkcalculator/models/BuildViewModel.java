@@ -15,6 +15,13 @@ import java.util.Random;
 import static com.pawels96.skyrimperkcalculator.Utils.DEFAULT_BUILD_NAME;
 import static com.pawels96.skyrimperkcalculator.Utils.listToMap;
 
+/**
+ * This class holds all builds which belong to the currently selected perk system.
+ * ViewModel was used to hold the data independently from the activity lifecycle and screen rotations,
+ * which is not really used in the final version of this app, as there is only one activity
+ * and screen rotations are blocked.
+ */
+
 public class BuildViewModel extends ViewModel {
 
     private MutableLiveData<HashMap<String, Build>> allBuilds;
@@ -79,5 +86,4 @@ public class BuildViewModel extends ViewModel {
     public void deleteFromMap(Build build) {
         allBuilds.getValue().remove(build.getName());
     }
-
 }

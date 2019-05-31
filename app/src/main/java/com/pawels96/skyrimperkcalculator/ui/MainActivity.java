@@ -116,7 +116,6 @@ public class MainActivity extends AppCompatActivity
                 switch (v.getId()) {
 
                     case R.id.skillsButton:
-                       // showSavePopup(new Build(build.getPerkSystem()), false);
                         showSkillsPopup();
                         break;
                     case R.id.loadButton:
@@ -133,41 +132,37 @@ public class MainActivity extends AppCompatActivity
         options.setOnClickListener(listener);
     }
 
+    private void showSkillsPopup() {
 
+        final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
 
+        LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+        View customView = inflater.inflate(R.layout.list_builds, null);
 
-    private void showSkillsPopup(){
+        final ListView lv = customView.findViewById(R.id.listView);
 
-            final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+        List<Skill> skills = build.getSkills();
 
-            LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
-            View customView = inflater.inflate(R.layout.list_builds, null);
-
-            final ListView lv = customView.findViewById(R.id.listView);
-
-            List<Skill> skills = build.getSkills();
-
-            final SkillAdapter skillAdapter = new SkillAdapter(this, skills);
+        final SkillAdapter skillAdapter = new SkillAdapter(this, skills);
         dialogBuilder.setView(customView);
 
-            lv.setAdapter(skillAdapter);
-            skillAdapter.notifyDataSetChanged();
-            lv.setDividerHeight(1);
-            lv.setSelection(viewPager.getCurrentItem());
+        lv.setAdapter(skillAdapter);
+        skillAdapter.notifyDataSetChanged();
+        lv.setDividerHeight(1);
+        lv.setSelection(viewPager.getCurrentItem());
 
-            final Dialog listDialog = dialogBuilder.create();
+        final Dialog listDialog = dialogBuilder.create();
 
-            lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                    viewPager.setCurrentItem(position, false);
-                    listDialog.dismiss();
-                }
-            });
+                viewPager.setCurrentItem(position, false);
+                listDialog.dismiss();
+            }
+        });
 
-            listDialog.show();
-
+        listDialog.show();
 
 
     }
@@ -271,8 +266,7 @@ public class MainActivity extends AppCompatActivity
                                         model.addToMap(newBuild);
                                         refreshFragments();
                                         showMessage(R.string.msg_build_saved);
-                                    }
-                                    else showMessage(R.string.msg_error);
+                                    } else showMessage(R.string.msg_error);
                                 }
                                 hideKeyboard(view);
                                 dialog.dismiss();
@@ -305,7 +299,7 @@ public class MainActivity extends AppCompatActivity
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
 
-                        boolean current = buildToDelete == build;//adapter.getCurrentBuildName().equals(buildToDelete.getName());
+                        boolean current = buildToDelete == build;
                         boolean deleted = helper.deleteBuild(buildToDelete);
 
                         if (deleted) {
@@ -566,11 +560,14 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onPerkChanged(SkillEnum skill, Perk perk, int state) {
 
-        build.
-                getSkill(skill).
-                get(perk.getPerk()).
-                setState(state);
-        updateBuildInfo();
+        try {
+            build.
+                    getSkill(skill).
+                    get(perk.getPerk()).
+                    setState(state);
+            updateBuildInfo();
+
+       } catch (NullPointerException e) { }
     }
 
     private void showMessage(int msg) {

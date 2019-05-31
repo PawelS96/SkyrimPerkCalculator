@@ -19,6 +19,18 @@ public class Utils {
     public static final String DEFAULT_BUILD_NAME = "New build";
     public static final String PREFS_PERK_SYSTEM = "system";
 
+
+    /**
+     * Methods for getting perk names and descriptions from strings.xml.
+     *
+     * Naming convention for XML resources:
+     * resType_perkSystem_skillName_perkName
+     *
+     * where:
+     * resType is either p for perk names or d for perk descriptions
+     * and the rest is the same as the names of perks in enums but in lowercase
+     */
+
     public static String getPerkName(Context c, IPerk perk){
         return getPerkInfo(c, perk, "p_");
     }
@@ -53,7 +65,6 @@ public class Utils {
             e.printStackTrace();
             return name;
         }
-
     }
 
     public static String getFragmentTag(int viewPagerID, int position) {

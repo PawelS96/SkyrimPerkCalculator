@@ -83,7 +83,7 @@
     <string name="p_ord_blc_power_bash">Power Bash</string>
     <string name="p_ord_blc_quick_reflexes">Quick Reflexes</string>
     <string name="p_ord_blc_dominion">Dominion</string>
-    <string name="p_ord_blc_skull_rattlerb">Skull RattlerB</string>
+    <string name="p_ord_blc_skull_rattlerb">Skull Rattler</string>
     <string name="p_ord_blc_dragon_tail">Dragon Tail</string>
     <string name="p_ord_blc_timing_streak">Timing Streak</string>
     <string name="p_ord_blc_block_runner">Block Runner</string>
@@ -589,7 +589,7 @@
     <string name="d_ord_blc_apocalypse_proof">Perform a Timed Block to mitigate incoming fire, frost and shock spells and effects, reducing their damage by 50%/to zero.</string>
     <string name="d_ord_blc_power_bash">Able to do a power bash by holding down Attack while blocking.</string>
     <string name="d_ord_blc_quick_reflexes">Time slows down if you are blocking during an enemy\'s power attack.</string>
-    <string name="d_ord_blc_dominion2">Take 25% less attack damage from any direction when blocking in combat.</string>
+    <string name="d_ord_blc_dominion">Take 25% less attack damage from any direction when blocking in combat.</string>
     <string name="d_ord_blc_skull_rattlerb">Bashing deals 3% more damage per point of Stamina.</string>
     <string name="d_ord_blc_dragon_tail">After a successful Timed Block, bashing the attacker within 5 seconds deals double damage.</string>
     <string name="d_ord_blc_timing_streak">Performing 3 successful Timed Blocks in a row completes a Timing Streak, restoring 75 points of Stamina. (Taking an unblocked attack or blocking an attack outside the timed block window breaks the combo.)</string>

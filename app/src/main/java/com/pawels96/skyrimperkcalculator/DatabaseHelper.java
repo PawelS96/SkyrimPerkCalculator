@@ -33,14 +33,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getReadableDatabase();
         String table = getTable(system);
 
-        Cursor cursor = db.rawQuery("SELECT name FROM " + table + " WHERE name='" + name + "'", null);
-
         boolean result = true;
 
-        if (cursor.moveToFirst())
-            result = false;
+        try {
+            Cursor cursor = db.rawQuery("SELECT name FROM " + table + " WHERE name='" + name + "'", null);
 
-        cursor.close();
+            if (cursor != null && cursor.moveToFirst())
+                result = false;
+
+            if (cursor != null)
+            cursor.close();
+
+        } catch (SQLiteException e) {
+            result = false;
+        }
+
         db.close();
 
         return result;
@@ -150,7 +157,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return builds;
     }
 
-    private void createBuildsTable(PerkSystem perkSystem, SQLiteDatabase db){
+    private void createBuildsTable(PerkSystem perkSystem, SQLiteDatabase db) {
 
         StringBuilder builder = new StringBuilder();
 
@@ -185,10 +192,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         insertBuild(getTable(VANILLA), processBuild(build2), db, false);
     }
 
-    private static String getTable(PerkSystem p){
-       return p.toString().toLowerCase() + "_build";
+    private static String getTable(PerkSystem p) {
+        return p.toString().toLowerCase() + "_build";
     }
-    
+
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
     }

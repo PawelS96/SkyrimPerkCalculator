@@ -1,5 +1,10 @@
 package com.pawels96.skyrimperkcalculator.models;
 
+/**
+ * Class which represents X and Y coordinates in a GraphView.
+ * Viable values are floats from 0 to 1 (multipliers of the total width/height).
+ */
+
 public class FPoint {
 
     public float x, y;

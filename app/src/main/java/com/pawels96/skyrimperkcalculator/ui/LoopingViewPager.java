@@ -6,6 +6,10 @@ import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 
+/**
+ * ViewPager which allows for moving between the first and last item
+ */
+
 public class LoopingViewPager extends ViewPager {
     public LoopingViewPager(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);

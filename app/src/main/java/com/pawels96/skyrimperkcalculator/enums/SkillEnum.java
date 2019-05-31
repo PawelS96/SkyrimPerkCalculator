@@ -216,6 +216,11 @@ public enum SkillEnum implements Serializable {
         return null;
     }
 
+    /**
+     * Returns a map of connected perks in a skill.
+     * Each perk is mapped to a list of its children, if it has any.
+     */
+
     private HashMap<IPerk, IPerk[]> getOrdinatorConnections() {
 
         HashMap<IPerk, IPerk[]> map = new HashMap<>();

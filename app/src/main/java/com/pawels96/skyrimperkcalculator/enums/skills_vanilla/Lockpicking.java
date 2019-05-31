@@ -13,7 +13,7 @@ public enum Lockpicking implements IPerk {
     VAN_LCK_EXPERT_LOCKS          (0.75f,   0.3f,   75),
     VAN_LCK_GOLDEN_TOUCH          (0.55f,   0.45f,  60),
     VAN_LCK_TREASURE_HUNTER       (0.4f,    0.4f,   70),
-    VAN_LCK_LOCKSMITH             (0.575f,   0.225f,   80),
+    VAN_LCK_LOCKSMITH             (0.575f,  0.225f, 80),
     VAN_LCK_UNBREAKABLE           (0.45f,   0.15f,  100),
     VAN_LCK_MASTER_LOCKS          (0.775f,  0.1f,   100);
 
