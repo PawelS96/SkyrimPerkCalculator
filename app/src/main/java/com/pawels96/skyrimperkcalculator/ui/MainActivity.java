@@ -44,6 +44,7 @@ import static com.pawels96.skyrimperkcalculator.Utils.PREFS_SKILL_SELECTED;
 import static com.pawels96.skyrimperkcalculator.Utils.getFragmentTag;
 import static com.pawels96.skyrimperkcalculator.enums.PerkSystem.ORDINATOR;
 import static com.pawels96.skyrimperkcalculator.enums.PerkSystem.VANILLA;
+import static com.pawels96.skyrimperkcalculator.enums.PerkSystem.VOKRII;
 
 
 public class MainActivity extends AppCompatActivity
@@ -485,11 +486,14 @@ public class MainActivity extends AppCompatActivity
 
         final RadioButton radioVanilla = customView.findViewById(R.id.radio_vanilla);
         final RadioButton radioOrdinator = customView.findViewById(R.id.radio_ordinator);
+        final RadioButton radioVokrii = customView.findViewById(R.id.radio_vokrii);
 
         if (build.getPerkSystem() == ORDINATOR)
             radioOrdinator.setChecked(true);
         else if (build.getPerkSystem() == VANILLA)
             radioVanilla.setChecked(true);
+        else if (build.getPerkSystem() == VOKRII)
+            radioVokrii.setChecked(true);
 
         CompoundButton.OnCheckedChangeListener listener = new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -502,11 +506,19 @@ public class MainActivity extends AppCompatActivity
                         case R.id.radio_ordinator:
                             system = ORDINATOR;
                             radioVanilla.setChecked(false);
+                            radioVokrii.setChecked(false);
                             break;
 
                         case R.id.radio_vanilla:
                             system = VANILLA;
                             radioOrdinator.setChecked(false);
+                            radioVokrii.setChecked(false);
+                            break;
+
+                        case R.id.radio_vokrii:
+                            system = VOKRII;
+                            radioOrdinator.setChecked(false);
+                            radioVanilla.setChecked(false);
                             break;
                     }
 
@@ -520,6 +532,7 @@ public class MainActivity extends AppCompatActivity
 
         radioOrdinator.setOnCheckedChangeListener(listener);
         radioVanilla.setOnCheckedChangeListener(listener);
+        radioVokrii.setOnCheckedChangeListener(listener);
 
         int progress = (int) (multiplier * 10) + 1;
         perksSeekbar.setProgress(progress);

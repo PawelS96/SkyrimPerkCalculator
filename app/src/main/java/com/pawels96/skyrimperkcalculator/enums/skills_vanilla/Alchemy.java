@@ -15,7 +15,6 @@ public enum Alchemy implements IPerk {
     VAN_ALC_SNAKEBLOOD                  (0.6f,      0.2f,    80),
     VAN_ALC_PURITY                      (0.525f,    0.075f,  100);
 
-
     Alchemy(float x, float y, int... skill) {
         info = new PerkInfo(skill, x, y);
     }

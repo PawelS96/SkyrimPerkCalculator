@@ -229,6 +229,9 @@ public class GraphView extends View {
 
     private IPerk getClickedPerk(float x, float y) {
 
+        if (coordinates == null)
+            return null;
+
         for (IPerk perk : coordinates.keySet()) {
             FPoint point = coordinates.get(perk);
 

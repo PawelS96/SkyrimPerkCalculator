@@ -52,7 +52,7 @@
     <string name="rename">Rename</string>
     <string name="description">Description</string>
     <string name="ordinator_perk_overhaul">Ordinator - Perks of Skyrim</string>
+    <string name="vokrii">Vokrii - Minimalistic Perks of Skyrim</string>
     <string name="vanilla_skyrim">Vanilla Skyrim</string>
     <string name="perks_per_level">Perks per level</string>
-
 </resources>

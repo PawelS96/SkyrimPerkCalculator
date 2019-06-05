@@ -1,5 +1,7 @@
 package com.pawels96.skyrimperkcalculator.models;
 
+import android.util.Log;
+
 import com.pawels96.skyrimperkcalculator.enums.IPerk;
 import com.pawels96.skyrimperkcalculator.enums.PerkSystem;
 import com.pawels96.skyrimperkcalculator.enums.SkillEnum;
@@ -100,8 +102,10 @@ public class Skill {
         }
 
         for (IPerk start : skillEnum.getConnectionsMap(perkSystem).keySet()) {
-            for (IPerk end : skillEnum.getConnectionsMap(perkSystem).get(start))
+            for (IPerk end : skillEnum.getConnectionsMap(perkSystem).get(start)) {
+                Log.d("lmao", start.toString() + " " + end.toString());
                 connectPerks(perks.get(start), perks.get(end));
+            }
         }
 
         skill.setPerks(perks);

@@ -17,13 +17,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.pawels96.skyrimperkcalculator.Utils.DEFAULT_BUILD_NAME;
-import static com.pawels96.skyrimperkcalculator.enums.PerkSystem.ORDINATOR;
-import static com.pawels96.skyrimperkcalculator.enums.PerkSystem.VANILLA;
+import static com.pawels96.skyrimperkcalculator.enums.PerkSystem.VOKRII;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DBNAME = "DB";
-    private static final int DBVER = 1;
+    private static final int DBVER = 2;
 
     public DatabaseHelper(Context context) {
         super(context, DBNAME, null, DBVER);
@@ -180,16 +179,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        createBuildsTable(VANILLA, db);
-        createBuildsTable(ORDINATOR, db);
+        for (PerkSystem p : PerkSystem.values()){
+            createBuildsTable(p, db);
+            addDefaultBuild(p, db);
+        }
+    }
 
-        Build build = new Build(ORDINATOR);
+    private void addDefaultBuild(PerkSystem system, SQLiteDatabase db){
+        Build build = new Build(system);
         build.setName(DEFAULT_BUILD_NAME);
-        insertBuild(getTable(ORDINATOR), processBuild(build), db, false);
-
-        Build build2 = new Build(VANILLA);
-        build2.setName(DEFAULT_BUILD_NAME);
-        insertBuild(getTable(VANILLA), processBuild(build2), db, false);
+        insertBuild(getTable(system), processBuild(build), db, false);
     }
 
     private static String getTable(PerkSystem p) {
@@ -198,6 +197,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
+
+        if (i == 1 && i1 == 2) {
+            createBuildsTable(VOKRII, sqLiteDatabase);
+            addDefaultBuild(VOKRII, sqLiteDatabase);
+        }
+
     }
 
 }

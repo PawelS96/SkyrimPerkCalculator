@@ -36,6 +36,24 @@ import com.pawels96.skyrimperkcalculator.enums.skills_vanilla.Smithing;
 import com.pawels96.skyrimperkcalculator.enums.skills_vanilla.Sneak;
 import com.pawels96.skyrimperkcalculator.enums.skills_vanilla.Speech;
 import com.pawels96.skyrimperkcalculator.enums.skills_vanilla.TwoHanded;
+import com.pawels96.skyrimperkcalculator.enums.skills_vokrii.Vok_Alchemy;
+import com.pawels96.skyrimperkcalculator.enums.skills_vokrii.Vok_Alteration;
+import com.pawels96.skyrimperkcalculator.enums.skills_vokrii.Vok_Archery;
+import com.pawels96.skyrimperkcalculator.enums.skills_vokrii.Vok_Block;
+import com.pawels96.skyrimperkcalculator.enums.skills_vokrii.Vok_Conjuration;
+import com.pawels96.skyrimperkcalculator.enums.skills_vokrii.Vok_Destruction;
+import com.pawels96.skyrimperkcalculator.enums.skills_vokrii.Vok_Enchanting;
+import com.pawels96.skyrimperkcalculator.enums.skills_vokrii.Vok_HeavyArmor;
+import com.pawels96.skyrimperkcalculator.enums.skills_vokrii.Vok_Illusion;
+import com.pawels96.skyrimperkcalculator.enums.skills_vokrii.Vok_LightArmor;
+import com.pawels96.skyrimperkcalculator.enums.skills_vokrii.Vok_Lockpicking;
+import com.pawels96.skyrimperkcalculator.enums.skills_vokrii.Vok_OneHanded;
+import com.pawels96.skyrimperkcalculator.enums.skills_vokrii.Vok_Pickpocket;
+import com.pawels96.skyrimperkcalculator.enums.skills_vokrii.Vok_Restoration;
+import com.pawels96.skyrimperkcalculator.enums.skills_vokrii.Vok_Smithing;
+import com.pawels96.skyrimperkcalculator.enums.skills_vokrii.Vok_Sneak;
+import com.pawels96.skyrimperkcalculator.enums.skills_vokrii.Vok_Speech;
+import com.pawels96.skyrimperkcalculator.enums.skills_vokrii.Vok_TwoHanded;
 
 import java.io.Serializable;
 import java.util.HashMap;
@@ -60,6 +78,24 @@ import static com.pawels96.skyrimperkcalculator.enums.skills_ordinator.Ord_Smith
 import static com.pawels96.skyrimperkcalculator.enums.skills_ordinator.Ord_Sneak.*;
 import static com.pawels96.skyrimperkcalculator.enums.skills_ordinator.Ord_Speech.*;
 import static com.pawels96.skyrimperkcalculator.enums.skills_ordinator.Ord_TwoHanded.*;
+import static com.pawels96.skyrimperkcalculator.enums.skills_vokrii.Vok_Alchemy.*;
+import static com.pawels96.skyrimperkcalculator.enums.skills_vokrii.Vok_Alteration.*;
+import static com.pawels96.skyrimperkcalculator.enums.skills_vokrii.Vok_Archery.*;
+import static com.pawels96.skyrimperkcalculator.enums.skills_vokrii.Vok_Block.*;
+import static com.pawels96.skyrimperkcalculator.enums.skills_vokrii.Vok_Conjuration.*;
+import static com.pawels96.skyrimperkcalculator.enums.skills_vokrii.Vok_Destruction.*;
+import static com.pawels96.skyrimperkcalculator.enums.skills_vokrii.Vok_Enchanting.*;
+import static com.pawels96.skyrimperkcalculator.enums.skills_vokrii.Vok_Illusion.*;
+import static com.pawels96.skyrimperkcalculator.enums.skills_vokrii.Vok_HeavyArmor.*;
+import static com.pawels96.skyrimperkcalculator.enums.skills_vokrii.Vok_LightArmor.*;
+import static com.pawels96.skyrimperkcalculator.enums.skills_vokrii.Vok_Lockpicking.*;
+import static com.pawels96.skyrimperkcalculator.enums.skills_vokrii.Vok_OneHanded.*;
+import static com.pawels96.skyrimperkcalculator.enums.skills_vokrii.Vok_Pickpocket.*;
+import static com.pawels96.skyrimperkcalculator.enums.skills_vokrii.Vok_Restoration.*;
+import static com.pawels96.skyrimperkcalculator.enums.skills_vokrii.Vok_Smithing.*;
+import static com.pawels96.skyrimperkcalculator.enums.skills_vokrii.Vok_Sneak.*;
+import static com.pawels96.skyrimperkcalculator.enums.skills_vokrii.Vok_Speech.*;
+import static com.pawels96.skyrimperkcalculator.enums.skills_vokrii.Vok_TwoHanded.*;
 import static com.pawels96.skyrimperkcalculator.enums.skills_vanilla.Alchemy.*;
 import static com.pawels96.skyrimperkcalculator.enums.skills_vanilla.Alteration.*;
 import static com.pawels96.skyrimperkcalculator.enums.skills_vanilla.Archery.*;
@@ -198,6 +234,48 @@ public enum SkillEnum implements Serializable {
                         return Restoration.values();
                 }
 
+            case VOKRII:
+
+                switch (this) {
+
+                    case SKILL_LOCKPICKING:
+                        return Vok_Lockpicking.values();
+                    case SKILL_ALCHEMY:
+                        return Vok_Alchemy.values();
+                    case SKILL_HEAVY_ARMOR:
+                        return Vok_HeavyArmor.values();
+                    case SKILL_ILLUSION:
+                        return Vok_Illusion.values();
+                    case SKILL_CONJURATION:
+                        return Vok_Conjuration.values();
+                    case SKILL_DESTRUCTION:
+                        return Vok_Destruction.values();
+                    case SKILL_BLOCK:
+                        return Vok_Block.values();
+                    case SKILL_SNEAK:
+                        return Vok_Sneak.values();
+                    case SKILL_SPEECH:
+                        return Vok_Speech.values();
+                    case SKILL_ARCHERY:
+                        return Vok_Archery.values();
+                    case SKILL_SMITHING:
+                        return Vok_Smithing.values();
+                    case SKILL_ALTERATION:
+                        return Vok_Alteration.values();
+                    case SKILL_ENCHANTING:
+                        return Vok_Enchanting.values();
+                    case SKILL_ONE_HANDED:
+                        return Vok_OneHanded.values();
+                    case SKILL_PICKPOCKET:
+                        return Vok_Pickpocket.values();
+                    case SKILL_TWO_HANDED:
+                        return Vok_TwoHanded.values();
+                    case SKILL_LIGHT_ARMOR:
+                        return Vok_LightArmor.values();
+                    case SKILL_RESTORATION:
+                        return Vok_Restoration.values();
+                }
+
             default:
                 return null;
         }
@@ -211,6 +289,8 @@ public enum SkillEnum implements Serializable {
                 return getOrdinatorConnections();
             case VANILLA:
                 return getVanillaConnections();
+            case VOKRII:
+                return getVokriiConnections();
         }
 
         return null;
@@ -831,6 +911,287 @@ public enum SkillEnum implements Serializable {
                map.put(VAN_TWH_SWEEP                  ,new IPerk[]{VAN_TWH_WARMASTER});
 
                break;
+        }
+
+        return map;
+    }
+
+    private HashMap<IPerk, IPerk[]> getVokriiConnections(){
+
+        HashMap<IPerk, IPerk[]> map = new HashMap<>();
+
+        switch (this) {
+
+            case SKILL_HEAVY_ARMOR:
+
+                map.put(VOK_HAR_HEAVY_ARMOR_MASTERY    , new IPerk[]{VOK_HAR_BATTLE_FATIGUE, VOK_HAR_CUSHIONED, VOK_HAR_HEAVY_ARMOR_FIT});
+                map.put(VOK_HAR_BATTLE_FATIGUE         , new IPerk[]{VOK_HAR_OFF_BALANCE});
+                map.put(VOK_HAR_HEAVY_ARMOR_FIT        , new IPerk[]{VOK_HAR_HEAVY_ARMOR_TRAINING, VOK_HAR_FACE_OF_DEATH});
+                map.put(VOK_HAR_HEAVY_ARMOR_TRAINING   , new IPerk[]{VOK_HAR_TOWER_OF_STRENGTH, VOK_HAR_MATCHING_HEAVY_SET});
+                map.put(VOK_HAR_TOWER_OF_STRENGTH      , new IPerk[]{VOK_HAR_ELEMENTAL_DEFENSE});
+                map.put(VOK_HAR_ELEMENTAL_DEFENSE      , new IPerk[]{VOK_HAR_GLANCING_BLOWS});
+                map.put(VOK_HAR_OFF_BALANCE            , new IPerk[]{VOK_HAR_REAP_THE_WHIRLWIND});
+                map.put(VOK_HAR_REAP_THE_WHIRLWIND     , new IPerk[]{VOK_HAR_FACE_OF_THE_MOUNTAIN});
+
+                break;
+
+            case SKILL_LOCKPICKING:
+
+                map.put(VOK_LCK_LOCKPICKING_MASTERY    ,new IPerk[]{VOK_LCK_LOOTER, VOK_LCK_LOCKDOWN, VOK_LCK_QUICK_HANDS});
+                map.put(VOK_LCK_LOOTER                 ,new IPerk[]{VOK_LCK_TREASURE_HUNTER});
+                map.put(VOK_LCK_LOCKDOWN               ,new IPerk[]{VOK_LCK_HOTWIRE});
+                map.put(VOK_LCK_QUICK_HANDS            ,new IPerk[]{VOK_LCK_DUNGEON_MASTER, VOK_LCK_WAX_KEY});
+                map.put(VOK_LCK_TREASURE_HUNTER        ,new IPerk[]{VOK_LCK_ARCHAEOLOGIST});
+                map.put(VOK_LCK_HOTWIRE                ,new IPerk[]{VOK_LCK_OVERDRIVE});
+                map.put(VOK_LCK_WAX_KEY                ,new IPerk[]{VOK_LCK_LUCKY_GUESS});
+                map.put(VOK_LCK_LUCKY_GUESS            ,new IPerk[]{VOK_LCK_LOCKMASTER});
+
+                break;
+
+            case SKILL_ALCHEMY:
+
+                map.put(VOK_ALC_ALCHEMY_MASTERY        ,new IPerk[]{VOK_ALC_BENEFACTOR, VOK_ALC_POISONER, VOK_ALC_PHYSICIAN});
+                map.put(VOK_ALC_BENEFACTOR             ,new IPerk[]{VOK_ALC_SLOW_METABOLISM, VOK_ALC_EXPERIMENTER, VOK_ALC_STIMULANTS});
+                map.put(VOK_ALC_POISONER               ,new IPerk[]{VOK_ALC_CONCENTRATED_POISON});
+                map.put(VOK_ALC_EXPERIMENTER           ,new IPerk[]{VOK_ALC_GREEN_THUMB});
+                map.put(VOK_ALC_STIMULANTS             ,new IPerk[]{VOK_ALC_ADRENALINE});
+                map.put(VOK_ALC_GREEN_THUMB            ,new IPerk[]{VOK_ALC_PURITY, VOK_ALC_DOUBLE_TOIL_AND_TROUBLE});
+                map.put(VOK_ALC_CONCENTRATED_POISON    ,new IPerk[]{VOK_ALC_PURITY, VOK_ALC_ALKAHEST});
+                map.put(VOK_ALC_ALKAHEST               ,new IPerk[]{VOK_ALC_PLAGUE_DOCTOR, VOK_ALC_GOURMET});
+
+                break;
+
+            case SKILL_ILLUSION:
+
+                map.put(VOK_ILU_ILLUSION_MASTERY       ,new IPerk[]{VOK_ILU_ILLUSION_DUAL_CASTING, VOK_ILU_NEVERWORLD, VOK_ILU_QUIET_CASTING, VOK_ILU_ANIMAGE});
+                map.put(VOK_ILU_ANIMAGE                ,new IPerk[]{VOK_ILU_MASTER_OF_THE_MIND});
+                map.put(VOK_ILU_NEVERWORLD             ,new IPerk[]{VOK_ILU_LAMB_TO_THE_SLAUGHTER, VOK_ILU_TERROR});
+                map.put(VOK_ILU_TERROR                 ,new IPerk[]{VOK_ILU_PARALYZING_FEAR, VOK_ILU_IRON_MAIDEN});
+                map.put(VOK_ILU_IRON_MAIDEN            ,new IPerk[]{VOK_ILU_ENRAGE, VOK_ILU_SPLENDOR});
+                map.put(VOK_ILU_SPLENDOR               ,new IPerk[]{VOK_ILU_SPIRIT_OF_WAR, VOK_ILU_MIND_THRALL});
+                map.put(VOK_ILU_QUIET_CASTING          ,new IPerk[]{VOK_ILU_BLUR});
+
+                break;
+
+            case SKILL_CONJURATION:
+
+                map.put(VOK_CON_CONJURATION_MASTERY  ,new IPerk[]{VOK_CON_CONJURATION_DUAL_CASTING, VOK_CON_ATROMANCY, VOK_CON_NECROMANCY, VOK_CON_MYSTIC_BINDING });
+                map.put(VOK_CON_ATROMANCY            ,new IPerk[]{VOK_CON_OBLIVION_STONE, VOK_CON_RIFT_SUMMONER});
+                map.put(VOK_CON_NECROMANCY           ,new IPerk[]{VOK_CON_RIFT_SUMMONER, VOK_CON_GHOUL_FRENZY});
+                map.put(VOK_CON_MYSTIC_BINDING       ,new IPerk[]{VOK_CON_SOUL_STEALER});
+                map.put(VOK_CON_SOUL_STEALER         ,new IPerk[]{VOK_CON_OBLIVION_BINDING});
+                map.put(VOK_CON_OBLIVION_BINDING     ,new IPerk[]{VOK_CON_HOLLOW_BINDING});
+                map.put(VOK_CON_HOLLOW_BINDING       ,new IPerk[]{VOK_CON_VOID_BRAND});
+                map.put(VOK_CON_GHOUL_FRENZY         ,new IPerk[]{VOK_CON_BLOOD_ZOMBIE});
+                map.put(VOK_CON_BLOOD_ZOMBIE         ,new IPerk[]{VOK_CON_NECROMASTER, VOK_CON_TWIN_SOULS});
+                map.put(VOK_CON_RIFT_SUMMONER        ,new IPerk[]{VOK_CON_GRAND_CONJURER});
+                map.put(VOK_CON_OBLIVION_STONE       ,new IPerk[]{VOK_CON_ELEMENTAL_POTENCY});
+                map.put(VOK_CON_ELEMENTAL_POTENCY    ,new IPerk[]{VOK_CON_TWIN_SOULS, VOK_CON_ELEMENTAL_CONFLUX});
+
+                break;
+
+            case SKILL_DESTRUCTION:
+
+                map.put(VOK_DES_DESTRUCTION_MASTERY        ,new IPerk[]{VOK_DES_DESTRUCTION_DUAL_CASTING, VOK_DES_AUGMENTED_FLAMES, VOK_DES_AUGMENTED_FROST, VOK_DES_AUGMENTED_SHOCK, VOK_DES_RUNE_MASTER});
+                map.put(VOK_DES_DESTRUCTION_DUAL_CASTING   ,new IPerk[]{VOK_DES_IMPACT});
+                map.put(VOK_DES_AUGMENTED_FLAMES           ,new IPerk[]{VOK_DES_DEVOURING_FLAMES});
+                map.put(VOK_DES_DEVOURING_FLAMES           ,new IPerk[]{VOK_DES_SCORCHED_EARTH});
+                map.put(VOK_DES_SCORCHED_EARTH             ,new IPerk[]{VOK_DES_MAGES_FURY});
+                map.put(VOK_DES_AUGMENTED_FROST            ,new IPerk[]{VOK_DES_CHILLING_FROST});
+                map.put(VOK_DES_CHILLING_FROST             ,new IPerk[]{VOK_DES_WINTERS_GRASP});
+                map.put(VOK_DES_WINTERS_GRASP              ,new IPerk[]{VOK_DES_MAGES_FURY});
+                map.put(VOK_DES_AUGMENTED_SHOCK            ,new IPerk[]{VOK_DES_DEAFENING_SHOCK});
+                map.put(VOK_DES_DEAFENING_SHOCK            ,new IPerk[]{VOK_DES_CRACKLING_SPHERE});
+                map.put(VOK_DES_CRACKLING_SPHERE           ,new IPerk[]{VOK_DES_MAGES_FURY});
+                map.put(VOK_DES_RUNE_MASTER                ,new IPerk[]{VOK_DES_HETHOTHS_DISJUNCTION});
+                map.put(VOK_DES_HETHOTHS_DISJUNCTION       ,new IPerk[]{VOK_DES_ELEMENTAL_BARRIER, VOK_DES_ELEMENTAL_SHIELD});
+                map.put(VOK_DES_ELEMENTAL_BARRIER          ,new IPerk[]{VOK_DES_EYE_OF_THE_STORM});
+
+                break;
+
+            case SKILL_SMITHING:
+
+                map.put(VOK_SMT_BASIC_SMITHING         ,new IPerk[]{VOK_SMT_DWARVEN_SMITHING, VOK_SMT_ARMOR_PADDING, VOK_SMT_ARCANE_BLACKSMITH, VOK_SMT_MERIC_SMITHING });
+                map.put(VOK_SMT_DWARVEN_SMITHING       ,new IPerk[]{VOK_SMT_ENGRAVED_SMITHING });
+                map.put(VOK_SMT_ENGRAVED_SMITHING      ,new IPerk[]{VOK_SMT_EXOTIC_SMITHING, VOK_SMT_HIGH_YIELD_MINING });
+                map.put(VOK_SMT_EXOTIC_SMITHING        ,new IPerk[]{VOK_SMT_DAEDRIC_SMITHING });
+                map.put(VOK_SMT_DAEDRIC_SMITHING       ,new IPerk[]{VOK_SMT_DRAGON_SMITHING});
+                map.put(VOK_SMT_ARMOR_PADDING          ,new IPerk[]{VOK_SMT_LAYERED_PLATES});
+                map.put(VOK_SMT_LAYERED_PLATES         ,new IPerk[]{VOK_SMT_CONCEALED_ENCHANTMENTS});
+                map.put(VOK_SMT_MERIC_SMITHING         ,new IPerk[]{VOK_SMT_PRIMAL_SMITHING});
+                map.put(VOK_SMT_PRIMAL_SMITHING        ,new IPerk[]{VOK_SMT_HIGH_YIELD_MINING, VOK_SMT_CRYSTALLINE_SMITHING});
+                map.put(VOK_SMT_CRYSTALLINE_SMITHING   ,new IPerk[]{VOK_SMT_DRAGON_SMITHING});
+
+                break;
+
+            case SKILL_ALTERATION:
+
+                map.put(VOK_ALT_ALTERATION_MASTERY     ,new IPerk[]{VOK_ALT_TELEKINETIC_FORCE, VOK_ALT_ALTERATION_DUAL_CASTING, VOK_ALT_MAGE_ARMOR, VOK_ALT_MAGIC_RESISTANCE, VOK_ALT_BATTLEMAGE});
+                map.put(VOK_ALT_BATTLEMAGE             ,new IPerk[]{VOK_ALT_RUNIC_WEAPON});
+                map.put(VOK_ALT_MAGIC_RESISTANCE       ,new IPerk[]{VOK_ALT_ALTER_SELF});
+                map.put(VOK_ALT_ALTER_SELF             ,new IPerk[]{VOK_ALT_ATRONACH, VOK_ALT_ARCANE_GUIDANCE});
+                map.put(VOK_ALT_MAGE_ARMOR             ,new IPerk[]{VOK_ALT_OCATOS_PREPARATION, VOK_ALT_STABILITY, VOK_ALT_SORCERERS_ROBES});
+                map.put(VOK_ALT_STABILITY              ,new IPerk[]{VOK_ALT_INITIATE, VOK_ALT_RITUALIST});
+                map.put(VOK_ALT_SORCERERS_ROBES        ,new IPerk[]{VOK_ALT_FORCE_OF_WILL});
+                map.put(VOK_ALT_TELEKINETIC_FORCE      ,new IPerk[]{VOK_ALT_TELEKINETIC_PRODIGY});
+                map.put(VOK_ALT_ARCANE_GUIDANCE        ,new IPerk[]{VOK_ALT_HETHOTHS_ESCAPE});
+
+
+                break;
+
+            case SKILL_ARCHERY:
+
+                map.put(VOK_ARC_ARCHERY_MASTERY      ,new IPerk[]{VOK_ARC_FAR_SHOT, VOK_ARC_POINT_BLANK_SHOT, VOK_ARC_EAGLE_EYE});
+                map.put(VOK_ARC_FAR_SHOT             ,new IPerk[]{VOK_ARC_IMPALING_SHOT});
+                map.put(VOK_ARC_IMPALING_SHOT        ,new IPerk[]{VOK_ARC_POWER_SHOT, VOK_ARC_ARROW_TO_THE_KNEE});
+                map.put(VOK_ARC_POWER_SHOT           ,new IPerk[]{VOK_ARC_RANGER});
+                map.put(VOK_ARC_ARROW_TO_THE_KNEE    ,new IPerk[]{VOK_ARC_PINNING_SHOT});
+                map.put(VOK_ARC_POINT_BLANK_SHOT     ,new IPerk[]{VOK_ARC_BREACHING_SHOT});
+                map.put(VOK_ARC_BREACHING_SHOT       ,new IPerk[]{VOK_ARC_POWER_SHOT, VOK_ARC_GORE});
+                map.put(VOK_ARC_GORE                 ,new IPerk[]{VOK_ARC_PINNING_SHOT,});
+                map.put(VOK_ARC_EAGLE_EYE            ,new IPerk[]{VOK_ARC_HUNTERS_DISCIPLINE, VOK_ARC_STEADY_AIM});
+                map.put(VOK_ARC_STEADY_AIM           ,new IPerk[]{VOK_ARC_LIONS_ARROW});
+                map.put(VOK_ARC_HUNTERS_DISCIPLINE   ,new IPerk[]{VOK_ARC_HUNTERS_FOCUS});
+                map.put(VOK_ARC_RANGER               ,new IPerk[]{VOK_ARC_QUICK_SHOT});
+
+                break;
+
+            case SKILL_BLOCK:
+
+                map.put(VOK_BLC_BLOCK_MASTERY        ,new IPerk[]{VOK_BLC_WEAPON_BLOCK, VOK_BLC_UNWAVERING_DEFENSE, VOK_BLC_DEFLECT_ARROWS, VOK_BLC_QUICK_REFLEXES, VOK_BLC_POWER_BASH});
+                map.put(VOK_BLC_DEFLECT_ARROWS       ,new IPerk[]{VOK_BLC_ELEMENTAL_PROTECTION, VOK_BLC_BLOCK_RUNNER});
+                map.put(VOK_BLC_BLOCK_RUNNER         ,new IPerk[]{VOK_BLC_SHIELD_CHARGE});
+                map.put(VOK_BLC_SHIELD_CHARGE        ,new IPerk[]{VOK_BLC_STONEHEART});
+                map.put(VOK_BLC_UNWAVERING_DEFENSE   ,new IPerk[]{VOK_BLC_POKE_THE_DRAGON});
+                map.put(VOK_BLC_POKE_THE_DRAGON      ,new IPerk[]{VOK_BLC_STONEHEART});
+                map.put(VOK_BLC_POWER_BASH           ,new IPerk[]{VOK_BLC_TORCH_BASH, VOK_BLC_DEADLY_BASH});
+                map.put(VOK_BLC_DEADLY_BASH          ,new IPerk[]{VOK_BLC_MOCKING_BLOW, VOK_BLC_DRAGON_TAIL});
+                map.put(VOK_BLC_DRAGON_TAIL          ,new IPerk[]{VOK_BLC_STONEHEART});
+
+                break;
+
+            case SKILL_ENCHANTING:
+
+                map.put(VOK_ENC_ENCHANTING_MASTERY    ,new IPerk[]{VOK_ENC_SOUL_SQUEEZER, VOK_ENC_POWER_STONE, VOK_ENC_WEAPON_ENCHANTER, VOK_ENC_ARMOR_ENCHANTER, VOK_ENC_SCROLL_SAGE});
+                map.put(VOK_ENC_SCROLL_SAGE           ,new IPerk[]{VOK_ENC_SCROLL_HUNTER});
+                map.put(VOK_ENC_SCROLL_HUNTER         ,new IPerk[]{VOK_ENC_SPIDER_HUNTER});
+                map.put(VOK_ENC_ARMOR_ENCHANTER       ,new IPerk[]{VOK_ENC_REGALIA_ENCHANTER});
+                map.put(VOK_ENC_REGALIA_ENCHANTER     ,new IPerk[]{VOK_ENC_EXTRA_EFFECT});
+                map.put(VOK_ENC_WEAPON_ENCHANTER      ,new IPerk[]{VOK_ENC_SOUL_ENCHANTER});
+                map.put(VOK_ENC_SOUL_ENCHANTER        ,new IPerk[]{VOK_ENC_EXTRA_EFFECT});
+                map.put(VOK_ENC_POWER_STONE           ,new IPerk[]{VOK_ENC_MANA_STONE});
+                map.put(VOK_ENC_MANA_STONE            ,new IPerk[]{VOK_ENC_DEFENSIVE_RUNES, VOK_ENC_STAFF_RECHARGE});
+                map.put(VOK_ENC_SOUL_SQUEEZER         ,new IPerk[]{VOK_ENC_SOUL_SIPHON});
+                map.put(VOK_ENC_SOUL_SIPHON           ,new IPerk[]{VOK_ENC_THUNDERSTRUCK});
+
+                break;
+
+            case SKILL_LIGHT_ARMOR:
+
+                map.put(VOK_LAR_LIGHT_ARMOR_MASTERY  ,new IPerk[]{VOK_LAR_IRON_FIST, VOK_LAR_LIGHT_ARMOR_FIT, VOK_LAR_AGILITY});
+                map.put(VOK_LAR_IRON_FIST            ,new IPerk[]{VOK_LAR_FLURRY_OF_BLOWS});
+                map.put(VOK_LAR_LIGHT_ARMOR_FIT      ,new IPerk[]{VOK_LAR_LIGHT_ARMOR_TRAINING, VOK_LAR_KEEN_SENSES});
+                map.put(VOK_LAR_AGILITY              ,new IPerk[]{VOK_LAR_WINDRUNNER});
+                map.put(VOK_LAR_WINDRUNNER           ,new IPerk[]{VOK_LAR_WARDANCER});
+                map.put(VOK_LAR_WARDANCER            ,new IPerk[]{VOK_LAR_EVASIVE_SPRINT, VOK_LAR_UNTOUCHABLE});
+                map.put(VOK_LAR_LIGHT_ARMOR_TRAINING ,new IPerk[]{VOK_LAR_MATCHING_LIGHT_SET, VOK_LAR_TOUGH_HIDE});
+                map.put(VOK_LAR_FLURRY_OF_BLOWS      ,new IPerk[]{VOK_LAR_KI_STRIKE});
+
+                break;
+
+            case SKILL_ONE_HANDED:
+
+                map.put(VOK_ONH_ONE_HANDED_MASTERY    ,new IPerk[]{VOK_ONH_DUAL_FLURRY, VOK_ONH_OVERPOWERING_ASSAULT, VOK_ONH_GRIEVOUS_WOUNDS, VOK_ONH_DENTING_BLOWS, VOK_ONH_FANGS, VOK_ONH_DISCIPLINED_FIGHTER});
+                map.put(VOK_ONH_DUAL_FLURRY           ,new IPerk[]{VOK_ONH_DUAL_SAVAGERY});
+                map.put(VOK_ONH_DUAL_SAVAGERY         ,new IPerk[]{VOK_ONH_BLADEDANCER});
+                map.put(VOK_ONH_OVERPOWERING_ASSAULT  ,new IPerk[]{VOK_ONH_EXECUTE});
+                map.put(VOK_ONH_EXECUTE               ,new IPerk[]{VOK_ONH_VICTORY_RUSH});
+                map.put(VOK_ONH_GRIEVOUS_WOUNDS       ,new IPerk[]{VOK_ONH_SHIELDBITER});
+                map.put(VOK_ONH_SHIELDBITER           ,new IPerk[]{VOK_ONH_VICTORY_RUSH});
+                map.put(VOK_ONH_DENTING_BLOWS         ,new IPerk[]{VOK_ONH_DISRUPTING_STRIKE});
+                map.put(VOK_ONH_DISRUPTING_STRIKE     ,new IPerk[]{VOK_ONH_VICTORY_RUSH});
+                map.put(VOK_ONH_FANGS                 ,new IPerk[]{VOK_ONH_SPITTING_COBRA});
+                map.put(VOK_ONH_SPITTING_COBRA        ,new IPerk[]{VOK_ONH_VICTORY_RUSH});
+                map.put(VOK_ONH_FURIOUS_STRENGTH      ,new IPerk[]{VOK_ONH_VALOROUS_CHARGE, VOK_ONH_CRATER_MAKER});
+                map.put(VOK_ONH_CRATER_MAKER          ,new IPerk[]{VOK_ONH_DISARMING_SLASH});
+                map.put(VOK_ONH_DISCIPLINED_FIGHTER   ,new IPerk[]{VOK_ONH_FURIOUS_STRENGTH});
+
+                break;
+
+            case SKILL_PICKPOCKET:
+
+                map.put(VOK_PCK_PICKPOCKET_MASTERY    ,new IPerk[]{VOK_PCK_PAYDAY, VOK_PCK_CUTPURSE, VOK_PCK_EXTRA_POCKETS});
+                map.put(VOK_PCK_CUTPURSE              ,new IPerk[]{VOK_PCK_OBLIVIOUS, VOK_PCK_DEATHS_EMPEROR});
+                map.put(VOK_PCK_PAYDAY                ,new IPerk[]{VOK_PCK_CONSPICUOUS_WEALTH});
+                map.put(VOK_PCK_CONSPICUOUS_WEALTH    ,new IPerk[]{VOK_PCK_MASTER_THIEF});
+                map.put(VOK_PCK_OBLIVIOUS             ,new IPerk[]{VOK_PCK_POISONED, VOK_PCK_LAWLESS_TIMES});
+                map.put(VOK_PCK_DEATHS_EMPEROR        ,new IPerk[]{VOK_PCK_POISONED});
+                map.put(VOK_PCK_POISONED              ,new IPerk[]{VOK_PCK_TRICKSTER});
+                map.put(VOK_PCK_TRICKSTER             ,new IPerk[]{VOK_PCK_PERFECT_TOUCH});
+
+                break;
+
+            case SKILL_RESTORATION:
+
+                map.put(VOK_RST_RESTORATION_MASTERY      ,new IPerk[]{VOK_RST_MERCY, VOK_RST_RESTORATION_DUAL_CASTING, VOK_RST_INSPIRE, VOK_RST_INNER_LIGHT, VOK_RST_VIGILANT_WARD});
+                map.put(VOK_RST_MERCY                    ,new IPerk[]{VOK_RST_HARM, VOK_RST_RESPITE});
+                map.put(VOK_RST_HARM                     ,new IPerk[]{VOK_RST_SUNS_JUDGMENT});
+                map.put(VOK_RST_SUNS_JUDGMENT            ,new IPerk[]{VOK_RST_REBUKE_UNDEAD});
+                map.put(VOK_RST_RESPITE                  ,new IPerk[]{VOK_RST_ETERNAL_FLAME});
+                map.put(VOK_RST_VIGILANT_WARD,new IPerk[]{VOK_RST_WARD_ABSORB});
+                map.put(VOK_RST_WARD_ABSORB              ,new IPerk[]{VOK_RST_MAGE_WARD});
+                map.put(VOK_RST_INSPIRE                  ,new IPerk[]{VOK_RST_NECROMAGE});
+                map.put(VOK_RST_INNER_LIGHT              ,new IPerk[]{VOK_RST_BLESSED});
+                map.put(VOK_RST_BLESSED                  ,new IPerk[]{VOK_RST_INTERVENTION});
+
+                break;
+
+            case SKILL_SNEAK:
+
+                map.put(VOK_SNK_SNEAK_MASTERY          ,new IPerk[]{VOK_SNK_SILENT_ROLL, VOK_SNK_SNEAK_ATTACK, VOK_SNK_SILENT_MOVEMENT, VOK_SNK_SHADOWCASTER});
+                map.put(VOK_SNK_SILENT_ROLL            ,new IPerk[]{VOK_SNK_DODGE_ROLL});
+                map.put(VOK_SNK_DODGE_ROLL             ,new IPerk[]{VOK_SNK_SHADOW_WARRIOR});
+                map.put(VOK_SNK_SNEAK_ATTACK           ,new IPerk[]{VOK_SNK_DEADLY_AIM, VOK_SNK_ASSASSINS_BLADE});
+                map.put(VOK_SNK_ASSASSINS_BLADE        ,new IPerk[]{VOK_SNK_BACKSTAB});
+                map.put(VOK_SNK_BACKSTAB               ,new IPerk[]{VOK_SNK_CLOAK_AND_DAGGER});
+                map.put(VOK_SNK_CLOAK_AND_DAGGER       ,new IPerk[]{VOK_SNK_SHADOW_WARRIOR});
+                map.put(VOK_SNK_SILENT_MOVEMENT        ,new IPerk[]{VOK_SNK_LIGHT_FOOT, VOK_SNK_BLIND_SPOT});
+                map.put(VOK_SNK_BLIND_SPOT             ,new IPerk[]{VOK_SNK_FOG_OF_WAR, VOK_SNK_ESCAPE_ARTIST});
+
+                break;
+
+            case SKILL_SPEECH:
+
+                map.put(VOK_SPC_SPEECH_MASTERY      ,new IPerk[]{VOK_SPC_KINSHIP, VOK_SPC_SPEAK_WITH_ANIMALS, VOK_SPC_TONAL_HARMONY, VOK_SPC_BRIBERY});
+                map.put(VOK_SPC_BRIBERY             ,new IPerk[]{VOK_SPC_ELOQUENT});
+                map.put(VOK_SPC_KINSHIP             ,new IPerk[]{VOK_SPC_SALESMAN});
+                map.put(VOK_SPC_SALESMAN            ,new IPerk[]{VOK_SPC_FENCE, VOK_SPC_INVESTOR});
+                map.put(VOK_SPC_INVESTOR            ,new IPerk[]{VOK_SPC_PRIVATE_STOCK});
+                map.put(VOK_SPC_PRIVATE_STOCK       ,new IPerk[]{VOK_SPC_MASTER_TRADER});
+                map.put(VOK_SPC_SPEAK_WITH_ANIMALS  ,new IPerk[]{VOK_SPC_BEASTMASTER});
+                map.put(VOK_SPC_TONAL_HARMONY       ,new IPerk[]{VOK_SPC_WORDS_OF_POWER});
+                map.put(VOK_SPC_WORDS_OF_POWER      ,new IPerk[]{VOK_SPC_SKALD, VOK_SPC_DOVAHZULAAN});
+
+                break;
+
+            case SKILL_TWO_HANDED:
+
+                map.put(VOK_TWH_TWO_HANDED_MASTERY   ,new IPerk[]{VOK_TWH_DEATH_OR_GLORY, VOK_TWH_OVERBEARING_ASSAULT, VOK_TWH_MORTAL_WOUNDS, VOK_TWH_CRUSHING_BLOWS, VOK_TWH_BRUTAL_FIGHTER});
+                map.put(VOK_TWH_DEATH_OR_GLORY       ,new IPerk[]{VOK_TWH_BERSERKER});
+                map.put(VOK_TWH_BERSERKER            ,new IPerk[]{VOK_TWH_BEAR_HIDE});
+                map.put(VOK_TWH_OVERBEARING_ASSAULT  ,new IPerk[]{VOK_TWH_COUP_DE_GRACE});
+                map.put(VOK_TWH_MORTAL_WOUNDS        ,new IPerk[]{VOK_TWH_HOOK_BLADE});
+                map.put(VOK_TWH_HOOK_BLADE           ,new IPerk[]{VOK_TWH_CROWD_PLEASER});
+                map.put(VOK_TWH_CRUSHING_BLOWS       ,new IPerk[]{VOK_TWH_SHATTERING_STRIKE});
+                map.put(VOK_TWH_SHATTERING_STRIKE    ,new IPerk[]{VOK_TWH_CROWD_PLEASER});
+                map.put(VOK_TWH_BRUTAL_FIGHTER       ,new IPerk[]{VOK_TWH_FEROCIOUS_STRENGTH});
+                map.put(VOK_TWH_FEROCIOUS_STRENGTH   ,new IPerk[]{VOK_TWH_VICIOUS_CHARGE, VOK_TWH_WARMASTER});
+                map.put(VOK_TWH_WARMASTER            ,new IPerk[]{VOK_TWH_SWEEP});
+                map.put(VOK_TWH_VICIOUS_CHARGE       ,new IPerk[]{VOK_TWH_ROLLING_CHARGE});
+                map.put(VOK_TWH_COUP_DE_GRACE        ,new IPerk[]{VOK_TWH_CROWD_PLEASER});
+
+
+                break;
         }
 
         return map;
