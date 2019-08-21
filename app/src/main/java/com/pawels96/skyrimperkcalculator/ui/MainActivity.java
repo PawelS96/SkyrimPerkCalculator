@@ -1,13 +1,14 @@
 package com.pawels96.skyrimperkcalculator.ui;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -67,6 +68,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         sp = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
         multiplier = sp.getFloat(PREFS_MULTIPLIER, 1f);
+
         String lastBuild = sp.getString(PREFS_BUILD_SELECTED, DEFAULT_BUILD_NAME);
         String perkSystemString = sp.getString(PREFS_PERK_SYSTEM, "VANILLA");
         PerkSystem perkSystem = null;
@@ -77,6 +79,7 @@ public class MainActivity extends AppCompatActivity
             }
 
         helper = new DatabaseHelper(this);
+
         imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 
         model = ViewModelProviders.of(this).get(BuildViewModel.class);
@@ -94,7 +97,7 @@ public class MainActivity extends AppCompatActivity
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(viewPager));
         viewPager.setCurrentItem(sp.getInt(PREFS_SKILL_SELECTED, 0));
         skillFragmentAdapter.notifyDataSetChanged();
-        viewPager.enableLoop(18);
+        viewPager.enableLoop(SkillEnum.values().length);
         viewPager.setListener(new LoopingViewPager.MovementListener() {
             @Override
             public void onActionDown() {
@@ -131,11 +134,31 @@ public class MainActivity extends AppCompatActivity
         save.setOnClickListener(listener);
         load.setOnClickListener(listener);
         options.setOnClickListener(listener);
+
+        boolean firstLaunch = sp.getBoolean("firstLaunch", true);
+
+        if (firstLaunch)
+            showTutorial();
+    }
+
+    private void showTutorial() {
+
+        CustomDialogBuilder builder = new CustomDialogBuilder(this);
+        builder.setMessage(getString(R.string.msg_tutorial));
+        builder.setPositiveButton(getString(R.string.ok_alt), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                sp.edit().putBoolean("firstLaunch", false).apply();
+                dialog.dismiss();
+            }
+        });
+
+        builder.create().show();
     }
 
     private void showSkillsPopup() {
 
-        final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+        CustomDialogBuilder dialogBuilder = new CustomDialogBuilder(this);
 
         LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         View customView = inflater.inflate(R.layout.list_builds, null);
@@ -165,7 +188,6 @@ public class MainActivity extends AppCompatActivity
 
         listDialog.show();
 
-
     }
 
     @Override
@@ -188,15 +210,15 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void updateBuildInfo() {
-        String allPerksText = getString(R.string.all_active_perks) + ": " + Integer.toString(build.getSelectedPerksCount());
+        String allPerksText = getString(R.string.all_active_perks) + ": " + build.getSelectedPerksCount();
         allPerks.setText(allPerksText);
-        String requiredLevelText = getString(R.string.required_lvl) + ": " + Integer.toString(build.getRequiredLevel(multiplier));
+        String requiredLevelText = getString(R.string.required_lvl) + ": " + build.getRequiredLevel(multiplier);
         reqLevel.setText(requiredLevelText);
     }
 
     private void showSavePopup(final Build buildToSave, final boolean rename) {
 
-        final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this, R.style.CustomDialogTheme);
+        CustomDialogBuilder dialogBuilder = new CustomDialogBuilder(this);
 
         LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         final View customView = inflater.inflate(R.layout.popup_save, null);
@@ -224,7 +246,6 @@ public class MainActivity extends AppCompatActivity
 
         dialogBuilder.setView(customView);
         final AlertDialog dialog = dialogBuilder.create();
-
 
         dialog.setOnShowListener((new DialogInterface.OnShowListener() {
 
@@ -280,8 +301,9 @@ public class MainActivity extends AppCompatActivity
             }
         }));
 
-        dialog.getWindow().setSoftInputMode(
-                WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+        if (dialog.getWindow() != null)
+            dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+
         dialog.show();
     }
 
@@ -291,7 +313,7 @@ public class MainActivity extends AppCompatActivity
 
     private void showDelete(final Build buildToDelete) {
 
-        final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this, R.style.CustomDialogTheme);
+        CustomDialogBuilder dialogBuilder = new CustomDialogBuilder(this);
 
         dialogBuilder.setTitle(getString(R.string.delete_build));
         dialogBuilder.setCancelable(true);
@@ -331,7 +353,7 @@ public class MainActivity extends AppCompatActivity
 
     private void showBuildList() {
 
-        final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this, R.style.CustomDialogTheme);
+        CustomDialogBuilder dialogBuilder = new CustomDialogBuilder(this);
 
         LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         View customView = inflater.inflate(R.layout.list_builds, null);
@@ -367,7 +389,7 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        final Dialog listDialog = dialogBuilder.create();
+        final android.app.AlertDialog listDialog = dialogBuilder.create();
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -388,10 +410,8 @@ public class MainActivity extends AppCompatActivity
             public void onShow(DialogInterface dialog) {
                 lv.setAdapter(adapter);
                 adapter.setCurrentBuildName(build.getName());
-
                 adapter.notifyDataSetChanged();
                 lv.setSelection(adapter.getCurrentBuildIndex());
-
             }
         });
 
@@ -407,15 +427,20 @@ public class MainActivity extends AppCompatActivity
         getFragment(currentFragmentID).refresh();
 
         try {
-            getFragment(currentFragmentID - 1).refresh();
             getFragment(currentFragmentID + 1).refresh();
         } catch (NullPointerException e) {
         }
+
+        try {
+            getFragment(currentFragmentID - 1).refresh();
+        } catch (NullPointerException e) {
+        }
+
     }
 
     private void showDescriptionPopup(final Build build) {
 
-        final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this, R.style.CustomDialogTheme);
+        CustomDialogBuilder builder = new CustomDialogBuilder(this);
         LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         final View customView = inflater.inflate(R.layout.popup_build_description, null);
 
@@ -424,15 +449,15 @@ public class MainActivity extends AppCompatActivity
         if (build.getDescription() != null)
             tv.setText(build.getDescription());
 
-        dialogBuilder.setTitle(build.getName());
-        dialogBuilder.setCancelable(true);
-        dialogBuilder.setView(customView);
+        builder.setTitle(build.getName());
+        builder.setCancelable(true);
+        builder.setView(customView);
 
-        dialogBuilder.setPositiveButton(getString(R.string.edit),
+        builder.setPositiveButton(getString(R.string.edit),
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
 
-                        final AlertDialog.Builder dialogBuilder2 = new AlertDialog.Builder(MainActivity.this, R.style.CustomDialogTheme);
+                        CustomDialogBuilder dialogBuilder2 = new CustomDialogBuilder(MainActivity.this);
                         LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
                         final View customView2 = inflater.inflate(R.layout.popup_edittext, null);
 
@@ -462,20 +487,22 @@ public class MainActivity extends AppCompatActivity
                             }
                         });
 
-                        AlertDialog dialog1 = dialogBuilder2.create();
+                        android.app.AlertDialog dialog1 = dialogBuilder2.create();
 
-                        dialog1.getWindow().setSoftInputMode(
-                                WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+                        if (dialog1.getWindow() != null)
+                            dialog1.getWindow().setSoftInputMode(
+                                    WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+
                         dialog1.show();
                     }
                 });
 
-        dialogBuilder.create().show();
+        builder.create().show();
     }
 
     private void showOptionsPopup() {
 
-        final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this, R.style.CustomDialogTheme);
+        CustomDialogBuilder dialogBuilder = new CustomDialogBuilder(this);
 
         LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         View customView = inflater.inflate(R.layout.popop_options, null);
@@ -578,13 +605,31 @@ public class MainActivity extends AppCompatActivity
                     getSkill(skill).
                     get(perk.getPerk()).
                     setState(state);
+
+            new UpdateBuildAsync(helper).execute(build);
             updateBuildInfo();
 
-       } catch (NullPointerException e) { }
+        } catch (NullPointerException e) {
+        }
     }
 
     private void showMessage(int msg) {
         Toast.makeText(MainActivity.this, getString(msg), Toast.LENGTH_SHORT).show();
+    }
+
+    private static class UpdateBuildAsync extends AsyncTask<Build, Void, Void> {
+
+        private DatabaseHelper helper;
+
+        UpdateBuildAsync(DatabaseHelper h) {
+            helper = h;
+        }
+
+        @Override
+        protected Void doInBackground(Build... builds) {
+            helper.updateBuild(builds[0]);
+            return null;
+        }
     }
 
 }

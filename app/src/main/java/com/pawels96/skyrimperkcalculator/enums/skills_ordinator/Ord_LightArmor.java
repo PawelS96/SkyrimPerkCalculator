@@ -23,7 +23,7 @@ public enum Ord_LightArmor implements IPerk {
     ORD_LAR_WARDANCER                (0.5f,     0.2f ,   70),
     ORD_LAR_SPELLDANCER              (0.55f,    0.075f,  80),
     ORD_LAR_SURVIVAL_INSTINCT        (0.3f,     0.175f , 80),
-    ORD_LAR_WILD_AND_FREE            (0.65f,    0.2f ,   80),
+    ORD_LAR_WILD_AND_FREE            (0.65f,    0.175f ,   80),
     ORD_LAR_BREAKING_WAVES           (0.15f,    0.1f ,   90),
     ORD_LAR_GLANCING_BLOWS           (0.425f,   0.125f,  90),
     ORD_LAR_LIGHTNING_STRIKE         (0.325f,   0.425f,  90),

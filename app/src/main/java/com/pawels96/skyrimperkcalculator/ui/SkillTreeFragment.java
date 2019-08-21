@@ -1,9 +1,9 @@
 package com.pawels96.skyrimperkcalculator.ui;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AlertDialog;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,7 +30,8 @@ public class SkillTreeFragment extends Fragment {
     private MainActivity parentActivity;
     private TextView activePerks, reqSkill;
 
-    public SkillTreeFragment() {}
+    public SkillTreeFragment() {
+    }
 
     private SkillEnum skillEnum;
 
@@ -53,7 +54,7 @@ public class SkillTreeFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        skillEnum = (SkillEnum)getArguments().getSerializable(ARG_1);
+        skillEnum = (SkillEnum) getArguments().getSerializable(ARG_1);
     }
 
     @Override
@@ -92,7 +93,7 @@ public class SkillTreeFragment extends Fragment {
         mListener = null;
     }
 
-    public void cancelHold(){
+    public void cancelHold() {
         graphView.cancelHold();
     }
 
@@ -109,9 +110,9 @@ public class SkillTreeFragment extends Fragment {
         }
     };
 
-    private void showPerkDescription(Perk perk){
+    private void showPerkDescription(Perk perk) {
 
-        final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getActivity(), R.style.CustomDialogTheme);
+        CustomDialogBuilder dialogBuilder = new CustomDialogBuilder(getContext());
 
         LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(LAYOUT_INFLATER_SERVICE);
         View customView = inflater.inflate(R.layout.popup_perk_description, null);
@@ -131,7 +132,7 @@ public class SkillTreeFragment extends Fragment {
 
         Window window = dialog.getWindow();
         if (window != null)
-        window.setGravity(Gravity.BOTTOM);
+            window.setGravity(Gravity.BOTTOM);
 
         dialog.show();
     }
@@ -139,7 +140,7 @@ public class SkillTreeFragment extends Fragment {
     private void updateSkillInfo() {
 
         String perksText = getString(R.string.active_perks) + ": " + getPerkCount();
-        String skillText = getString(R.string.required_skill) + ": "  + graphView.getSkill().getRequiredSkillLevel();
+        String skillText = getString(R.string.required_skill) + ": " + graphView.getSkill().getRequiredSkillLevel();
 
         activePerks.setText(perksText);
         reqSkill.setText(skillText);

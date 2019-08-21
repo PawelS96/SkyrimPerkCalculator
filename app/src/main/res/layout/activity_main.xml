@@ -194,7 +194,6 @@
         <Button
             android:text="@string/options"
             android:textAllCaps="true"
-
             android:textColor="@color/colorFont"
             android:layout_toEndOf="@id/skillsButton"
             android:layout_marginStart="15dp"

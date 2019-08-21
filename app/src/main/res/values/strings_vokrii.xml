@@ -88,7 +88,7 @@
     <string name="p_vok_arc_hunters_focus">Hunter\'s Focus</string>
     <string name="p_vok_arc_pinning_shot">Pinning Shot</string>
 
-    <string name="d_vok_arc_archery_mastery"><![CDATA[Ranged weapons do 20/40/60/80/100% more damage, and ranged critical strikes deal 2/&#190;/5/6 times critical damage.]]></string>
+    <string name="d_vok_arc_archery_mastery">"Ranged weapons do 20/40/60/80/100% more damage, and ranged critical strikes deal 2/3/4/5/6 times critical damage."</string>
     <string name="d_vok_arc_far_shot">Ranged weapons do up to 20/40% more damage to targets beyond 60 feet, based on distance.</string>
     <string name="d_vok_arc_point_blank_shot">Ranged weapons do up to 20/40% more damage to targets within 20 feet, based on proximity.</string>
     <string name="d_vok_arc_eagle_eye">Pressing Block while aiming will zoom in your view.</string>
@@ -424,7 +424,7 @@
     <string name="d_vok_pck_lawless_times">Your bounties for nonviolent crimes diminish at a rate of 50/200 gold per day.</string>
     <string name="d_vok_pck_trickster">Can pickpocket equipped weapons, necklaces and rings.</string>
     <string name="d_vok_pck_conspicuous_wealth">The richest citizens carry more valuables such as gems, enchanted jewelry, and spell tomes.</string>
-    <string name="d_vok_pck_master_thief">Talking to a character also steals all of their gold, with no chance of detection.</string>
+    <string name="d_vok_pck_master_thief">Pickpocketing a character automatically steals all of their gold, with no chance of detection.</string>
     <string name="d_vok_pck_perfect_touch">Can pickpocket equipped items.</string>
 
     <string name="p_vok_rst_restoration_mastery">Restoration Mastery</string>
@@ -590,8 +590,5 @@
     <string name="d_vok_twh_rolling_charge">Build up speed during a long distance sprinting power attack, inflicting a critical strike if enough speed is gained.</string>
     <string name="d_vok_twh_sweep">Two-handed sideways power attacks hit all targets in front of you, dealing 25% more damage to each.</string>
     <string name="d_vok_twh_crowd_pleaser">Killing an opponent with a two-handed weapon raises two-handed damage by 15% for 20 seconds.</string>
-
-
-
 
 </resources>

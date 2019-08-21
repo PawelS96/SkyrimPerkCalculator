@@ -141,11 +141,11 @@ public class BuildAdapter extends BaseAdapter {
 
         SpannableStringBuilder builder = new SpannableStringBuilder(c.getString(R.string.perks) + ": ");
 
-        SpannableString str1 = new SpannableString(Integer.toString(combatPerks) + " ");
+        SpannableString str1 = new SpannableString(combatPerks + " ");
         str1.setSpan(new ForegroundColorSpan(combat), 0, str1.length(), 0);
         builder.append(str1);
 
-        SpannableString str2 = new SpannableString(Integer.toString(magicPerks) + " ");
+        SpannableString str2 = new SpannableString(magicPerks + " ");
         str2.setSpan(new ForegroundColorSpan(magic), 0, str2.length(), 0);
         builder.append(str2);
 
@@ -174,6 +174,9 @@ public class BuildAdapter extends BaseAdapter {
                 PopupMenu popup = new PopupMenu(c, holder.button);
 
                 popup.getMenuInflater().inflate(R.menu.menu_list_item, popup.getMenu());
+
+                if (builds.size() < 2)
+                    popup.getMenu().findItem(R.id.delete).setVisible(false);
 
                 popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     public boolean onMenuItemClick(MenuItem item) {

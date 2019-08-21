@@ -55,4 +55,6 @@
     <string name="vokrii">Vokrii - Minimalistic Perks of Skyrim</string>
     <string name="vanilla_skyrim">Vanilla Skyrim</string>
     <string name="perks_per_level">Perks per level</string>
+    <string name="msg_tutorial">Tip: Hold perks to see their descriptions and required skill levels.</string>
+    <string name="ok_alt">Got it!</string>
 </resources>

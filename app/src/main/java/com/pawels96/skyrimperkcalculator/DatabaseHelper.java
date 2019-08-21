@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import com.pawels96.skyrimperkcalculator.enums.IPerk;
 import com.pawels96.skyrimperkcalculator.enums.PerkSystem;
@@ -22,7 +23,7 @@ import static com.pawels96.skyrimperkcalculator.enums.PerkSystem.VOKRII;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DBNAME = "DB";
-    private static final int DBVER = 2;
+    private static final int DBVER = 3;
 
     public DatabaseHelper(Context context) {
         super(context, DBNAME, null, DBVER);
@@ -41,7 +42,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 result = false;
 
             if (cursor != null)
-            cursor.close();
+                cursor.close();
 
         } catch (SQLiteException e) {
             result = false;
@@ -119,10 +120,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public void updateBuild(Build build) {
+
         SQLiteDatabase db = getWritableDatabase();
         String table = getTable(build.getPerkSystem());
-        db.update(table, processBuild(build), "name='" + build.getName() + "'", null);
-        db.close();
+        try {
+            db.update(table, processBuild(build), "name='" + build.getName() + "'", null);
+        } catch (SQLiteException ignored) {
+        } finally {
+            db.close();
+        }
     }
 
     public List<Build> getAllBuilds(PerkSystem perkSystem) {
@@ -179,13 +185,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        for (PerkSystem p : PerkSystem.values()){
+        for (PerkSystem p : PerkSystem.values()) {
             createBuildsTable(p, db);
             addDefaultBuild(p, db);
         }
     }
 
-    private void addDefaultBuild(PerkSystem system, SQLiteDatabase db){
+    private void addDefaultBuild(PerkSystem system, SQLiteDatabase db) {
         Build build = new Build(system);
         build.setName(DEFAULT_BUILD_NAME);
         insertBuild(getTable(system), processBuild(build), db, false);
@@ -196,13 +202,40 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
+    public void onUpgrade(SQLiteDatabase db, int i, int i1) {
 
         if (i == 1 && i1 == 2) {
-            createBuildsTable(VOKRII, sqLiteDatabase);
-            addDefaultBuild(VOKRII, sqLiteDatabase);
+            createBuildsTable(VOKRII, db);
+            addDefaultBuild(VOKRII, db);
         }
 
+        else if (i == 2 && i1 == 3)
+            updateDB(db);
+
+    }
+
+    private void updateDB(SQLiteDatabase db) {
+
+        for (PerkSystem p : PerkSystem.values())
+            updateColumns(db, p);
+    }
+
+    private void updateColumns(SQLiteDatabase db, PerkSystem system) {
+
+        Cursor cursor = db.rawQuery("SELECT * FROM " + getTable(system), null);
+
+        for (SkillEnum s : SkillEnum.values()) {
+
+            for (IPerk p : s.getPerks(system)) {
+
+                boolean exists = cursor.getColumnIndex(p.toString()) != -1;
+
+                if (!exists)
+                    db.execSQL("ALTER TABLE " + getTable(system) + " ADD COLUMN " + p.toString() + " INTEGER DEFAULT 0");
+
+            }
+        }
+        cursor.close();
     }
 
 }

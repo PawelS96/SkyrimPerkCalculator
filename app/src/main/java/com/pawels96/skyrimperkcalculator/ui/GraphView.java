@@ -32,9 +32,10 @@ public class GraphView extends View {
     private Paint notSelectedPaint;
     private Paint textPaint;
 
+    private static final int NODE_RADIUS = 15;
+    private static final int TEXT_SIZE = 19;
+
     private float w, h;
-    private static int nodeRadius = 15;
-    private int textSize = 17;
     private float currentX, currentY;
     private float clickedX, clickedY;
 
@@ -100,7 +101,7 @@ public class GraphView extends View {
 
         textPaint = new Paint();
         textPaint.setColor(Color.WHITE);
-        textPaint.setTextSize(textSize);
+        textPaint.setTextSize(TEXT_SIZE);
         textPaint.setFlags(Paint.ANTI_ALIAS_FLAG);
 
         handler = new Handler();
@@ -192,7 +193,7 @@ public class GraphView extends View {
 
                 canvas.drawCircle(coordinates.get(perk).x * w,
                         coordinates.get(perk).y * h,
-                        nodeRadius, paint);
+                        NODE_RADIUS, paint);
             }
         }
     }
@@ -219,7 +220,7 @@ public class GraphView extends View {
             else if (textX > w - textWidth)
                 textX = (int) w - textWidth;
 
-            float textY = y + nodeRadius * 2f;
+            float textY = y + NODE_RADIUS * 2f;
             if (textY > h || textY < 0)
                 textY = y;
 
@@ -235,10 +236,10 @@ public class GraphView extends View {
         for (IPerk perk : coordinates.keySet()) {
             FPoint point = coordinates.get(perk);
 
-            if (x < point.x * w + nodeRadius * 2
-                    && x > point.x * w - nodeRadius * 2
-                    && y < point.y * h + nodeRadius * 2
-                    && y > point.y * h - nodeRadius * 2)
+            if (x < point.x * w + NODE_RADIUS * 2
+                    && x > point.x * w - NODE_RADIUS * 2
+                    && y < point.y * h + NODE_RADIUS * 2
+                    && y > point.y * h - NODE_RADIUS * 2)
 
                 return perk;
         }
@@ -247,10 +248,10 @@ public class GraphView extends View {
 
     private static boolean isHolding(float currentX, float currentY, float clickedX, float clickedY) {
 
-        return currentX < clickedX + nodeRadius * 3
-                && currentX > clickedX - nodeRadius * 3
-                && currentY < clickedY + nodeRadius * 3
-                && currentY > clickedY - nodeRadius * 3;
+        return currentX < clickedX + NODE_RADIUS * 3
+                && currentX > clickedX - NODE_RADIUS * 3
+                && currentY < clickedY + NODE_RADIUS * 3
+                && currentY > clickedY - NODE_RADIUS * 3;
     }
 
     private void onPerkClicked(IPerk perk) {

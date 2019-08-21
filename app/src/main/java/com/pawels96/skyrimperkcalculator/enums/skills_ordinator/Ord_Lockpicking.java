@@ -21,7 +21,7 @@ public enum Ord_Lockpicking implements IPerk {
     ORD_LCK_PERCUSSIVE_MAINTENANCE      (0.15f,    0.3f,      90),
     ORD_LCK_GONE_IN_FIFTEEN_SECONDS     (0.4f,     0.55f,     40),
     ORD_LCK_GOLDEN_TOUCH                (0.5f,     0.4f,      60),
-    ORD_LCK_TREASURE_HUNTER             (0.4f,     0.3f,      90),
+    ORD_LCK_TREASURE_HUNTER             (0.4f,     0.275f,    90),
     ORD_LCK_THE_REVENGE                 (0.8f,     0.3f,      80),
     ORD_LCK_DRAGONS_TEETH               (0.65f,    0.2f,      100),
     ORD_LCK_WAX_KEY                     (0.9f,     0.9f,      30),
