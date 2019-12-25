@@ -7,7 +7,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 import com.pawels96.skyrimperkcalculator.enums.IPerk;
 import com.pawels96.skyrimperkcalculator.enums.PerkSystem;
@@ -20,12 +19,23 @@ import java.util.List;
 import static com.pawels96.skyrimperkcalculator.Utils.DEFAULT_BUILD_NAME;
 import static com.pawels96.skyrimperkcalculator.enums.PerkSystem.VOKRII;
 
-public class DatabaseHelper extends SQLiteOpenHelper {
+public class Database extends SQLiteOpenHelper {
 
     private static final String DBNAME = "DB";
     private static final int DBVER = 3;
 
-    public DatabaseHelper(Context context) {
+    private static Database database;
+
+    public static Database create(Context context) {
+        if (database == null)
+            database = new Database(context);
+
+        return database;
+    }
+
+    public static Database get() {return database;}
+
+    private Database(Context context) {
         super(context, DBNAME, null, DBVER);
     }
 
@@ -131,6 +141,42 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    private Build getBuild(Cursor cursor, PerkSystem system) {
+
+        Build build = new Build(system);
+
+        for (SkillEnum s : SkillEnum.values()) {
+            for (IPerk p : build.getSkill(s).getPerks().keySet()) {
+                int state = cursor.getInt(cursor.getColumnIndex(p.toString()));
+                build.getSkill(s).get(p).setState(state);
+            }
+        }
+
+        build.setName(cursor.getString(cursor.getColumnIndex("name")));
+        build.setDescription(cursor.getString(cursor.getColumnIndex("description")));
+
+        return build;
+    }
+
+    public Build getByName(String name, PerkSystem system){
+
+        SQLiteDatabase db = getReadableDatabase();
+        String table = getTable(system);
+        Build build = null;
+
+        Cursor cursor = db.rawQuery("SELECT * FROM " + table + " WHERE name='" + name + "'", null);
+
+        if (cursor.moveToFirst()) {
+
+               build = getBuild(cursor, system);
+
+        }
+        cursor.close();
+        db.close();
+        return build;
+
+    }
+
     public List<Build> getAllBuilds(PerkSystem perkSystem) {
 
         List<Build> builds = new ArrayList<>();
@@ -142,18 +188,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         if (cursor.moveToFirst()) {
             do {
-                Build build = new Build(perkSystem);
 
-                for (SkillEnum s : SkillEnum.values()) {
-                    for (IPerk p : build.getSkill(s).getPerks().keySet()) {
-                        int state = cursor.getInt(cursor.getColumnIndex(p.toString()));
-                        build.getSkill(s).get(p).setState(state);
-                    }
-                }
-
-                build.setName(cursor.getString(cursor.getColumnIndex("name")));
-                build.setDescription(cursor.getString(cursor.getColumnIndex("description")));
-                builds.add(build);
+                builds.add(getBuild(cursor, perkSystem));
             }
             while (cursor.moveToNext());
         }
@@ -207,9 +243,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (i == 1 && i1 == 2) {
             createBuildsTable(VOKRII, db);
             addDefaultBuild(VOKRII, db);
-        }
-
-        else if (i == 2 && i1 == 3)
+        } else if (i == 2 && i1 == 3)
             updateDB(db);
 
     }
