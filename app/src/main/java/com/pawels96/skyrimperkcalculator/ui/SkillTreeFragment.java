@@ -3,6 +3,8 @@ package com.pawels96.skyrimperkcalculator.ui;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -13,36 +15,32 @@ import android.widget.TextView;
 
 import com.pawels96.skyrimperkcalculator.R;
 import com.pawels96.skyrimperkcalculator.enums.SkillEnum;
+import com.pawels96.skyrimperkcalculator.models.Build;
 import com.pawels96.skyrimperkcalculator.models.Perk;
 
-import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 import static com.pawels96.skyrimperkcalculator.Utils.getPerkDescription;
 import static com.pawels96.skyrimperkcalculator.Utils.getPerkName;
 
 
 public class SkillTreeFragment extends Fragment {
 
-    private OnFragmentInteractionListener mListener;
-    private GraphView graphView;
-
     public static final String ARG_1 = "arg1";
 
-    private MainActivity parentActivity;
+    private OnFragmentInteractionListener mListener;
+    private GraphView graphView;
     private TextView activePerks, reqSkill;
-
-    public SkillTreeFragment() {
-    }
-
     private SkillEnum skillEnum;
+
+    public SkillTreeFragment() { }
 
     public interface OnFragmentInteractionListener {
         void onPerkChanged(SkillEnum skill, Perk perk, int state);
     }
 
-    public static SkillTreeFragment newInstance(SkillEnum param1) {
+    public static SkillTreeFragment newInstance(SkillEnum skill) {
         SkillTreeFragment fragment = new SkillTreeFragment();
         Bundle args = new Bundle();
-        args.putSerializable(ARG_1, param1);
+        args.putSerializable(ARG_1, skill);
         fragment.setArguments(args);
         return fragment;
     }
@@ -58,24 +56,23 @@ public class SkillTreeFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.fragment_skilltree, container, false);
         graphView = rootView.findViewById(R.id.graph);
-
         activePerks = rootView.findViewById(R.id.skillPerks);
         reqSkill = rootView.findViewById(R.id.skillLevel);
 
         graphView.setListener(listener);
-        graphView.setSkill(parentActivity.getBuild().getSkill(skillEnum), parentActivity.getBuild().getPerkSystem());
-        updateSkillInfo();
+
+        displayBuild(((MainActivity) getActivity()).getBuild());
 
         return rootView;
     }
 
-    public void refresh() {
-        graphView.setSkill(parentActivity.getBuild().getSkill(skillEnum), parentActivity.getBuild().getPerkSystem());
+    public void displayBuild(Build build) {
+        graphView.setSkill(build.getSkill(skillEnum), build.getPerkSystem());
         updateSkillInfo();
         graphView.invalidate();
     }
@@ -83,7 +80,6 @@ public class SkillTreeFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        parentActivity = (MainActivity) context;
         mListener = (OnFragmentInteractionListener) context;
     }
 
@@ -114,8 +110,7 @@ public class SkillTreeFragment extends Fragment {
 
         CustomDialogBuilder dialogBuilder = new CustomDialogBuilder(getContext());
 
-        LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(LAYOUT_INFLATER_SERVICE);
-        View customView = inflater.inflate(R.layout.popup_perk_description, null);
+        View customView = View.inflate(getContext(), R.layout.popup_perk_description, null);
         dialogBuilder.setView(customView);
 
         TextView perkDesc = customView.findViewById(R.id.perk_desc);
@@ -145,5 +140,4 @@ public class SkillTreeFragment extends Fragment {
         activePerks.setText(perksText);
         reqSkill.setText(skillText);
     }
-
 }

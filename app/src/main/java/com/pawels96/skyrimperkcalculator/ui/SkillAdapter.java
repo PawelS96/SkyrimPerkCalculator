@@ -29,6 +29,8 @@ import static com.pawels96.skyrimperkcalculator.Utils.getSkillName;
 
 public class SkillAdapter extends BaseAdapter {
 
+    //TODO replace with recycler adapter
+
     private List<Skill> skills;
     private LayoutInflater inflater;
 

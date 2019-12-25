@@ -13,12 +13,14 @@ import android.view.View;
 import com.pawels96.skyrimperkcalculator.R;
 import com.pawels96.skyrimperkcalculator.enums.IPerk;
 import com.pawels96.skyrimperkcalculator.enums.PerkSystem;
+import com.pawels96.skyrimperkcalculator.enums.SkillType;
 import com.pawels96.skyrimperkcalculator.models.FPoint;
 import com.pawels96.skyrimperkcalculator.models.Perk;
 import com.pawels96.skyrimperkcalculator.models.Skill;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static com.pawels96.skyrimperkcalculator.Utils.getPerkName;
 import static com.pawels96.skyrimperkcalculator.models.Perk.areNodesSelected;
@@ -42,7 +44,7 @@ public class GraphView extends View {
     private Context context;
     private Handler handler;
 
-    private HashMap<IPerk, FPoint> coordinates;
+    private Map<IPerk, FPoint> coordinates;
     private IPerk touchedPerk = null;
     private PerkSystem system;
     private Skill skill;
@@ -52,6 +54,7 @@ public class GraphView extends View {
 
     public interface OnNodeClickedListener {
         void onNodeClicked(Perk perk);
+
         void onNodeHolding(Perk perk);
     }
 
@@ -118,21 +121,22 @@ public class GraphView extends View {
         canvas.drawLine(xy1.x * w, xy1.y * h, xy2.x * w, xy2.y * h, paint);
     }
 
+    private Paint getPaintForSkillType(SkillType type) {
+        switch (type) {
+            case STEALTH:
+                return selectedStealthPaint;
+            case COMBAT:
+                return selectedCombatPaint;
+            case MAGIC:
+                return selectedMagicPaint;
+        }
+
+        return null;
+    }
+
     private void drawConnections(Canvas canvas, List<Perk> perks) {
 
-        Paint selectedPaint = selectedCombatPaint;
-
-        switch (skill.getType()) {
-            case STEALTH:
-                selectedPaint = selectedStealthPaint;
-                break;
-            case COMBAT:
-                selectedPaint = selectedCombatPaint;
-                break;
-            case MAGIC:
-                selectedPaint = selectedMagicPaint;
-                break;
-        }
+        Paint selectedPaint = getPaintForSkillType(skill.getType());
 
         for (Perk n : perks) {
             if (!n.hasChildren())
@@ -165,22 +169,7 @@ public class GraphView extends View {
 
     private void drawNodes(Canvas canvas) {
 
-        Paint selectedPaint = selectedCombatPaint;
-
-        switch (skill.getType()) {
-
-            case MAGIC:
-                selectedPaint = selectedMagicPaint;
-                break;
-
-            case COMBAT:
-                selectedPaint = selectedCombatPaint;
-                break;
-
-            case STEALTH:
-                selectedPaint = selectedStealthPaint;
-                break;
-        }
+        Paint selectedPaint = getPaintForSkillType(skill.getType());
 
         for (IPerk perk : coordinates.keySet()) {
 
@@ -283,18 +272,14 @@ public class GraphView extends View {
 
                 touchedPerk = getClickedPerk(event.getX(), event.getY());
 
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
+                handler.postDelayed(() -> {
 
-                        if (touchedPerk != null) {
+                    if (touchedPerk != null) {
 
-                            if (isHolding(currentX, currentY, clickedX, clickedY))
-                               listener.onNodeHolding(skill.get(touchedPerk));
-                            touchedPerk = null;
-                        }
+                        if (isHolding(currentX, currentY, clickedX, clickedY))
+                            listener.onNodeHolding(skill.get(touchedPerk));
+                        touchedPerk = null;
                     }
-
                 }, 300);
 
                 return true;
@@ -311,7 +296,7 @@ public class GraphView extends View {
         return super.onTouchEvent(event);
     }
 
-    public void cancelHold(){
+    public void cancelHold() {
         handler.removeCallbacksAndMessages(null);
     }
 }
