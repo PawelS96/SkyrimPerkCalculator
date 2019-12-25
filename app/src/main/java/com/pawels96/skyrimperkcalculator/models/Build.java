@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static com.pawels96.skyrimperkcalculator.enums.SkillType.COMBAT;
 import static com.pawels96.skyrimperkcalculator.enums.SkillType.MAGIC;
@@ -17,10 +18,11 @@ import static com.pawels96.skyrimperkcalculator.models.Skill.buildSkill;
 
 public class Build {
 
-    private PerkSystem perkSystem;
     private String name;
-    private HashMap<SkillEnum, Skill> skills;
     private String description = null;
+    private PerkSystem perkSystem;
+
+    private Map<SkillEnum, Skill> skills;
 
     public void setPerkSystem(PerkSystem perkSystem) {
         this.perkSystem = perkSystem;
@@ -72,7 +74,7 @@ public class Build {
         return list;
     }
 
-    public HashMap<SkillType, Integer> getPerkDistribution(){
+    public Map<SkillType, Integer> getPerkDistribution(){
 
         int stealth = 0;
         int magic = 0;
@@ -94,7 +96,7 @@ public class Build {
             }
         }
 
-        HashMap<SkillType, Integer> map = new HashMap<>();
+        Map<SkillType, Integer> map = new HashMap<>();
 
         map.put(STEALTH, stealth);
         map.put(MAGIC, magic);

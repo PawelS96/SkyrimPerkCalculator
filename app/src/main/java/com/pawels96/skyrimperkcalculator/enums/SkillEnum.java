@@ -57,6 +57,7 @@ import com.pawels96.skyrimperkcalculator.enums.skills_vokrii.Vok_TwoHanded;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.Map;
 
 import static com.pawels96.skyrimperkcalculator.enums.SkillType.*;
 
@@ -281,7 +282,7 @@ public enum SkillEnum implements Serializable {
         }
     }
 
-    public HashMap<IPerk, IPerk[]> getConnectionsMap(PerkSystem perkSystem) {
+    public Map<IPerk, IPerk[]> getConnectionsMap(PerkSystem perkSystem) {
 
         switch (perkSystem) {
 
@@ -301,9 +302,9 @@ public enum SkillEnum implements Serializable {
      * Each perk is mapped to a list of its children, if it has any.
      */
 
-    private HashMap<IPerk, IPerk[]> getOrdinatorConnections() {
+    private Map<IPerk, IPerk[]> getOrdinatorConnections() {
 
-        HashMap<IPerk, IPerk[]> map = new HashMap<>();
+        Map<IPerk, IPerk[]> map = new HashMap<>();
 
         switch (this) {
 
@@ -695,9 +696,9 @@ public enum SkillEnum implements Serializable {
         return map;
     }
 
-    private HashMap<IPerk, IPerk[]> getVanillaConnections(){
+    private Map<IPerk, IPerk[]> getVanillaConnections(){
 
-        HashMap<IPerk, IPerk[]> map = new HashMap<>();
+        Map<IPerk, IPerk[]> map = new HashMap<>();
 
         switch (this) {
 
@@ -916,9 +917,9 @@ public enum SkillEnum implements Serializable {
         return map;
     }
 
-    private HashMap<IPerk, IPerk[]> getVokriiConnections(){
+    private Map<IPerk, IPerk[]> getVokriiConnections(){
 
-        HashMap<IPerk, IPerk[]> map = new HashMap<>();
+        Map<IPerk, IPerk[]> map = new HashMap<>();
 
         switch (this) {
 

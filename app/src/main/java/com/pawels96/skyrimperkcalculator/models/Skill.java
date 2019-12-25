@@ -10,6 +10,7 @@ import com.pawels96.skyrimperkcalculator.enums.SkillType;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static com.pawels96.skyrimperkcalculator.models.Perk.connectPerks;
 
@@ -17,10 +18,10 @@ public class Skill {
 
     private SkillEnum skillEnum;
 
-    private HashMap<IPerk, Perk> perks = new HashMap<>();
+    private Map<IPerk, Perk> perks = new HashMap<>();
     private int maxPerks;
 
-    public HashMap<IPerk, Perk> getPerks() {
+    public Map<IPerk, Perk> getPerks() {
         return perks;
     }
 
@@ -62,7 +63,7 @@ public class Skill {
         return level;
     }
 
-    public void setPerks(HashMap<IPerk, Perk> hashMap) {
+    public void setPerks(Map<IPerk, Perk> hashMap) {
         perks = hashMap;
         int count = 0;
 
@@ -73,7 +74,7 @@ public class Skill {
     }
 
     public String getPerksCount() {
-        return Integer.toString(getSelectedPerksCount()) + "/" + Integer.toString(maxPerks);
+        return getSelectedPerksCount() + "/" + maxPerks;
     }
 
     public List<Perk> getChildrenList() {
@@ -94,7 +95,7 @@ public class Skill {
 
         Skill skill = new Skill(skillEnum);
 
-        HashMap<IPerk, Perk> perks = new HashMap<>();
+        Map<IPerk, Perk> perks = new HashMap<>();
 
         for (int i = 0; i < skillEnum.getPerks(perkSystem).length; i++) {
             Perk perk = new Perk(skillEnum.getPerks(perkSystem)[i]);
@@ -103,7 +104,6 @@ public class Skill {
 
         for (IPerk start : skillEnum.getConnectionsMap(perkSystem).keySet()) {
             for (IPerk end : skillEnum.getConnectionsMap(perkSystem).get(start)) {
-                Log.d("lmao", start.toString() + " " + end.toString());
                 connectPerks(perks.get(start), perks.get(end));
             }
         }
@@ -112,9 +112,10 @@ public class Skill {
         return skill;
     }
 
-    public static HashMap<IPerk, FPoint> getCoordinates(SkillEnum skill, PerkSystem system){
 
-        HashMap<IPerk, FPoint> coordinates = new HashMap<>();
+    public static Map<IPerk, FPoint> getCoordinates(SkillEnum skill, PerkSystem system){
+
+        Map<IPerk, FPoint> coordinates = new HashMap<>();
 
         for (IPerk p : skill.getPerks(system))
             coordinates.put(p, new FPoint(p.getPerkInfo().getX(), p.getPerkInfo().getY()));

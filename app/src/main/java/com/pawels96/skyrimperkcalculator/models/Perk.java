@@ -43,7 +43,7 @@ public class Perk {
         int levels = perk.getPerkInfo().getSkillLevel().length;
 
         for (int i = 0; i < levels; i++) {
-            sb.append(Integer.toString(perk.getPerkInfo().getSkillLevel()[i]));
+            sb.append(perk.getPerkInfo().getSkillLevel()[i]);
             if (i < levels - 1)
                 sb.append(" / ");
         }
@@ -59,7 +59,7 @@ public class Perk {
     }
 
     public String getStateAsString() {
-        return " (" + Integer.toString(state) + "/" + Integer.toString(maxState) + ")";
+        return " (" + state + "/" + maxState + ")";
     }
 
     private boolean hasParent() {
@@ -125,5 +125,4 @@ public class Perk {
     public static boolean areNodesSelected(Perk start, Perk end) {
         return start.isSelected() && end.isSelected();
     }
-
 }
