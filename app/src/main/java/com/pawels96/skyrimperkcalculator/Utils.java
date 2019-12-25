@@ -9,6 +9,7 @@ import com.pawels96.skyrimperkcalculator.models.Build;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Utils {
 
@@ -18,6 +19,7 @@ public class Utils {
     public static final String PREFS_BUILD_SELECTED = "build_selected";
     public static final String DEFAULT_BUILD_NAME = "New build";
     public static final String PREFS_PERK_SYSTEM = "system";
+    public static final String PREFS_FIRST_LAUNCH = "firstLaunch";
 
 
     /**
@@ -69,16 +71,6 @@ public class Utils {
 
     public static String getFragmentTag(int viewPagerID, int position) {
         return "android:switcher:" + viewPagerID + ":" + position;
-    }
-
-    public static HashMap<String, Build> listToMap(List<Build> list) {
-
-        HashMap<String, Build> map = new HashMap<>();
-
-        for (Build b : list)
-            map.put(b.getName(), b);
-
-        return map;
     }
 
 }
