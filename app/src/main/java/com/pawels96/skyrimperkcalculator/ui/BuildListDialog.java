@@ -3,7 +3,6 @@ package com.pawels96.skyrimperkcalculator.ui;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -132,10 +131,10 @@ public class BuildListDialog extends DialogFragment {
 
         CustomDialogBuilder dialogBuilder = new CustomDialogBuilder(getContext());
 
-        dialogBuilder.setTitle(getString(R.string.delete_build));
-        dialogBuilder.setCancelable(true);
+        dialogBuilder.setTitle(getString(R.string.delete_build))
+        .setCancelable(true)
 
-        dialogBuilder.setPositiveButton(getString(R.string.delete),
+        .setPositiveButton(getString(R.string.delete),
                 (dialog, id) -> {
 
                     boolean current = buildToDelete.getName().equals(currentBuildName);// == build;
@@ -151,11 +150,9 @@ public class BuildListDialog extends DialogFragment {
                         adapter.notifyDataSetChanged();
                         showMessage(R.string.msg_build_deleted);
                     } else showMessage(R.string.msg_error);
-                });
-
-        dialogBuilder.setNegativeButton(R.string.cancel,(dialog, id) -> dialog.dismiss());
-
-        dialogBuilder.create().show();
+                })
+        .setNegativeButton(R.string.cancel,(dialog, id) -> dialog.dismiss())
+        .create().show();
     }
 
     private void showMessage(int res) {
@@ -173,11 +170,11 @@ public class BuildListDialog extends DialogFragment {
         if (build.getDescription() != null)
             tv.setText(build.getDescription());
 
-        builder.setTitle(build.getName());
-        builder.setCancelable(true);
-        builder.setView(root);
+        builder.setTitle(build.getName())
+        .setCancelable(true)
+        .setView(root)
 
-        builder.setPositiveButton(getString(R.string.edit),
+        .setPositiveButton(getString(R.string.edit),
                 (dialog, id) -> {
 
                     CustomDialogBuilder dialogBuilder2 = new CustomDialogBuilder(getContext());
@@ -209,9 +206,9 @@ public class BuildListDialog extends DialogFragment {
                         window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
 
                     dialog1.show();
-                });
+                })
 
-        builder.create().show();
+        .create().show();
     }
 
     private void showSavePopup(final Build buildToSave, final boolean rename) {
