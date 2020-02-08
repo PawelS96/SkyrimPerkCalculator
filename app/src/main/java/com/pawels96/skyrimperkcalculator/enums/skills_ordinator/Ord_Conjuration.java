@@ -27,7 +27,7 @@ public enum Ord_Conjuration implements IPerk {
    ORD_CON_VOID_BURN                         (0.9f,    0.5f ,   50),
    ORD_CON_A_PLAGUE_UPON_THEE                (0.22f,   0.45f ,  60),
    ORD_CON_CONJURE_ALTAR                     (0.6f,    0.2f ,   60),
-   ORD_CON_FIRE_RITUAL                       (0.45f,   0.2f ,   60),
+   ORD_CON_FIRE_RITUAL                       (0.45f,   0.175f ,   60),
    ORD_CON_HOLLOW_BINDING                    (0.9f,    0.35f ,  60),
    ORD_CON_MAELSTROM                         (0.06f,   0.4f ,   60),
    ORD_CON_CORPSE_GAS                        (0.25f,   0.3f ,   70),

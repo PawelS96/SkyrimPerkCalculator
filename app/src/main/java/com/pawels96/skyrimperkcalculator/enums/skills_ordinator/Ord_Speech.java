@@ -13,7 +13,7 @@ public enum Ord_Speech implements IPerk {
     ORD_SPC_IRRESISTIBLE_DANCE          (0.45f ,   0.5f,    30),
     ORD_SPC_SERENADE                    (0.325f ,  0.65f,   30),
     ORD_SPC_BUSINESS_RELATION           (0.1f ,    0.55f,   40),
-    ORD_SPC_ENCORE                      (0.325f ,  0.35f,   40),
+    ORD_SPC_ENCORE                      (0.325f ,  0.375f,   40),
     ORD_SPC_GOLDEN_FIDDLE               (0.45f ,   0.35f,   40),
     ORD_SPC_WINDBORNE                   (0.7f ,    0.65f,   40),
     ORD_SPC_FORCE_REDOUBLED             (0.85f ,   0.5f,    50,80),

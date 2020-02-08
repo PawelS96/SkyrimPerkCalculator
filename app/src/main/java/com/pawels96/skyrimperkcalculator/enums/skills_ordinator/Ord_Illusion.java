@@ -24,7 +24,7 @@ public enum Ord_Illusion implements IPerk {
     ORD_ILU_PANDEMONIUM               (0.35f,   0.25f ,  60),
     ORD_ILU_DREAM_CHARM               (0.9f,    0.3f ,   70),
     ORD_ILU_NEVERWORLD                (0.25f,   0.45f ,  70),
-    ORD_ILU_SHADOW_REFUGE             (0.55f,   0.6f ,   70),
+    ORD_ILU_SHADOW_REFUGE             (0.55f,   0.575f ,   70),
     ORD_ILU_THE_REAPER_COMES          (0.5f,    0.35f ,  70),
     ORD_ILU_LAMB_TO_THE_SLAUGHTER     (0.52f,   0.2f ,   80),
     ORD_ILU_PROTECT_YOUR_GOD          (0.7f,    0.15f ,  80),
