@@ -18,7 +18,6 @@ import com.pawels96.skyrimperkcalculator.models.FPoint;
 import com.pawels96.skyrimperkcalculator.models.Perk;
 import com.pawels96.skyrimperkcalculator.models.Skill;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -28,21 +27,22 @@ import static com.pawels96.skyrimperkcalculator.models.Skill.getCoordinates;
 
 public class GraphView extends View {
 
-    private Paint selectedStealthPaint;
-    private Paint selectedCombatPaint;
-    private Paint selectedMagicPaint;
-    private Paint notSelectedPaint;
-    private Paint textPaint;
+    private Paint selectedStealthPaint = new Paint();
+    private Paint selectedCombatPaint = new Paint();
+    private Paint selectedMagicPaint = new Paint();
+    private Paint notSelectedPaint = new Paint();
+    private Paint textPaint = new Paint();
 
     private static final int NODE_RADIUS = 15;
-    private static final int TEXT_SIZE = 19;
+
+    private int TEXT_SIZE;
 
     private float w, h;
     private float currentX, currentY;
     private float clickedX, clickedY;
 
     private Context context;
-    private Handler handler;
+    private Handler handler = new Handler();
 
     private Map<IPerk, FPoint> coordinates;
     private IPerk touchedPerk = null;
@@ -77,37 +77,36 @@ public class GraphView extends View {
     public GraphView(Context context, AttributeSet attrs) {
         super(context, attrs);
         this.context = context;
+        TEXT_SIZE = spToPixels(context, 10);
         init();
     }
 
     private void init() {
 
-        selectedStealthPaint = new Paint();
         selectedStealthPaint.setColor(Color.GREEN);
         selectedStealthPaint.setStrokeWidth(5);
         selectedStealthPaint.setFlags(Paint.ANTI_ALIAS_FLAG);
 
-        selectedCombatPaint = new Paint();
         selectedCombatPaint.setColor(Color.RED);
         selectedCombatPaint.setStrokeWidth(5);
         selectedCombatPaint.setFlags(Paint.ANTI_ALIAS_FLAG);
 
-        selectedMagicPaint = new Paint();
         selectedMagicPaint.setColor(getResources().getColor(R.color.skillMagicBright));
         selectedMagicPaint.setStrokeWidth(5);
         selectedMagicPaint.setFlags(Paint.ANTI_ALIAS_FLAG);
 
-        notSelectedPaint = new Paint();
         notSelectedPaint.setColor(getResources().getColor(R.color.colorGray));
         notSelectedPaint.setStrokeWidth(5);
         notSelectedPaint.setFlags(Paint.ANTI_ALIAS_FLAG);
 
-        textPaint = new Paint();
         textPaint.setColor(Color.WHITE);
         textPaint.setTextSize(TEXT_SIZE);
         textPaint.setFlags(Paint.ANTI_ALIAS_FLAG);
+    }
 
-        handler = new Handler();
+    public static int spToPixels(Context context, int sp) {
+        float scaledDensity = context.getResources().getDisplayMetrics().scaledDensity;
+        return (int)(sp * scaledDensity);
     }
 
     private void drawEdge(Canvas canvas, Perk start, Perk end, Paint selectedPaint) {
@@ -209,7 +208,7 @@ public class GraphView extends View {
             else if (textX > w - textWidth)
                 textX = (int) w - textWidth;
 
-            float textY = y + NODE_RADIUS * 2f;
+            float textY = y + NODE_RADIUS * 2f + textBounds.height() / 5;
             if (textY > h || textY < 0)
                 textY = y;
 
@@ -222,13 +221,15 @@ public class GraphView extends View {
         if (coordinates == null)
             return null;
 
+        int clickRadius = NODE_RADIUS * 2;
+
         for (IPerk perk : coordinates.keySet()) {
             FPoint point = coordinates.get(perk);
 
-            if (x < point.x * w + NODE_RADIUS * 2
-                    && x > point.x * w - NODE_RADIUS * 2
-                    && y < point.y * h + NODE_RADIUS * 2
-                    && y > point.y * h - NODE_RADIUS * 2)
+            if (x < point.x * w + clickRadius
+                    && x > point.x * w - clickRadius
+                    && y < point.y * h + clickRadius
+                    && y > point.y * h - clickRadius)
 
                 return perk;
         }
@@ -237,10 +238,12 @@ public class GraphView extends View {
 
     private static boolean isHolding(float currentX, float currentY, float clickedX, float clickedY) {
 
-        return currentX < clickedX + NODE_RADIUS * 3
-                && currentX > clickedX - NODE_RADIUS * 3
-                && currentY < clickedY + NODE_RADIUS * 3
-                && currentY > clickedY - NODE_RADIUS * 3;
+        int radius = NODE_RADIUS * 5;
+
+        return currentX < clickedX + radius
+                && currentX > clickedX - radius
+                && currentY < clickedY + radius
+                && currentY > clickedY - radius;
     }
 
     private void onPerkClicked(IPerk perk) {
