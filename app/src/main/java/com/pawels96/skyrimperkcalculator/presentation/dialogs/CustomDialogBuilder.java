@@ -1,4 +1,4 @@
-package com.pawels96.skyrimperkcalculator.ui;
+package com.pawels96.skyrimperkcalculator.presentation.dialogs;
 
 import android.app.AlertDialog;
 import android.content.Context;
