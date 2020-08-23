@@ -1,4 +1,4 @@
-package com.pawels96.skyrimperkcalculator.ui;
+package com.pawels96.skyrimperkcalculator.presentation.views;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -11,25 +11,26 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import com.pawels96.skyrimperkcalculator.R;
-import com.pawels96.skyrimperkcalculator.enums.IPerk;
-import com.pawels96.skyrimperkcalculator.enums.PerkSystem;
-import com.pawels96.skyrimperkcalculator.enums.SkillType;
-import com.pawels96.skyrimperkcalculator.models.FPoint;
-import com.pawels96.skyrimperkcalculator.models.Perk;
-import com.pawels96.skyrimperkcalculator.models.Skill;
+import com.pawels96.skyrimperkcalculator.domain.IPerk;
+import com.pawels96.skyrimperkcalculator.domain.SkillType;
+import com.pawels96.skyrimperkcalculator.domain.FPoint;
+import com.pawels96.skyrimperkcalculator.domain.Perk;
+import com.pawels96.skyrimperkcalculator.domain.Skill;
+import com.pawels96.skyrimperkcalculator.domain.enums.ESpecialSkill;
 
 import java.util.List;
 import java.util.Map;
 
-import static com.pawels96.skyrimperkcalculator.Utils.getPerkName;
-import static com.pawels96.skyrimperkcalculator.models.Perk.areNodesSelected;
-import static com.pawels96.skyrimperkcalculator.models.Skill.getCoordinates;
+import static com.pawels96.skyrimperkcalculator.presentation.Utils.getPerkName;
+import static com.pawels96.skyrimperkcalculator.domain.Perk.areNodesSelected;
 
 public class GraphView extends View {
 
     private Paint selectedStealthPaint = new Paint();
     private Paint selectedCombatPaint = new Paint();
     private Paint selectedMagicPaint = new Paint();
+    private Paint selectedVampirePaint = new Paint();
+    private Paint selectedWerewolfPaint = new Paint();
     private Paint notSelectedPaint = new Paint();
     private Paint textPaint = new Paint();
 
@@ -46,7 +47,6 @@ public class GraphView extends View {
 
     private Map<IPerk, FPoint> coordinates;
     private IPerk touchedPerk = null;
-    private PerkSystem system;
     private Skill skill;
 
     private GraphView.OnNodeClickedListener listener;
@@ -66,11 +66,9 @@ public class GraphView extends View {
         this.listener = listener;
     }
 
-    public void setSkill(Skill skill, PerkSystem system) {
+    public void display(Skill skill) {
         this.skill = skill;
-        this.system = system;
-
-        coordinates = null;
+        coordinates = skill.getCoordinates();
         invalidate();
     }
 
@@ -95,6 +93,14 @@ public class GraphView extends View {
         selectedMagicPaint.setStrokeWidth(5);
         selectedMagicPaint.setFlags(Paint.ANTI_ALIAS_FLAG);
 
+        selectedVampirePaint.setColor(getResources().getColor(R.color.skillVampireBright));
+        selectedVampirePaint.setStrokeWidth(5);
+        selectedVampirePaint.setFlags(Paint.ANTI_ALIAS_FLAG);
+
+        selectedWerewolfPaint.setColor(getResources().getColor(R.color.skillWerewolfBright));
+        selectedWerewolfPaint.setStrokeWidth(5);
+        selectedWerewolfPaint.setFlags(Paint.ANTI_ALIAS_FLAG);
+
         notSelectedPaint.setColor(getResources().getColor(R.color.colorGray));
         notSelectedPaint.setStrokeWidth(5);
         notSelectedPaint.setFlags(Paint.ANTI_ALIAS_FLAG);
@@ -117,7 +123,7 @@ public class GraphView extends View {
 
         Paint paint = areNodesSelected(start, end) ? selectedPaint : notSelectedPaint;
 
-        canvas.drawLine(xy1.x * w, xy1.y * h, xy2.x * w, xy2.y * h, paint);
+        canvas.drawLine(xy1.getX() * w, xy1.getY() * h, xy2.getX() * w, xy2.getY() * h, paint);
     }
 
     private Paint getPaintForSkillType(SkillType type) {
@@ -129,6 +135,12 @@ public class GraphView extends View {
             case MAGIC:
                 return selectedMagicPaint;
         }
+
+        if (skill.getIskill().equals(ESpecialSkill.SKILL_VAMPIRISM))
+            return selectedVampirePaint;
+
+        if (skill.getIskill().equals(ESpecialSkill.SKILL_LYCANTHROPY))
+            return selectedWerewolfPaint;
 
         return null;
     }
@@ -158,10 +170,7 @@ public class GraphView extends View {
 
         if (skill == null) return;
 
-        if (coordinates == null)
-            coordinates = getCoordinates(skill.getSkillEnum(), system);
-
-        drawConnections(canvas, skill.getChildrenList());
+        drawConnections(canvas, skill.getPerkList());
         drawNodes(canvas);
         drawLabels(canvas);
     }
@@ -179,8 +188,8 @@ public class GraphView extends View {
                 if (skill.get(perk) != null && skill.get(perk).isSelected())
                     paint = selectedPaint;
 
-                canvas.drawCircle(coordinates.get(perk).x * w,
-                        coordinates.get(perk).y * h,
+                canvas.drawCircle(coordinates.get(perk).getX() * w,
+                        coordinates.get(perk).getY() * h,
                         NODE_RADIUS, paint);
             }
         }
@@ -192,8 +201,8 @@ public class GraphView extends View {
 
             String label = getPerkName(context, s);
 
-            float x = coordinates.get(s).x * w;
-            float y = coordinates.get(s).y * h;
+            float x = coordinates.get(s).getX() * w;
+            float y = coordinates.get(s).getY() * h;
 
             if (skill.get(s) != null && skill.get(s).isMultiState())
                 label += skill.get(s).getStateAsString();
@@ -226,10 +235,10 @@ public class GraphView extends View {
         for (IPerk perk : coordinates.keySet()) {
             FPoint point = coordinates.get(perk);
 
-            if (x < point.x * w + clickRadius
-                    && x > point.x * w - clickRadius
-                    && y < point.y * h + clickRadius
-                    && y > point.y * h - clickRadius)
+            if (x < point.getX() * w + clickRadius
+                    && x > point.getX() * w - clickRadius
+                    && y < point.getY() * h + clickRadius
+                    && y > point.getY() * h - clickRadius)
 
                 return perk;
         }
@@ -247,9 +256,6 @@ public class GraphView extends View {
     }
 
     private void onPerkClicked(IPerk perk) {
-
-        skill.get(perk).nextState();
-        invalidate();
         listener.onNodeClicked(skill.get(perk));
     }
 
