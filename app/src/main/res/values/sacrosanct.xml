@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <string name="p_sac_vam_power_is_power">Power is Power</string>
+    <string name="p_sac_vam_wings_of_the_strix">Wings of the Strix</string>
+    <string name="p_sac_vam_astral_poison">Astral Poison</string>
+    <string name="p_sac_vam_night_cloak">Night Cloak</string>
+    <string name="p_sac_vam_dragon_at_midnight">Dragon at Midnight</string>
+    <string name="p_sac_vam_echolocation">Echolocation</string>
+    <string name="p_sac_vam_mist_form">Mist Form</string>
+    <string name="p_sac_vam_the_reaping">The Reaping</string>
+    <string name="p_sac_vam_tremble">Tremble</string>
+    <string name="p_sac_vam_courts_chef">Court\'s Chef</string>
+    <string name="p_sac_vam_white_wolf">White Wolf</string>
+    <string name="p_sac_vam_psychic_vampire">Psychic Vampire</string>
+    <string name="p_sac_vam_embrace_the_beast">Embrace the Beast</string>
+    <string name="p_sac_vam_foster_childe">Foster Childe</string>
+    <string name="p_sac_vam_amaranth">Amaranth</string>
+    <string name="p_sac_vam_fountain_of_youth">Fountain of Youth</string>
+    <string name="p_sac_vam_lion_among_sheep">Lion Among Sheep</string>
+    <string name="p_sac_vam_slasher">Slasher</string>
+    <string name="p_sac_vam_celerity">Celerity</string>
+    <string name="p_sac_vam_unearthly_will">Unearthly Will</string>
+    <string name="p_sac_vam_blood_from_a_stone">Blood From a Stone</string>
+    <string name="p_sac_vam_lord_of_destruction">Lord of Destruction</string>
+    <string name="p_sac_vam_blood_storm">Blood Storm</string>
+    <string name="p_sac_vam_exsanguinate">Exsanguinate</string>
+    <string name="p_sac_vam_starving_artist">Starving Artist</string>
+    <string name="p_sac_vam_make_them_beautiful">Make Them Beautiful</string>
+    <string name="p_sac_vam_auspex">Auspex</string>
+    <string name="p_sac_vam_curtain_call">Curtain Call</string>
+    <string name="p_sac_vam_lamaes_pyre">Lamae\'s Pyre</string>
+    <string name="p_sac_vam_chokehold">Chokehold</string>
+    <string name="p_sac_vam_conjure_gargoyle">Conjure Gargoyle</string>
+    <string name="p_sac_vam_gutwrench">Gutwrench</string>
+    <string name="p_sac_vam_maelstrom">Maelstrom</string>
+
+    <string name="d_sac_vam_power_is_power">All attributes (Health, Magicka, Stamina) are increased by 50 points as Vampire Lord. Choose an attribute to further increase by 100 points.</string>
+    <string name="d_sac_vam_wings_of_the_strix">In magic mode, sprinting allows you to glide, greatly reducing fall speed.</string>
+    <string name="d_sac_vam_astral_poison">Attacks in melee form deliver an unnatural toxin, dealing 25 points of poison damage and absorbing 50 points of Magicka over 5 seconds.</string>
+    <string name="d_sac_vam_night_cloak">In combat, you are surrounded by a cloud of bats that feed on living enemies within melee range, absorbing 5 points of Health per second from each.</string>
+    <string name="d_sac_vam_dragon_at_midnight">You gain 4 perk points to spend in your other perk trees. However, when you are Blood Starved, contact with Sunlight will instantly destroy you!</string>
+    <string name="d_sac_vam_echolocation">Night Power: Sends out a quick pulse that detects any creature. (Magicka cost: 15)</string>
+    <string name="d_sac_vam_mist_form">Night Power: Morph into a dark mist for 15 seconds, becoming undetectable and invulnerable but unable to fight while regenerating 25 points of Health, Magicka and Stamina per second. (Magicka cost: 50, cooldown: 30 seconds)</string>
+    <string name="d_sac_vam_the_reaping">Night Power: Unleash your inner Beast, slowing time while gaining 40% movement speed and 60% attack speed and launching enemies with your power attacks. Lasts for 10 seconds. (Magicka cost: 75, cooldown: 40 seconds)</string>
+    <string name="d_sac_vam_tremble">Night Power: Emit a shockwave that throws all within 25 feet into the air and stuns them. (Magicka cost: 75, cooldown: 30 seconds, 2 charges)</string>
+    <string name="d_sac_vam_courts_chef">Able to create Blood Potions at a cooking pot. Using Human Flesh yields 1 Blood Potion and using a Human Heart yields 2 Blood Potions. Additionally, consuming a Blood Potion advances Vampire Lord perks.</string>
+    <string name="d_sac_vam_white_wolf">Your Vampire\'s Seduction power now works on targets 15 levels higher and you may Drain people under its effect regardless of how thirsty you are. Additionally, Draining a sleeping or seduced victim advances Vampire Lord perks.</string>
+    <string name="d_sac_vam_psychic_vampire">Feeding on victims depletes their Magicka and Stamina and increases the effectiveness of Dominate and Still Heart against them to 200% for 30 seconds.</string>
+    <string name="d_sac_vam_embrace_the_beast">You are stronger when Blood Starved: you deal 25% more attack damage, Flaywind lasts 100% longer and Vampiric Drain deals 50% more damage and has 15% chance per second to cast a Flaywind on humanoid targets for 5 points of magic damage for 10 seconds.</string>
+    <string name="d_sac_vam_foster_childe">Able to Embrace a sleeping victim when feeding, turning them into a vampire who will fight for you and making them a lover, potential follower and marriage partner.</string>
+    <string name="d_sac_vam_amaranth">Vampire\'s Seduction works on vampires. Able to Drain humanoid vampires to disintegrate them and absorb their power. Your reward for this depraved act is a 30% bonus to combat and social skills while weaker vampires flee from you, for 5 minutes.</string>
+    <string name="d_sac_vam_fountain_of_youth">Killing a person with a power attack bite in melee form restores all your Health and 150 Magicka.</string>
+    <string name="d_sac_vam_lion_among_sheep">In magic form, damaging targets with the Raze spell in your right hand reduces their attack damage by 10% for 10 seconds. In melee form, you deal 10% extra attack damage for each target affected.</string>
+    <string name="d_sac_vam_slasher">Power attacks in melee form deal 50% more damage and hit all targets in front of you.</string>
+    <string name="d_sac_vam_celerity">Able to move at unnatural speed. Movement speed increased by 10% in mortal and magic form and 20% in melee form.</string>
+    <string name="d_sac_vam_unearthly_will">Blood Magic, Night Powers, the Raze spell in your right hand and Hemomancy in mortal form cost 25% less. The Vampiric Drain spell in mortal form costs 50% less.</string>
+    <string name="d_sac_vam_blood_from_a_stone">Blood Magic, the Raze spell in your right hand and Hemomancy in mortal form can now damage Daedra and automatons.</string>
+    <string name="d_sac_vam_lord_of_destruction">The Raze spell in your right hand deals 0.5% more damage per level of Destruction.</string>
+    <string name="d_sac_vam_blood_storm">Blood Storm - Permanently upgrades the Raze spell in your right hand to Blood Storm. Concentrate to cast a barrage of exploding blood spheres that absorb 25 points of Health and deal 150 points of magic damage.</string>
+    <string name="d_sac_vam_exsanguinate">Your Vampiric Drain spell in mortal form deals 50% more damage when fighting only one enemy, and can be dual cast for a chance to stagger enemies.</string>
+    <string name="d_sac_vam_starving_artist">In mortal form, Hemomancy spells used against people absorb Health equal to 25% of their base damage (dealing that much extra damage and healing the caster for the same amount). Killing people with Hemomancy spells advances your Vampire Lord perks.</string>
+    <string name="d_sac_vam_make_them_beautiful">In mortal form, Hemomancy spells used against people have 25% chance to tear apart victims below 25% Health, instantly killing them.</string>
+    <string name="d_sac_vam_auspex">In mortal form, your supernatural senses warn you of the presence of enemies within 200 feet, briefly illuminating them through walls. Enemies can only be illuminated once and enemies that are too close are not detected.</string>
+    <string name="d_sac_vam_curtain_call">Hemomancy: Briefly pacifies people affected by a different Hemomancy spell before decapitating them, killing them instantly. (Magicka cost: 1500)</string>
+    <string name="d_sac_vam_lamaes_pyre">Hemomancy Power: A 50 foot hurricane of flames that enwraps the caster for 10 seconds. Enemies take 75 fire damage per second. Can be used once, then becomes unavailable until you feed on a sleeping victim. (Magicka cost: 600)</string>
+    <string name="d_sac_vam_chokehold">Blood Magic: Concentrate to pull a creature to you from a distance, absorbing 20 points of Health and Stamina per second when it is close. (Magicka cost: 50/sec)</string>
+    <string name="d_sac_vam_conjure_gargoyle">Blood Magic: Conjure a gargoyle to fight for you for 60 seconds. (Magicka cost: 50)</string>
+    <string name="d_sac_vam_gutwrench">Blood Magic: Concentrate to absorb 5 points of Health per second from nearby living foes. Uninterrupted exposure builds up 25 points of agony per second on each foe, tearing them apart when this exceeds their remaining Health. (Magicka cost: 25/sec)</string>
+    <string name="d_sac_vam_maelstrom">Blood Magic: Create an imploding vortex that pulls all within 50 feet into the center, stunning them and reducing magic resistance by 50% for 3 seconds. (Magicka cost: 150)</string>
+
+
+</resources>

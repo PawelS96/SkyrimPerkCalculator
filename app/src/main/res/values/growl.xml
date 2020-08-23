@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <string name="p_gro_lyc_bestial_strength">Bestial Strength</string>
+    <string name="p_gro_lyc_animal_vigor">Animal Vigor</string>
+    <string name="p_gro_lyc_rampage">Rampage</string>
+    <string name="p_gro_lyc_infinite_duress">Infinite Duress</string>
+    <string name="p_gro_lyc_supernatural_strength">Supernatural Strength</string>
+    <string name="p_gro_lyc_roadkill">Roadkill</string>
+    <string name="p_gro_lyc_feral_instincts">Feral Instincts</string>
+    <string name="p_gro_lyc_improved_bloodthirst">Improved Bloodthirst</string>
+    <string name="p_gro_lyc_swipe">Swipe</string>
+    <string name="p_gro_lyc_lycanthropic_speed">Lycanthropic Speed</string>
+    <string name="p_gro_lyc_lycanthropic_regeneration">Lycanthropic Regeneration</string>
+    <string name="p_gro_lyc_spread_the_beastblood">Spread the Beastblood</string>
+    <string name="p_gro_lyc_totem_of_ice_brothers">Totem of Ice Brothers</string>
+    <string name="p_gro_lyc_totem_of_the_hunt">Totem of the Hunt</string>
+    <string name="p_gro_lyc_totem_of_terror">Totem of Terror</string>
+    <string name="p_gro_lyc_gorging">Gorging</string>
+    <string name="p_gro_lyc_savage_feeding">Savage Feeding</string>
+    <string name="p_gro_lyc_bury_the_beast">Bury the Beast</string>
+    <string name="p_gro_lyc_wolf_among_men">Wolf Among Men</string>
+
+    <string name="d_gro_lyc_bestial_strength">Deal 25/50/75/100% more attack damage in beast form.</string>
+    <string name="d_gro_lyc_animal_vigor">Additional 100 point bonus to Health and Stamina in beast form.</string>
+    <string name="d_gro_lyc_rampage">Beast form lasts 50% longer and feeding extends the duration 50% more.</string>
+    <string name="d_gro_lyc_infinite_duress">Frenzy attacks (one-handed standing power attacks) in beast form stun targets for the duration.</string>
+    <string name="d_gro_lyc_supernatural_strength">Back hand attacks (two-handed standing power attacks) in beast form disarm targets.</string>
+    <string name="d_gro_lyc_roadkill">Leap attacks (two-handed sprinting power attacks) in beast form do a critical strike equal to twice your Stamina and throw targets.</string>
+    <string name="d_gro_lyc_feral_instincts">Power attacks in beast form cost 25% less Stamina and do 25% more damage.</string>
+    <string name="d_gro_lyc_improved_bloodthirst">Beast form attacks do an additional 10/20 points of bleed damage, healing you for the same amount.</string>
+    <string name="d_gro_lyc_swipe">Power attacks in beast form can hit multiple targets in front of you.</string>
+    <string name="d_gro_lyc_lycanthropic_speed">Movement speed is increased by 10%, both in and out of beast form.</string>
+    <string name="d_gro_lyc_lycanthropic_regeneration">Regenerate an additional 1/2% of your maximum Health and Stamina per second, both in and out of beast form.</string>
+    <string name="d_gro_lyc_spread_the_beastblood">Give your follower the beastblood by trading Werebeast Blood with them. No effect on vampires.</string>
+    <string name="d_gro_lyc_totem_of_ice_brothers">Werebeast Howl of Brotherhood calls Ice Wolves or Snow Bears/Werewolves or Werebears instead.</string>
+    <string name="d_gro_lyc_totem_of_the_hunt">Werebeast Howl of the Hunt shatters locks up to Adept/Expert level at close range.</string>
+    <string name="d_gro_lyc_totem_of_terror">Werebeast Howl of Terror affects even dragons, forcing them to land for 30/60 seconds.</string>
+    <string name="d_gro_lyc_gorging">Feeding heals 100 points more.</string>
+    <string name="d_gro_lyc_savage_feeding">Able to feed off the undead in beast form, and loot their corpses.</string>
+    <string name="d_gro_lyc_bury_the_beast">No longer forced to transform at night.</string>
+    <string name="d_gro_lyc_wolf_among_men">The frequency of Silver Hand Elite werebeast hunters is reduced by 75%.</string>
+
+
+</resources>

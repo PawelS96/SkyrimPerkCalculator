@@ -292,15 +292,15 @@
     <string name="p_van_alc_snakeblood">Snakeblood</string>
     <string name="p_van_alc_purity">Purity</string>
 
-    <string name="d_van_alc_alchemist">Potions and poisons you make are 20% stronger.</string>
-    <string name="d_van_alc_physician">Potions and poisons you make are 40/60/80/100% stronger.</string>
-    <string name="d_van_alc_benefactor">Potions you mix that restore Health, Magicka or Stamina are 25% more powerful.</string>
-    <string name="d_van_alc_experimenter">Potions you mix with beneficial effects have an additional 25% greater magnitude.</string>
-    <string name="d_van_alc_poisoner">Eating an ingredient reveals first two/first three/all effects.</string>
-    <string name="d_van_alc_concentrated_poison">Poisons you mix are 25% more effective.</string>
-    <string name="d_van_alc_green_thumb">Poisons applied to weapons last for twice as many hits.</string>
-    <string name="d_van_alc_snakeblood">Two ingredients are gathered from plants.</string>
-    <string name="d_van_alc_purity">50% resistance to all poisons.</string>
+    <string name="d_van_alc_alchemist">Potions and poisons you make are 40/60/80/100% stronger.</string>
+    <string name="d_van_alc_physician">Potions you mix that restore Health, Magicka or Stamina are 25% more powerful.</string>
+    <string name="d_van_alc_benefactor">Potions you mix with beneficial effects have an additional 25% greater magnitude.</string>
+    <string name="d_van_alc_experimenter">Eating an ingredient reveals first two/first three/all effects.</string>
+    <string name="d_van_alc_poisoner">Poisons you mix are 25% more effective.</string>
+    <string name="d_van_alc_concentrated_poison">Poisons applied to weapons last for twice as many hits.</string>
+    <string name="d_van_alc_green_thumb">Two ingredients are gathered from plants.</string>
+    <string name="d_van_alc_snakeblood">50% resistance to all poisons.</string>
+    <string name="d_van_alc_purity">All negative effects are removed from created potions, and all positive effects are removed from created poisons.</string>
 
     <string name="p_van_lar_agile_defender">Agile Defender</string>
     <string name="p_van_lar_custom_fit">Custom Fit</string>
@@ -399,5 +399,48 @@
     <string name="d_van_spc_bribery">Can bribe guards to ignore crimes.</string>
     <string name="d_van_spc_persuasion">Persuasion attempts are 30% easier.</string>
     <string name="d_van_spc_intimidation">Intimidation is twice as likely to be successful.</string>
+
+    <string name="p_van_vam_power_of_the_grave">Power of the Grave</string>
+    <string name="p_van_vam_detect_all_creatures">Detect All Creatures</string>
+    <string name="p_van_vam_mist_form">Mist Form</string>
+    <string name="p_van_vam_supernatural_reflexes">Supernatural Reflexes</string>
+    <string name="p_van_vam_blood_healing">Blood Healing</string>
+    <string name="p_van_vam_unearthly_will">Unearthly Will</string>
+    <string name="p_van_vam_poison_talons">Poison Talons</string>
+    <string name="p_van_vam_night_cloak">Night Cloak</string>
+    <string name="p_van_vam_vampiric_grip">Vampiric Grip</string>
+    <string name="p_van_vam_summon_gargoyle">Summon Gargoyle</string>
+    <string name="p_van_vam_corpse_curse">Corpse Curse</string>
+
+    <string name="d_van_vam_power_of_the_grave">50 point bonus to health, magicka and stamina as a Vampire Lord.</string>
+    <string name="d_van_vam_detect_all_creatures">Night Power: Detect all creatures, even dwarven automatons.</string>
+    <string name="d_van_vam_mist_form">Night Power: Turn into an invulnerable mist, while health, magicka, and stamina regenerate.</string>
+    <string name="d_van_vam_supernatural_reflexes">Night Power: Everything slows down while you move faster.</string>
+    <string name="d_van_vam_blood_healing">Killing a person with a power attack bite restores all your health.</string>
+    <string name="d_van_vam_unearthly_will">Night Powers and Blood Magic cost 33% less.</string>
+    <string name="d_van_vam_poison_talons">Melee attacks do 20 points of poison damage.</string>
+    <string name="d_van_vam_night_cloak">In combat, you are surrounded by a cloud of bats that feed on enemies within melee range.</string>
+    <string name="d_van_vam_vampiric_grip">Blood Magic: Can pull a creature to you from a distance, and do choking damage once it\'s close.</string>
+    <string name="d_van_vam_summon_gargoyle">Blood Magic: Can conjure a gargoyle to fight for you.</string>
+    <string name="d_van_vam_corpse_curse">Blood Magic: Target is paralyzed. </string>
+
+    <string name="p_van_lyc_bestial_strength">Bestial Strength</string>
+    <string name="p_van_lyc_totem_of_ice_brothers">Totem of Ice Brothers</string>
+    <string name="p_van_lyc_totem_of_the_moon">Totem of the Moon</string>
+    <string name="p_van_lyc_totem_of_the_predator">Totem of the Predator</string>
+    <string name="p_van_lyc_totem_of_terror">Totem of Terror</string>
+    <string name="p_van_lyc_animal_vigor">Animal Vigor</string>
+    <string name="p_van_lyc_gorging">Gorging</string>
+    <string name="p_van_lyc_savage_feeding">Savage Feeding</string>
+
+    <string name="d_van_lyc_bestial_strength">Do 25/50/75/100% more damage as a werewolf.</string>
+    <string name="d_van_lyc_totem_of_ice_brothers">Werewolf Totem of Brotherhood howl calls Ice Wolves.</string>
+    <string name="d_van_lyc_totem_of_the_moon">Werewolf Totem of Brotherhood howl calls werewolves.</string>
+    <string name="d_van_lyc_totem_of_the_predator">Werewolf Totem of Hunt howl has extended range, and shows whether the targets are not in combat, searching or actively in combat.</string>
+    <string name="d_van_lyc_totem_of_terror">Werewolf Howl of Terror affects even higher level creatures.</string>
+    <string name="d_van_lyc_animal_vigor">100 point bonus to health and stamina in beast form.</string>
+    <string name="d_van_lyc_gorging">Feeding heals twice as much health.</string>
+    <string name="d_van_lyc_savage_feeding">Able to feed off most dead creatures. Feeding off creatures instead of people only provides half the extended time. </string>
+
 
 </resources>

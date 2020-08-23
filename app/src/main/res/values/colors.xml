@@ -7,15 +7,21 @@
     <color name="colorFont">#ffffff</color>
     <color name="colorFontAlt">#adb3bc</color>
     <color name="colorGrayDark">#2e2f35</color>
+    <color name="colorGrayDarker">#232429</color>
+    <color name="colorRipple">#5b5e61</color>
 
     <color name="colorBlue">#3075e5</color>
 
     <color name="skillMagic">#2a497a</color>
     <color name="skillCombat">#7a2c28</color>
     <color name="skillStealth">#386d1c</color>
+    <color name="skillVampire">#6a169c</color>
+    <color name="skillWerewolf">#824214</color>
 
     <color name="skillMagicBright">#3582ff</color>
     <color name="skillCombatBright">#e82117</color>
     <color name="skillStealthBright">#51ce0e</color>
+    <color name="skillVampireBright">#a121ed</color>
+    <color name="skillWerewolfBright">#d96e21</color>
 
 </resources>

@@ -7,15 +7,15 @@
     android:layout_height="match_parent"
     android:background="@android:color/black"
     android:orientation="vertical"
-    tools:context=".ui.MainActivity">
+    tools:context=".presentation.MainActivity">
 
-    <android.support.design.widget.AppBarLayout
+    <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay">
 
-    <android.support.design.widget.TabLayout
+    <com.google.android.material.tabs.TabLayout
 
         android:background="@android:color/black"
         android:id="@+id/tabs"
@@ -23,113 +23,18 @@
         android:layout_height="40dp"
         app:tabMode="scrollable">
 
-        <android.support.design.widget.TabItem
-            android:background="@color/skillStealth"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/skill_lockpicking" />
+    </com.google.android.material.tabs.TabLayout>
 
-        <android.support.design.widget.TabItem
-            android:background="@drawable/round_backgr"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/skill_pickpocket" />
+    </com.google.android.material.appbar.AppBarLayout>
 
-        <android.support.design.widget.TabItem
-            android:background="@drawable/round_backgr"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/skill_sneak" />
-
-        <android.support.design.widget.TabItem
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/skill_alchemy" />
-
-        <android.support.design.widget.TabItem
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/skill_light_armor" />
-
-        <android.support.design.widget.TabItem
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/skill_speech" />
-
-        <android.support.design.widget.TabItem
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/skill_archery" />
-
-        <android.support.design.widget.TabItem
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/skill_one_handed" />
-
-        <android.support.design.widget.TabItem
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/skill_two_handed" />
-
-        <android.support.design.widget.TabItem
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/skill_heavy_armor" />
-
-        <android.support.design.widget.TabItem
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/skill_block" />
-
-        <android.support.design.widget.TabItem
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/skill_smithing" />
-
-        <android.support.design.widget.TabItem
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/skill_alteration" />
-
-        <android.support.design.widget.TabItem
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/skill_destruction" />
-
-        <android.support.design.widget.TabItem
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/skill_restoration" />
-
-        <android.support.design.widget.TabItem
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/skill_conjuration" />
-
-        <android.support.design.widget.TabItem
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/skill_enchanting" />
-
-        <android.support.design.widget.TabItem
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/skill_illusion" />
-
-
-
-    </android.support.design.widget.TabLayout>
-
-    </android.support.design.widget.AppBarLayout>
-
-    <com.pawels96.skyrimperkcalculator.ui.LoopingViewPager
+    <com.pawels96.skyrimperkcalculator.presentation.views.LoopingViewPager
         android:layout_below="@id/appbar"
         android:layout_above="@id/textViews"
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-    </com.pawels96.skyrimperkcalculator.ui.LoopingViewPager>
+    </com.pawels96.skyrimperkcalculator.presentation.views.LoopingViewPager>
 
 
     <LinearLayout
@@ -168,9 +73,11 @@
 
         <Button
             android:background="@drawable/round_backgr"
+            android:focusable="false"
             android:text="@string/builds"
             android:textAllCaps="true"
-
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+            android:theme="@style/colorControlHighlight_blue"
             android:textColor="@color/colorFont"
             android:layout_marginEnd="15dp"
             android:id="@+id/loadButton"
@@ -184,7 +91,8 @@
             android:text="@string/skills"
             android:textAllCaps="true"
             android:textColor="@color/colorFont"
-
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+            android:theme="@style/colorControlHighlight_blue"
             android:layout_centerHorizontal="true"
 
             android:id="@+id/skillsButton"
@@ -194,6 +102,8 @@
         <Button
             android:text="@string/options"
             android:textAllCaps="true"
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+            android:theme="@style/colorControlHighlight_blue"
             android:textColor="@color/colorFont"
             android:layout_toEndOf="@id/skillsButton"
             android:layout_marginStart="15dp"

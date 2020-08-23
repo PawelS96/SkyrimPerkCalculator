@@ -3,7 +3,7 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/bac_dim_layout"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_centerInParent="true"
     android:background="@color/colorGrayDark"
@@ -27,6 +27,62 @@
         android:layout_marginBottom="10dp"
         android:textColor="@color/colorFont"
         />
+
+    <SeekBar
+        android:visibility="gone"
+        android:id="@+id/perkLevelSeekBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/stateInfo"
+        android:textAlignment="center"
+        android:textColor="@color/colorFont"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <RelativeLayout
+        android:layout_gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:id="@+id/decreaseState"
+            android:foreground="?attr/actionBarItemBackground"
+            android:theme="@style/colorControlHighlight_blue"
+            android:padding="5dp"
+            android:background="@drawable/round_backgr"
+            android:src="@drawable/ic_baseline_remove_24"
+            android:layout_centerVertical="true"
+            android:layout_toStartOf="@id/perkLevelText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/perkLevelText"
+            android:text="2/3"
+            android:textSize="18sp"
+            android:layout_margin="15dp"
+            android:textColor="@color/colorFont"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <ImageButton
+            android:id="@+id/increaseState"
+            android:background="@drawable/round_backgr"
+            android:foreground="?attr/actionBarItemBackground"
+            android:theme="@style/colorControlHighlight_blue"
+            android:padding="5dp"
+            android:src="@drawable/ic_baseline_add_24"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@id/perkLevelText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
+
 
 </LinearLayout>
 

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Skyrim Perk Calculator</string>
+    <string name="app_name">Perk Calculator for Skyrim</string>
 
     <string name="msg_saved">Saved</string>
     <string name="msg_build_saved">Build created</string>
@@ -45,16 +45,25 @@
     <string name="skill_sneak">Sneak</string>
     <string name="skill_speech">Speech</string>
     <string name="skill_two_handed">Two-handed</string>
+    <string name="skill_vampirism">Vampirism</string>
+    <string name="skill_lycanthropy">Lycanthropy</string>
+
     <string name="level">Level</string>
     <string name="perks">Perks</string>
     <string name="all_active_perks">All active perks</string>
     <string name="required_lvl">Required level</string>
     <string name="rename">Rename</string>
     <string name="description">Description</string>
-    <string name="ordinator_perk_overhaul">Ordinator - Perks of Skyrim</string>
-    <string name="vokrii">Vokrii - Minimalistic Perks of Skyrim</string>
-    <string name="vanilla_skyrim">Vanilla Skyrim</string>
+
     <string name="perks_per_level">Perks per level</string>
     <string name="msg_tutorial">Tip: Hold perks to see their descriptions and required skill levels.</string>
     <string name="ok_alt">Got it!</string>
+    <string name="required_kills">Required feedings</string>
+
+    <string name="s_sacrosanct">Sacrosanct - Vampires of Skyrim</string>
+    <string name="s_growl">Growl - Werebeasts of Skyrim</string>
+    <string name="s_ordinator">Ordinator - Perks of Skyrim</string>
+    <string name="s_vokrii">Vokrii - Minimalistic Perks of Skyrim</string>
+    <string name="s_vanilla">Vanilla Skyrim</string>
+    <string name="close">Close</string>
 </resources>
