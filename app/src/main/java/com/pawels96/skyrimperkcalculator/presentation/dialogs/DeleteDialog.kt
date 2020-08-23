@@ -14,7 +14,7 @@ class DeleteDialog(val build: Build) : BaseDialog() {
     private val model: BuildsViewModel by lazy { ViewModelProvider(requireActivity(), Injector.provideVmFactory())[BuildsViewModel::class.java] }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        return CustomDialogBuilder(context)
+        return getBuilder()
                 .setTitle(R.string.delete_build)
                 .setCancelable(true)
                 .setPositiveButton(R.string.delete) { dialog, which ->
@@ -23,7 +23,6 @@ class DeleteDialog(val build: Build) : BaseDialog() {
                 .setNegativeButton(R.string.cancel) { dialog, which -> dismiss() }
                 .create()
     }
-
 
     override fun getDialogTag(): String = TAG
 

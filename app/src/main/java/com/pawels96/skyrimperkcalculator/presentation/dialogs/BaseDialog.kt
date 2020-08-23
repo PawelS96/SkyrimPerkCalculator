@@ -18,7 +18,7 @@ abstract class BaseDialog : DialogFragment(){
     protected var root : View? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return  root
+        return root
     }
 
     override fun onDestroyView() {
