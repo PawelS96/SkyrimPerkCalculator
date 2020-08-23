@@ -2,8 +2,7 @@
 Android app for browsing skill trees and designing character builds in The Elder Scrolls V : Skyrim. 
 Offers support for Ordinator and Vokrii perk overhaul mods.
 
-<a href="https://play.google.com/store/apps/details?id=com.pawels96.skyrimperkcalculator&pageId=none&pli=1">
-<img src="https://www.codot.gov/safety/alcohol-and-impaired-driving/planahead/2011-assets/android-market-icon.png/image" width="250"></a>
+<a href='https://play.google.com/store/apps/details?id=com.pawels96.skyrimperkcalculator&hl=pl&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'/></a>
 
 
 <a href="https://imgur.com/mKSBFQW"><img src="https://i.imgur.com/mKSBFQW.jpg" title="source: imgur.com" width="300"/></a>
