@@ -1,31 +1,18 @@
-package com.pawels96.skyrimperkcalculator.ui;
+package com.pawels96.skyrimperkcalculator.presentation;
 
 import android.content.Context;
-import android.text.SpannableString;
-import android.text.SpannableStringBuilder;
-import android.text.style.ForegroundColorSpan;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
-import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import com.pawels96.skyrimperkcalculator.R;
-import com.pawels96.skyrimperkcalculator.enums.SkillType;
-import com.pawels96.skyrimperkcalculator.models.Build;
-import com.pawels96.skyrimperkcalculator.models.Skill;
+import com.pawels96.skyrimperkcalculator.domain.Skill;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
-import static com.pawels96.skyrimperkcalculator.Utils.PREFS_MULTIPLIER;
-import static com.pawels96.skyrimperkcalculator.Utils.PREFS_NAME;
-import static com.pawels96.skyrimperkcalculator.Utils.getSkillName;
+import static com.pawels96.skyrimperkcalculator.presentation.Utils.getSkillName;
 
 public class SkillAdapter extends BaseAdapter {
 
@@ -77,7 +64,7 @@ public class SkillAdapter extends BaseAdapter {
 
         final Skill skill = skills.get(position);
 
-        holder.name.setText(getSkillName(skill.getSkillEnum(), c));
+        holder.name.setText(getSkillName(skill.getIskill(), c));
         int perks = skill.getSelectedPerksCount();
         String perksString = perks > 0 ? Integer.toString(perks) : "";
         holder.perks.setText(perksString);
@@ -94,5 +81,4 @@ public class SkillAdapter extends BaseAdapter {
         public TextView name;
         public TextView perks;
     }
-
 }
