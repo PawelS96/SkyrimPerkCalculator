@@ -1,9 +1,7 @@
 package com.pawels96.skyrimperkcalculator.presentation
 
-import android.app.Activity
 import android.app.Dialog
 import android.content.Context
-import android.content.Context.MODE_PRIVATE
 import android.content.DialogInterface
 import android.graphics.Color
 import android.os.Build
@@ -14,23 +12,27 @@ import android.view.View
 import android.widget.*
 import android.widget.AdapterView.OnItemClickListener
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentPagerAdapter
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.TabLayoutOnPageChangeListener
 import com.pawels96.skyrimperkcalculator.Injector
 import com.pawels96.skyrimperkcalculator.R
-import com.pawels96.skyrimperkcalculator.data.Database
-import com.pawels96.skyrimperkcalculator.data.Preferences
 import com.pawels96.skyrimperkcalculator.databinding.ActivityMainBinding
-import com.pawels96.skyrimperkcalculator.domain.enums.SkillEnum
+import com.pawels96.skyrimperkcalculator.domain.ISkill
+import com.pawels96.skyrimperkcalculator.domain.enums.EMainSkill
+import com.pawels96.skyrimperkcalculator.domain.enums.ESpecialSkill
+import com.pawels96.skyrimperkcalculator.presentation.Utils.getSkillName
 import com.pawels96.skyrimperkcalculator.presentation.dialogs.BuildsDialog
 import com.pawels96.skyrimperkcalculator.presentation.dialogs.CustomDialogBuilder
 import com.pawels96.skyrimperkcalculator.presentation.dialogs.OptionsDialog
 import com.pawels96.skyrimperkcalculator.presentation.viewmodels.BuildsViewModel
 
 
-class BuildActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private val prefs = Injector.prefs
@@ -47,15 +49,22 @@ class BuildActivity : AppCompatActivity() {
         binding.skillsButton.setOnClickListener { showSkillsPopup() }
         binding.optionsButton.setOnClickListener { showOptions() }
 
-
         val skillFragmentAdapter = SkillFragmentAdapter(supportFragmentManager)
+
+        DISPLAYED_SKILLS.forEach {
+            val skillName = getSkillName(it, this)
+            val tab = binding.tabs.newTab().apply { text = skillName }
+            binding.tabs.addTab(tab)
+        }
+
         binding.viewPager.apply {
             adapter = skillFragmentAdapter
             addOnPageChangeListener(TabLayoutOnPageChangeListener(binding.tabs))
-            enableLoop(SkillEnum.values().size)
+            enableLoop(DISPLAYED_SKILLS.size)
             setListener { getFragment(this.currentItem)?.cancelHold() }
             currentItem = prefs.selectedPage
         }
+
         skillFragmentAdapter.notifyDataSetChanged()
 
         model.currentBuild.observe(this, Observer { updateBuildInfo(it) })
@@ -63,7 +72,7 @@ class BuildActivity : AppCompatActivity() {
         binding.tabs.addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(binding.viewPager))
 
         if (prefs.firstLaunch)
-            Handler().postDelayed({showTutorial()}, 1000)
+            Handler().postDelayed({showTutorial()}, 1500)
     }
 
     private fun getFragment(id: Int): SkillTreeFragment? {
@@ -102,8 +111,7 @@ class BuildActivity : AppCompatActivity() {
         val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val customView = inflater.inflate(R.layout.list_builds, null)
         val lv = customView.findViewById<ListView>(R.id.listView)
-        val skills = ArrayList(model.currentBuild.value!!.skills.values)
-        val skillAdapter = SkillAdapter(this, skills)
+        val skillAdapter = SkillAdapter(this, model.allCurrentBuildSkills)
         dialogBuilder.setView(customView)
         lv.adapter = skillAdapter
         skillAdapter.notifyDataSetChanged()
@@ -120,12 +128,18 @@ class BuildActivity : AppCompatActivity() {
         listDialog.show()
     }
 
-    private fun showBuildList() {
-        BuildsDialog().show(supportFragmentManager)
-    }
+    private fun showBuildList() =  BuildsDialog().show(supportFragmentManager)
 
     private fun showOptions() = OptionsDialog().show(supportFragmentManager)
 
-}
+    private class SkillFragmentAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
-fun Activity.toast(resId: Int) = Toast.makeText(this, getString(resId), Toast.LENGTH_SHORT).show()
+        override fun getItem(position: Int): Fragment = SkillTreeFragment.create(DISPLAYED_SKILLS[position])
+
+        override fun getCount(): Int = DISPLAYED_SKILLS.size
+    }
+
+    companion object {
+        val DISPLAYED_SKILLS : List<ISkill> = EMainSkill.values().toList() + ESpecialSkill.values().toList()
+    }
+}
