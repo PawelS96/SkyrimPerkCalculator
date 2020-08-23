@@ -1,7 +1,7 @@
 package com.pawels96.skyrimperkcalculator.domain.skills_ordinator
 
 import com.pawels96.skyrimperkcalculator.domain.IPerk
-import com.pawels96.skyrimperkcalculator.domain.enums.SkillEnum
+import com.pawels96.skyrimperkcalculator.domain.enums.EMainSkill
 import java.util.HashMap
 
 
@@ -25,11 +25,11 @@ import com.pawels96.skyrimperkcalculator.domain.skills_ordinator.Ord_Speech.*
 import com.pawels96.skyrimperkcalculator.domain.skills_ordinator.Ord_TwoHanded.*
 
 
-fun SkillEnum.getOrdinatorConnections(): Map<IPerk, Array<IPerk>> {
+fun EMainSkill.getOrdinatorConnections(): Map<IPerk, Array<IPerk>> {
     val map: MutableMap<IPerk, Array<IPerk>> = HashMap()
 
     when (this) {
-        SkillEnum.SKILL_HEAVY_ARMOR -> {
+        EMainSkill.SKILL_HEAVY_ARMOR -> {
             map[ORD_HAR_MASTERY] = arrayOf(ORD_HAR_CUSHIONED, ORD_HAR_HEAVY_ARMOR_FIT, ORD_HAR_BATTLE_WEARY)
             map[ORD_HAR_BREAK_UPON_ME] = arrayOf(ORD_HAR_RISE_ABOVE, ORD_HAR_REAP_THE_WHIRLWIND)
             map[ORD_HAR_BATTLE_WEARY] = arrayOf(ORD_HAR_BREAK_UPON_ME, ORD_HAR_BORN_TO_FIGHT)
@@ -46,7 +46,7 @@ fun SkillEnum.getOrdinatorConnections(): Map<IPerk, Array<IPerk>> {
             map[ORD_HAR_OUT_OF_THE_INFERNO] = arrayOf(ORD_HAR_IMMORTAL)
             map[ORD_HAR_WARBRINGER] = arrayOf(ORD_HAR_DOOMBRINGER, ORD_HAR_IMMORTAL)
         }
-        SkillEnum.SKILL_LOCKPICKING -> {
+        EMainSkill.SKILL_LOCKPICKING -> {
             map[ORD_LCK_MASTERY] = arrayOf(ORD_LCK_GAME_OF_FATE, ORD_LCK_LOCKDOWN, ORD_LCK_ROBBERS_EYE, ORD_LCK_BEAR_TRAPS, ORD_LCK_WAX_KEY)
             map[ORD_LCK_LOCKDOWN] = arrayOf(ORD_LCK_HOTWIRE)
             map[ORD_LCK_HOTWIRE] = arrayOf(ORD_LCK_PERCUSSIVE_MAINTENANCE)
@@ -64,7 +64,7 @@ fun SkillEnum.getOrdinatorConnections(): Map<IPerk, Array<IPerk>> {
             map[ORD_LCK_LOCKSMITH] = arrayOf(ORD_LCK_SEEN_THIS_BEFORE)
             map[ORD_LCK_GOLDEN_TOUCH] = arrayOf(ORD_LCK_TREASURE_HUNTER)
         }
-        SkillEnum.SKILL_ALCHEMY -> {
+        EMainSkill.SKILL_ALCHEMY -> {
             map[ORD_ALC_MASTERY] = arrayOf(ORD_ALC_ELEMENTAL_OIL, ORD_ALC_ADVANCED_LAB, ORD_ALC_EXPERIMENTER, ORD_ALC_STIMULANTS, ORD_ALC_POISONER, ORD_ALC_PHYSICIAN)
             map[ORD_ALC_ELEMENTAL_OIL] = arrayOf(ORD_ALC_THE_ALCHEMISTS_COOKBOOK)
             map[ORD_ALC_THE_ALCHEMISTS_COOKBOOK] = arrayOf(ORD_ALC_WALKING_DISASTER)
@@ -82,7 +82,7 @@ fun SkillEnum.getOrdinatorConnections(): Map<IPerk, Array<IPerk>> {
             map[ORD_ALC_CHYMICAL_WEDDING] = arrayOf(ORD_ALC_THAT_WHICH)
             map[ORD_ALC_WORLD_SERPENT] = arrayOf(ORD_ALC_THAT_WHICH)
         }
-        SkillEnum.SKILL_ILLUSION -> {
+        EMainSkill.SKILL_ILLUSION -> {
             map[ORD_ILU_ILLUSION_MASTERY] = arrayOf(ORD_ILU_ILLUSION_DUAL_CASTING, ORD_ILU_NIGHT_EYE, ORD_ILU_ENTICE_BARTER, ORD_ILU_IMPOSING_PRESENCE, ORD_ILU_COMMANDING_PRESENCE, ORD_ILU_DREAM_THIEF, ORD_ILU_QUIET_BEFORE_THE_STORM)
             map[ORD_ILU_DREAM_THIEF] = arrayOf(ORD_ILU_KINDRED_MAGE)
             map[ORD_ILU_COMMANDING_PRESENCE] = arrayOf(ORD_ILU_CROWN_OF_THE_FALSE_KING)
@@ -103,7 +103,7 @@ fun SkillEnum.getOrdinatorConnections(): Map<IPerk, Array<IPerk>> {
             map[ORD_ILU_BLIND_GUARDIAN] = arrayOf(ORD_ILU_WRAITHWALKER)
             map[ORD_ILU_HEAVY_WEIGHS_THE_TAPESTRY] = arrayOf(ORD_ILU_WRAITHWALKER)
         }
-        SkillEnum.SKILL_CONJURATION -> {
+        EMainSkill.SKILL_CONJURATION -> {
             map[ORD_CON_CONJURATION_MASTERY] = arrayOf(ORD_CON_CONJURATION_DUAL_CASTING, ORD_CON_PLANEMELD, ORD_CON_RAVENOUS_DEAD, ORD_CON_BONE_COLLECTOR, ORD_CON_MYSTIC_BINDING, ORD_CON_RAT_KING, ORD_CON_FEED_THE_MONSTER)
             map[ORD_CON_BONE_COLLECTOR] = arrayOf(ORD_CON_DEAD_TIDE)
             map[ORD_CON_MYSTIC_BINDING] = arrayOf(ORD_CON_SOUL_RAIDER)
@@ -129,7 +129,7 @@ fun SkillEnum.getOrdinatorConnections(): Map<IPerk, Array<IPerk>> {
             map[ORD_CON_NECROMASTER] = arrayOf(ORD_CON_MARCH_OF_OBLIVION, ORD_CON_SHOCKED_TO_LIFE)
             map[ORD_CON_SUMMON_RESIST] = arrayOf(ORD_CON_MARCH_OF_OBLIVION)
         }
-        SkillEnum.SKILL_DESTRUCTION -> {
+        EMainSkill.SKILL_DESTRUCTION -> {
             map[ORD_DES_DESTRUCTION_MASTERY] = arrayOf(ORD_DES_DESTRUCTION_DUAL_CASTING, ORD_DES_FORCE_OF_NATURE, ORD_DES_COMBUSTION, ORD_DES_MERCILESS_COLD, ORD_DES_IONIZED_PATH, ORD_DES_RUNECASTER, ORD_DES_WAR_OF_THE_ELEMENTS, ORD_DES_HARSH_LESSON)
             map[ORD_DES_COMBUSTION] = arrayOf(ORD_DES_SCARRING_BURNS)
             map[ORD_DES_IONIZED_PATH] = arrayOf(ORD_DES_STATIC_FIELD)
@@ -155,7 +155,7 @@ fun SkillEnum.getOrdinatorConnections(): Map<IPerk, Array<IPerk>> {
             map[ORD_DES_STORMBLAST] = arrayOf(ORD_DES_ABSOLUTE_POWER)
             map[ORD_DES_WINTERS_MAJESTY] = arrayOf(ORD_DES_GLACIAL_PRISON)
         }
-        SkillEnum.SKILL_SMITHING -> {
+        EMainSkill.SKILL_SMITHING -> {
             map[ORD_SMT_SMITHING_MASTERY] = arrayOf(ORD_SMT_MERIC_SMITHING, ORD_SMT_DWARVEN_AUTOCANNON, ORD_SMT_ARCANE_BLACKSMITH, ORD_SMT_ADVANCED_WORKSHOP)
             map[ORD_SMT_DWARVEN_AUTOCANNON] = arrayOf(ORD_SMT_REMOTE_CONTROL, ORD_SMT_ELECTROBOLT)
             map[ORD_SMT_ADVANCED_WORKSHOP] = arrayOf(ORD_SMT_RECYCLE_MATERIALS, ORD_SMT_SMITHING_SPECIALIZATION)
@@ -168,7 +168,7 @@ fun SkillEnum.getOrdinatorConnections(): Map<IPerk, Array<IPerk>> {
             map[ORD_SMT_PLANAR_SMITHING] = arrayOf(ORD_SMT_HEART_OF_CREATION)
             map[ORD_SMT_FUEL_THE_INFERNO] = arrayOf(ORD_SMT_HEART_OF_CREATION)
         }
-        SkillEnum.SKILL_ALTERATION -> {
+        EMainSkill.SKILL_ALTERATION -> {
             map[ORD_ALT_ALTERATION_MASTERY] = arrayOf(ORD_ALT_ALTERATION_DUAL_CASTING, ORD_ALT_GEOMANCER, ORD_ALT_PHILOSOPHERS_STONE, ORD_ALT_ALTER_SELF_RESISTANCES, ORD_ALT_SPELLBLADE, ORD_ALT_VANCIAN_MAGIC, ORD_ALT_WILD_SHRINES, ORD_ALT_MAGE_ARMOR)
             map[ORD_ALT_MAGE_ARMOR] = arrayOf(ORD_ALT_DISTORTED_SHAPE, ORD_ALT_ENERGY_SHIELD)
             map[ORD_ALT_GEOMANCER] = arrayOf(ORD_ALT_THRONE_OF_NIRN)
@@ -185,7 +185,7 @@ fun SkillEnum.getOrdinatorConnections(): Map<IPerk, Array<IPerk>> {
             map[ORD_ALT_DUNGEON_MASTER] = arrayOf(ORD_ALT_ARCANE_THESIS)
             map[ORD_ALT_ENERGY_ROIL] = arrayOf(ORD_ALT_REND_RESISTANCES)
         }
-        SkillEnum.SKILL_ARCHERY -> {
+        EMainSkill.SKILL_ARCHERY -> {
             map[ORD_ARC_ARCHERY_MASTERY] = arrayOf(ORD_ARC_LONG_SHOT, ORD_ARC_CRIPPLING_SHOT, ORD_ARC_CLEAN_KILL, ORD_ARC_STEADY_HAND, ORD_ARC_WINGSTRIKE)
             map[ORD_ARC_CLEAN_KILL] = arrayOf(ORD_ARC_SNIPE, ORD_ARC_QUICK_SHOT, ORD_ARC_RANGER)
             map[ORD_ARC_LONG_SHOT] = arrayOf(ORD_ARC_THREAD_THE_NEEDLE)
@@ -202,7 +202,7 @@ fun SkillEnum.getOrdinatorConnections(): Map<IPerk, Array<IPerk>> {
             map[ORD_ARC_BEAK_AND_TALON] = arrayOf(ORD_ARC_PERFECT_AIM)
             map[ORD_ARC_THREE_CROWS] = arrayOf(ORD_ARC_PERFECT_AIM)
         }
-        SkillEnum.SKILL_BLOCK -> {
+        EMainSkill.SKILL_BLOCK -> {
             map[ORD_BLC_BLOCK_MASTERY] = arrayOf(ORD_BLC_TIMED_BLOCK, ORD_BLC_QUICK_REFLEXES, ORD_BLC_DEFLECT_ARROWS, ORD_BLC_POWER_BASH)
             map[ORD_BLC_TIMED_BLOCK] = arrayOf(ORD_BLC_BLOCK_RUNNER, ORD_BLC_POKE_THE_DRAGON)
             map[ORD_BLC_DEFLECT_ARROWS] = arrayOf(ORD_BLC_DOMINION)
@@ -217,7 +217,7 @@ fun SkillEnum.getOrdinatorConnections(): Map<IPerk, Array<IPerk>> {
             map[ORD_BLC_CAST_ASIDE] = arrayOf(ORD_BLC_UNSTOPPABLE_FORCE)
             map[ORD_BLC_DELIVERANCE] = arrayOf(ORD_BLC_DRAGON_SCALES)
         }
-        SkillEnum.SKILL_ENCHANTING -> {
+        EMainSkill.SKILL_ENCHANTING -> {
             map[ORD_ENC_ENCHANTING_MASTERY] = arrayOf(ORD_ENC_LAST_WORD, ORD_ENC_STAFF_CHANNELER, ORD_ENC_GEM_DUST, ORD_ENC_SOUL_SIPHON)
             map[ORD_ENC_LAST_WORD] = arrayOf(ORD_ENC_SECRETKEEPER)
             map[ORD_ENC_SOUL_SIPHON] = arrayOf(ORD_ENC_THUNDERSTRUCK, ORD_ENC_SPELLSCRIBE)
@@ -233,7 +233,7 @@ fun SkillEnum.getOrdinatorConnections(): Map<IPerk, Array<IPerk>> {
             map[ORD_ENC_TWIN_ENCHANTMENT] = arrayOf(ORD_ENC_ARCANE_NEXUS)
             map[ORD_ENC_ARCANE_NEXUS] = arrayOf(ORD_ENC_MIRACLE)
         }
-        SkillEnum.SKILL_LIGHT_ARMOR -> {
+        EMainSkill.SKILL_LIGHT_ARMOR -> {
             map[ORD_LAR_LIGHT_ARMOR_MASTERY] = arrayOf(ORD_LAR_ANNOYING_MOSQUITOES, ORD_LAR_IRON_FIST, ORD_LAR_LIGHT_ARMOR_FIT, ORD_LAR_AS_A_LEAF)
             map[ORD_LAR_IRON_FIST] = arrayOf(ORD_LAR_SWEEPING_WIND)
             map[ORD_LAR_LIGHT_ARMOR_FIT] = arrayOf(ORD_LAR_UNHINDERED, ORD_LAR_INITIATIVE, ORD_LAR_EVASIVE_LEAP, ORD_LAR_KEEN_SENSES)
@@ -248,7 +248,7 @@ fun SkillEnum.getOrdinatorConnections(): Map<IPerk, Array<IPerk>> {
             map[ORD_LAR_SURVIVAL_INSTINCT] = arrayOf(ORD_LAR_TEMPTING_FATE)
             map[ORD_LAR_GLANCING_BLOWS] = arrayOf(ORD_LAR_TEMPTING_FATE)
         }
-        SkillEnum.SKILL_ONE_HANDED -> {
+        EMainSkill.SKILL_ONE_HANDED -> {
             map[ORD_ONH_ONE_HANDED_MASTERY] = arrayOf(ORD_ONH_FURIOUS_STRENGTH, ORD_ONH_DISCIPLINED_FIGHTER, ORD_ONH_BLEED_LIKE_A_LAMB, ORD_ONH_DENTING_BLOWS, ORD_ONH_CLASH_OF_CHAMPIONS, ORD_ONH_BITE_MARKS, ORD_ONH_RAVAGE)
             map[ORD_ONH_DISCIPLINED_FIGHTER] = arrayOf(ORD_ONH_ROGUES_PARRY, ORD_ONH_THUNDERING_BLOW)
             map[ORD_ONH_BITE_MARKS] = arrayOf(ORD_ONH_SAVAGE)
@@ -280,7 +280,7 @@ fun SkillEnum.getOrdinatorConnections(): Map<IPerk, Array<IPerk>> {
             map[ORD_ONH_JUDGMENT] = arrayOf(ORD_ONH_WANDERING_WARRIOR)
             map[ORD_ONH_SKULL_CRACK] = arrayOf(ORD_ONH_WANDERING_WARRIOR)
         }
-        SkillEnum.SKILL_PICKPOCKET -> {
+        EMainSkill.SKILL_PICKPOCKET -> {
             map[ORD_PCK_PICKPOCKET_MASTERY] = arrayOf(ORD_PCK_TRAINED_RABBIT, ORD_PCK_CUTPURSE, ORD_PCK_THIEFS_EYE, ORD_PCK_BLOOD_MONEY, ORD_PCK_DEATHS_EMPEROR)
             map[ORD_PCK_CUTPURSE] = arrayOf(ORD_PCK_BROTHERHOOD_COCKTAIL, ORD_PCK_ON_THE_RUN, ORD_PCK_LAWLESS_WORLD)
             map[ORD_PCK_THIEFS_EYE] = arrayOf(ORD_PCK_THIEFS_LUCK)
@@ -294,7 +294,7 @@ fun SkillEnum.getOrdinatorConnections(): Map<IPerk, Array<IPerk>> {
             map[ORD_PCK_CRIME_WAVE] = arrayOf(ORD_PCK_DRAGON_HOARD)
             map[ORD_PCK_YOU_SAW_NOTHING] = arrayOf(ORD_PCK_ROBBED_BLIND)
         }
-        SkillEnum.SKILL_RESTORATION -> {
+        EMainSkill.SKILL_RESTORATION -> {
             map[ORD_RST_RESTORATION_MASTERY] = arrayOf(ORD_RST_TOME_OF_MANY_PAGES, ORD_RST_EDGEWALKER, ORD_RST_DESCENDING_LIGHT, ORD_RST_SPIRIT_TUTORS, ORD_RST_RESTORATION_DUAL_CASTING)
             map[ORD_RST_DESCENDING_LIGHT] = arrayOf(ORD_RST_VIGILANT, ORD_RST_WARRIORS_FLAME, ORD_RST_HALLOWED_BURIAL, ORD_RST_OVERFLOWING_CUP)
             map[ORD_RST_EDGEWALKER] = arrayOf(ORD_RST_RESPITE, ORD_RST_FALSE_LIGHT, ORD_RST_NECROMANTICON)
@@ -315,7 +315,7 @@ fun SkillEnum.getOrdinatorConnections(): Map<IPerk, Array<IPerk>> {
             map[ORD_RST_WHEEL_OF_LIFE] = arrayOf(ORD_RST_ENDURING_IDEAL)
             map[ORD_RST_BATTLE_CLERIC] = arrayOf(ORD_RST_ETERNAL_FLAME, ORD_RST_APOTHEOSIS)
         }
-        SkillEnum.SKILL_SNEAK -> {
+        EMainSkill.SKILL_SNEAK -> {
             map[ORD_SNK_SNEAK_MASTERY] = arrayOf(ORD_SNK_SPOT_DETECTION, ORD_SNK_TRIPWIRE, ORD_SNK_SILENT_ROLL, ORD_SNK_FOG_OF_WAR, ORD_SNK_INFILTRATOR, ORD_SNK_SNEAK_ATTACK, ORD_SNK_DEMOLITION_JOB)
             map[ORD_SNK_SNEAK_ATTACK] = arrayOf(ORD_SNK_PROBLEM_SOLVER, ORD_SNK_ASSASSINS_BLADE)
             map[ORD_SNK_TRIPWIRE] = arrayOf(ORD_SNK_WHIPLASH)
@@ -332,7 +332,7 @@ fun SkillEnum.getOrdinatorConnections(): Map<IPerk, Array<IPerk>> {
             map[ORD_SNK_BEHIND_ENEMY_LINES] = arrayOf(ORD_SNK_SHADOW_WARRIOR)
             map[ORD_SNK_PROBLEM_SOLVER] = arrayOf(ORD_SNK_LAUGHING_GHOST, ORD_SNK_CLOAK_AND_DAGGER)
         }
-        SkillEnum.SKILL_SPEECH -> {
+        EMainSkill.SKILL_SPEECH -> {
             map[ORD_SPC_SPEECH_MASTERY] = arrayOf(ORD_SPC_BRIBERY, ORD_SPC_KINSHIP, ORD_SPC_PERFORMER, ORD_SPC_AND_THE_UNIVERSE_LISTENS, ORD_SPC_SPEAK_WITH_ANIMALS)
             map[ORD_SPC_AND_THE_UNIVERSE_LISTENS] = arrayOf(ORD_SPC_WINDBORNE)
             map[ORD_SPC_PERFORMER] = arrayOf(ORD_SPC_IRRESISTIBLE_DANCE, ORD_SPC_SERENADE)
@@ -351,7 +351,7 @@ fun SkillEnum.getOrdinatorConnections(): Map<IPerk, Array<IPerk>> {
             map[ORD_SPC_MERCILESS_STORM] = arrayOf(ORD_SPC_DOVAHZULAAN)
             map[ORD_SPC_WITCHING_RHYTHM] = arrayOf(ORD_SPC_WAR_DRUMMER)
         }
-        SkillEnum.SKILL_TWO_HANDED -> {
+        EMainSkill.SKILL_TWO_HANDED -> {
             map[ORD_TWH_TWO_HANDED_MASTERY] = arrayOf(ORD_TWH_TRAINED_FIGHTER, ORD_TWH_BLEED_LIKE_A_DOG, ORD_TWH_CRUSHING_BLOWS, ORD_TWH_CLASH_OF_HEROES, ORD_TWH_FEROCIOUS_STRENGTH)
             map[ORD_TWH_TRAINED_FIGHTER] = arrayOf(ORD_TWH_DEATH_OR_GLORY)
             map[ORD_TWH_BLEED_LIKE_A_DOG] = arrayOf(ORD_TWH_RIVE)
