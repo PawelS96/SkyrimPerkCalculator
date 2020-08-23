@@ -16,7 +16,3 @@ open class LiveEvent<out T>(private val content: T) {
 
     fun getContent(): T = content
 }
-
-class EventWithID<out T, out I>(data: T, private val id: I) : LiveEvent<T>(data) {
-    fun getID() : I = id
-}
