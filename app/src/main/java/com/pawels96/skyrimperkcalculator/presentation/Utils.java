@@ -1,26 +1,15 @@
-package com.pawels96.skyrimperkcalculator;
+package com.pawels96.skyrimperkcalculator.presentation;
 
 import android.content.Context;
 
-import com.pawels96.skyrimperkcalculator.enums.IPerk;
-import com.pawels96.skyrimperkcalculator.enums.PerkSystem;
-import com.pawels96.skyrimperkcalculator.enums.SkillEnum;
-import com.pawels96.skyrimperkcalculator.models.Build;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import com.pawels96.skyrimperkcalculator.domain.IPerk;
+import com.pawels96.skyrimperkcalculator.domain.IPerkSystem;
+import com.pawels96.skyrimperkcalculator.domain.ISkill;
+import com.pawels96.skyrimperkcalculator.domain.enums.EMainSkill;
 
 public class Utils {
 
-    public static final String PREFS_NAME = "prefs";
-    public static final String PREFS_SKILL_SELECTED = "skill_selected";
-    public static final String PREFS_MULTIPLIER = "perk_multiplier";
-    public static final String PREFS_BUILD_SELECTED = "build_selected";
     public static final String DEFAULT_BUILD_NAME = "New build";
-    public static final String PREFS_PERK_SYSTEM = "system";
-    public static final String PREFS_FIRST_LAUNCH = "firstLaunch";
-
 
     /**
      * Methods for getting perk names and descriptions from strings.xml.
@@ -44,29 +33,31 @@ public class Utils {
     private static String getPerkInfo(Context c, IPerk perk, String resPrefix){
 
         String info = resPrefix + String.valueOf(perk).toLowerCase();
+        return getString(info, info, c);
+    }
+
+    private static String getString(String resName, String defaultValue, Context c){
         int id;
 
         try {
-            id = c.getResources().getIdentifier(info, "string", c.getPackageName());
+            id = c.getResources().getIdentifier(resName, "string", c.getPackageName());
             return c.getResources().getString(id);
         } catch (Exception e) {
             e.printStackTrace();
-            return info;
+            return defaultValue;
         }
     }
 
-    public static String getSkillName(SkillEnum s, Context c){
-
+    public static String getSkillName(ISkill s , Context c){
         String name = String.valueOf(s).toLowerCase();
-        int id;
+        return getString(name, name, c);
+    }
 
-        try {
-            id = c.getResources().getIdentifier(name, "string", c.getPackageName());
-            return c.getResources().getString(id);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return name;
-        }
+    public static String getPerkSystemName(IPerkSystem system, Context c){
+
+        String asString =  String.valueOf(system).toLowerCase();
+        String resId = "s_" + asString;
+        return getString(resId, asString, c);
     }
 
     public static String getFragmentTag(int viewPagerID, int position) {
