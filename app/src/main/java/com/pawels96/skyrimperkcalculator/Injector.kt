@@ -1,20 +1,24 @@
 package com.pawels96.skyrimperkcalculator
 
 import android.content.Context
-import com.pawels96.skyrimperkcalculator.data.Database
-import com.pawels96.skyrimperkcalculator.data.Preferences
-import com.pawels96.skyrimperkcalculator.presentation.Utils
+import com.pawels96.skyrimperkcalculator.data.*
 import com.pawels96.skyrimperkcalculator.presentation.viewmodels.BuildsViewModel
 
 object Injector {
 
-    lateinit var db: Database
+    lateinit var oldDb: OldDatabase
     lateinit var prefs: Preferences
 
+    private lateinit var db : AppDatabase
+    private lateinit var repo: Repository
+
     fun init(context: Context) {
-        db = Database(context)
+        db = AppDatabase.getDatabase(context)
         prefs = Preferences(context.getSharedPreferences("prefs", Context.MODE_PRIVATE))
+        repo = Repository(db.buildDAO())
+        oldDb = OldDatabase(context, repo)
+        repo.populate()
     }
 
-    fun provideVmFactory() = BuildsViewModel.Factory(db, prefs)
+    fun provideVmFactory() = BuildsViewModel.Factory(repo, prefs)
 }
