@@ -3,6 +3,7 @@ package com.pawels96.skyrimperkcalculator.domain
 import java.util.*
 
 class Perk(val perk: IPerk) {
+
     @JvmField
     var children: MutableList<Perk> = ArrayList()
     var parents: MutableList<Perk> = ArrayList()
@@ -80,4 +81,7 @@ class Perk(val perk: IPerk) {
         }
     }
 
+    override fun equals(other: Any?): Boolean {
+        return this === other || (other is Perk && perk == other.perk && state == other.state)
+    }
 }

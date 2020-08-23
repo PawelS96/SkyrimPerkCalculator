@@ -1,28 +1,43 @@
 package com.pawels96.skyrimperkcalculator.domain
 
 import com.pawels96.skyrimperkcalculator.presentation.Utils.DEFAULT_BUILD_NAME
-import com.pawels96.skyrimperkcalculator.domain.enums.SkillEnum
-import com.pawels96.skyrimperkcalculator.domain.Skill.Companion.buildSkill
+import com.pawels96.skyrimperkcalculator.domain.enums.EMainSkill
+import com.pawels96.skyrimperkcalculator.domain.enums.ESpecialSkill
 
-class Build(val system: PerkSystem) {
+data class Build(
+        val id: Long,
+        val system: PerkSystem,
+        var name: String,
+        var description: String,
+        var skills: Map<EMainSkill, Skill>,
+        var vampirePerkSystem: VampirePerkSystem,
+        var werewolfPerkSystem: WerewolfPerkSystem,
+        var vampireSkill: Map<VampirePerkSystem, SpecialSkill>,
+        var werewolfSkill: Map<WerewolfPerkSystem, SpecialSkill>
+) {
 
-    var description: String? = null
-    var name: String = DEFAULT_BUILD_NAME
+    fun getSkill(id: ISkill): Skill {
+        return if (id is EMainSkill)
+            skills[id]!!
+        else return when (id as ESpecialSkill) {
+            ESpecialSkill.SKILL_VAMPIRISM -> vampireSkill[vampirePerkSystem]!!
+            ESpecialSkill.SKILL_LYCANTHROPY -> werewolfSkill[werewolfPerkSystem]!!
+        }
+    }
 
-    var skills: Map<SkillEnum, Skill> = SkillEnum.values()
-            .associate {s -> s to buildSkill(s, system) }
+    fun getAllSkills(): List<Skill> {
+        return skills.values + getSkill(ESpecialSkill.SKILL_VAMPIRISM) + getSkill(ESpecialSkill.SKILL_LYCANTHROPY)
+    }
 
-    fun getSkill(name: SkillEnum) = skills[name]
-
-    fun getPerkDistribution(): Map<SkillType, Int>{
-        return SkillType.values().associate {type ->
+    fun getPerkDistribution(): Map<SkillType, Int> {
+        return SkillType.values().associate { type ->
             type to skills.values
-                    .filter { skill ->  skill.type == type }
+                    .filter { skill -> skill.type == type }
                     .sumBy { skill -> skill.selectedPerksCount }
         }
     }
 
-    fun getSelectedPerksCount() : Int = skills.values.sumBy { it.selectedPerksCount }
+    fun getSelectedPerksCount(): Int = skills.values.sumBy { it.selectedPerksCount }
 
     fun getRequiredLevel(multiplier: Float): Int {
 
@@ -38,14 +53,55 @@ class Build(val system: PerkSystem) {
 
     companion object {
 
-        fun clone(objToClone: Build): Build? {
-            val build = Build(objToClone.system)
-            for (s in SkillEnum.values()) {
-                for (p in objToClone.getSkill(s)!!.perks.keys) {
-                    val state = objToClone.getSkill(s)!![p]!!.state
-                    build.getSkill(s)!![p]!!.state = state
+        fun create(perkSystem: PerkSystem, id: Long = 0) : Build{
+
+            val skills: Map<EMainSkill, Skill> = EMainSkill.values()
+                    .associate { s -> s to SkillFactory.create(s, perkSystem) }
+
+            val vampireSkill: Map<VampirePerkSystem, SpecialSkill> = VampirePerkSystem.values()
+                    .associateWith { SkillFactory.create(ESpecialSkill.SKILL_VAMPIRISM, it) as SpecialSkill }
+
+            val werewolfSkill: Map<WerewolfPerkSystem, SpecialSkill> = WerewolfPerkSystem.values()
+                    .associateWith { SkillFactory.create(ESpecialSkill.SKILL_LYCANTHROPY, it) as SpecialSkill }
+
+
+            return Build(
+                    id,
+                    perkSystem,
+                    DEFAULT_BUILD_NAME,
+                    "",
+                    skills,
+                    VampirePerkSystem.VANILLA,
+                    WerewolfPerkSystem.VANILLA,
+                    vampireSkill,
+                    werewolfSkill
+            )
+        }
+
+        fun clone(objToClone: Build): Build {
+            val build = create(objToClone.system)
+            for (s in EMainSkill.values()) {
+                for (p in objToClone.getSkill(s).perks.keys) {
+                    val state = objToClone.getSkill(s)[p]!!.state
+                    build.getSkill(s)[p]!!.state = state
                 }
             }
+
+            build.werewolfPerkSystem = objToClone.werewolfPerkSystem
+            build.vampirePerkSystem = objToClone.vampirePerkSystem
+
+            for (s in VampirePerkSystem.values()) {
+                for (e in objToClone.vampireSkill[s]!!.perks.entries) {
+                    build.vampireSkill[s]?.get(e.key)?.state = e.value.state
+                }
+            }
+
+            for (s in WerewolfPerkSystem.values()) {
+                for (e in objToClone.werewolfSkill[s]!!.perks.entries) {
+                    build.werewolfSkill[s]?.get(e.key)?.state = e.value.state
+                }
+            }
+
             return build
         }
     }
