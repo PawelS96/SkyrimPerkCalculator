@@ -1,20 +1,15 @@
 package com.pawels96.skyrimperkcalculator.domain
 
-enum class PerkSystem {
-    ORDINATOR, VANILLA, VOKRII
+interface IPerkSystem
+
+enum class PerkSystem : IPerkSystem{
+    VANILLA, ORDINATOR, VOKRII
 }
 
-interface SpecialSkillPerkSystem
-
-enum class VampirePerkSystem  : SpecialSkillPerkSystem{
-    VANILLA
+enum class VampirePerkSystem  : IPerkSystem{
+    VANILLA, SACROSANCT
 }
 
-enum class WerewolfPerkSystem : SpecialSkillPerkSystem{
-    VANILLA
-}
-
-
-enum class SpecialSkill {
-    VAMPIRE, WEREWOLF;
+enum class WerewolfPerkSystem : IPerkSystem{
+    VANILLA, GROWL
 }
