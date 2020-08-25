@@ -17,7 +17,7 @@
     <string name="p_vok_alc_gourmet">Gourmet</string>
     <string name="p_vok_alc_double_toil_and_trouble">Double Toil and Trouble</string>
 
-    <string name="d_vok_alc_alchemy_mastery">Potions and poisons you make are 20/40/60/80/100% stronger.</string>
+    <string name="d_vok_alc_alchemy_mastery">Potions and poisons you make are 1% stronger per level of Alchemy.</string>
     <string name="d_vok_alc_physician">Potions you make that restore Health, Magicka or Stamina are 25% stronger.</string>
     <string name="d_vok_alc_benefactor">Beneficial potions you make are 25% stronger.</string>
     <string name="d_vok_alc_poisoner">Poisons you make are 25% stronger.</string>
@@ -33,6 +33,7 @@
     <string name="d_vok_alc_gourmet">Vendors of rare alchemical ingredients may sell Jarrin Root, used to make deadly poisons.</string>
     <string name="d_vok_alc_double_toil_and_trouble">Twice as many potions are created.</string>
 
+    <!-- merge runic weapon into Battlemage -->
     <string name="p_vok_alt_alteration_mastery">Alteration Mastery</string>
     <string name="p_vok_alt_alteration_dual_casting">Alteration Dual Casting</string>
     <string name="p_vok_alt_mage_armor">Mage Armor</string>
@@ -52,11 +53,11 @@
     <string name="p_vok_alt_telekinetic_prodigy">Telekinetic Prodigy</string>
     <string name="p_vok_alt_ritualist">Ritualist</string>
 
-    <string name="d_vok_alt_alteration_mastery">Cast Alteration spells up to Novice/Apprentice/Adept/Expert/Master level for half Magicka.</string>
+    <string name="d_vok_alt_alteration_mastery">Cast Alteration spells up to for 0.5% less Magicka per level of Alteration.</string>
     <string name="d_vok_alt_alteration_dual_casting">Dual casting an Alteration spell overcharges its effects, increasing power and casting cost.</string>
     <string name="d_vok_alt_mage_armor">Protection spells like Stoneflesh are 100/150/200% stronger if not wearing armor.</string>
     <string name="d_vok_alt_magic_resistance">Increases Magic Resistance by 10/20/30%.</string>
-    <string name="d_vok_alt_battlemage">Attacking while casting a spell or charging a staff in your other hand deals 25% extra damage and critical damage.</string>
+    <string name="d_vok_alt_battlemage">Your weapon attacks improve your spells cast on the target by 15/30% for 3 seconds.</string>
     <string name="d_vok_alt_sorcerers_robes">Spells from any school are 25% more effective if not wearing armor.</string>
     <string name="d_vok_alt_stability">Alteration spells and effects last 25% longer.</string>
     <string name="d_vok_alt_ocatos_preparation">When entering combat, automatically activates the most effective magical armor spell you know.</string>
@@ -88,7 +89,7 @@
     <string name="p_vok_arc_hunters_focus">Hunter\'s Focus</string>
     <string name="p_vok_arc_pinning_shot">Pinning Shot</string>
 
-    <string name="d_vok_arc_archery_mastery">"Ranged weapons do 20/40/60/80/100% more damage, and ranged critical strikes deal 2/3/4/5/6 times critical damage."</string>
+    <string name="d_vok_arc_archery_mastery">"Ranged weapons do 1% more damage, and 5% more critical damage per level of Archery."</string>
     <string name="d_vok_arc_far_shot">Ranged weapons do up to 20/40% more damage to targets beyond 60 feet, based on distance.</string>
     <string name="d_vok_arc_point_blank_shot">Ranged weapons do up to 20/40% more damage to targets within 20 feet, based on proximity.</string>
     <string name="d_vok_arc_eagle_eye">Pressing Block while aiming will zoom in your view.</string>
@@ -100,8 +101,8 @@
     <string name="d_vok_arc_lions_arrow">Dual cast a projectile spell out of combat to imprint it. Fully drawn bow shots trigger a copy of the spell at 60/100% power.</string>
     <string name="d_vok_arc_ranger">Can move at full speed with a drawn bow.</string>
     <string name="d_vok_arc_quick_shot">Can draw a bow or reload a crossbow 30% faster.</string>
-    <string name="d_vok_arc_arrow_to_the_knee">Ranged weapons knock targets down if they are sprinting, inflicting a critical strike.</string>
-    <string name="d_vok_arc_gore">Ranged weapons interrupt power attacks, knocking the attacker back and inflicting a critical strike.</string>
+    <string name="d_vok_arc_arrow_to_the_knee">Ranged weapons knock targets down if they are sprinting, inflicting a critical strike for 2 times critical damage.</string>
+    <string name="d_vok_arc_gore">Ranged weapons interrupt power attacks, knocking the attacker back and inflicting a critical strike for 2 times critical damage.</string>
     <string name="d_vok_arc_hunters_focus">Can\'t be staggered by power attacks or bashes while drawing a bow or holding a shot.</string>
     <string name="d_vok_arc_pinning_shot">Ranged weapons slow targets by 10% per hit for 15 seconds.</string>
 
@@ -121,7 +122,7 @@
     <string name="p_vok_blc_shield_charge">Shield Charge</string>
     <string name="p_vok_blc_stoneheart">Stoneheart</string>
 
-    <string name="d_vok_blc_block_mastery">Blocking is 10/20/30/40/50% more effective.</string>
+    <string name="d_vok_blc_block_mastery">Blocking is 0.5% more effective per level of Block.</string>
     <string name="d_vok_blc_deflect_arrows">Arrows do 25% less damage while blocking. Arrows that hit a shield do no damage.</string>
     <string name="d_vok_blc_power_bash">Able to do a power bash by holding down Attack while blocking.</string>
     <string name="d_vok_blc_unwavering_defense">Blocking an attack damages the attacker\'s Stamina by 15 points.</string>
@@ -130,7 +131,7 @@
     <string name="d_vok_blc_torch_bash">Bashing with a torch deals ten times as much fire damage and causes living opponents to flee in panic.</string>
     <string name="d_vok_blc_deadly_bash">Bashing deals five/fifteen times as much damage.</string>
     <string name="d_vok_blc_elemental_protection">Blocking with a shield reduces elemental damage taken by 50%.</string>
-    <string name="d_vok_blc_poke_the_dragon">Blocking an attack has 15% chance to stagger the attacker, exposing them to a critical strike counterattack within 3 seconds for improved critical damage.</string>
+    <string name="d_vok_blc_poke_the_dragon">Blocking an attack has 15% chance to stagger the attacker, exposing them to a critical strike counterattack within 3 seconds for 2 times critical damage.</string>
     <string name="d_vok_blc_block_runner">Can move at full speed while blocking.</string>
     <string name="d_vok_blc_mocking_blow">Power bashing taunts the opponent, forcing them to attack you and reducing their attack damage by 15%, fading over 10 seconds.</string>
     <string name="d_vok_blc_dragon_tail">Bashing to interrupt a power attack has 30% chance to knock the attacker down, potentially disarming them.</string>
@@ -156,7 +157,7 @@
     <string name="p_vok_con_necromaster">Necromaster</string>
     <string name="p_vok_con_twin_souls">Twin Souls</string>
 
-    <string name="d_vok_con_conjuration_mastery">Cast Conjuration spells up to Novice/Apprentice/Adept/Expert/Master level for half Magicka.</string>
+    <string name="d_vok_con_conjuration_mastery">Cast Conjuration spells for 0.5% less Magicka per level of Conjuration.</string>
     <string name="d_vok_con_conjuration_dual_casting">Dual casting a Conjuration spell overcharges its effects, increasing duration and casting cost.</string>
     <string name="d_vok_con_mystic_binding">Bound Weapon spells now create Mystic Weapons instead, which deal more damage.</string>
     <string name="d_vok_con_atromancy">Summoned daedra and creatures last twice as long.</string>
@@ -164,7 +165,7 @@
     <string name="d_vok_con_soul_stealer">Bound weapons cast Soul Trap on targets for 5 seconds.</string>
     <string name="d_vok_con_oblivion_binding">Bound weapons banish conjured daedra, deal 100 bonus damage to other daedra and turn raised undead.</string>
     <string name="d_vok_con_rift_summoner">Can summon three times as far away/at any distance.</string>
-    <string name="d_vok_con_ghoul_frenzy">Raised undead gain 150% bonus attack speed and 100% bonus movement speed, fading over 60 seconds.</string>
+    <string name="d_vok_con_ghoul_frenzy">Raised undead are created with 150% extra attack speed and 100% extra movement speed, fading over 60 seconds.</string>
     <string name="d_vok_con_oblivion_stone">Summoned daedra and creatures get 100/200 points of armor and 25/50% magic resistance.</string>
     <string name="d_vok_con_hollow_binding">Bound weapons cut through flesh and spirit, reducing magic resistance by 25% for 5 seconds.</string>
     <string name="d_vok_con_grand_conjurer">Can reanimate, banish or command targets up to 15 levels higher/of any level.</string>
@@ -194,7 +195,14 @@
     <string name="p_vok_des_mages_fury">Mage\'s Fury</string>
     <string name="p_vok_des_eye_of_the_storm">Eye of the Storm</string>
 
-    <string name="d_vok_des_destruction_mastery">Cast Destruction spells up to Novice/Apprentice/Adept/Expert/Master level for half Magicka.</string>
+    <!--
+    remove eye of the storm
+    mages fury -> Hellstorm
+        Deal double elemental damage to targets that are ignited, frozen, silenced or levitated.
+
+    -->
+
+    <string name="d_vok_des_destruction_mastery">Cast Destruction spells for 0.5% less Magicka per level of Destruction.</string>
     <string name="d_vok_des_destruction_dual_casting">Dual casting a Destruction spell overcharges its effects, increasing power and casting cost.</string>
     <string name="d_vok_des_augmented_flames">Fire spells and effects are 20/40% more powerful.</string>
     <string name="d_vok_des_augmented_frost">Frost spells and effects are 20/40% more powerful.</string>
@@ -230,7 +238,7 @@
     <string name="p_vok_enc_spider_hunter">Spider Hunter</string>
     <string name="p_vok_enc_extra_effect">Extra Effect</string>
 
-    <string name="d_vok_enc_enchanting_mastery">New enchantments are 20/40/60/80/100% stronger.</string>
+    <string name="d_vok_enc_enchanting_mastery">New enchantments are 1% stronger per level of Enchanting.</string>
     <string name="d_vok_enc_power_stone">Staves are 25/50/100% stronger, and an equipped staff improves other weapon enchantments by 25/50/100%.</string>
     <string name="d_vok_enc_soul_squeezer">Soul gems replenish 250 extra charge when used to recharge weapons.</string>
     <string name="d_vok_enc_weapon_enchanter">New enchantments placed on weapons are 25% stronger.</string>
@@ -261,7 +269,8 @@
     <string name="p_vok_har_glancing_blows">Glancing Blows</string>
     <string name="p_vok_har_face_of_the_mountain">Face of the Mountain</string>
 
-    <string name="d_vok_har_heavy_armor_mastery">Armor rating of Heavy Armor pieces increased by 20/40/60/80/100%.</string>
+    <!-- off balance -> immovable object -->
+    <string name="d_vok_har_heavy_armor_mastery">Armor rating of Heavy Armor pieces increased by 1% per level of Heavy Armor.</string>
     <string name="d_vok_har_cushioned">You take half/no damage from falling if wearing all Heavy Armor.</string>
     <string name="d_vok_har_battle_fatigue">Take up to 20% less attack damage from opponents with low Stamina if wearing all Heavy Armor.</string>
     <string name="d_vok_har_heavy_armor_fit">Armor rating of Heavy Armor pieces increased by 15% if wearing all Heavy Armor.</string>
@@ -273,7 +282,7 @@
     <string name="d_vok_har_matching_heavy_set">Armor rating of Heavy Armor pieces increased by 15% if wearing a matched set of 3 or more Heavy Armor pieces.</string>
     <string name="d_vok_har_elemental_defense">Take 15% less elemental damage if wearing all Heavy Armor.</string>
     <string name="d_vok_har_glancing_blows">Immune to weapon specific perks such as Denting Blows and Mortal Wounds if wearing all Heavy Armor.</string>
-    <string name="d_vok_har_face_of_the_mountain">Taking an incoming power attack or bash in all Heavy Armor staggers the attacker and 25% chance to knock them down.</string>
+    <string name="d_vok_har_face_of_the_mountain">Taking an incoming power attack or bash in all Heavy Armor always staggers the attacker with 25% chance to knock them down.</string>
 
     <string name="p_vok_ilu_illusion_mastery">Illusion Mastery</string>
     <string name="p_vok_ilu_illusion_dual_casting">Illusion Dual Casting</string>
@@ -291,7 +300,7 @@
     <string name="p_vok_ilu_blur">Blur</string>
     <string name="p_vok_ilu_mind_thrall">Mind Thrall</string>
 
-    <string name="d_vok_ilu_illusion_mastery">Cast Illusion spells up to Novice/Apprentice/Adept/Expert/Master level for half Magicka.</string>
+    <string name="d_vok_ilu_illusion_mastery">Cast Illusion spells for 0.5% less Magicka per level of Illusion.</string>
     <string name="d_vok_ilu_illusion_dual_casting">Dual casting an Illusion spell overcharges its effects, increasing power and casting cost.</string>
     <string name="d_vok_ilu_animage">Mind affecting spells and effects work on creatures and people up to 10/20/40 levels higher, and other targets up to 5/10/20 levels higher.</string>
     <string name="d_vok_ilu_neverworld">Calm spells have 50% chance to persist for 15 seconds when broken.</string>
@@ -300,7 +309,7 @@
     <string name="d_vok_ilu_quiet_casting">All spells and shouts from any school of magic are silent to others.</string>
     <string name="d_vok_ilu_lamb_to_the_slaughter">Calm spells reduce armor by 100 points and magic resistance by 25%.</string>
     <string name="d_vok_ilu_splendor">Rally spells improve the target\'s attributes by an additional 50 points.</string>
-    <string name="d_vok_ilu_master_of_the_mind">Mind affecting spells work on on undead, daedra and automatons at half/full duration.</string>
+    <string name="d_vok_ilu_master_of_the_mind">Mind affecting spells work on undead, daedra and automatons at half/full duration.</string>
     <string name="d_vok_ilu_paralyzing_fear">Fear spells have 25% chance to compel their targets to remain motionless.</string>
     <string name="d_vok_ilu_enrage">Fury spells cause targets to deal 50% more attack damage, except when they are attacking the caster.</string>
     <string name="d_vok_ilu_spirit_of_war">Rally spells manifest spectral images of allied targets in combat. The illusions have 40% Health and fight for you until the spell wears off.</string>
@@ -322,7 +331,7 @@
     <string name="p_vok_lar_ki_strike">Ki Strike</string>
     <string name="p_vok_lar_untouchable">Untouchable</string>
 
-    <string name="d_vok_lar_light_armor_mastery">Armor rating of Light Armor pieces increased by 20/40/60/80/100%.</string>
+    <string name="d_vok_lar_light_armor_mastery">Armor rating of Light Armor pieces increased by 1% per level of Light Armor.</string>
     <string name="d_vok_lar_agility">Regenerate an additional 2% of your maximum Stamina per second if wearing all Light Armor.</string>
     <string name="d_vok_lar_iron_fist">Deal extra unarmed damage equal to 5/15/30% of current Stamina if both hands are empty, gaining Light Armor experience.</string>
     <string name="d_vok_lar_light_armor_fit">Armor rating of Light Armor pieces increased by 15% if wearing all Light Armor.</string>
@@ -335,7 +344,7 @@
     <string name="d_vok_lar_evasive_sprint">While sprinting in all Light Armor, incoming attacks and spells always miss.</string>
     <string name="d_vok_lar_tough_hide">Wearing all Light Armor grants 40% Poison Resist and Disease Resist.</string>
     <string name="d_vok_lar_ki_strike">Power attacks with two empty hands deal 60 points of random elemental damage.</string>
-    <string name="d_vok_lar_untouchable">While Wardancer is active, move an additional 10% faster in combat.</string>
+    <string name="d_vok_lar_untouchable">Move an additional 10% faster in combat. This bonus is lost for 10 seconds after taking an unblocked hit.</string>
 
     <string name="p_vok_lck_lockpicking_mastery">Lockpicking Mastery</string>
     <string name="p_vok_lck_looter">Looter</string>
@@ -350,7 +359,7 @@
     <string name="p_vok_lck_overdrive">Overdrive</string>
     <string name="p_vok_lck_lockmaster">Lockmaster</string>
 
-    <string name="d_vok_lck_lockpicking_mastery">Locks up to Novice/Apprentice/Adept/Expert/Master level are easier to pick.</string>
+    <string name="d_vok_lck_lockpicking_mastery">Locks are 1% easier to pick per level of Lockpicking.</string>
     <string name="d_vok_lck_looter">In most dungeons, chests contain up to 100 more gold and many other containers contain up to 10 more gold.</string>
     <string name="d_vok_lck_quick_hands">Able to pick locks without others realizing that you are committing a crime.</string>
     <string name="d_vok_lck_lockdown">Can lockpick a hostile automaton to shut it down, reducing Health to 1. Damaged automatons are easier to pick.</string>
@@ -382,7 +391,7 @@
     <string name="p_vok_onh_bladedancer">Bladedancer</string>
     <string name="p_vok_onh_victory_rush">Victory Rush</string>
 
-    <string name="d_vok_onh_one_handed_mastery"><![CDATA[One-handed weapons do 20/40/60/80/100% more damage, and one-handed critical strikes deal 2/&#190;/5/6 times critical damage.]]></string>
+    <string name="d_vok_onh_one_handed_mastery">One-handed weapons do 1% more damage and 5% more critical damage per level of One-Handed.</string>
     <string name="d_vok_onh_disciplined_fighter">One-handed power attacks cost 25% less Stamina.</string>
     <string name="d_vok_onh_overpowering_assault">Swords reduce attack damage by 10/15% for 10 seconds.</string>
     <string name="d_vok_onh_grievous_wounds">War axes wound the living for 10 seconds. Deal 10/15% more attack damage to wounded targets.</string>
@@ -392,12 +401,12 @@
     <string name="d_vok_onh_furious_strength">One-handed power attacks do 0.1% more damage per point of Stamina. Unlocks decapitations.</string>
     <string name="d_vok_onh_valorous_charge">Can do a one-handed sprinting power attack for up to 50% more damage and critical damage to high Health opponents.</string>
     <string name="d_vok_onh_dual_savagery">Dual wielding power attacks deal 50% more damage and stagger 50% more.</string>
-    <string name="d_vok_onh_crater_maker">One-handed forwards power attacks have 25% chance to knock targets down, inflicting a critical strike.</string>
-    <string name="d_vok_onh_execute">Power attacks with a sword execute targets below 20% Health, inflicting a critical strike.</string>
-    <string name="d_vok_onh_shieldbiter">Power attacks with a war axe smash through a shield, inflicting a critical strike and forcing them to drop their shield.</string>
-    <string name="d_vok_onh_disrupting_strike">Power attacks with a mace interrupt spellcasting, inflicting a critical strike and silencing the target for 5 seconds.</string>
-    <string name="d_vok_onh_spitting_cobra">Power attacks with daggers bleed the living for 30 seconds, inflicting a critical strike.</string>
-    <string name="d_vok_onh_disarming_slash">One-handed sideways power attacks have 25% chance to disarm targets, inflicting a critical strike.</string>
+    <string name="d_vok_onh_crater_maker">One-handed forwards power attacks have 25% chance to knock targets down, inflicting a critical strike for 2 times critical damage.</string>
+    <string name="d_vok_onh_execute">Power attacks with a sword execute targets below 20% Health, inflicting a critical strike for 10 times critical damage.</string>
+    <string name="d_vok_onh_shieldbiter">Power attacks with a war axe smash through a shield, inflicting a critical strike for 5 times critical damage and forcing them to drop their shield.</string>
+    <string name="d_vok_onh_disrupting_strike">Power attacks with a mace interrupt spellcasting, inflicting a critical strike for 3 times critical damage and silencing the target for 5 seconds.</string>
+    <string name="d_vok_onh_spitting_cobra">Power attacks with daggers bleed the living for 30 seconds, inflicting a critical strike for 3 times critical damage.</string>
+    <string name="d_vok_onh_disarming_slash">One-handed sideways power attacks have 25% chance to disarm targets, inflicting a critical strike for 2 times critical damage.</string>
     <string name="d_vok_onh_bladedancer">Take 50% less attack damage while power attacking with two weapons.</string>
     <string name="d_vok_onh_victory_rush">Killing an opponent with a one-handed weapon replenishes 100 points of Stamina.</string>
 
@@ -414,7 +423,7 @@
     <string name="p_vok_pck_master_thief">Master Thief</string>
     <string name="p_vok_pck_perfect_touch">Perfect Touch</string>
 
-    <string name="d_vok_pck_pickpocket_mastery">Pickpocketing odds increased by 20/40/60/80/100%.</string>
+    <string name="d_vok_pck_pickpocket_mastery">Pickpocketing odds increased by 1% per level of Pickpocket.</string>
     <string name="d_vok_pck_cutpurse">Odds of pickpocketing gold, keys, gems and jewelry increased by 50%.</string>
     <string name="d_vok_pck_oblivious">Pickpocketing odds increased by 25% if the target is not detecting you.</string>
     <string name="d_vok_pck_payday">Most citizens carry 100 more gold on average.</string>
@@ -444,11 +453,11 @@
     <string name="p_vok_rst_eternal_flame">Eternal Flame</string>
     <string name="p_vok_rst_intervention">Intervention</string>
 
-    <string name="d_vok_rst_restoration_mastery">Cast Restoration spells up to Novice/Apprentice/Adept/Expert/Master level for half Magicka.</string>
+    <string name="d_vok_rst_restoration_mastery">Cast Restoration spells for 0.5% less Magicka per level of Restoration.</string>
     <string name="d_vok_rst_restoration_dual_casting">Dual casting a Restoration spell overcharges its effects, increasing power and casting cost.</string>
     <string name="d_vok_rst_mercy">Restoration spells are up to 50% more effective if the recipient\'s remaining Health is low.</string>
     <string name="d_vok_rst_inspire">Nearby living allies are healed 5/10 points per second.</string>
-    <string name="d_vok_rst_inner_light"><![CDATA[Regenerate an extra &#189;% of your total Magicka per second.]]></string>
+    <string name="d_vok_rst_inner_light">Regenerate an extra 1/2% of your total Magicka per second.</string>
     <string name="d_vok_rst_respite">Healing spells also restore Stamina.</string>
     <string name="d_vok_rst_vigilant_ward">Wards cost 50/80% less Magicka and reduce incoming damage by 30/50%.</string>
     <string name="d_vok_rst_harm">Casting healing spells on opponents in combat deals damage instead.</string>
@@ -475,6 +484,26 @@
     <string name="p_vok_smt_concealed_enchantments">Concealed Enchantments</string>
     <string name="p_vok_smt_daedric_smithing">Daedric Smithing</string>
     <string name="p_vok_smt_dragon_smithing">Dragon Smithing</string>
+
+
+    <!--
+
+    0 - Steel Smithing: Can create Steel armor and weapons at forges, and improve them twice as much.
+    20 - Armor Padding: Can create Linen and Leather padding at a tanning rack. They are clothing or Light Armor, function as body armor, and can be enchanted at 25% strength.
+    30 - Elven Smithing: Can create Elven armor and weapons at forges, and improve them twice as much.
+    30 - Dwarven Smithing: Can create Dwarven armor and weapons at forges, and improve them twice as much.
+    40 - Arcane Blacksmith: Can temper enchanted weapons and armor.
+    50 - Orcish Smithing: Can create Orcish armor and weapons at forges, and improve them twice as much.
+    50 - Advanced Armors: Can create Scaled and Plate armor at forges, and improve them twice as much.
+    60 - Layered Plates: Can create Steel, Dwarven and Orichalcum armor plates at forges. They are Heavy Armor, function as body armor and can be enchanted at 25% strength.
+    70 - Glass Smithing: Can create Glass armor and weapons at forges, and improve them twice as much.
+    80 - Ebony Smithing: Can create Ebony armor and weapons at forges, and improve them twice as much.
+    80 - High Yield Mining: Ore veins produce twice as much ore when mined.
+    90 - Concealed Enchantments: Can now enchant padding and armor plates at 50% strength.
+    90 - Daedric Smithing: Can create Daedric armor and weapons at forges, and improve them twice as much.
+    100 - Dragon Armor: Can create Dragon armor and Dragonbone weapons at forges, and improve them twice as much.
+
+    -->
 
     <string name="d_vok_smt_basic_smithing">Can create Steel armor and weapons and Bonemold armor at forges, and improve them twice as much.</string>
     <string name="d_vok_smt_armor_padding">Can create Linen and Leather padding at a tanning rack. They are clothing or Light Armor, function as body armor, and can be enchanted at 25% strength.</string>
@@ -507,7 +536,7 @@
     <string name="p_vok_snk_shadow_warrior">Shadow Warrior</string>
     <string name="p_vok_snk_escape_artist">Escape Artist</string>
 
-    <string name="d_vok_snk_sneak_mastery">You are 10/15/20/25/30% harder to detect when sneaking.</string>
+    <string name="d_vok_snk_sneak_mastery">You are 0.5% harder to detect when sneaking per level of Sneak.</string>
     <string name="d_vok_snk_sneak_attack">One-handed sneak attacks deal 100% more damage.</string>
     <string name="d_vok_snk_silent_movement">Movement noise is reduced by 50/100%.</string>
     <string name="d_vok_snk_silent_roll">Sprinting while sneaking executes a silent forward roll for 15 Stamina./ You are 100% harder to detect while rolling.</string>
@@ -518,7 +547,7 @@
     <string name="d_vok_snk_dodge_roll">Performing a silent roll briefly causes all incoming attacks and spells to miss.</string>
     <string name="d_vok_snk_light_foot">You won\'t trigger pressure plates.</string>
     <string name="d_vok_snk_backstab">Daggers deal 25% more damage and critical damage from behind.</string>
-    <string name="d_vok_snk_cloak_and_dagger">Sneak attack with daggers from invisibility also inflict a critical strike that deals improved critical damage.</string>
+    <string name="d_vok_snk_cloak_and_dagger">Sneak attack with daggers from invisibility also inflict a critical strike for 6 times critical damage.</string>
     <string name="d_vok_snk_fog_of_war">You are 25% harder to detect by opponents in combat.</string>
     <string name="d_vok_snk_shadow_warrior">Entering sneak mode (5 second cooldown) or performing a silent roll in combat briefly makes you invisible, forcing opponents to search for you.</string>
     <string name="d_vok_snk_escape_artist">Entering sneak mode causes all opponents who are searching for you to abandon their search.</string>
@@ -539,7 +568,7 @@
     <string name="p_vok_spc_master_trader">Master Trader</string>
     <string name="p_vok_spc_dovahzulaan">Dovahzulaan</string>
 
-    <string name="d_vok_spc_speech_mastery">Sell items for 10/15/20/25/30% more and buy items for 10/15/20/25/30% less.</string>
+    <string name="d_vok_spc_speech_mastery">Sell items for 0.5% more and buy items for 0.5% less per level of Speech.</string>
     <string name="d_vok_spc_tonal_harmony">Shouting restores Health, Magicka and Stamina equal to its cooldown in seconds.</string>
     <string name="d_vok_spc_bribery">Can bribe guards to ignore crimes.</string>
     <string name="d_vok_spc_kinship">Sell items for 15% more and buy items for 15% less when trading with the same race.</string>
@@ -573,7 +602,7 @@
     <string name="p_vok_twh_sweep">Sweep</string>
     <string name="p_vok_twh_crowd_pleaser">Crowd Pleaser</string>
 
-    <string name="d_vok_twh_two_handed_mastery">Two-handed weapons do 20/40/60/80/100% more damage, and two-handed critical strikes deal 2/3/4/5/6 times critical damage.</string>
+    <string name="d_vok_twh_two_handed_mastery">Two-handed weapons do 1% more damage and 5% more critical damage per level of Two-Handed.</string>
     <string name="d_vok_twh_brutal_fighter">Two-handed power attacks cost 25% less Stamina.</string>
     <string name="d_vok_twh_overbearing_assault">Greatswords reduce attack damage by 15/20% for 10 seconds.</string>
     <string name="d_vok_twh_mortal_wounds">Battleaxes wound the living for 10 seconds. Deal 15/20% more attack damage to wounded targets.</string>
@@ -582,12 +611,12 @@
     <string name="d_vok_twh_ferocious_strength">Two-handed power attacks do 0.1% more damage per point of Stamina. Unlocks decapitations.</string>
     <string name="d_vok_twh_vicious_charge">Can do a two-handed sprinting power attack for up to 50% more damage and critical damage to high Health targets.</string>
     <string name="d_vok_twh_berserker">25% chance to resist stagger during your two-handed power attack.</string>
-    <string name="d_vok_twh_warmaster">Two-handed forwards power attacks have 25% chance to paralyze targets, inflicting a critical strike.</string>
-    <string name="d_vok_twh_coup_de_grace">Power attacks with a greatsword execute targets below 30% Health, inflicting a critical strike and knocking the target down if they survive.</string>
-    <string name="d_vok_twh_hook_blade">Power attacks with battleaxes smash through a block, inflicting a critical strike and knocking the target down.</string>
-    <string name="d_vok_twh_shattering_strike">Power attacks with a warhammer interrupt spellcasting, inflicting a critical strike, silencing and immobilizing the target for 5 seconds.</string>
+    <string name="d_vok_twh_warmaster">Two-handed forwards power attacks have 25% chance to paralyze targets, inflicting a critical strike for 2 times critical damage.</string>
+    <string name="d_vok_twh_coup_de_grace">Power attacks with a greatsword execute targets below 30% Health, inflicting a critical strike for 10 times critical damage and knocking the target down.</string>
+    <string name="d_vok_twh_hook_blade">Power attacks with battleaxes smash through a block, inflicting a critical strike for 3 times critical damage and knocking the target down.</string>
+    <string name="d_vok_twh_shattering_strike">Power attacks with a warhammer interrupt spellcasting, inflicting a critical strike for 3 times critical damage, silencing and immobilizing the target for 5 seconds.</string>
     <string name="d_vok_twh_bear_hide">Take 50% less attack damage during your two-handed power attack.</string>
-    <string name="d_vok_twh_rolling_charge">Build up speed during a long distance sprinting power attack, inflicting a critical strike if enough speed is gained.</string>
+    <string name="d_vok_twh_rolling_charge">Build up speed during a long distance sprinting power attack, inflicting a critical strike for 4 times critical damage if enough speed is accumulated.</string>
     <string name="d_vok_twh_sweep">Two-handed sideways power attacks hit all targets in front of you, dealing 25% more damage to each.</string>
     <string name="d_vok_twh_crowd_pleaser">Killing an opponent with a two-handed weapon raises two-handed damage by 15% for 20 seconds.</string>
 
