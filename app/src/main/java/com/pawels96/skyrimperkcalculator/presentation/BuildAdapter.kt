@@ -1,9 +1,7 @@
 package com.pawels96.skyrimperkcalculator.presentation
 
 import android.content.Context
-import android.text.SpannableString
 import android.text.SpannableStringBuilder
-import android.text.style.ForegroundColorSpan
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
@@ -24,6 +22,8 @@ class BuildAdapter(private val context: Context, private val callback: BuildAdap
     private val stealth = context.resources.getColor(R.color.skillStealthBright)
     private val combat = context.resources.getColor(R.color.skillCombatBright)
     private val magic = context.resources.getColor(R.color.skillMagicBright)
+    private val vampire = context.resources.getColor(R.color.skillVampireBright)
+    private val werewolf = context.resources.getColor(R.color.skillWerewolfBright)
 
     private var multiplier = 0f
 
@@ -47,19 +47,26 @@ class BuildAdapter(private val context: Context, private val callback: BuildAdap
         val holder = viewHolder as Holder
 
         holder.root.setOnClickListener { v: View? -> callback.onClick(build) }
-        holder.name.text = if (selected == i) build.name else getColoredString(build.name, magic)
+        holder.name.text = if (selected == i) build.name.colored(magic) else build.name
 
-        val magicPerks = build.getPerkDistribution()[SkillType.MAGIC]
-        val stealthPerks = build.getPerkDistribution()[SkillType.STEALTH]
-        val combatPerks = build.getPerkDistribution()[SkillType.COMBAT]
+        val skills = mutableMapOf(
+                stealth to build.getPerkDistribution()[SkillType.STEALTH],
+                combat to build.getPerkDistribution()[SkillType.COMBAT],
+                magic to build.getPerkDistribution()[SkillType.MAGIC],
+                vampire to build.vampireSkill[build.vampirePerkSystem]?.selectedPerksCount,
+                werewolf to build.werewolfSkill[build.werewolfPerkSystem]?.selectedPerksCount
+        )
+                .filter { it.value!! > 0 }
+                .map { "${it.value} ".colored(it.key) }
 
-        val builder = SpannableStringBuilder(context.getString(R.string.perks).toString() + ": ").apply {
-            append(getColoredString("$combatPerks ", combat))
-            append(getColoredString("$magicPerks ", magic))
-            append(getColoredString(stealthPerks.toString() + "", stealth))
+        val builder = SpannableStringBuilder(context.getString(R.string.perks) + ": ")
+
+        if (skills.isNotEmpty()) {
+            skills.forEach { builder.append(it) }
         }
+        else builder.append("0")
 
-        holder.perks.setText(builder, TextView.BufferType.SPANNABLE)
+        holder.perks.text = builder//, TextView.BufferType.SPANNABLE)
 
         val lvl = build.getRequiredLevel(multiplier).toString()
         val levelText = context.getString(R.string.level).toString() + ": " + lvl
@@ -88,23 +95,17 @@ class BuildAdapter(private val context: Context, private val callback: BuildAdap
         }
     }
 
-    private fun getColoredString(text: String, color: Int): SpannableString {
-        val str1 = SpannableString(text)
-        str1.setSpan(ForegroundColorSpan(color), 0, str1.length, 0)
-        return str1
-    }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return Holder(LayoutInflater.from(parent.context).inflate(viewType, parent, false))
     }
 
     override fun getItemViewType(position: Int): Int = R.layout.list_item_build
 
-    override fun getItemCount(): Int  = items.size
+    override fun getItemCount(): Int = items.size
 
     private class Holder(var root: View) : RecyclerView.ViewHolder(root) {
         var button: Button = root.findViewById(R.id.context_menu)
-        var name: TextView = root.findViewById(R.id.build_name)
+        var name: TextView = root.findViewById(R.id.name_edit)
         var level: TextView = root.findViewById(R.id.level)
         var perks: TextView = root.findViewById(R.id.build_info)
         var description: TextView = root.findViewById(R.id.description)
