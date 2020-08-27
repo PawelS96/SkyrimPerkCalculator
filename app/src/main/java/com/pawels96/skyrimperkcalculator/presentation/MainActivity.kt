@@ -1,16 +1,10 @@
 package com.pawels96.skyrimperkcalculator.presentation
 
-import android.app.Dialog
-import android.content.Context
 import android.content.DialogInterface
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
-import android.view.LayoutInflater
-import android.view.View
-import android.widget.*
-import android.widget.AdapterView.OnItemClickListener
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -26,9 +20,7 @@ import com.pawels96.skyrimperkcalculator.domain.ISkill
 import com.pawels96.skyrimperkcalculator.domain.enums.EMainSkill
 import com.pawels96.skyrimperkcalculator.domain.enums.ESpecialSkill
 import com.pawels96.skyrimperkcalculator.presentation.Utils.getSkillName
-import com.pawels96.skyrimperkcalculator.presentation.dialogs.BuildsDialog
-import com.pawels96.skyrimperkcalculator.presentation.dialogs.CustomDialogBuilder
-import com.pawels96.skyrimperkcalculator.presentation.dialogs.OptionsDialog
+import com.pawels96.skyrimperkcalculator.presentation.dialogs.*
 import com.pawels96.skyrimperkcalculator.presentation.viewmodels.BuildsViewModel
 
 
@@ -41,9 +33,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        if (Build.VERSION.SDK_INT >= 21) window.navigationBarColor = Color.BLACK
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        if (Build.VERSION.SDK_INT >= 21) window.navigationBarColor = Color.BLACK
 
         binding.loadButton.setOnClickListener { showBuildList() }
         binding.skillsButton.setOnClickListener { showSkillsPopup() }
@@ -72,7 +65,7 @@ class MainActivity : AppCompatActivity() {
         binding.tabs.addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(binding.viewPager))
 
         if (prefs.firstLaunch)
-            Handler().postDelayed({showTutorial()}, 1500)
+            Handler().postDelayed({ showTutorial() }, 1500)
     }
 
     private fun getFragment(id: Int): SkillTreeFragment? {
@@ -80,13 +73,17 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun updateBuildInfo(build: com.pawels96.skyrimperkcalculator.domain.Build) {
-        val allPerksText = getString(R.string.all_active_perks).toString() + ": " + build.getSelectedPerksCount()
+        val vampPerks = build.getSkill(ESpecialSkill.SKILL_VAMPIRISM).selectedPerksCount
+        val lycPerks = build.getSkill(ESpecialSkill.SKILL_LYCANTHROPY).selectedPerksCount
+        val specialPerkSum = vampPerks + lycPerks
+        val specialPerksText = if (specialPerkSum > 0) " (+$specialPerkSum)" else ""
+        val allPerksText = getString(R.string.all_active_perks) + ": " + build.getSelectedPerksCount() + specialPerksText
         binding.allPerks.text = allPerksText
         updateRequiredLevel(build.getRequiredLevel(model.multiplier))
     }
 
     private fun updateRequiredLevel(level: Int) {
-        val requiredLevelText = getString(R.string.required_lvl).toString() + ": " + level
+        val requiredLevelText = getString(R.string.required_lvl) + ": " + level
         binding.reqLevel.text = requiredLevelText
     }
 
@@ -107,28 +104,12 @@ class MainActivity : AppCompatActivity() {
 
     private fun showSkillsPopup() {
 
-        val dialogBuilder = CustomDialogBuilder(this)
-        val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        val customView = inflater.inflate(R.layout.list_builds, null)
-        val lv = customView.findViewById<ListView>(R.id.listView)
-        val skillAdapter = SkillAdapter(this, model.allCurrentBuildSkills)
-        dialogBuilder.setView(customView)
-        lv.adapter = skillAdapter
-        skillAdapter.notifyDataSetChanged()
-        lv.dividerHeight = 1
-        lv.setSelection(binding.viewPager.currentItem)
-
-        val listDialog: Dialog = dialogBuilder.create()
-
-        lv.onItemClickListener = OnItemClickListener { parent: AdapterView<*>?, view: View?, position: Int, id: Long ->
-            binding.viewPager.setCurrentItem(position, false)
-            listDialog.dismiss()
-        }
-
-        listDialog.show()
+        SkillListDialog(model.allCurrentBuildSkills, binding.viewPager.currentItem)
+        { position -> binding.viewPager.setCurrentItem(position, false) }
+                .show(supportFragmentManager)
     }
 
-    private fun showBuildList() =  BuildsDialog().show(supportFragmentManager)
+    private fun showBuildList() = BuildsDialog().show(supportFragmentManager)
 
     private fun showOptions() = OptionsDialog().show(supportFragmentManager)
 
@@ -140,6 +121,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     companion object {
-        val DISPLAYED_SKILLS : List<ISkill> = EMainSkill.values().toList() + ESpecialSkill.values().toList()
+        val DISPLAYED_SKILLS: List<ISkill> = EMainSkill.values().toList() + ESpecialSkill.values().toList()
     }
 }
