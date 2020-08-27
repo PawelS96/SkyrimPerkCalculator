@@ -80,6 +80,7 @@ data class Build(
 
         fun clone(objToClone: Build): Build {
             val build = create(objToClone.system)
+
             for (s in EMainSkill.values()) {
                 for (p in objToClone.getSkill(s).perks.keys) {
                     val state = objToClone.getSkill(s)[p]!!.state
@@ -87,6 +88,7 @@ data class Build(
                 }
             }
 
+            build.description = objToClone.description
             build.werewolfPerkSystem = objToClone.werewolfPerkSystem
             build.vampirePerkSystem = objToClone.vampirePerkSystem
 
