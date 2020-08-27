@@ -14,21 +14,25 @@ class TypeConvertersTest {
     @Test
     fun convertPerkSystems(){
 
-        val ps = PerkSystem.ORDINATOR
-        val asString = conv.mainPerkSystemToString(ps)
-        val fromString = conv.mainPerkSystemFromString(asString)
-        assertEquals(ps, fromString)
+        PerkSystem.values().forEach { ps ->
+            val asString = conv.mainPerkSystemToString(ps)
+            val fromString = conv.mainPerkSystemFromString(asString)
+            assertEquals(ps, fromString)
+        }
+
         assertEquals(PerkSystem.VANILLA, conv.mainPerkSystemFromString("invalid"))
 
-        val psV = VampirePerkSystem.SACROSANCT
-        val asStringV = conv.vampirePerkSystemToString(psV)
-        val fromStringV = conv.vampirePerkSystemFromString(asStringV)
-        assertEquals(psV, fromStringV)
+        VampirePerkSystem.values().forEach { psV ->
+            val asStringV = conv.vampirePerkSystemToString(psV)
+            val fromStringV = conv.vampirePerkSystemFromString(asStringV)
+            assertEquals(psV, fromStringV)
+        }
 
-        val psW = WerewolfPerkSystem.VANILLA
-        val asStringW = conv.werewolfPerkSystemToString(psW)
-        val fromStringW = conv.werewolfPerkSystemFromString(asStringW)
-        assertEquals(psW, fromStringW)
+        WerewolfPerkSystem.values().forEach { psW ->
+            val asStringW = conv.werewolfPerkSystemToString(psW)
+            val fromStringW = conv.werewolfPerkSystemFromString(asStringW)
+            assertEquals(psW, fromStringW)
+        }
     }
 
     @Test
