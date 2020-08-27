@@ -7,38 +7,42 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.pawels96.skyrimperkcalculator.domain.Build;
 import com.pawels96.skyrimperkcalculator.domain.IPerk;
 import com.pawels96.skyrimperkcalculator.domain.PerkSystem;
 import com.pawels96.skyrimperkcalculator.domain.enums.EMainSkill;
+import com.pawels96.skyrimperkcalculator.domain.skills_vokrii.Vok_Destruction;
+import com.pawels96.skyrimperkcalculator.domain.skills_vokrii.Vok_HeavyArmor;
+import com.pawels96.skyrimperkcalculator.domain.skills_vokrii.Vok_Smithing;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static com.pawels96.skyrimperkcalculator.domain.PerkSystem.VOKRII;
 import static com.pawels96.skyrimperkcalculator.presentation.Utils.DEFAULT_BUILD_NAME;
 
 public class OldDatabase extends SQLiteOpenHelper {
 
-    //TODO remove test code
-
     private static final String DBNAME = "DB";
-    private static final String DBNAME_TEST = "DB_test";
 
     private static final int DBVER = 4;
 
     private Repository repoForMigration;
 
-    private SQLiteDatabase db;
-
     public OldDatabase(Context context, Repository repoForMigration) {
         super(context, DBNAME, null, DBVER);
         this.repoForMigration = repoForMigration;
-        db = getWritableDatabase();
+        getWritableDatabase();
     }
 
     public void clear() {
+
+        SQLiteDatabase db = getWritableDatabase();
 
         for (PerkSystem ps : PerkSystem.values()) {
             String table = getTable(ps);
@@ -79,7 +83,14 @@ public class OldDatabase extends SQLiteOpenHelper {
 
         for (EMainSkill s : EMainSkill.values()) {
             for (IPerk p : build.getSkill(s).getPerks().keySet()) {
-                int state = cursor.getInt(cursor.getColumnIndex(p.toString()));
+                int index = cursor.getColumnIndex(p.toString());
+
+                if (index == -1){
+                    Log.d("oldDatabase_getB", p.toString());
+                    continue;
+                }
+
+                int state = cursor.getInt(index);
                 build.getSkill(s).get(p).setState(state);
             }
         }
@@ -94,14 +105,12 @@ public class OldDatabase extends SQLiteOpenHelper {
         return build;
     }
 
-    public List<Build> getAllBuilds(PerkSystem perkSystem) {
+    private List<Build> getAllBuilds(PerkSystem perkSystem, SQLiteDatabase db) {
 
         List<Build> builds = new ArrayList<>();
-
-       // SQLiteDatabase db = getReadableDatabase();
         String table = getTable(perkSystem);
 
-        Cursor cursor = db.rawQuery("SELECT * FROM " + table, null);
+        Cursor cursor = getReadableDatabase().rawQuery("SELECT * FROM " + table, null);
 
         if (cursor.moveToFirst()) {
             do {
@@ -111,9 +120,13 @@ public class OldDatabase extends SQLiteOpenHelper {
             while (cursor.moveToNext());
         }
         cursor.close();
-       // db.close();
+        // db.close();
 
         return builds;
+    }
+
+    public List<Build> getAllBuilds(PerkSystem perkSystem) {
+        return getAllBuilds(perkSystem, getReadableDatabase());
     }
 
     private void createBuildsTable(PerkSystem perkSystem, SQLiteDatabase db) {
@@ -139,24 +152,15 @@ public class OldDatabase extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        Log.d("OldDatabase", "Create");
-
-        for (PerkSystem p : PerkSystem.values()) {
+       /* for (PerkSystem p : PerkSystem.values()) {
             createBuildsTable(p, db);
             addDefaultBuild(p, db);
-        }
+        }*/
     }
 
     private void addDefaultBuild(PerkSystem system, SQLiteDatabase db) {
         Build build = Build.Companion.create(system, 0);
-
         build.setName(DEFAULT_BUILD_NAME + "_FromOldDB");
-
-      //  build.getSkills().values().forEach(skill -> {
-      //      skill.getPerkList().forEach(perk -> perk.setState(perk.getMaxState()));
-      //  });
-
-
         insertBuild(getTable(system), processBuild(build), db);
     }
 
@@ -167,24 +171,83 @@ public class OldDatabase extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase database, int old, int newVersion) {
 
-        Log.d("OldDatabase", "Upgrade");
-
         if (old < 2) {
-            createBuildsTable(VOKRII, db);
-            addDefaultBuild(VOKRII, db);
+            createBuildsTable(VOKRII, database);
+            addDefaultBuild(VOKRII, database);
         }
 
         if (old < 3)
-            updateDB(db);
+            updateDB(database);
 
         if (old < 4) {
+            updateVokriiPerks(database);
             repoForMigration.insert(getDataForMigration(database));
-        //    migrateFromSQLiteToRoom(this, repoForMigration);
-            Log.d("OldDatabase", "Upgrade");
         }
     }
 
-    private List<Build> getDataForMigration(SQLiteDatabase database){
+    private void updateVokriiPerks(SQLiteDatabase db) {
+
+        String table = getTable(VOKRII);
+
+        Map<String, IPerk> oldAndNewPerkNames = new HashMap<>();
+
+        oldAndNewPerkNames.put("VOK_DES_MAGES_FURY", Vok_Destruction.VOK_DES_HELLSTORM);
+        oldAndNewPerkNames.put("VOK_HAR_OFF_BALANCE", Vok_HeavyArmor.VOK_HAR_IMMOVABLE_OBJECT);
+        oldAndNewPerkNames.put("VOK_SMT_BASIC_SMITHING", Vok_Smithing.VOK_SMT_STEEL_SMITHING);
+        oldAndNewPerkNames.put("VOK_SMT_MERIC_SMITHING", Vok_Smithing.VOK_SMT_ELVEN_SMITHING);
+        oldAndNewPerkNames.put("VOK_SMT_ENGRAVED_SMITHING", Vok_Smithing.VOK_SMT_ORCISH_SMITHING);
+        oldAndNewPerkNames.put("VOK_SMT_PRIMAL_SMITHING", Vok_Smithing.VOK_SMT_ADVANCED_ARMORS);
+        oldAndNewPerkNames.put("VOK_SMT_CRYSTALLINE_SMITHING", Vok_Smithing.VOK_SMT_GLASS_SMITHING);
+        oldAndNewPerkNames.put("VOK_SMT_EXOTIC_SMITHING", Vok_Smithing.VOK_SMT_EBONY_SMITHING);
+
+        for (IPerk p : oldAndNewPerkNames.values()) {
+            db.execSQL("ALTER TABLE " + table + " ADD " + p.toString() + " INTEGER DEFAULT 0");
+        }
+
+        List<String> vokriiBuildNames = new ArrayList<>();
+
+        Cursor nameCursor = db.rawQuery("SELECT name FROM " + table, null);
+
+        if (nameCursor != null && nameCursor.moveToFirst()) {
+            do {
+                vokriiBuildNames.add(nameCursor.getString(nameCursor.getColumnIndex("name")));
+            }
+            while (nameCursor.moveToNext());
+        }
+
+        if (nameCursor != null)
+            nameCursor.close();
+
+        for (String name : vokriiBuildNames) {
+
+            ContentValues values = new ContentValues();
+
+            for (Map.Entry<String, IPerk> e : oldAndNewPerkNames.entrySet()) {
+
+                String oldColumn = e.getKey();
+                String newColumn = e.getValue().toString();
+
+                Cursor cursor = db.rawQuery("SELECT " + oldColumn + " FROM " + table + " WHERE name='" + name + "'", null);
+
+                if (cursor != null && cursor.moveToFirst()) {
+                    int index = cursor.getColumnIndex(oldColumn);
+
+                    if (index != -1) {
+                        int savedPerkState = cursor.getInt(index);
+                        int newState = Math.min(savedPerkState, e.getValue().getPerkInfo().getSkillLevel().length);
+                        values.put(newColumn, newState);
+                    }
+                }
+
+                if (cursor != null)
+                    cursor.close();
+            }
+
+            db.update(table, values, "name='" + name + "'", null);
+        }
+    }
+
+    private List<Build> getDataForMigration(SQLiteDatabase database) {
 
         List<Build> builds = new ArrayList<>();
 
@@ -207,7 +270,7 @@ public class OldDatabase extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {    }
+    public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) { }
 
     private void updateDB(SQLiteDatabase db) {
 
