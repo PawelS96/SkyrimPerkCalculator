@@ -64,7 +64,12 @@ class BuildsViewModel(private val repo: Repository, private val prefs: Preferenc
             } else
                 this.nextState()
         }
+
+        val indexInList = builds.indexOfFirst { it.id == _currentBuild.value!!.id }
+        builds[indexInList] = _currentBuild.value!!
+
         _currentBuild.postNotifyObserver()
+        _currentBuildList.notifyObserver()
 
         viewModelScope.launch(Dispatchers.IO + NonCancellable) {
             repo.update(_currentBuild.value!!)
@@ -85,12 +90,12 @@ class BuildsViewModel(private val repo: Repository, private val prefs: Preferenc
             return
         }
 
-        val deletingCurrent = build.name == _currentBuild.value!!.name
+        val deletingCurrent = build.id == _currentBuild.value!!.id
 
         val deleted = repo.delete(build)
 
         if (deleted) {
-            val index = builds.indexOf(build)
+            val index = builds.indexOfFirst { it.id == build.id }
             builds.removeAt(index)
 
             if (deletingCurrent)
@@ -124,9 +129,11 @@ class BuildsViewModel(private val repo: Repository, private val prefs: Preferenc
             _events.value = LiveEvent(Event.BuildSaved(success, message))
 
             if (success) {
-                _currentBuildList.value?.add(newBuild)
+
+                val fromDb = repo.getByNameOrDefault(buildName, currentPerkSystem)
+                _currentBuildList.value?.add(fromDb)
                 _currentBuildList.postNotifyObserver()
-                _currentBuild.value = newBuild
+                _currentBuild.value = fromDb
             }
 
         } else _events.value = LiveEvent(Event.BuildSaved(false, R.string.msg_name_in_use))
