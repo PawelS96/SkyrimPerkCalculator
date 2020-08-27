@@ -9,19 +9,19 @@ object BuildMapper {
         val mainSkillsMap = build.skills.map { skillEntry ->
             skillEntry.key.toString() to skillEntry.value.perks.map { perkEntry ->
                 perkEntry.key.toString() to perkEntry.value.state
-            }.toMap()
+            }.toMap().toMutableMap()
         }.toMap()
 
         val vampireMap = build.vampireSkill.map { perkSystemEntry ->
             perkSystemEntry.key to perkSystemEntry.value.perks.map { perkEntry ->
                 perkEntry.key.toString() to perkEntry.value.state
-            }.toMap()
+            }.toMap().toMutableMap()
         }.toMap()
 
         val werewolfMap = build.werewolfSkill.map { perkSystemEntry ->
             perkSystemEntry.key to perkSystemEntry.value.perks.map { perkEntry ->
                 perkEntry.key.toString() to perkEntry.value.state
-            }.toMap()
+            }.toMap().toMutableMap()
         }.toMap()
 
         return BuildEntity(

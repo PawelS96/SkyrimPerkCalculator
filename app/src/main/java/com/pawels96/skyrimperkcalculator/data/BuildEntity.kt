@@ -13,9 +13,9 @@ data class BuildEntity(
         var name: String,
         var description: String,
         val perkSystem: PerkSystem,
-        val mainSkills: Map<String, Map<String, Int>>,
+        val mainSkills: Map<String, MutableMap<String, Int>>,
         val vampirePerkSystem: VampirePerkSystem,
-        val vampireSkills: Map<VampirePerkSystem, Map<String, Int>>,
+        val vampireSkills: Map<VampirePerkSystem, MutableMap<String, Int>>,
         val werewolfPerkSystem: WerewolfPerkSystem,
-        val werewolfSkills: Map<WerewolfPerkSystem, Map<String, Int>>
+        val werewolfSkills: Map<WerewolfPerkSystem, MutableMap<String, Int>>
 )
