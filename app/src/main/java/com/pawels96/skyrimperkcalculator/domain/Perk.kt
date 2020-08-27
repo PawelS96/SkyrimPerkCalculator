@@ -1,5 +1,6 @@
 package com.pawels96.skyrimperkcalculator.domain
 
+import java.lang.Integer.min
 import java.util.*
 
 class Perk(val perk: IPerk) {
@@ -9,19 +10,17 @@ class Perk(val perk: IPerk) {
     var parents: MutableList<Perk> = ArrayList()
 
     var state = 0
-    set(value) {field = value; onStateChanged() }
+    set(value) {field = value.coerceAtMost(maxState); onStateChanged() }
 
     val maxState: Int = perk.perkInfo.skillLevel.size
+
     private var stateIncreasing = true
 
-    val isSelected: Boolean
-        get() = state != 0
+    val isSelected: Boolean get() = state != 0
 
-    val isMultiState: Boolean
-        get() = maxState > 1
+    val isMultiState: Boolean get() = maxState > 1
 
-    val skillLevel: Int
-        get() = perk.perkInfo.skillLevel[(state - 1).coerceAtLeast(0)]
+    val skillLevel: Int get() = perk.perkInfo.skillLevel[(state - 1).coerceAtLeast(0)]
 
     val allSkillLevels: String
         get() {
@@ -34,16 +33,11 @@ class Perk(val perk: IPerk) {
             return sb.toString()
         }
 
-    val stateAsString: String
-        get() = " ($state/$maxState)"
+    val stateAsString: String get() = " ($state/$maxState)"
 
-    private fun hasParent(): Boolean {
-        return parents.isNotEmpty()
-    }
+    private fun hasParent(): Boolean = parents.isNotEmpty()
 
-    fun hasChildren(): Boolean {
-        return children.isNotEmpty()
-    }
+    fun hasChildren(): Boolean = children.isNotEmpty()
 
     private val isNoParentConnected: Boolean
         get() {
