@@ -5,7 +5,7 @@ import com.pawels96.skyrimperkcalculator.domain.PerkInfo;
 
 public enum Vok_Enchanting implements IPerk {
 
-    VOK_ENC_ENCHANTING_MASTERY (0.5f, 0.95f, 0, 20, 40, 60, 80),
+    VOK_ENC_ENCHANTING_MASTERY (0.5f, 0.95f, 0),
     VOK_ENC_POWER_STONE (0.275f, 0.7f, 20, 50, 80),
     VOK_ENC_SOUL_SQUEEZER (0.2f, 0.8f, 20),
     VOK_ENC_WEAPON_ENCHANTER (0.4f, 0.6f, 30),

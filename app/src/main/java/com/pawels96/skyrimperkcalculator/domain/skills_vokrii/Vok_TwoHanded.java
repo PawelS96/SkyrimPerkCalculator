@@ -5,7 +5,7 @@ import com.pawels96.skyrimperkcalculator.domain.PerkInfo;
 
 public enum Vok_TwoHanded implements IPerk {
 
-    VOK_TWH_TWO_HANDED_MASTERY (0.5f, 0.95f, 0, 20, 40, 60, 80),
+    VOK_TWH_TWO_HANDED_MASTERY (0.5f, 0.95f, 0),
     VOK_TWH_BRUTAL_FIGHTER (0.8f, 0.8f, 20),
     VOK_TWH_OVERBEARING_ASSAULT (0.3f, 0.55f, 30, 60),
     VOK_TWH_MORTAL_WOUNDS (0.45f, 0.5f, 30, 60),

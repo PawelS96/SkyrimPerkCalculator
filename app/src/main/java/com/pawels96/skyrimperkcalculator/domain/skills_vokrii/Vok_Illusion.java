@@ -5,7 +5,7 @@ import com.pawels96.skyrimperkcalculator.domain.PerkInfo;
 
 public enum Vok_Illusion implements IPerk {
 
-    VOK_ILU_ILLUSION_MASTERY (0.5f, 0.95f, 0, 25, 50, 75, 100),
+    VOK_ILU_ILLUSION_MASTERY (0.5f, 0.95f, 0),
     VOK_ILU_ILLUSION_DUAL_CASTING (0.2f, 0.85f, 20),
     VOK_ILU_ANIMAGE (0.85f, 0.825f, 20, 50, 80),
     VOK_ILU_NEVERWORLD (0.5f, 0.65f, 30),

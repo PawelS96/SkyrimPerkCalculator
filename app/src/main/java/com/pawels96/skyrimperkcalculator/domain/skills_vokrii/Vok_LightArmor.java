@@ -5,7 +5,7 @@ import com.pawels96.skyrimperkcalculator.domain.PerkInfo;
 
 public enum Vok_LightArmor implements IPerk {
 
-    VOK_LAR_LIGHT_ARMOR_MASTERY (0.55f, 0.95f, 0, 20, 40, 60, 80),
+    VOK_LAR_LIGHT_ARMOR_MASTERY (0.55f, 0.95f, 0),
     VOK_LAR_AGILITY (0.7f, 0.7f, 20),
     VOK_LAR_IRON_FIST (0.3f, 0.7f, 20, 50, 80),
     VOK_LAR_LIGHT_ARMOR_FIT (0.5f, 0.75f, 30),

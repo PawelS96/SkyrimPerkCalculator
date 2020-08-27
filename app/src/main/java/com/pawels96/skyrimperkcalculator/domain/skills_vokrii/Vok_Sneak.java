@@ -5,7 +5,7 @@ import com.pawels96.skyrimperkcalculator.domain.PerkInfo;
 
 public enum Vok_Sneak implements IPerk {
 
-    VOK_SNK_SNEAK_MASTERY (0.5f, 0.95f, 0, 20, 40, 60, 80),
+    VOK_SNK_SNEAK_MASTERY (0.5f, 0.95f, 0),
     VOK_SNK_SNEAK_ATTACK (0.475f, 0.65f, 20),
     VOK_SNK_SILENT_MOVEMENT (0.725f, 0.65f, 30),
     VOK_SNK_SILENT_ROLL (0.2f, 0.55f, 30, 60),

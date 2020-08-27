@@ -5,7 +5,7 @@ import com.pawels96.skyrimperkcalculator.domain.PerkInfo;
 
 public enum Vok_Lockpicking implements IPerk {
 
-    VOK_LCK_LOCKPICKING_MASTERY (0.45f, 0.95f, 0, 25, 50, 75, 100),
+    VOK_LCK_LOCKPICKING_MASTERY (0.45f, 0.95f, 0),
     VOK_LCK_LOOTER (0.35f, 0.7f, 20),
     VOK_LCK_QUICK_HANDS (0.7f, 0.65f, 30),
     VOK_LCK_LOCKDOWN (0.5f, 0.55f, 40),

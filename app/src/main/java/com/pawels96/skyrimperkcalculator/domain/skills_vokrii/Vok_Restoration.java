@@ -5,7 +5,7 @@ import com.pawels96.skyrimperkcalculator.domain.PerkInfo;
 
 public enum Vok_Restoration implements IPerk {
 
-    VOK_RST_RESTORATION_MASTERY (0.5f, 0.95f, 0, 25, 50, 75, 100),
+    VOK_RST_RESTORATION_MASTERY (0.5f, 0.95f, 0),
     VOK_RST_RESTORATION_DUAL_CASTING (0.8f, 0.875f, 20),
     VOK_RST_MERCY (0.35f, 0.65f, 20),
     VOK_RST_INSPIRE (0.6f, 0.6f, 30, 60),

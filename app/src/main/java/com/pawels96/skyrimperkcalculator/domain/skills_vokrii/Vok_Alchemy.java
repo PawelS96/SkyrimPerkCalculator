@@ -5,7 +5,7 @@ import com.pawels96.skyrimperkcalculator.domain.PerkInfo;
 
 public enum Vok_Alchemy implements IPerk {
 
-    VOK_ALC_ALCHEMY_MASTERY(0.25f, 0.95f, 0, 20, 40, 60, 80),
+    VOK_ALC_ALCHEMY_MASTERY(0.25f, 0.95f, 0),
     VOK_ALC_PHYSICIAN(0.75f, 0.85f, 20),
     VOK_ALC_BENEFACTOR(0.35f, 0.7f, 30),
     VOK_ALC_POISONER(0.7f, 0.7f, 30),

@@ -5,7 +5,7 @@ import com.pawels96.skyrimperkcalculator.domain.PerkInfo;
 
 public enum Vok_Pickpocket implements IPerk {
 
-    VOK_PCK_PICKPOCKET_MASTERY (0.5f, 0.95f, 0, 20, 40, 60, 80),
+    VOK_PCK_PICKPOCKET_MASTERY (0.5f, 0.95f, 0),
     VOK_PCK_CUTPURSE (0.475f, 0.7f, 20),
     VOK_PCK_OBLIVIOUS (0.5f, 0.5f, 30),
     VOK_PCK_PAYDAY (0.25f, 0.625f, 30),

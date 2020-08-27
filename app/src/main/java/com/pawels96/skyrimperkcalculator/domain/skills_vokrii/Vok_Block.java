@@ -5,7 +5,7 @@ import com.pawels96.skyrimperkcalculator.domain.PerkInfo;
 
 public enum Vok_Block implements IPerk {
 
-    VOK_BLC_BLOCK_MASTERY (0.5f, 0.95f, 0, 20, 40, 60, 80),
+    VOK_BLC_BLOCK_MASTERY (0.5f, 0.95f, 0),
     VOK_BLC_DEFLECT_ARROWS (0.5f, 0.65f, 20),
     VOK_BLC_POWER_BASH (0.8f, 0.8f, 20),
     VOK_BLC_UNWAVERING_DEFENSE (0.1f, 0.6f, 30),

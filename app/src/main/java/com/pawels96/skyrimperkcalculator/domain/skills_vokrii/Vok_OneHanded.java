@@ -5,7 +5,7 @@ import com.pawels96.skyrimperkcalculator.domain.PerkInfo;
 
 public enum Vok_OneHanded implements IPerk {
 
-    VOK_ONH_ONE_HANDED_MASTERY (0.5f, 0.95f, 0, 20, 40, 60, 80),
+    VOK_ONH_ONE_HANDED_MASTERY (0.5f, 0.95f, 0),
     VOK_ONH_DISCIPLINED_FIGHTER (0.9f, 0.75f, 20),
     VOK_ONH_OVERPOWERING_ASSAULT (0.275f, 0.55f, 30, 60),
     VOK_ONH_GRIEVOUS_WOUNDS (0.425f, 0.625f, 30, 60),

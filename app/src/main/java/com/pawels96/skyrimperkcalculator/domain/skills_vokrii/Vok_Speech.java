@@ -5,7 +5,7 @@ import com.pawels96.skyrimperkcalculator.domain.PerkInfo;
 
 public enum Vok_Speech implements IPerk {
 
-    VOK_SPC_SPEECH_MASTERY (0.5f, 0.95f, 0, 20, 40, 60, 80),
+    VOK_SPC_SPEECH_MASTERY (0.5f, 0.95f, 0),
     VOK_SPC_TONAL_HARMONY (0.7f, 0.65f, 20),
     VOK_SPC_BRIBERY (0.8f, 0.825f, 30),
     VOK_SPC_KINSHIP (0.15f, 0.75f, 30),

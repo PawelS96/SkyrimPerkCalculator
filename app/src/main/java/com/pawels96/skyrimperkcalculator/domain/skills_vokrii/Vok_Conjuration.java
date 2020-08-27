@@ -5,7 +5,7 @@ import com.pawels96.skyrimperkcalculator.domain.PerkInfo;
 
 public enum Vok_Conjuration implements IPerk {
 
-    VOK_CON_CONJURATION_MASTERY (0.5f, 0.95f, 0, 25, 50, 75, 100),
+    VOK_CON_CONJURATION_MASTERY (0.5f, 0.95f, 0),
     VOK_CON_CONJURATION_DUAL_CASTING (0.2f, 0.85f, 20),
     VOK_CON_MYSTIC_BINDING (0.9f, 0.85f, 20),
     VOK_CON_ATROMANCY (0.25f, 0.7f, 30),

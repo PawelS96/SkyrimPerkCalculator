@@ -5,7 +5,7 @@ import com.pawels96.skyrimperkcalculator.domain.PerkInfo;
 
 public enum Vok_Archery implements IPerk {
 
-    VOK_ARC_ARCHERY_MASTERY (0.5f, 0.95f, 0, 20, 40, 60, 80),
+    VOK_ARC_ARCHERY_MASTERY (0.5f, 0.95f, 0),
     VOK_ARC_FAR_SHOT (0.175f, 0.65f, 20, 50),
     VOK_ARC_POINT_BLANK_SHOT (0.4f, 0.625f, 20, 50),
     VOK_ARC_EAGLE_EYE (0.725f, 0.65f, 30),
