@@ -7,10 +7,6 @@ class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
-
-        val storage = Environment.getExternalStorageDirectory().path
-        Thread.setDefaultUncaughtExceptionHandler(CrashHandler(storage))
-
         Injector.init(this)
     }
 }
