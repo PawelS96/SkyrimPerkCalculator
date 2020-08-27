@@ -64,6 +64,6 @@
     <string name="s_growl">Growl - Werebeasts of Skyrim</string>
     <string name="s_ordinator">Ordinator - Perks of Skyrim</string>
     <string name="s_vokrii">Vokrii - Minimalistic Perks of Skyrim</string>
-    <string name="s_vanilla">Vanilla Skyrim</string>
+    <string name="s_vanilla">Skyrim</string>
     <string name="close">Close</string>
 </resources>

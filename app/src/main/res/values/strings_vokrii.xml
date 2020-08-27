@@ -33,7 +33,6 @@
     <string name="d_vok_alc_gourmet">Vendors of rare alchemical ingredients may sell Jarrin Root, used to make deadly poisons.</string>
     <string name="d_vok_alc_double_toil_and_trouble">Twice as many potions are created.</string>
 
-    <!-- merge runic weapon into Battlemage -->
     <string name="p_vok_alt_alteration_mastery">Alteration Mastery</string>
     <string name="p_vok_alt_alteration_dual_casting">Alteration Dual Casting</string>
     <string name="p_vok_alt_mage_armor">Mage Armor</string>
@@ -46,7 +45,6 @@
     <string name="p_vok_alt_alter_self">Alter Self</string>
     <string name="p_vok_alt_initiate">Initiate</string>
     <string name="p_vok_alt_arcane_guidance">Arcane Guidance</string>
-    <string name="p_vok_alt_runic_weapon">Runic Weapon</string>
     <string name="p_vok_alt_atronach">Atronach</string>
     <string name="p_vok_alt_force_of_will">Force of Will</string>
     <string name="p_vok_alt_hethoths_escape">Hethoth\'s Escape</string>
@@ -65,7 +63,6 @@
     <string name="d_vok_alt_alter_self">Choose an attribute to raise by 50 points./, and two resistances to raise by 25%.</string>
     <string name="d_vok_alt_initiate">Novice spells of any school cost no Magicka to cast.</string>
     <string name="d_vok_alt_arcane_guidance">Detection spells reveal targets from much farther away.</string>
-    <string name="d_vok_alt_runic_weapon">One-handed weapon attacks improve your spells cast on the target by 25% for 3 seconds.</string>
     <string name="d_vok_alt_atronach">30% chance to absorb incoming spells, replenishing your Magicka.</string>
     <string name="d_vok_alt_force_of_will">Take 20% less attack damage while dual casting a spell if not wearing armor.</string>
     <string name="d_vok_alt_hethoths_escape">Once every 10 minutes, paralyzes a melee attacker that is about to deal lethal damage to you.</string>
@@ -192,15 +189,7 @@
     <string name="p_vok_des_crackling_sphere">Crackling Sphere</string>
     <string name="p_vok_des_elemental_barrier">Elemental Barrier</string>
     <string name="p_vok_des_elemental_shield">Elemental Shield</string>
-    <string name="p_vok_des_mages_fury">Mage\'s Fury</string>
-    <string name="p_vok_des_eye_of_the_storm">Eye of the Storm</string>
-
-    <!--
-    remove eye of the storm
-    mages fury -> Hellstorm
-        Deal double elemental damage to targets that are ignited, frozen, silenced or levitated.
-
-    -->
+    <string name="p_vok_des_hellstorm">Hellstorm</string>
 
     <string name="d_vok_des_destruction_mastery">Cast Destruction spells for 0.5% less Magicka per level of Destruction.</string>
     <string name="d_vok_des_destruction_dual_casting">Dual casting a Destruction spell overcharges its effects, increasing power and casting cost.</string>
@@ -218,8 +207,7 @@
     <string name="d_vok_des_crackling_sphere">Shock spells have 15% chance to levitate targets for 2 seconds.</string>
     <string name="d_vok_des_elemental_barrier">Destruction walls and cloaks deal 50% more damage, and the damage persists for 15 seconds.</string>
     <string name="d_vok_des_elemental_shield">Destruction cloaks grant 50% resistance to their element.</string>
-    <string name="d_vok_des_mages_fury">Deal double elemental damage to targets that are ignited, frozen, silenced or levitated.</string>
-    <string name="d_vok_des_eye_of_the_storm">Two-handed Destruction spells are 30% more powerful, and you get a 40 damage elemental cloak during casting.</string>
+    <string name="d_vok_des_hellstorm">Deal double elemental damage to targets that are ignited, frozen, silenced or levitated.</string>
 
     <string name="p_vok_enc_enchanting_mastery">Enchanting Mastery</string>
     <string name="p_vok_enc_power_stone">Power Stone</string>
@@ -260,7 +248,7 @@
     <string name="p_vok_har_battle_fatigue">Battle Fatigue</string>
     <string name="p_vok_har_heavy_armor_fit">Heavy Armor Fit</string>
     <string name="p_vok_har_face_of_death">Face of Death</string>
-    <string name="p_vok_har_off_balance">Off Balance</string>
+    <string name="p_vok_har_immovable_object">Immovable Object</string>
     <string name="p_vok_har_heavy_armor_training">Heavy Armor Training</string>
     <string name="p_vok_har_reap_the_whirlwind">Reap the Whirlwind</string>
     <string name="p_vok_har_tower_of_strength">Tower of Strength</string>
@@ -269,13 +257,12 @@
     <string name="p_vok_har_glancing_blows">Glancing Blows</string>
     <string name="p_vok_har_face_of_the_mountain">Face of the Mountain</string>
 
-    <!-- off balance -> immovable object -->
     <string name="d_vok_har_heavy_armor_mastery">Armor rating of Heavy Armor pieces increased by 1% per level of Heavy Armor.</string>
     <string name="d_vok_har_cushioned">You take half/no damage from falling if wearing all Heavy Armor.</string>
     <string name="d_vok_har_battle_fatigue">Take up to 20% less attack damage from opponents with low Stamina if wearing all Heavy Armor.</string>
     <string name="d_vok_har_heavy_armor_fit">Armor rating of Heavy Armor pieces increased by 15% if wearing all Heavy Armor.</string>
     <string name="d_vok_har_face_of_death">Other Heavy Armor perks no longer require a helmet. Armor rating of Heavy Armor pieces increased by 20% if not wearing a helmet.</string>
-    <string name="d_vok_har_off_balance">Taking an incoming hit in all Heavy Armor has 10% chance to stagger the attacker.</string>
+    <string name="d_vok_har_immovable_object">Taking an incoming hit in all Heavy Armor has 10% chance to stagger the attacker.</string>
     <string name="d_vok_har_heavy_armor_training">Heavy Armor weighs nothing and doesn\'t slow you down when worn.</string>
     <string name="d_vok_har_reap_the_whirlwind">Taking an incoming hit in all Heavy Armor grants 15% attack damage and critical damage against the attacker for 5 seconds.</string>
     <string name="d_vok_har_tower_of_strength">Take 25% less damage from power attacks and bashes if wearing all Heavy Armor.</string>
@@ -344,7 +331,7 @@
     <string name="d_vok_lar_evasive_sprint">While sprinting in all Light Armor, incoming attacks and spells always miss.</string>
     <string name="d_vok_lar_tough_hide">Wearing all Light Armor grants 40% Poison Resist and Disease Resist.</string>
     <string name="d_vok_lar_ki_strike">Power attacks with two empty hands deal 60 points of random elemental damage.</string>
-    <string name="d_vok_lar_untouchable">Move an additional 10% faster in combat. This bonus is lost for 10 seconds after taking an unblocked hit.</string>
+    <string name="d_vok_lar_untouchable">Move an additional 10% faster in combat in all Light Armor. Taking an unblocked hit disables this effect for 10 seconds.</string>
 
     <string name="p_vok_lck_lockpicking_mastery">Lockpicking Mastery</string>
     <string name="p_vok_lck_looter">Looter</string>
@@ -470,51 +457,31 @@
     <string name="d_vok_rst_eternal_flame">Healing spells linger, healing the original amount again over the course of 20 seconds.</string>
     <string name="d_vok_rst_intervention">Once every 20 minutes, a higher power brings you back with full Health upon death.</string>
 
-    <string name="p_vok_smt_basic_smithing">Basic Smithing</string>
+    <string name="p_vok_smt_steel_smithing">Steel Smithing</string>
     <string name="p_vok_smt_armor_padding">Armor Padding</string>
-    <string name="p_vok_smt_meric_smithing">Meric Smithing</string>
+    <string name="p_vok_smt_elven_smithing">Elven Smithing</string>
     <string name="p_vok_smt_dwarven_smithing">Dwarven Smithing</string>
     <string name="p_vok_smt_arcane_blacksmith">Arcane Blacksmith</string>
-    <string name="p_vok_smt_engraved_smithing">Engraved Smithing</string>
-    <string name="p_vok_smt_primal_smithing">Primal Smithing</string>
+    <string name="p_vok_smt_orcish_smithing">Orcish Smithing</string>
+    <string name="p_vok_smt_advanced_armors">Advanced Armors</string>
     <string name="p_vok_smt_layered_plates">Layered Plates</string>
-    <string name="p_vok_smt_crystalline_smithing">Crystalline Smithing</string>
-    <string name="p_vok_smt_exotic_smithing">Exotic Smithing</string>
+    <string name="p_vok_smt_glass_smithing">Glass Smithing</string>
+    <string name="p_vok_smt_ebony_smithing">Ebony Smithing</string>
     <string name="p_vok_smt_high_yield_mining">High Yield Mining</string>
     <string name="p_vok_smt_concealed_enchantments">Concealed Enchantments</string>
     <string name="p_vok_smt_daedric_smithing">Daedric Smithing</string>
     <string name="p_vok_smt_dragon_smithing">Dragon Smithing</string>
 
-
-    <!--
-
-    0 - Steel Smithing: Can create Steel armor and weapons at forges, and improve them twice as much.
-    20 - Armor Padding: Can create Linen and Leather padding at a tanning rack. They are clothing or Light Armor, function as body armor, and can be enchanted at 25% strength.
-    30 - Elven Smithing: Can create Elven armor and weapons at forges, and improve them twice as much.
-    30 - Dwarven Smithing: Can create Dwarven armor and weapons at forges, and improve them twice as much.
-    40 - Arcane Blacksmith: Can temper enchanted weapons and armor.
-    50 - Orcish Smithing: Can create Orcish armor and weapons at forges, and improve them twice as much.
-    50 - Advanced Armors: Can create Scaled and Plate armor at forges, and improve them twice as much.
-    60 - Layered Plates: Can create Steel, Dwarven and Orichalcum armor plates at forges. They are Heavy Armor, function as body armor and can be enchanted at 25% strength.
-    70 - Glass Smithing: Can create Glass armor and weapons at forges, and improve them twice as much.
-    80 - Ebony Smithing: Can create Ebony armor and weapons at forges, and improve them twice as much.
-    80 - High Yield Mining: Ore veins produce twice as much ore when mined.
-    90 - Concealed Enchantments: Can now enchant padding and armor plates at 50% strength.
-    90 - Daedric Smithing: Can create Daedric armor and weapons at forges, and improve them twice as much.
-    100 - Dragon Armor: Can create Dragon armor and Dragonbone weapons at forges, and improve them twice as much.
-
-    -->
-
-    <string name="d_vok_smt_basic_smithing">Can create Steel armor and weapons and Bonemold armor at forges, and improve them twice as much.</string>
+    <string name="d_vok_smt_steel_smithing">Can create Steel armor and weapons at forges, and improve them twice as much.</string>
     <string name="d_vok_smt_armor_padding">Can create Linen and Leather padding at a tanning rack. They are clothing or Light Armor, function as body armor, and can be enchanted at 25% strength.</string>
-    <string name="d_vok_smt_meric_smithing">Can create Elven armor and weapons and Chitin Light armor at forges, and improve them twice as much.</string>
+    <string name="d_vok_smt_elven_smithing">Can create Elven armor and weapons at forges, and improve them twice as much.</string>
     <string name="d_vok_smt_dwarven_smithing">Can create Dwarven armor and weapons at forges, and improve them twice as much.</string>
     <string name="d_vok_smt_arcane_blacksmith">Can temper enchanted weapons and armor.</string>
-    <string name="d_vok_smt_engraved_smithing">Can create Orcish, Falmer Heavy, Steel Plate and Chitin Heavy armor and weapons at forges, and improve them twice as much.</string>
-    <string name="d_vok_smt_primal_smithing">Can create Forsworn weapons and armor and Scaled armor at forges, and improve them twice as much.</string>
+    <string name="d_vok_smt_orcish_smithing">Can create Orcish armor and weapons at forges, and improve them twice as much.</string>
+    <string name="d_vok_smt_advanced_armors">Can create Scaled and Plate armor at forges, and improve them twice as much.</string>
     <string name="d_vok_smt_layered_plates">Can create Steel, Dwarven and Orichalcum armor plates at forges. They are Heavy Armor, function as body armor and can be enchanted at 25% strength.</string>
-    <string name="d_vok_smt_crystalline_smithing">Can create Glass and Stalhrim Light armor and weapons at forges, and improve them twice as much.</string>
-    <string name="d_vok_smt_exotic_smithing">Can create Nordic, Ebony and Stalhrim Heavy armor and weapons at forges, and improve them twice as much.</string>
+    <string name="d_vok_smt_glass_smithing">Can create Glass armor and weapons at forges, and improve them twice as much.</string>
+    <string name="d_vok_smt_ebony_smithing">Can create Ebony armor and weapons at forges, and improve them twice as much.</string>
     <string name="d_vok_smt_high_yield_mining">Ore veins produce twice as much ore when mined.</string>
     <string name="d_vok_smt_concealed_enchantments">Can now enchant padding and armor plates at 50% strength.</string>
     <string name="d_vok_smt_daedric_smithing">Can create Daedric armor and weapons at forges, and improve them twice as much.</string>
