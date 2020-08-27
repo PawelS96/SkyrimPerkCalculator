@@ -42,7 +42,7 @@
 
                 <TextView
 
-                    android:id="@+id/build_name"
+                    android:id="@+id/name_edit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:clickable="false"
@@ -100,12 +100,11 @@
             <Button
                 android:id="@+id/context_menu"
                 style="@style/ListButton"
-                android:layout_width="40dp"
+                android:layout_width="48dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:foreground="?attr/actionBarItemBackground"
-
                 />
 
         </RelativeLayout>
