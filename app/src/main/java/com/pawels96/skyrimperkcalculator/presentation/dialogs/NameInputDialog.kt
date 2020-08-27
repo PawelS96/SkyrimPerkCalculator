@@ -1,20 +1,20 @@
 package com.pawels96.skyrimperkcalculator.presentation.dialogs
 
+import android.annotation.SuppressLint
 import android.app.Dialog
-import android.content.Context
 import android.content.DialogInterface
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
 import android.view.WindowManager
-import android.view.inputmethod.InputMethodManager
 import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.TextView
-import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.pawels96.skyrimperkcalculator.Injector
 import com.pawels96.skyrimperkcalculator.R
+import com.pawels96.skyrimperkcalculator.databinding.PopupSaveBinding
 import com.pawels96.skyrimperkcalculator.domain.Build
 import com.pawels96.skyrimperkcalculator.presentation.hideKeyboard
 import com.pawels96.skyrimperkcalculator.presentation.toast
@@ -27,52 +27,56 @@ class NameInputDialog(private val action: Action) : BaseDialog() {
         class Rename(val build: Build) : Action()
     }
 
+    private var _binding: PopupSaveBinding? = null
+    private val binding get() = _binding!!
+
     private val model: BuildsViewModel by lazy { ViewModelProvider(requireActivity(), Injector.provideVmFactory())[BuildsViewModel::class.java] }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
 
-        root = View.inflate(context, R.layout.popup_save, null)
-
-        val et = root!!.findViewById<EditText>(R.id.build_name)
-        val tv = root!!.findViewById<TextView>(R.id.textView)
-        val copyCurrent = root!!.findViewById<CheckBox>(R.id.checkbox)
+        _binding = PopupSaveBinding.inflate(LayoutInflater.from(context))
 
         if (action is Action.Rename) {
-            tv.visibility = View.GONE
-            copyCurrent.visibility = View.GONE
+            binding.copyCurrentLabel.visibility = View.GONE
+            binding.copyCurrentCheckbox.visibility = View.GONE
 
-            et?.setText(action.build.name)
-            et?.setSelection(et.text.length)
+            binding.nameEdit.apply {
+                setText(action.build.name)
+                setSelection(text.length)
+            }
         }
 
-        val dialog = getBuilder()
-                .setView(root)
+        val dialog =  getBuilder()
+                .setView(binding.root)
                 .setCancelable(true)
                 .setTitle(resources.getString(R.string.msg_name_your_build))
                 .setPositiveButton(getString(R.string.save), null)
-                .setNegativeButton(getString(R.string.cancel)) { _: DialogInterface?, _: Int -> root?.hideKeyboard() }
-                .create()
-
+                .setNegativeButton(getString(R.string.cancel)) { _: DialogInterface?, _: Int -> binding.root.hideKeyboard() }
+                .create().apply {
+                    setCanceledOnTouchOutside(false)
+                }
 
         dialog.setOnShowListener { di: DialogInterface ->
             dialog.getButton(Dialog.BUTTON_POSITIVE).setOnClickListener { v: View? ->
-                val name = et.text.toString().trim()
+                val name = binding.nameEdit.text.toString().trim()
 
                 when (action) {
                     is Action.Rename -> model.renameBuild(action.build, name)
-                    is Action.Create -> model.createBuild(name, copyCurrent.isChecked)
+                    is Action.Create -> model.createBuild(name, binding.copyCurrentCheckbox.isChecked)
                 }
             }
         }
+
         dialog?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE)
 
         return dialog
     }
 
+    @SuppressLint("FragmentLiveDataObserve")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        model.events.observe(viewLifecycleOwner, Observer {
+        model.events.observe(this, Observer {
 
             when (val content = it.getContentIfNotHandled()) {
 
@@ -83,7 +87,7 @@ class NameInputDialog(private val action: Action) : BaseDialog() {
                     }
 
                    if (content.success){
-                       root?.hideKeyboard()
+                       binding.root.hideKeyboard()
                        dismiss()
                    }
                 }
@@ -92,6 +96,11 @@ class NameInputDialog(private val action: Action) : BaseDialog() {
     }
 
     override fun getDialogTag(): String = TAG
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 
     companion object {
         const val TAG = "NAME_INPUT"

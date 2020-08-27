@@ -19,6 +19,7 @@ import com.pawels96.skyrimperkcalculator.domain.WerewolfPerkSystem
 import com.pawels96.skyrimperkcalculator.presentation.viewmodels.BuildsViewModel
 
 class OptionsDialog : BaseDialog() {
+
     private var _binding: PopopOptionsBinding? = null
     private val binding get() = _binding!!
 
@@ -72,7 +73,6 @@ class OptionsDialog : BaseDialog() {
             it.setOnCheckedChangeListener(werewolfRadioClickListener)
         }
 
-
         val seekBarProgress = model.multiplier * 10 + 1
         val perkCountText = ": ${model.multiplier.format()}"
         binding.perksSeekbar.progress = seekBarProgress.toInt()
@@ -92,7 +92,7 @@ class OptionsDialog : BaseDialog() {
         })
 
         return getBuilder()
-                .setPositiveButton("ok") { dialog: DialogInterface, _: Int -> dialog.dismiss() }
+                .setPositiveButton("OK") { dialog: DialogInterface, _: Int -> dialog.dismiss() }
                 .setView(binding.root)
                 .create()
     }
