@@ -16,7 +16,7 @@ import com.pawels96.skyrimperkcalculator.domain.SkillType;
 import com.pawels96.skyrimperkcalculator.domain.FPoint;
 import com.pawels96.skyrimperkcalculator.domain.Perk;
 import com.pawels96.skyrimperkcalculator.domain.Skill;
-import com.pawels96.skyrimperkcalculator.domain.enums.ESpecialSkill;
+import com.pawels96.skyrimperkcalculator.domain.ESpecialSkill;
 
 import java.util.List;
 import java.util.Map;
@@ -112,7 +112,7 @@ public class GraphView extends View {
 
     public static int spToPixels(Context context, int sp) {
         float scaledDensity = context.getResources().getDisplayMetrics().scaledDensity;
-        return (int)(sp * scaledDensity);
+        return (int) (sp * scaledDensity);
     }
 
     private void drawEdge(Canvas canvas, Perk start, Perk end, Paint selectedPaint) {

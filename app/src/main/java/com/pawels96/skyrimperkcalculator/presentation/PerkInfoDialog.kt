@@ -7,8 +7,6 @@ import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.pawels96.skyrimperkcalculator.Injector
 import com.pawels96.skyrimperkcalculator.R
@@ -63,11 +61,10 @@ class PerkInfoDialog(private val skill: ISkill, private val perk: Perk) : BaseDi
     @SuppressLint("FragmentLiveDataObserve")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        Log.d("perkDialog", "activityCreated")
 
-        model.currentBuild.observe(this, Observer {
+        model.currentBuild.observe(this) {
             updateStateInfo(it.getSkill(skill)[perk.perk]!!)
-        })
+        }
     }
 
     override fun onDestroyView() {

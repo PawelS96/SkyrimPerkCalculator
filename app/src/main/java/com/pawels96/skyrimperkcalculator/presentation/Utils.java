@@ -5,7 +5,6 @@ import android.content.Context;
 import com.pawels96.skyrimperkcalculator.domain.IPerk;
 import com.pawels96.skyrimperkcalculator.domain.IPerkSystem;
 import com.pawels96.skyrimperkcalculator.domain.ISkill;
-import com.pawels96.skyrimperkcalculator.domain.enums.EMainSkill;
 
 public class Utils {
 
@@ -13,30 +12,30 @@ public class Utils {
 
     /**
      * Methods for getting perk names and descriptions from strings.xml.
-     *
+     * <p>
      * Naming convention for XML resources:
      * resType_perkSystem_skillName_perkName
-     *
+     * <p>
      * where:
      * resType is either p for perk names or d for perk descriptions
      * and the rest is the same as the names of perks in enums but in lowercase
      */
 
-    public static String getPerkName(Context c, IPerk perk){
+    public static String getPerkName(Context c, IPerk perk) {
         return getPerkInfo(c, perk, "p_");
     }
 
-    public static String getPerkDescription(Context c, IPerk perk){
+    public static String getPerkDescription(Context c, IPerk perk) {
         return getPerkInfo(c, perk, "d_");
     }
 
-    private static String getPerkInfo(Context c, IPerk perk, String resPrefix){
+    private static String getPerkInfo(Context c, IPerk perk, String resPrefix) {
 
         String info = resPrefix + String.valueOf(perk).toLowerCase();
         return getString(info, info, c);
     }
 
-    private static String getString(String resName, String defaultValue, Context c){
+    private static String getString(String resName, String defaultValue, Context c) {
         int id;
 
         try {
@@ -48,14 +47,14 @@ public class Utils {
         }
     }
 
-    public static String getSkillName(ISkill s , Context c){
+    public static String getSkillName(ISkill s, Context c) {
         String name = String.valueOf(s).toLowerCase();
         return getString(name, name, c);
     }
 
-    public static String getPerkSystemName(IPerkSystem system, Context c){
+    public static String getPerkSystemName(IPerkSystem system, Context c) {
 
-        String asString =  String.valueOf(system).toLowerCase();
+        String asString = String.valueOf(system).toLowerCase();
         String resId = "s_" + asString;
         return getString(resId, asString, c);
     }

@@ -1,6 +1,5 @@
 package com.pawels96.skyrimperkcalculator.domain.lycanthropy
 
-import com.pawels96.skyrimperkcalculator.domain.IPerk
 import com.pawels96.skyrimperkcalculator.domain.PerkInfo
 import com.pawels96.skyrimperkcalculator.domain.SpecialSkillPerk
 

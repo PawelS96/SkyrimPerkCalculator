@@ -1,6 +1,5 @@
-package com.pawels96.skyrimperkcalculator.domain.enums
+package com.pawels96.skyrimperkcalculator.domain
 
-import com.pawels96.skyrimperkcalculator.domain.*
 import com.pawels96.skyrimperkcalculator.domain.PerkSystem.*
 import com.pawels96.skyrimperkcalculator.domain.SkillType.*
 import com.pawels96.skyrimperkcalculator.domain.skills_ordinator.*

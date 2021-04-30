@@ -97,7 +97,7 @@ class BuildsDialog : BaseDialog() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        model.buildList.observe(this, Observer {
+        model.buildList.observe(this, {
             val index = it.indexOfFirst { b -> b.name == model.currentBuild.value!!.name }
             buildAdapter.display(it, index, model.multiplier)
         })

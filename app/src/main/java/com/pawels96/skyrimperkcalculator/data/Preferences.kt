@@ -33,16 +33,14 @@ class Preferences(private val sp: SharedPreferences) {
         get() = sp.getInt("selected_page", 0)
 
     var firstLaunch: Boolean
-    set(value) {
-        sp.edit().putBoolean("firstLaunch", value).apply()
-    }
-    get() = sp.getBoolean("firstLaunch", true)
+        set(value) {
+            sp.edit().putBoolean("firstLaunch", value).apply()
+        }
+        get() = sp.getBoolean("firstLaunch", true)
 
     var perkMultiplier: Float
         set(value) {
             sp.edit().putFloat("perk_multiplier", value).apply()
         }
         get() = sp.getFloat("perk_multiplier", 1.0f)
-
-
 }

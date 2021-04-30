@@ -9,7 +9,11 @@ import com.pawels96.skyrimperkcalculator.R
 import com.pawels96.skyrimperkcalculator.domain.Skill
 import com.pawels96.skyrimperkcalculator.presentation.addDivider
 
-class SkillListDialog(val skills: List<Skill>, val scrollToIndex: Int, val onSelect: (Int) -> Unit) : BaseDialog(){
+class SkillListDialog(
+        val skills: List<Skill>,
+        val scrollToIndex: Int,
+        val onSelect: (Int) -> Unit
+) : BaseDialog() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
 

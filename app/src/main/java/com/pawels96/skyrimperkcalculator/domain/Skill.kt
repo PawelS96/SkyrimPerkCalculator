@@ -1,6 +1,5 @@
 package com.pawels96.skyrimperkcalculator.domain
 
-import com.pawels96.skyrimperkcalculator.domain.enums.ESpecialSkill
 import com.pawels96.skyrimperkcalculator.domain.lycanthropy.Gro_Lycanthropy
 import com.pawels96.skyrimperkcalculator.domain.lycanthropy.Lycanthropy
 import com.pawels96.skyrimperkcalculator.domain.vampirism.Sac_Vampirism

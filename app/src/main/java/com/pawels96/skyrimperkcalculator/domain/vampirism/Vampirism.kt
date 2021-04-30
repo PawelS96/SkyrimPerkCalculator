@@ -1,8 +1,6 @@
 package com.pawels96.skyrimperkcalculator.domain.vampirism
 
-import com.pawels96.skyrimperkcalculator.domain.IPerk
 import com.pawels96.skyrimperkcalculator.domain.PerkInfo
-import com.pawels96.skyrimperkcalculator.domain.SpecialSkill
 import com.pawels96.skyrimperkcalculator.domain.SpecialSkillPerk
 
 enum class Vampirism (val x: Float, val y: Float): SpecialSkillPerk {

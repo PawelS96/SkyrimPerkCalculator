@@ -3,7 +3,7 @@ package com.pawels96.skyrimperkcalculator
 import com.pawels96.skyrimperkcalculator.domain.Build
 import com.pawels96.skyrimperkcalculator.data.BuildMapper
 import com.pawels96.skyrimperkcalculator.domain.PerkSystem
-import com.pawels96.skyrimperkcalculator.domain.enums.EMainSkill
+import com.pawels96.skyrimperkcalculator.domain.EMainSkill
 import com.pawels96.skyrimperkcalculator.domain.skills_ordinator.Ord_Alchemy
 import junit.framework.Assert.assertEquals
 import org.junit.Test

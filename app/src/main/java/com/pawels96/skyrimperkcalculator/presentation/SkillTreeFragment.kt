@@ -21,7 +21,9 @@ class SkillTreeFragment : Fragment() {
     private var reqSkill: TextView? = null
     private var skillEnum: ISkill? = null
 
-    private val model: BuildsViewModel by lazy { ViewModelProvider(requireActivity(), Injector.provideVmFactory())[BuildsViewModel::class.java] }
+    private val model: BuildsViewModel by lazy {
+        ViewModelProvider(requireActivity(), Injector.provideVmFactory())[BuildsViewModel::class.java]
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,7 +44,7 @@ class SkillTreeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        model.currentBuild.observe(viewLifecycleOwner, Observer { displayBuild(it) })
+        model.currentBuild.observe(viewLifecycleOwner) { displayBuild(it) }
     }
 
     private fun displayBuild(build: Build) {
@@ -61,12 +63,17 @@ class SkillTreeFragment : Fragment() {
     }
 
     private val listener: OnNodeClickedListener = object : OnNodeClickedListener {
-        override fun onNodeClicked(perk: Perk) { model.changePerkState(skillEnum!!, perk.perk) }
-        override fun onNodeHolding(perk: Perk) { showPerkDescription(perk) }
+        override fun onNodeClicked(perk: Perk) {
+            model.changePerkState(skillEnum!!, perk.perk)
+        }
+
+        override fun onNodeHolding(perk: Perk) {
+            showPerkDescription(perk)
+        }
     }
 
     private fun showPerkDescription(perk: Perk) {
-       PerkInfoDialog(skillEnum!!, perk).show(childFragmentManager)
+        PerkInfoDialog(skillEnum!!, perk).show(childFragmentManager)
     }
 
     companion object {

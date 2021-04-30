@@ -1,8 +1,6 @@
 package com.pawels96.skyrimperkcalculator.domain
 
 import com.pawels96.skyrimperkcalculator.presentation.Utils.DEFAULT_BUILD_NAME
-import com.pawels96.skyrimperkcalculator.domain.enums.EMainSkill
-import com.pawels96.skyrimperkcalculator.domain.enums.ESpecialSkill
 
 data class Build(
         val id: Long,
