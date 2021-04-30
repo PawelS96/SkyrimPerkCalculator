@@ -22,17 +22,17 @@ class Converters {
     fun werewolfPerkSystemToString(system: WerewolfPerkSystem) = system.toString()
 
     @TypeConverter
-    fun mainPerkSystemFromString(string: String) : PerkSystem {
+    fun mainPerkSystemFromString(string: String): PerkSystem {
         return string.asEnumOrDefault(PerkSystem.VANILLA)!!
     }
 
     @TypeConverter
-    fun vampirePerkSystemFromString(string: String) : VampirePerkSystem {
+    fun vampirePerkSystemFromString(string: String): VampirePerkSystem {
         return string.asEnumOrDefault(VampirePerkSystem.VANILLA)!!
     }
 
     @TypeConverter
-    fun werewolfPerkSystemFromString(string: String) : WerewolfPerkSystem {
+    fun werewolfPerkSystemFromString(string: String): WerewolfPerkSystem {
         return string.asEnumOrDefault(WerewolfPerkSystem.VANILLA)!!
     }
 
@@ -40,25 +40,25 @@ class Converters {
     fun mapToString(map: Map<String, Map<String, Int>>): String = Gson().toJson(map)
 
     @TypeConverter
-    fun mapFromString(string: String) : Map<String, Map<String, Int>> {
+    fun mapFromString(string: String): Map<String, Map<String, Int>> {
         val token = object : TypeToken<Map<String, Map<String, Int>>>() {}.type
         return Gson().fromJson(string, token)
     }
 
     @TypeConverter
-    fun vampirePerksMapToString(map : Map<VampirePerkSystem, Map<String, Int>>): String = Gson().toJson(map)
+    fun vampirePerksMapToString(map: Map<VampirePerkSystem, Map<String, Int>>): String = Gson().toJson(map)
 
     @TypeConverter
-    fun vampirePerksFromString(string: String) : Map<VampirePerkSystem, Map<String, Int>> {
+    fun vampirePerksFromString(string: String): Map<VampirePerkSystem, Map<String, Int>> {
         val token = object : TypeToken<Map<VampirePerkSystem, Map<String, Int>>>() {}.type
         return Gson().fromJson(string, token)
     }
 
     @TypeConverter
-    fun werewolfPerksMapToString(map : Map<WerewolfPerkSystem, Map<String, Int>>): String = Gson().toJson(map)
+    fun werewolfPerksMapToString(map: Map<WerewolfPerkSystem, Map<String, Int>>): String = Gson().toJson(map)
 
     @TypeConverter
-    fun werewolfPerksFromString(string: String) : Map<WerewolfPerkSystem, Map<String, Int>> {
+    fun werewolfPerksFromString(string: String): Map<WerewolfPerkSystem, Map<String, Int>> {
         val token = object : TypeToken<Map<WerewolfPerkSystem, Map<String, Int>>>() {}.type
         return Gson().fromJson(string, token)
     }

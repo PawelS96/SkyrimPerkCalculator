@@ -1,8 +1,6 @@
 package com.pawels96.skyrimperkcalculator.presentation.dialogs
 
 import android.content.Context
-import android.text.SpannableString
-import android.text.SpannableStringBuilder
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -12,22 +10,21 @@ import androidx.recyclerview.widget.RecyclerView
 import com.pawels96.skyrimperkcalculator.R
 import com.pawels96.skyrimperkcalculator.domain.Skill
 import com.pawels96.skyrimperkcalculator.domain.SkillType
-import com.pawels96.skyrimperkcalculator.domain.enums.ESpecialSkill
-import com.pawels96.skyrimperkcalculator.presentation.BuildAdapter
+import com.pawels96.skyrimperkcalculator.domain.ESpecialSkill
 import com.pawels96.skyrimperkcalculator.presentation.Utils.getSkillName
 import com.pawels96.skyrimperkcalculator.presentation.colored
 
-class SkillAdapter(private val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
+class SkillAdapter(private val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val skills: MutableList<Skill> = mutableListOf()
 
-    fun display(_skills : List<Skill>){
+    fun display(_skills: List<Skill>) {
         this.skills.clear()
         this.skills.addAll(_skills)
         notifyDataSetChanged()
     }
 
-    lateinit var onItemClick : (Int) -> Unit
+    lateinit var onItemClick: (Int) -> Unit
 
     override fun getItemCount(): Int = skills.size
 
@@ -49,13 +46,13 @@ class SkillAdapter(private val context: Context) : RecyclerView.Adapter<Recycler
         hol.root.setOnClickListener { onItemClick(position) }
     }
 
-    private fun getColor(skill: Skill) : Int {
+    private fun getColor(skill: Skill): Int {
 
-        val colorID =  when(skill.type){
+        val colorID = when (skill.type) {
             SkillType.COMBAT -> R.color.skillCombatBright
             SkillType.MAGIC -> R.color.skillMagicBright
             SkillType.STEALTH -> R.color.skillStealthBright
-            SkillType.SPECIAL -> when(skill.iskill){
+            SkillType.SPECIAL -> when (skill.iskill) {
                 ESpecialSkill.SKILL_LYCANTHROPY -> R.color.skillWerewolfBright
                 ESpecialSkill.SKILL_VAMPIRISM -> R.color.skillVampireBright
                 else -> R.color.colorFont

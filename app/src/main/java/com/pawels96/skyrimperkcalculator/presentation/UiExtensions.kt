@@ -3,7 +3,6 @@ package com.pawels96.skyrimperkcalculator.presentation
 import android.app.Activity
 import android.content.Context
 import android.graphics.Rect
-import android.graphics.drawable.Drawable
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
 import android.view.View
@@ -14,10 +13,6 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.pawels96.skyrimperkcalculator.R
-import com.pawels96.skyrimperkcalculator.domain.Skill
-import com.pawels96.skyrimperkcalculator.domain.SkillType
-import com.pawels96.skyrimperkcalculator.domain.enums.ESpecialSkill
 
 fun Activity.toast(txt: String) = Toast.makeText(this, txt, Toast.LENGTH_SHORT).show()
 

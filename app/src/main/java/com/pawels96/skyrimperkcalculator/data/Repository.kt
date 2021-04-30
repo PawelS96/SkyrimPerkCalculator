@@ -1,11 +1,7 @@
 package com.pawels96.skyrimperkcalculator.data
 
-import android.util.Log
-import androidx.room.Database
-import com.pawels96.skyrimperkcalculator.Injector
 import com.pawels96.skyrimperkcalculator.domain.Build
 import com.pawels96.skyrimperkcalculator.domain.PerkSystem
-import kotlin.system.measureTimeMillis
 
 class Repository(private val dao: BuildDAO) {
 
@@ -14,7 +10,7 @@ class Repository(private val dao: BuildDAO) {
     fun delete(build: Build) = dao.delete(build.id) > 0
     fun update(build: Build) = dao.update(BuildMapper.toEntity(build)) > 0
 
-    fun getByPerkSystem(perkSystem: PerkSystem, insertIfEmpty : Boolean) : List<Build> {
+    fun getByPerkSystem(perkSystem: PerkSystem, insertIfEmpty: Boolean): List<Build> {
 
         var builds = dao.getAllByPerkSystem(perkSystem)
 
@@ -26,19 +22,18 @@ class Repository(private val dao: BuildDAO) {
         return builds.map { BuildMapper.fromEntity(it) }
     }
 
-    fun isNameAvailable(name: String, perkSystem: PerkSystem) : Boolean {
-       return dao.getByName(name,perkSystem) == null
+    fun isNameAvailable(name: String, perkSystem: PerkSystem): Boolean {
+        return dao.getByName(name, perkSystem) == null
     }
 
-    fun getByNameOrDefault(name: String, perkSystem: PerkSystem) : Build{
+    fun getByNameOrDefault(name: String, perkSystem: PerkSystem): Build {
 
-        val byName = dao.getByName(name,perkSystem) ?: dao.getFirst(perkSystem)
+        val byName = dao.getByName(name, perkSystem) ?: dao.getFirst(perkSystem)
 
-        return if (byName == null){
+        return if (byName == null) {
             insert(Build.create(perkSystem))
             BuildMapper.fromEntity(dao.getFirst(perkSystem)!!)
-        }
-        else BuildMapper.fromEntity(byName)
+        } else BuildMapper.fromEntity(byName)
     }
 
     fun count() = dao.count()

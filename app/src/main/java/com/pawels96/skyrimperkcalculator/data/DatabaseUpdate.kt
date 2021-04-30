@@ -2,7 +2,7 @@ package com.pawels96.skyrimperkcalculator.data
 
 import com.pawels96.skyrimperkcalculator.domain.IPerk
 import com.pawels96.skyrimperkcalculator.domain.PerkSystem
-import com.pawels96.skyrimperkcalculator.domain.enums.EMainSkill
+import com.pawels96.skyrimperkcalculator.domain.EMainSkill
 import kotlin.math.min
 
 typealias PerkMap = MutableMap<String, Int>
@@ -17,7 +17,7 @@ class DatabaseUpdater(val dao: BuildDAO) {
 
             val skills = it.mainSkills
 
-            EMainSkill.values().forEach {skill ->
+            EMainSkill.values().forEach { skill ->
                 val perks = skill.getPerks(perkSystem)
                 val savedPerks = skills[skill.toString()]
                 perks.forEach { perk -> savedPerks?.updateMaxLevel(perk)  }

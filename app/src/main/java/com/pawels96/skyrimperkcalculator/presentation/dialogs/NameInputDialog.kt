@@ -46,7 +46,7 @@ class NameInputDialog(private val action: Action) : BaseDialog() {
             }
         }
 
-        val dialog =  getBuilder()
+        val dialog = getBuilder()
                 .setView(binding.root)
                 .setCancelable(true)
                 .setTitle(resources.getString(R.string.msg_name_your_build))
@@ -82,14 +82,14 @@ class NameInputDialog(private val action: Action) : BaseDialog() {
 
                 is BuildsViewModel.Event.BuildRenamed, is BuildsViewModel.Event.BuildSaved -> {
 
-                    content.messageID?.let {message ->
+                    content.messageID?.let { message ->
                         activity?.toast(message)
                     }
 
-                   if (content.success){
-                       binding.root.hideKeyboard()
-                       dismiss()
-                   }
+                    if (content.success) {
+                        binding.root.hideKeyboard()
+                        dismiss()
+                    }
                 }
             }
         })

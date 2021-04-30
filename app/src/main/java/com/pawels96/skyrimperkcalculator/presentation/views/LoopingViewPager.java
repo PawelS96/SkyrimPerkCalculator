@@ -1,6 +1,7 @@
 package com.pawels96.skyrimperkcalculator.presentation.views;
 
 import android.content.Context;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.viewpager.widget.ViewPager;
@@ -16,13 +17,13 @@ public class LoopingViewPager extends ViewPager {
         super(context, attrs);
     }
 
-    public interface MovementListener{
+    public interface MovementListener {
         void onActionDown();
     }
 
     private MovementListener listener;
 
-    public void setListener(MovementListener listener){
+    public void setListener(MovementListener listener) {
         this.listener = listener;
     }
 

@@ -1,7 +1,7 @@
 package com.pawels96.skyrimperkcalculator.domain.skills_vanilla
 
 import com.pawels96.skyrimperkcalculator.domain.IPerk
-import com.pawels96.skyrimperkcalculator.domain.enums.EMainSkill
+import com.pawels96.skyrimperkcalculator.domain.EMainSkill
 import java.util.HashMap
 import com.pawels96.skyrimperkcalculator.domain.skills_vanilla.Alchemy.*
 import com.pawels96.skyrimperkcalculator.domain.skills_vanilla.Alteration.*

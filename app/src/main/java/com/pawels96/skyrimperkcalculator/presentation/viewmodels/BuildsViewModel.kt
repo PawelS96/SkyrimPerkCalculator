@@ -11,7 +11,6 @@ import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-
 class BuildsViewModel(private val repo: Repository, private val prefs: Preferences) : ViewModel() {
 
     private val _currentBuild = MutableLiveData<Build>()
@@ -20,7 +19,7 @@ class BuildsViewModel(private val repo: Repository, private val prefs: Preferenc
     private val _events = MutableLiveData<LiveEvent<Event>>()
 
     val requiredLevel: LiveData<Int> get() = _requiredLevel
-    val currentBuild: LiveData<Build>  get() = _currentBuild
+    val currentBuild: LiveData<Build> get() = _currentBuild
     val buildList: LiveData<MutableList<Build>> get() = _currentBuildList
     val events: LiveData<LiveEvent<Event>> get() = _events
     val allCurrentBuildSkills: List<Skill> get() = ArrayList(_currentBuild.value!!.getAllSkills())
@@ -164,12 +163,15 @@ class BuildsViewModel(private val repo: Repository, private val prefs: Preferenc
             val message = if (success) R.string.msg_name_changed else R.string.msg_error
             if (success) {
                 val b = builds.find { it.name == currentName }
-                b?.name = newName
 
-                if (renamingCurrentBuild)
-                    _currentBuild.postValue(b)
+                b?.let {
+                    b.name = newName
 
-                _currentBuildList.postNotifyObserver()
+                    if (renamingCurrentBuild)
+                        _currentBuild.postValue(b!!)
+
+                    _currentBuildList.postNotifyObserver()
+                }
             }
 
             _events.value = LiveEvent(Event.BuildSaved(success, message))

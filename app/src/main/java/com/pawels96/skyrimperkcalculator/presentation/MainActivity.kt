@@ -9,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.TabLayoutOnPageChangeListener
@@ -17,8 +16,8 @@ import com.pawels96.skyrimperkcalculator.Injector
 import com.pawels96.skyrimperkcalculator.R
 import com.pawels96.skyrimperkcalculator.databinding.ActivityMainBinding
 import com.pawels96.skyrimperkcalculator.domain.ISkill
-import com.pawels96.skyrimperkcalculator.domain.enums.EMainSkill
-import com.pawels96.skyrimperkcalculator.domain.enums.ESpecialSkill
+import com.pawels96.skyrimperkcalculator.domain.EMainSkill
+import com.pawels96.skyrimperkcalculator.domain.ESpecialSkill
 import com.pawels96.skyrimperkcalculator.presentation.Utils.getSkillName
 import com.pawels96.skyrimperkcalculator.presentation.dialogs.*
 import com.pawels96.skyrimperkcalculator.presentation.viewmodels.BuildsViewModel
@@ -60,8 +59,8 @@ class MainActivity : AppCompatActivity() {
 
         skillFragmentAdapter.notifyDataSetChanged()
 
-        model.currentBuild.observe(this, Observer { updateBuildInfo(it) })
-        model.requiredLevel.observe(this, Observer { updateRequiredLevel(it) })
+        model.currentBuild.observe(this, { updateBuildInfo(it) })
+        model.requiredLevel.observe(this, { updateRequiredLevel(it) })
         binding.tabs.addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(binding.viewPager))
 
         if (prefs.firstLaunch)

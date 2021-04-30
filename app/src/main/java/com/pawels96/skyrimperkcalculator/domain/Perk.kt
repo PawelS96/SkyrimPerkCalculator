@@ -1,6 +1,5 @@
 package com.pawels96.skyrimperkcalculator.domain
 
-import java.lang.Integer.min
 import java.util.*
 
 class Perk(val perk: IPerk) {

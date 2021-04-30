@@ -14,7 +14,10 @@ import com.pawels96.skyrimperkcalculator.R
 import com.pawels96.skyrimperkcalculator.domain.Build
 import com.pawels96.skyrimperkcalculator.domain.SkillType
 
-class BuildAdapter(private val context: Context, private val callback: BuildAdapterCallback) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class BuildAdapter(
+        private val context: Context,
+        private val callback: BuildAdapterCallback
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val items = mutableListOf<Build>()
     private var selected: Int = 0
@@ -63,8 +66,7 @@ class BuildAdapter(private val context: Context, private val callback: BuildAdap
 
         if (skills.isNotEmpty()) {
             skills.forEach { builder.append(it) }
-        }
-        else builder.append("0")
+        } else builder.append("0")
 
         holder.perks.text = builder//, TextView.BufferType.SPANNABLE)
 

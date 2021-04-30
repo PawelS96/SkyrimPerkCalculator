@@ -1,10 +1,7 @@
 package com.pawels96.skyrimperkcalculator
 
 import com.pawels96.skyrimperkcalculator.domain.*
-import com.pawels96.skyrimperkcalculator.domain.enums.EMainSkill
-import com.pawels96.skyrimperkcalculator.domain.enums.ESpecialSkill
-import com.pawels96.skyrimperkcalculator.domain.skills_ordinator.Ord_Alchemy
-import com.pawels96.skyrimperkcalculator.domain.vampirism.Vampirism
+import com.pawels96.skyrimperkcalculator.domain.ESpecialSkill
 import junit.framework.Assert.assertEquals
 import org.junit.Test
 

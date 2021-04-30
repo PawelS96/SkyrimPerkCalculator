@@ -26,7 +26,9 @@ class BuildDescriptionDialog(val build: Build) : BaseDialog() {
     private var _binding: PopupBuildDescriptionBinding? = null
     private val binding get() = _binding!!
 
-    private val model: BuildsViewModel by lazy { ViewModelProvider(requireActivity(), Injector.provideVmFactory())[BuildsViewModel::class.java] }
+    private val model: BuildsViewModel by lazy {
+        ViewModelProvider(requireActivity(), Injector.provideVmFactory())[BuildsViewModel::class.java]
+    }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
 

@@ -2,14 +2,12 @@ package com.pawels96.skyrimperkcalculator
 
 import android.content.Context
 import com.pawels96.skyrimperkcalculator.data.AppDatabase
-import org.junit.After
 import androidx.test.InstrumentationRegistry
 import com.pawels96.skyrimperkcalculator.domain.Build
-import com.pawels96.skyrimperkcalculator.data.BuildMapper
 import com.pawels96.skyrimperkcalculator.data.Repository
 import com.pawels96.skyrimperkcalculator.domain.PerkSystem
 import com.pawels96.skyrimperkcalculator.domain.VampirePerkSystem
-import com.pawels96.skyrimperkcalculator.domain.enums.EMainSkill
+import com.pawels96.skyrimperkcalculator.domain.EMainSkill
 import com.pawels96.skyrimperkcalculator.domain.skills_vanilla.Alchemy
 import com.pawels96.skyrimperkcalculator.presentation.Utils.DEFAULT_BUILD_NAME
 import junit.framework.Assert.*

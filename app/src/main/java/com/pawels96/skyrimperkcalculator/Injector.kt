@@ -9,7 +9,7 @@ object Injector {
     lateinit var oldDb: OldDatabase
     lateinit var prefs: Preferences
 
-    private lateinit var db : AppDatabase
+    private lateinit var db: AppDatabase
     private lateinit var repo: Repository
 
     fun init(context: Context) {

@@ -7,13 +7,11 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.pawels96.skyrimperkcalculator.domain.Build;
 import com.pawels96.skyrimperkcalculator.domain.IPerk;
 import com.pawels96.skyrimperkcalculator.domain.PerkSystem;
-import com.pawels96.skyrimperkcalculator.domain.enums.EMainSkill;
+import com.pawels96.skyrimperkcalculator.domain.EMainSkill;
 import com.pawels96.skyrimperkcalculator.domain.skills_vokrii.Vok_Destruction;
 import com.pawels96.skyrimperkcalculator.domain.skills_vokrii.Vok_HeavyArmor;
 import com.pawels96.skyrimperkcalculator.domain.skills_vokrii.Vok_Smithing;
