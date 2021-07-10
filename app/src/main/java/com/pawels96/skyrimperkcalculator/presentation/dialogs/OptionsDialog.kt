@@ -83,12 +83,14 @@ class OptionsDialog : BaseDialog() {
                 val value = progress.toFloat() / 10 + 0.1f
                 val perkText = ": ${value.format()}"
                 binding.perksValue.text = perkText
-                model.multiplier = value
+                model.setPerkMultiplier(value)
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) {}
 
-            override fun onStopTrackingTouch(seekBar: SeekBar?) {}
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {
+                model.savePerkMultiplier()
+            }
         })
 
         return getBuilder()
