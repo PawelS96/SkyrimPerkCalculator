@@ -142,7 +142,6 @@ class BuildsViewModel(private val repo: Repository, private val prefs: Preferenc
 
     fun renameBuild(build: Build, newName: String) {
 
-        val currentName = build.name
         val renamingCurrentBuild = build.name == _currentBuild.value?.name
 
         if (newName.trim().isEmpty()) {
@@ -156,20 +155,12 @@ class BuildsViewModel(private val repo: Repository, private val prefs: Preferenc
         }
 
         if (repo.isNameAvailable(newName, currentPerkSystem)) {
-
+            build.name = newName
             val success = repo.update(build)
             val message = if (success) R.string.msg_name_changed else R.string.msg_error
             if (success) {
-                val b = builds.find { it.name == currentName }
-
-                b?.let {
-                    it.name = newName
-
-                    if (renamingCurrentBuild)
-                        _currentBuild.postValue(it)
-
-                    _currentBuildList.postNotifyObserver()
-                }
+                if (renamingCurrentBuild) { selectBuild(build) }
+                _currentBuildList.postNotifyObserver()
             }
 
             _events.value = LiveEvent(Event.BuildSaved(success, message))
