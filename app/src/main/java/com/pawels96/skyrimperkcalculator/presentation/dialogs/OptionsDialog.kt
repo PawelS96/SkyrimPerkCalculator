@@ -3,7 +3,6 @@ package com.pawels96.skyrimperkcalculator.presentation.dialogs
 import android.app.Dialog
 import android.content.DialogInterface
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.widget.CompoundButton
 import android.widget.SeekBar
 import androidx.lifecycle.ViewModelProvider
@@ -11,12 +10,12 @@ import com.pawels96.skyrimperkcalculator.Injector
 import com.pawels96.skyrimperkcalculator.databinding.PopopOptionsBinding
 import com.pawels96.skyrimperkcalculator.domain.VampirePerkSystem
 import com.pawels96.skyrimperkcalculator.domain.WerewolfPerkSystem
+import com.pawels96.skyrimperkcalculator.presentation.viewBinding
 import com.pawels96.skyrimperkcalculator.presentation.viewmodels.BuildsViewModel
 
 class OptionsDialog : BaseDialog() {
 
-    private var _binding: PopopOptionsBinding? = null
-    private val binding get() = _binding!!
+    private val binding by viewBinding(PopopOptionsBinding::inflate)
 
     private val model: BuildsViewModel by lazy {
         ViewModelProvider(
@@ -26,8 +25,6 @@ class OptionsDialog : BaseDialog() {
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-
-        _binding = PopopOptionsBinding.inflate(LayoutInflater.from(context))
 
         when (model.currentBuild.value?.vampirePerkSystem) {
             VampirePerkSystem.VANILLA -> binding.radioVampireVanilla.isChecked = true
@@ -99,11 +96,6 @@ class OptionsDialog : BaseDialog() {
             .setPositiveButton("OK") { dialog: DialogInterface, _: Int -> dialog.dismiss() }
             .setView(binding.root)
             .create()
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 
     private fun Float.format(): String {

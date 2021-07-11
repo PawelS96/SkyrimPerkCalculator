@@ -15,13 +15,13 @@ import com.pawels96.skyrimperkcalculator.domain.Build
 import com.pawels96.skyrimperkcalculator.presentation.dialogs.BaseDialog
 import com.pawels96.skyrimperkcalculator.presentation.hideKeyboard
 import com.pawels96.skyrimperkcalculator.presentation.toast
+import com.pawels96.skyrimperkcalculator.presentation.viewBinding
 import com.pawels96.skyrimperkcalculator.presentation.viewmodels.BuildsViewModel
 import com.pawels96.skyrimperkcalculator.presentation.viewmodels.AppEvent
 
 class NameInputDialog : BaseDialog() {
 
-    private var _binding: PopupSaveBinding? = null
-    private val binding get() = _binding!!
+    private val binding by viewBinding(PopupSaveBinding::inflate)
 
     private var buildId: Long? = null
     private var build: Build? = null
@@ -43,8 +43,6 @@ class NameInputDialog : BaseDialog() {
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-
-        _binding = PopupSaveBinding.inflate(LayoutInflater.from(context))
 
         if (build != null) {
             binding.copyCurrentLabel.visibility = View.GONE
@@ -110,11 +108,6 @@ class NameInputDialog : BaseDialog() {
     }
 
     override fun getDialogTag(): String = TAG
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
 
     companion object {
         const val TAG = "NAME_INPUT"

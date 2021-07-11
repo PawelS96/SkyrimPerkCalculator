@@ -25,10 +25,9 @@ import com.pawels96.skyrimperkcalculator.presentation.dialogs.*
 import com.pawels96.skyrimperkcalculator.presentation.skill_list.SkillListDialog
 import com.pawels96.skyrimperkcalculator.presentation.viewmodels.BuildsViewModel
 
-
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMainBinding
+    private val binding by viewBinding(ActivityMainBinding::inflate)
     private val prefs = Injector.prefs
     private val model: BuildsViewModel by lazy { ViewModelProvider(this, Injector.provideVmFactory())[BuildsViewModel::class.java] }
 
@@ -37,7 +36,6 @@ class MainActivity : AppCompatActivity() {
 
         if (Build.VERSION.SDK_INT >= 21) window.navigationBarColor = Color.BLACK
 
-        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.loadButton.setOnClickListener { showBuildList() }

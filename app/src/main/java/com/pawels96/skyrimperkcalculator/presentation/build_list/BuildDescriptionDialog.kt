@@ -12,12 +12,12 @@ import com.pawels96.skyrimperkcalculator.databinding.PopupBuildDescriptionBindin
 import com.pawels96.skyrimperkcalculator.presentation.dialogs.BaseDialog
 import com.pawels96.skyrimperkcalculator.presentation.hideKeyboard
 import com.pawels96.skyrimperkcalculator.presentation.showKeyboard
+import com.pawels96.skyrimperkcalculator.presentation.viewBinding
 import com.pawels96.skyrimperkcalculator.presentation.viewmodels.BuildsViewModel
 
 class BuildDescriptionDialog : BaseDialog() {
 
-    private var _binding: PopupBuildDescriptionBinding? = null
-    private val binding get() = _binding!!
+    private val binding by viewBinding(PopupBuildDescriptionBinding::inflate)
 
     private var buildId: Long = 0
 
@@ -34,7 +34,6 @@ class BuildDescriptionDialog : BaseDialog() {
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        _binding = PopupBuildDescriptionBinding.inflate(LayoutInflater.from(context))
         val build = model.getBuildById(buildId)
         binding.buildDesc.text = build?.description
 
@@ -79,11 +78,6 @@ class BuildDescriptionDialog : BaseDialog() {
         }
 
         return dialog
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 
     override fun getDialogTag(): String = TAG

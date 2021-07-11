@@ -3,7 +3,6 @@ package com.pawels96.skyrimperkcalculator.presentation.build_list
 import android.annotation.SuppressLint
 import android.app.Dialog
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
@@ -19,11 +18,11 @@ import com.pawels96.skyrimperkcalculator.domain.PerkSystem
 import com.pawels96.skyrimperkcalculator.presentation.Utils
 import com.pawels96.skyrimperkcalculator.presentation.viewmodels.BuildsViewModel
 import com.pawels96.skyrimperkcalculator.presentation.dialogs.BaseDialog
+import com.pawels96.skyrimperkcalculator.presentation.viewBinding
 
 class BuildsDialog : BaseDialog() {
 
-    private var _binding: DialogListBuildsBinding? = null
-    private val binding get() = _binding!!
+    private val binding by viewBinding(DialogListBuildsBinding::inflate)
 
     private val model: BuildsViewModel by lazy {
         ViewModelProvider(
@@ -35,7 +34,6 @@ class BuildsDialog : BaseDialog() {
     private lateinit var buildAdapter: BuildAdapter
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        _binding = DialogListBuildsBinding.inflate(LayoutInflater.from(context))
 
         val spinnerItems = PerkSystem.values().map { Utils.getPerkSystemName(it, context) }
 
@@ -124,11 +122,6 @@ class BuildsDialog : BaseDialog() {
             val index = it.indexOfFirst { b -> b.name == model.currentBuild.value!!.name }
             buildAdapter.display(it, index, model.multiplier)
         })
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 
     override fun getDialogTag(): String = TAG

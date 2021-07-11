@@ -16,8 +16,7 @@ import com.pawels96.skyrimperkcalculator.presentation.views.GraphView.OnNodeClic
 
 class SkillTreeFragment : Fragment(R.layout.fragment_skilltree) {
 
-    private var _binding: FragmentSkilltreeBinding? = null
-    private val binding get() = _binding!!
+    private val binding by viewBinding(FragmentSkilltreeBinding::bind)
 
     private lateinit var displayedSkill: ISkill
 
@@ -33,23 +32,10 @@ class SkillTreeFragment : Fragment(R.layout.fragment_skilltree) {
         displayedSkill = requireArguments().getSerializable(ARG_SKILL) as ISkill
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentSkilltreeBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.graph.setListener(listener)
         model.currentBuild.observe(viewLifecycleOwner) { displayBuild(it) }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 
     private fun displayBuild(build: Build) {

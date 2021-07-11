@@ -14,12 +14,12 @@ import com.pawels96.skyrimperkcalculator.domain.ISkill
 import com.pawels96.skyrimperkcalculator.domain.Perk
 import com.pawels96.skyrimperkcalculator.domain.SpecialSkillPerk
 import com.pawels96.skyrimperkcalculator.presentation.Utils
+import com.pawels96.skyrimperkcalculator.presentation.viewBinding
 import com.pawels96.skyrimperkcalculator.presentation.viewmodels.BuildsViewModel
 
 class PerkInfoDialog : BaseDialog() {
 
-    private var _binding: PopupPerkDescriptionBinding? = null
-    private val binding get() = _binding!!
+    private val binding by viewBinding(PopupPerkDescriptionBinding::inflate)
 
     private lateinit var skill: ISkill
     private lateinit var perk: Perk
@@ -43,7 +43,6 @@ class PerkInfoDialog : BaseDialog() {
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        _binding = PopupPerkDescriptionBinding.inflate(LayoutInflater.from(context))
         updateStateInfo(perk)
 
         if (perk.perk is SpecialSkillPerk) {
@@ -78,11 +77,6 @@ class PerkInfoDialog : BaseDialog() {
         model.currentBuild.observe(this) {
             updateStateInfo(it.getSkill(skill)[perk.perk]!!)
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 
     override fun getDialogTag(): String = TAG
