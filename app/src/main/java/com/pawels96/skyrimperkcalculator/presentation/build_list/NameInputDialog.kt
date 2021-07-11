@@ -77,6 +77,8 @@ class NameInputDialog : BaseDialog() {
                     )
                 }
             }
+
+            binding.nameEdit.requestFocus()
         }
 
         dialog?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE)

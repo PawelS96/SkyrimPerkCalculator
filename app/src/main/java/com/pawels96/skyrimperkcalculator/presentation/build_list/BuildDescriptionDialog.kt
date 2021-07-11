@@ -60,8 +60,8 @@ class BuildDescriptionDialog : BaseDialog() {
                 edit.apply {
                     visibility = View.VISIBLE
                     setText(build?.description)
-                    requestFocus()
                     setSelection(edit.text.length)
+                    requestFocus()
                 }
 
                 positiveButton.setOnClickListener {
