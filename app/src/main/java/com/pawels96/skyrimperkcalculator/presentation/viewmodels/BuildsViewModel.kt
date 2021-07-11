@@ -22,8 +22,8 @@ class BuildsViewModel(private val repo: Repository, private val prefs: Preferenc
     private val _requiredLevel = MutableLiveData<Int>()
     val requiredLevel: LiveData<Int> = _requiredLevel
 
-    private val _events = MutableLiveData<LiveEvent<Event>>()
-    val events: LiveData<LiveEvent<Event>> = _events
+    private val _events = MutableLiveData<LiveEvent<AppEvent>>()
+    val events: LiveData<LiveEvent<AppEvent>> = _events
 
     val allCurrentBuildSkills: List<Skill> get() = ArrayList(_currentBuild.value!!.getAllSkills())
 
@@ -79,19 +79,23 @@ class BuildsViewModel(private val repo: Repository, private val prefs: Preferenc
         _currentBuildList.postNotifyObserver()
     }
 
-    fun deleteBuild(build: Build) {
+    fun canDeleteBuild() : Boolean {
+        return buildList.value?.size ?: 0 > 1
+    }
+
+    fun deleteBuild(buildId: Long) {
 
         if (_currentBuildList.value?.size == 1) {
-            dispatchEvent(Event.BuildDeleted(false, R.string.msg_cant_delete))
+            dispatchEvent(AppEvent.BuildDeleted(false, R.string.msg_cant_delete))
             return
         }
 
-        val deletingCurrent = build.id == _currentBuild.value!!.id
+        val deletingCurrent = buildId == _currentBuild.value!!.id
 
-        val deleted = repo.delete(build)
+        val deleted = repo.delete(buildId)
 
         if (deleted) {
-            val index = builds.indexOfFirst { it.id == build.id }
+            val index = builds.indexOfFirst { it.id == buildId }
             builds.removeAt(index)
 
             if (deletingCurrent)
@@ -101,18 +105,18 @@ class BuildsViewModel(private val repo: Repository, private val prefs: Preferenc
         }
 
         val message = if (deleted) R.id.delete else R.string.msg_error
-        dispatchEvent(Event.BuildDeleted(deleted, message))
+        dispatchEvent(AppEvent.BuildDeleted(deleted, message))
     }
 
     fun createBuild(buildName: String, copyCurrent: Boolean) {
 
         if (buildName.trim().isEmpty()) {
-            dispatchEvent(Event.BuildSaved(false, R.string.msg_name_empty))
+            dispatchEvent(AppEvent.BuildSaved(false, R.string.msg_name_empty))
             return
         }
 
         if (!repo.isNameAvailable(buildName, currentPerkSystem)) {
-            dispatchEvent(Event.BuildSaved(false, R.string.msg_name_in_use))
+            dispatchEvent(AppEvent.BuildSaved(false, R.string.msg_name_in_use))
             return
         }
 
@@ -125,7 +129,7 @@ class BuildsViewModel(private val repo: Repository, private val prefs: Preferenc
 
         val success = repo.insert(newBuild)
         val message = if (success) R.string.msg_build_saved else R.string.msg_error
-        dispatchEvent(Event.BuildSaved(success, message))
+        dispatchEvent(AppEvent.BuildSaved(success, message))
 
         if (success) {
             val fromDb = repo.getByNameOrDefault(buildName, currentPerkSystem)
@@ -145,17 +149,17 @@ class BuildsViewModel(private val repo: Repository, private val prefs: Preferenc
         val renamingCurrentBuild = build.name == _currentBuild.value?.name
 
         if (newName.trim().isEmpty()) {
-            dispatchEvent(Event.BuildRenamed(false, R.string.msg_name_empty))
+            dispatchEvent(AppEvent.BuildRenamed(false, R.string.msg_name_empty))
             return
         }
 
         if (build.name == newName) {
-            dispatchEvent(Event.BuildRenamed(true, null))
+            dispatchEvent(AppEvent.BuildRenamed(true, null))
             return
         }
 
         if (!repo.isNameAvailable(newName, currentPerkSystem)) {
-            dispatchEvent(Event.BuildSaved(false, R.string.msg_name_in_use))
+            dispatchEvent(AppEvent.BuildSaved(false, R.string.msg_name_in_use))
             return
         }
 
@@ -169,7 +173,7 @@ class BuildsViewModel(private val repo: Repository, private val prefs: Preferenc
             _currentBuildList.postNotifyObserver()
         }
 
-        dispatchEvent(Event.BuildSaved(success, message))
+        dispatchEvent(AppEvent.BuildSaved(success, message))
     }
 
     fun changePerkSystem(perkSystem: PerkSystem) {
@@ -200,14 +204,12 @@ class BuildsViewModel(private val repo: Repository, private val prefs: Preferenc
         _currentBuild.notifyObserver()
     }
 
-    private fun dispatchEvent(event: Event) {
-        _events.value = LiveEvent(event)
+    fun getBuildById(id: Long) : Build? {
+        return repo.getById(id)
     }
 
-    sealed class Event(val success: Boolean, val messageID: Int?) {
-        class BuildSaved(success: Boolean, messageID: Int?) : Event(success, messageID)
-        class BuildRenamed(success: Boolean, messageID: Int?) : Event(success, messageID)
-        class BuildDeleted(success: Boolean, messageID: Int?) : Event(success, messageID)
+    private fun dispatchEvent(event: AppEvent) {
+        _events.value = LiveEvent(event)
     }
 
     class Factory(private val repo: Repository, private val prefs: Preferences) : ViewModelProvider.Factory {

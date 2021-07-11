@@ -1,50 +1,54 @@
-package com.pawels96.skyrimperkcalculator.presentation.dialogs
+package com.pawels96.skyrimperkcalculator.presentation.build_list
 
 import android.app.Dialog
-import android.content.Context
 import android.content.DialogInterface
 import android.os.Bundle
-import android.system.Os.close
 import android.view.LayoutInflater
 import android.view.View
-import android.view.WindowManager
-import android.view.inputmethod.InputMethodManager
-import android.widget.EditText
-import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import com.pawels96.skyrimperkcalculator.Injector
 import com.pawels96.skyrimperkcalculator.R
 import com.pawels96.skyrimperkcalculator.databinding.PopupBuildDescriptionBinding
-import com.pawels96.skyrimperkcalculator.databinding.PopupSaveBinding
-import com.pawels96.skyrimperkcalculator.domain.Build
+import com.pawels96.skyrimperkcalculator.presentation.dialogs.BaseDialog
 import com.pawels96.skyrimperkcalculator.presentation.hideKeyboard
 import com.pawels96.skyrimperkcalculator.presentation.showKeyboard
 import com.pawels96.skyrimperkcalculator.presentation.viewmodels.BuildsViewModel
 
-class BuildDescriptionDialog(val build: Build) : BaseDialog() {
+class BuildDescriptionDialog : BaseDialog() {
 
     private var _binding: PopupBuildDescriptionBinding? = null
     private val binding get() = _binding!!
 
+    private var buildId: Long = 0
+
     private val model: BuildsViewModel by lazy {
-        ViewModelProvider(requireActivity(), Injector.provideVmFactory())[BuildsViewModel::class.java]
+        ViewModelProvider(
+            requireActivity(),
+            Injector.provideVmFactory()
+        )[BuildsViewModel::class.java]
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        buildId = requireArguments().getLong(ARG_BUILD_ID)
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-
         _binding = PopupBuildDescriptionBinding.inflate(LayoutInflater.from(context))
-        binding.buildDesc.text = build.description
+        val build = model.getBuildById(buildId)
+        binding.buildDesc.text = build?.description
 
-        val dialog = getBuilder().setTitle(build.name)
-                .setCancelable(true)
-                .setView(binding.root)
-                .setPositiveButton(getString(R.string.edit), null)
-                .setNegativeButton(getString(R.string.close)) { dialog, which ->
-                    binding.root.hideKeyboard()
-                    dismiss() }
-                .create().apply {
-                    setCanceledOnTouchOutside(false)
-                }
+        val dialog = getBuilder().setTitle(build?.name)
+            .setCancelable(true)
+            .setView(binding.root)
+            .setPositiveButton(getString(R.string.edit), null)
+            .setNegativeButton(getString(R.string.close)) { dialog, which ->
+                binding.root.hideKeyboard()
+                dismiss()
+            }
+            .create().apply {
+                setCanceledOnTouchOutside(false)
+            }
 
         dialog.setOnShowListener {
 
@@ -56,13 +60,15 @@ class BuildDescriptionDialog(val build: Build) : BaseDialog() {
 
                 edit.apply {
                     visibility = View.VISIBLE
-                    setText(build.description)
+                    setText(build?.description)
                     requestFocus()
                     setSelection(edit.text.length)
                 }
 
                 positiveButton.setOnClickListener {
-                    model.updateDescription(build, edit.text.toString().trim())
+                    if (build != null) {
+                        model.updateDescription(build, edit.text.toString().trim())
+                    }
                     edit.hideKeyboard()
                     dismiss()
                 }
@@ -84,5 +90,15 @@ class BuildDescriptionDialog(val build: Build) : BaseDialog() {
 
     companion object {
         const val TAG: String = "BUILD_DESC"
+
+        private const val ARG_BUILD_ID = "build_id"
+
+        fun create(buildId: Long): BuildDescriptionDialog {
+            return BuildDescriptionDialog().apply {
+                arguments = Bundle().apply {
+                    putLong(ARG_BUILD_ID, buildId)
+                }
+            }
+        }
     }
 }

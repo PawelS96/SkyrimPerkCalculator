@@ -7,13 +7,12 @@ import android.graphics.drawable.ColorDrawable
 import com.pawels96.skyrimperkcalculator.R
 
 class CustomDialogBuilder(
-        context: Context?,
-        themeResId: Int = R.style.CustomDialogTheme
+    context: Context?,
+    themeResId: Int = R.style.CustomDialogTheme
 ) : AlertDialog.Builder(context, themeResId) {
     override fun create(): AlertDialog {
-        val dialog = super.create()
-        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-
-        return dialog
+        return super.create().apply {
+            window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        }
     }
 }

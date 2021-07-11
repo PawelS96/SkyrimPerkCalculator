@@ -1,9 +1,8 @@
-package com.pawels96.skyrimperkcalculator.presentation
+package com.pawels96.skyrimperkcalculator.presentation.dialogs
 
 import android.annotation.SuppressLint
 import android.app.Dialog
 import android.os.Bundle
-import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -14,15 +13,29 @@ import com.pawels96.skyrimperkcalculator.databinding.PopupPerkDescriptionBinding
 import com.pawels96.skyrimperkcalculator.domain.ISkill
 import com.pawels96.skyrimperkcalculator.domain.Perk
 import com.pawels96.skyrimperkcalculator.domain.SpecialSkillPerk
-import com.pawels96.skyrimperkcalculator.presentation.dialogs.BaseDialog
+import com.pawels96.skyrimperkcalculator.presentation.Utils
 import com.pawels96.skyrimperkcalculator.presentation.viewmodels.BuildsViewModel
 
-class PerkInfoDialog(private val skill: ISkill, private val perk: Perk) : BaseDialog() {
+class PerkInfoDialog : BaseDialog() {
 
     private var _binding: PopupPerkDescriptionBinding? = null
     private val binding get() = _binding!!
 
-    private val model: BuildsViewModel by lazy { ViewModelProvider(requireActivity(), Injector.provideVmFactory())[BuildsViewModel::class.java] }
+    private lateinit var skill: ISkill
+    private lateinit var perk: Perk
+
+    private val model: BuildsViewModel by lazy {
+        ViewModelProvider(
+            requireActivity(),
+            Injector.provideVmFactory()
+        )[BuildsViewModel::class.java]
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        perk = requireArguments().getSerializable(ARG_PERK) as Perk
+        skill = requireArguments().getSerializable(ARG_SKILL) as ISkill
+    }
 
     @SuppressLint("SetTextI18n")
     private fun updateStateInfo(perk: Perk) {
@@ -51,11 +64,11 @@ class PerkInfoDialog(private val skill: ISkill, private val perk: Perk) : BaseDi
         }
 
         return getBuilder()
-                .setView(binding.root)
-                .setTitle(Utils.getPerkName(activity, perk.perk))
-                .setCancelable(true)
-                .create()
-                .apply { window?.setGravity(Gravity.BOTTOM) }
+            .setView(binding.root)
+            .setTitle(Utils.getPerkName(activity, perk.perk))
+            .setCancelable(true)
+            .create()
+            .apply { window?.setGravity(Gravity.BOTTOM) }
     }
 
     @SuppressLint("FragmentLiveDataObserve")
@@ -75,6 +88,20 @@ class PerkInfoDialog(private val skill: ISkill, private val perk: Perk) : BaseDi
     override fun getDialogTag(): String = TAG
 
     companion object {
+
         const val TAG: String = "PerkInfoDialog"
+
+        private const val ARG_SKILL = "skill"
+        private const val ARG_PERK = "perk"
+
+        fun create(skill: ISkill, perk: Perk) : PerkInfoDialog {
+            return PerkInfoDialog().apply {
+                arguments = Bundle().apply {
+                    putSerializable(ARG_PERK, perk)
+                    putSerializable(ARG_SKILL, skill)
+                }
+            }
+        }
+
     }
 }

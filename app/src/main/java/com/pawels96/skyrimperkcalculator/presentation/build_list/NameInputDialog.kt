@@ -1,4 +1,4 @@
-package com.pawels96.skyrimperkcalculator.presentation.dialogs
+package com.pawels96.skyrimperkcalculator.presentation.build_list
 
 import android.annotation.SuppressLint
 import android.app.Dialog
@@ -7,62 +7,76 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.WindowManager
-import android.widget.CheckBox
-import android.widget.EditText
-import android.widget.TextView
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.pawels96.skyrimperkcalculator.Injector
 import com.pawels96.skyrimperkcalculator.R
 import com.pawels96.skyrimperkcalculator.databinding.PopupSaveBinding
 import com.pawels96.skyrimperkcalculator.domain.Build
+import com.pawels96.skyrimperkcalculator.presentation.dialogs.BaseDialog
 import com.pawels96.skyrimperkcalculator.presentation.hideKeyboard
 import com.pawels96.skyrimperkcalculator.presentation.toast
 import com.pawels96.skyrimperkcalculator.presentation.viewmodels.BuildsViewModel
+import com.pawels96.skyrimperkcalculator.presentation.viewmodels.AppEvent
 
-class NameInputDialog(private val action: Action) : BaseDialog() {
-
-    sealed class Action {
-        object Create : Action()
-        class Rename(val build: Build) : Action()
-    }
+class NameInputDialog : BaseDialog() {
 
     private var _binding: PopupSaveBinding? = null
     private val binding get() = _binding!!
 
-    private val model: BuildsViewModel by lazy { ViewModelProvider(requireActivity(), Injector.provideVmFactory())[BuildsViewModel::class.java] }
+    private var buildId: Long? = null
+    private var build: Build? = null
+
+    private val model: BuildsViewModel by lazy {
+        ViewModelProvider(
+            requireActivity(),
+            Injector.provideVmFactory()
+        )[BuildsViewModel::class.java]
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        if (requireArguments().containsKey(ARG_BUILD_ID)) {
+            val id = requireArguments().getLong(ARG_BUILD_ID)
+            buildId = id
+            build = model.getBuildById(id)
+        }
+    }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
 
         _binding = PopupSaveBinding.inflate(LayoutInflater.from(context))
 
-        if (action is Action.Rename) {
+        if (build != null) {
             binding.copyCurrentLabel.visibility = View.GONE
             binding.copyCurrentCheckbox.visibility = View.GONE
 
             binding.nameEdit.apply {
-                setText(action.build.name)
+                setText(build?.name)
                 setSelection(text.length)
             }
         }
 
         val dialog = getBuilder()
-                .setView(binding.root)
-                .setCancelable(true)
-                .setTitle(resources.getString(R.string.msg_name_your_build))
-                .setPositiveButton(getString(R.string.save), null)
-                .setNegativeButton(getString(R.string.cancel)) { _: DialogInterface?, _: Int -> binding.root.hideKeyboard() }
-                .create().apply {
-                    setCanceledOnTouchOutside(false)
-                }
+            .setView(binding.root)
+            .setCancelable(true)
+            .setTitle(resources.getString(R.string.msg_name_your_build))
+            .setPositiveButton(getString(R.string.save), null)
+            .setNegativeButton(getString(R.string.cancel)) { _: DialogInterface?, _: Int -> binding.root.hideKeyboard() }
+            .create().apply {
+                setCanceledOnTouchOutside(false)
+            }
 
         dialog.setOnShowListener { di: DialogInterface ->
             dialog.getButton(Dialog.BUTTON_POSITIVE).setOnClickListener { v: View? ->
                 val name = binding.nameEdit.text.toString().trim()
-
-                when (action) {
-                    is Action.Rename -> model.renameBuild(action.build, name)
-                    is Action.Create -> model.createBuild(name, binding.copyCurrentCheckbox.isChecked)
+                val build = this.build
+                if (build != null) {
+                    model.renameBuild(build, name)
+                } else {
+                    model.createBuild(
+                        name,
+                        binding.copyCurrentCheckbox.isChecked
+                    )
                 }
             }
         }
@@ -76,11 +90,11 @@ class NameInputDialog(private val action: Action) : BaseDialog() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        model.events.observe(this, Observer {
+        model.events.observe(this) {
 
             when (val content = it.getContentIfNotHandled()) {
 
-                is BuildsViewModel.Event.BuildRenamed, is BuildsViewModel.Event.BuildSaved -> {
+                is AppEvent.BuildRenamed, is AppEvent.BuildSaved -> {
 
                     content.messageID?.let { message ->
                         activity?.toast(message)
@@ -92,7 +106,7 @@ class NameInputDialog(private val action: Action) : BaseDialog() {
                     }
                 }
             }
-        })
+        }
     }
 
     override fun getDialogTag(): String = TAG
@@ -104,6 +118,20 @@ class NameInputDialog(private val action: Action) : BaseDialog() {
 
     companion object {
         const val TAG = "NAME_INPUT"
+
+        private const val ARG_BUILD_ID = "build_id"
+
+        fun create(buildId: Long?): NameInputDialog {
+
+            val args = Bundle().apply {
+                if (buildId != null)
+                    putLong(ARG_BUILD_ID, buildId)
+            }
+
+            return NameInputDialog().apply {
+                arguments = args
+            }
+        }
     }
 }
 

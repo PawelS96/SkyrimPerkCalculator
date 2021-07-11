@@ -4,67 +4,73 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.pawels96.skyrimperkcalculator.Injector
 import com.pawels96.skyrimperkcalculator.R
+import com.pawels96.skyrimperkcalculator.databinding.FragmentSkilltreeBinding
 import com.pawels96.skyrimperkcalculator.domain.*
+import com.pawels96.skyrimperkcalculator.presentation.dialogs.PerkInfoDialog
 import com.pawels96.skyrimperkcalculator.presentation.viewmodels.BuildsViewModel
-import com.pawels96.skyrimperkcalculator.presentation.views.GraphView
 import com.pawels96.skyrimperkcalculator.presentation.views.GraphView.OnNodeClickedListener
 
-class SkillTreeFragment : Fragment() {
-    private var graphView: GraphView? = null
-    private var activePerks: TextView? = null
-    private var reqSkill: TextView? = null
-    private var skillEnum: ISkill? = null
+class SkillTreeFragment : Fragment(R.layout.fragment_skilltree) {
+
+    private var _binding: FragmentSkilltreeBinding? = null
+    private val binding get() = _binding!!
+
+    private lateinit var displayedSkill: ISkill
 
     private val model: BuildsViewModel by lazy {
-        ViewModelProvider(requireActivity(), Injector.provideVmFactory())[BuildsViewModel::class.java]
+        ViewModelProvider(
+            requireActivity(),
+            Injector.provideVmFactory()
+        )[BuildsViewModel::class.java]
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        skillEnum = arguments!!.getSerializable(ARG_1) as ISkill
+        displayedSkill = requireArguments().getSerializable(ARG_SKILL) as ISkill
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        val rootView = inflater.inflate(R.layout.fragment_skilltree, container, false)
-        graphView = rootView.findViewById(R.id.graph)
-        activePerks = rootView.findViewById(R.id.skillPerks)
-        reqSkill = rootView.findViewById(R.id.skillLevel)
-        graphView?.setListener(listener)
-
-        return rootView
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentSkilltreeBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        binding.graph.setListener(listener)
         model.currentBuild.observe(viewLifecycleOwner) { displayBuild(it) }
     }
 
-    private fun displayBuild(build: Build) {
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 
-        val skill = build.getSkill(skillEnum!!)
-        val perksText = getString(R.string.active_perks) + ": ${skill.selectedPerksCount}/${skill.maxPerks}"
-        val requirementLabelRes = if (skill is SpecialSkill) R.string.required_kills else R.string.required_skill
+    private fun displayBuild(build: Build) {
+        val skill = build.getSkill(displayedSkill)
+        val perksText =
+            getString(R.string.active_perks) + ": ${skill.selectedPerksCount}/${skill.maxPerks}"
+        val requirementLabelRes =
+            if (skill is SpecialSkill) R.string.required_kills else R.string.required_skill
         val skillText = getString(requirementLabelRes) + ": " + skill.requiredSkillLevel
-        graphView!!.display(skill)
-        activePerks!!.text = perksText
-        reqSkill!!.text = skillText
+        binding.graph.display(skill)
+        binding.skillPerks.text = perksText
+        binding.skillLevel.text = skillText
     }
 
     fun cancelHold() {
-        graphView?.cancelHold()
+        binding.graph.cancelHold()
     }
 
     private val listener: OnNodeClickedListener = object : OnNodeClickedListener {
         override fun onNodeClicked(perk: Perk) {
-            model.changePerkState(skillEnum!!, perk.perk)
+            model.changePerkState(displayedSkill, perk.perk)
         }
 
         override fun onNodeHolding(perk: Perk) {
@@ -73,18 +79,19 @@ class SkillTreeFragment : Fragment() {
     }
 
     private fun showPerkDescription(perk: Perk) {
-        PerkInfoDialog(skillEnum!!, perk).show(childFragmentManager)
+        PerkInfoDialog.create(displayedSkill, perk).show(childFragmentManager)
     }
 
     companion object {
-        const val ARG_1 = "arg1"
+
+        private const val ARG_SKILL = "arg_skill"
 
         fun create(skill: ISkill): SkillTreeFragment {
-            val fragment = SkillTreeFragment()
-            val args = Bundle()
-            args.putSerializable(ARG_1, skill)
-            fragment.arguments = args
-            return fragment
+            return SkillTreeFragment().apply {
+                arguments = Bundle().apply {
+                    putSerializable(ARG_SKILL, skill)
+                }
+            }
         }
     }
 }

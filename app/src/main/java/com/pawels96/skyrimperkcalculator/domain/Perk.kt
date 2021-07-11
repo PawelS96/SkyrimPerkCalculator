@@ -1,8 +1,9 @@
 package com.pawels96.skyrimperkcalculator.domain
 
+import java.io.Serializable
 import java.util.*
 
-class Perk(val perk: IPerk) {
+class Perk(val perk: IPerk) : Serializable {
 
     @JvmField
     var children: MutableList<Perk> = ArrayList()

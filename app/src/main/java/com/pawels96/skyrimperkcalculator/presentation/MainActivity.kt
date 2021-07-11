@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -19,7 +20,9 @@ import com.pawels96.skyrimperkcalculator.domain.ISkill
 import com.pawels96.skyrimperkcalculator.domain.EMainSkill
 import com.pawels96.skyrimperkcalculator.domain.ESpecialSkill
 import com.pawels96.skyrimperkcalculator.presentation.Utils.getSkillName
+import com.pawels96.skyrimperkcalculator.presentation.build_list.BuildsDialog
 import com.pawels96.skyrimperkcalculator.presentation.dialogs.*
+import com.pawels96.skyrimperkcalculator.presentation.skill_list.SkillListDialog
 import com.pawels96.skyrimperkcalculator.presentation.viewmodels.BuildsViewModel
 
 
@@ -64,7 +67,19 @@ class MainActivity : AppCompatActivity() {
         binding.tabs.addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(binding.viewPager))
 
         if (prefs.firstLaunch)
-            Handler().postDelayed({ showTutorial() }, 1500)
+            Handler(Looper.getMainLooper()).postDelayed({ showTutorial() }, 1500)
+
+        observeAttachedFragments()
+    }
+
+    private fun observeAttachedFragments() {
+        supportFragmentManager.addFragmentOnAttachListener { fragmentManager, fragment ->
+            when (fragment) {
+                is SkillListDialog -> fragment.onSelect = {index ->
+                    binding.viewPager.setCurrentItem(index, false)
+                }
+            }
+        }
     }
 
     private fun getFragment(id: Int): SkillTreeFragment? {
@@ -102,10 +117,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showSkillsPopup() {
-
-        SkillListDialog(model.allCurrentBuildSkills, binding.viewPager.currentItem)
-        { position -> binding.viewPager.setCurrentItem(position, false) }
-                .show(supportFragmentManager)
+        SkillListDialog.create(binding.viewPager.currentItem).show(supportFragmentManager)
     }
 
     private fun showBuildList() = BuildsDialog().show(supportFragmentManager)
