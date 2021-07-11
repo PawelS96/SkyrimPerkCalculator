@@ -82,7 +82,7 @@ class BuildsViewModel(private val repo: Repository, private val prefs: Preferenc
     fun deleteBuild(build: Build) {
 
         if (_currentBuildList.value?.size == 1) {
-            _events.value = LiveEvent(Event.BuildDeleted(false, R.string.msg_cant_delete))
+            dispatchEvent(Event.BuildDeleted(false, R.string.msg_cant_delete))
             return
         }
 
@@ -101,38 +101,38 @@ class BuildsViewModel(private val repo: Repository, private val prefs: Preferenc
         }
 
         val message = if (deleted) R.id.delete else R.string.msg_error
-        _events.value = LiveEvent(Event.BuildDeleted(deleted, message))
+        dispatchEvent(Event.BuildDeleted(deleted, message))
     }
 
     fun createBuild(buildName: String, copyCurrent: Boolean) {
 
         if (buildName.trim().isEmpty()) {
-            _events.value = LiveEvent(Event.BuildSaved(false, R.string.msg_name_empty))
+            dispatchEvent(Event.BuildSaved(false, R.string.msg_name_empty))
             return
         }
 
-        if (repo.isNameAvailable(buildName, currentPerkSystem)) {
+        if (!repo.isNameAvailable(buildName, currentPerkSystem)) {
+            dispatchEvent(Event.BuildSaved(false, R.string.msg_name_in_use))
+            return
+        }
 
-            val newBuild = if (copyCurrent)
-                Build.clone(_currentBuild.value!!)
-            else
-                Build.create(currentPerkSystem)
+        val newBuild = if (copyCurrent)
+            Build.clone(_currentBuild.value!!)
+        else
+            Build.create(currentPerkSystem)
 
-            newBuild.apply { name = buildName }
+        newBuild.apply { name = buildName }
 
-            val success = repo.insert(newBuild)
-            val message = if (success) R.string.msg_build_saved else R.string.msg_error
-            _events.value = LiveEvent(Event.BuildSaved(success, message))
+        val success = repo.insert(newBuild)
+        val message = if (success) R.string.msg_build_saved else R.string.msg_error
+        dispatchEvent(Event.BuildSaved(success, message))
 
-            if (success) {
-
-                val fromDb = repo.getByNameOrDefault(buildName, currentPerkSystem)
-                _currentBuildList.value?.add(fromDb)
-                _currentBuildList.postNotifyObserver()
-                selectBuild(fromDb)
-            }
-
-        } else _events.value = LiveEvent(Event.BuildSaved(false, R.string.msg_name_in_use))
+        if (success) {
+            val fromDb = repo.getByNameOrDefault(buildName, currentPerkSystem)
+            _currentBuildList.value?.add(fromDb)
+            _currentBuildList.postNotifyObserver()
+            selectBuild(fromDb)
+        }
     }
 
     fun selectBuild(build: Build) {
@@ -145,27 +145,31 @@ class BuildsViewModel(private val repo: Repository, private val prefs: Preferenc
         val renamingCurrentBuild = build.name == _currentBuild.value?.name
 
         if (newName.trim().isEmpty()) {
-            _events.value = LiveEvent(Event.BuildRenamed(false, R.string.msg_name_empty))
+            dispatchEvent(Event.BuildRenamed(false, R.string.msg_name_empty))
             return
         }
 
         if (build.name == newName) {
-            _events.value = LiveEvent(Event.BuildRenamed(true, null))
+            dispatchEvent(Event.BuildRenamed(true, null))
             return
         }
 
-        if (repo.isNameAvailable(newName, currentPerkSystem)) {
-            build.name = newName
-            val success = repo.update(build)
-            val message = if (success) R.string.msg_name_changed else R.string.msg_error
-            if (success) {
-                if (renamingCurrentBuild) { selectBuild(build) }
-                _currentBuildList.postNotifyObserver()
+        if (!repo.isNameAvailable(newName, currentPerkSystem)) {
+            dispatchEvent(Event.BuildSaved(false, R.string.msg_name_in_use))
+            return
+        }
+
+        build.name = newName
+        val success = repo.update(build)
+        val message = if (success) R.string.msg_name_changed else R.string.msg_error
+        if (success) {
+            if (renamingCurrentBuild) {
+                selectBuild(build)
             }
+            _currentBuildList.postNotifyObserver()
+        }
 
-            _events.value = LiveEvent(Event.BuildSaved(success, message))
-
-        } else _events.value = LiveEvent(Event.BuildSaved(false, R.string.msg_name_in_use))
+        dispatchEvent(Event.BuildSaved(success, message))
     }
 
     fun changePerkSystem(perkSystem: PerkSystem) {
@@ -194,6 +198,10 @@ class BuildsViewModel(private val repo: Repository, private val prefs: Preferenc
         _currentBuild.value!!.werewolfPerkSystem = perkSystem
         repo.update(_currentBuild.value!!)
         _currentBuild.notifyObserver()
+    }
+
+    private fun dispatchEvent(event: Event) {
+        _events.value = LiveEvent(event)
     }
 
     sealed class Event(val success: Boolean, val messageID: Int?) {
