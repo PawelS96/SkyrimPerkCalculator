@@ -9,6 +9,7 @@
     <color name="colorGrayDark">#2e2f35</color>
     <color name="colorGrayDarker">#232429</color>
     <color name="colorRipple">#5b5e61</color>
+    <color name="colorOverscroll">@android:color/white</color>
 
     <color name="colorBlue">#3075e5</color>
 

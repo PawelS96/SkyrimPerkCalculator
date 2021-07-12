@@ -28,7 +28,7 @@ fun View.hideKeyboard() {
     imm.hideSoftInputFromWindow(this.windowToken, 0)
 }
 
-fun RecyclerView.addDivider(context: Context, drawable: Int) {
+fun RecyclerView.addDivider(drawable: Int) {
     val deco = object : DividerItemDecoration(context, LinearLayoutManager.VERTICAL) {
         override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
             super.getItemOffsets(outRect, view, parent, state)

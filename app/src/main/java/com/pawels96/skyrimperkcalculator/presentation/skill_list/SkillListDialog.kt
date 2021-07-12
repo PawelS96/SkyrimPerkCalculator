@@ -7,6 +7,7 @@ import com.pawels96.skyrimperkcalculator.Injector
 import com.pawels96.skyrimperkcalculator.R
 import com.pawels96.skyrimperkcalculator.databinding.DialogSkillsBinding
 import com.pawels96.skyrimperkcalculator.presentation.addDivider
+import com.pawels96.skyrimperkcalculator.presentation.configureEffects
 import com.pawels96.skyrimperkcalculator.presentation.dialogs.BaseDialog
 import com.pawels96.skyrimperkcalculator.presentation.viewBinding
 import com.pawels96.skyrimperkcalculator.presentation.viewmodels.BuildsViewModel
@@ -43,7 +44,8 @@ class SkillListDialog : BaseDialog() {
         listDialog.setOnShowListener {
             skillAdapter.display(model.allCurrentBuildSkills)
             recycler.scrollToPosition(indexToScroll)
-            recycler.addDivider(requireContext(), R.drawable.divider)
+            recycler.addDivider(R.drawable.divider)
+            recycler.configureEffects {}
             recycler.adapter = skillAdapter
         }
 

@@ -16,9 +16,10 @@ import com.pawels96.skyrimperkcalculator.databinding.DialogListBuildsBinding
 import com.pawels96.skyrimperkcalculator.domain.Build
 import com.pawels96.skyrimperkcalculator.domain.PerkSystem
 import com.pawels96.skyrimperkcalculator.presentation.Utils
-import com.pawels96.skyrimperkcalculator.presentation.viewmodels.BuildsViewModel
+import com.pawels96.skyrimperkcalculator.presentation.configureEffects
 import com.pawels96.skyrimperkcalculator.presentation.dialogs.BaseDialog
 import com.pawels96.skyrimperkcalculator.presentation.viewBinding
+import com.pawels96.skyrimperkcalculator.presentation.viewmodels.BuildsViewModel
 
 class BuildsDialog : BaseDialog() {
 
@@ -75,6 +76,7 @@ class BuildsDialog : BaseDialog() {
         buildAdapter = BuildAdapter(requireContext(), adapterCallback)
         binding.recycler.apply {
             layoutManager = LinearLayoutManager(context)
+            configureEffects(overscrollMagnitude = 0.05f, flingMagnitude = 0.05f) {}
             adapter = buildAdapter
         }
 
