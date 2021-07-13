@@ -34,9 +34,8 @@ public class GraphView extends View {
     private Paint notSelectedPaint = new Paint();
     private Paint textPaint = new Paint();
 
-    private static final int NODE_RADIUS = 15;
-
-    private int TEXT_SIZE;
+    private int nodeRadius = 20;
+    private int textSize;
 
     private float w, h;
     private float currentX, currentY;
@@ -75,7 +74,7 @@ public class GraphView extends View {
     public GraphView(Context context, AttributeSet attrs) {
         super(context, attrs);
         this.context = context;
-        TEXT_SIZE = spToPixels(context, 10);
+        textSize = spToPixels(context, 10);
         init();
     }
 
@@ -106,13 +105,20 @@ public class GraphView extends View {
         notSelectedPaint.setFlags(Paint.ANTI_ALIAS_FLAG);
 
         textPaint.setColor(Color.WHITE);
-        textPaint.setTextSize(TEXT_SIZE);
+        textPaint.setTextSize(textSize);
         textPaint.setFlags(Paint.ANTI_ALIAS_FLAG);
     }
 
     public static int spToPixels(Context context, int sp) {
         float scaledDensity = context.getResources().getDisplayMetrics().scaledDensity;
         return (int) (sp * scaledDensity);
+    }
+
+    private int getNodeRadius(int width, int height) {
+        int baseSize = 15;
+        float ratio = (float) width / 720f;
+        int size = (int) (baseSize * ratio);
+        return Math.min(30, size);
     }
 
     private void drawEdge(Canvas canvas, Perk start, Perk end, Paint selectedPaint) {
@@ -163,6 +169,8 @@ public class GraphView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
+        nodeRadius = getNodeRadius(getWidth(), getHeight());
+
         canvas.drawColor(Color.BLACK);
 
         w = getWidth();
@@ -190,7 +198,7 @@ public class GraphView extends View {
 
                 canvas.drawCircle(coordinates.get(perk).getX() * w,
                         coordinates.get(perk).getY() * h,
-                        NODE_RADIUS, paint);
+                        nodeRadius, paint);
             }
         }
     }
@@ -217,7 +225,7 @@ public class GraphView extends View {
             else if (textX > w - textWidth)
                 textX = (int) w - textWidth;
 
-            float textY = y + NODE_RADIUS * 2f + textBounds.height() / 5;
+            float textY = y + nodeRadius * 2f + textBounds.height() / 5;
             if (textY > h || textY < 0)
                 textY = y;
 
@@ -230,7 +238,7 @@ public class GraphView extends View {
         if (coordinates == null)
             return null;
 
-        int clickRadius = NODE_RADIUS * 2;
+        int clickRadius = nodeRadius * 2;
 
         for (IPerk perk : coordinates.keySet()) {
             FPoint point = coordinates.get(perk);
@@ -245,9 +253,9 @@ public class GraphView extends View {
         return null;
     }
 
-    private static boolean isHolding(float currentX, float currentY, float clickedX, float clickedY) {
+    private boolean isHolding(float currentX, float currentY, float clickedX, float clickedY) {
 
-        int radius = NODE_RADIUS * 5;
+        int radius = nodeRadius * 5;
 
         return currentX < clickedX + radius
                 && currentX > clickedX - radius
