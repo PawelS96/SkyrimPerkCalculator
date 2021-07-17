@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/colorGrayDarker"
+    android:orientation="horizontal">
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/counter_combat"
+        style="@style/PerkCounter"
+        app:backgroundTint="@color/skillCombatBright"
+        tools:text="1" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/counter_magic"
+        style="@style/PerkCounter"
+        app:backgroundTint="@color/skillMagicBright"
+        tools:text="31" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/counter_stealth"
+        style="@style/PerkCounter"
+        app:backgroundTint="@color/skillStealthBright"
+        tools:text="123" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/counter_vampirism"
+        style="@style/PerkCounter"
+        app:backgroundTint="@color/skillVampireBright"
+        tools:text="0" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/counter_lycanthropy"
+        style="@style/PerkCounter"
+        app:backgroundTint="@color/skillWerewolfBright"
+        tools:text="12" />
+
+</LinearLayout>

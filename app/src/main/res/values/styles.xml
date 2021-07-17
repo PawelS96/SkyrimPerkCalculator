@@ -117,4 +117,17 @@
         <item name="backgroundTint">@color/colorBlue</item>
     </style>
 
+    <style name="PerkCounter" parent="MaterialCircleButton">
+        <item name="android:layout_width">25dp</item>
+        <item name="android:layout_height">25dp</item>
+        <item name="android:layout_marginStart">2dp</item>
+        <item name="android:layout_marginEnd">2dp</item>
+        <item name="android:clickable">false</item>
+        <item name="android:focusable">false</item>
+        <item name="android:padding">0dp</item>
+        <item name="android:textColor">@color/colorFont</item>
+        <item name="android:textSize">10sp</item>
+
+    </style>
+
 </resources>

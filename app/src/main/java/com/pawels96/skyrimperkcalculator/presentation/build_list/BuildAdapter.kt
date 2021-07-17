@@ -49,26 +49,6 @@ class BuildAdapter(
         holder.bind(items[i], i == selected)
     }
 
-    private fun getPerkCountText(build: Build): SpannableStringBuilder {
-        val skills = mutableMapOf(
-            stealth to build.getPerkDistribution()[SkillType.STEALTH],
-            combat to build.getPerkDistribution()[SkillType.COMBAT],
-            magic to build.getPerkDistribution()[SkillType.MAGIC],
-            vampire to build.vampireSkill[build.vampirePerkSystem]?.selectedPerksCount,
-            werewolf to build.werewolfSkill[build.werewolfPerkSystem]?.selectedPerksCount
-        )
-            .filter { it.value!! > 0 }
-            .map { "${it.value} ".colored(it.key) }
-
-        val builder = SpannableStringBuilder(context.getString(R.string.perks) + ": ")
-
-        if (skills.isNotEmpty()) {
-            skills.forEach { builder.append(it) }
-        } else builder.append("0")
-
-        return builder
-    }
-
     private fun getRequiredLevelText(build: Build): String {
         val lvl = build.getRequiredLevel(multiplier).toString()
         return context.getString(R.string.level) + ": " + lvl
@@ -94,14 +74,55 @@ class BuildAdapter(
                 root.setOnClickListener { callback.onClick(build) }
                 contextMenu.setOnClickListener { callback.onContextMenuClick(build, contextMenu) }
                 nameEdit.text = if (isSelected) build.name.colored(magic) else build.name
-                buildInfo.text = getPerkCountText(build)
                 level.text = getRequiredLevelText(build)
                 description.text = build.description
-                description.visibility = if (build.description.isEmpty())
-                    View.GONE
-                else
-                    View.VISIBLE
+                description.setVisible(build.description.isNotEmpty())
+            }
+
+            displayPerks(build)
+        }
+
+        private fun displayPerks(build: Build) {
+            val skillDistribution = build.getPerkDistribution()
+
+            val combatPerkCount = skillDistribution[SkillType.COMBAT] ?: 0
+            val magicPerkCount = skillDistribution[SkillType.MAGIC] ?: 0
+            val stealthPerkCount = skillDistribution[SkillType.STEALTH] ?: 0
+            val vampirismPerkCount =
+                build.vampireSkill[build.vampirePerkSystem]?.selectedPerksCount ?: 0
+            val lycanthropyPerkCount =
+                build.werewolfSkill[build.werewolfPerkSystem]?.selectedPerksCount ?: 0
+
+            with(binding.perkCounters) {
+                counterCombat.apply {
+                    setVisible(combatPerkCount > 0)
+                    text = combatPerkCount.toString()
+                }
+                counterMagic.apply {
+                    setVisible(magicPerkCount > 0)
+                    text = magicPerkCount.toString()
+                }
+                counterStealth.apply {
+                    setVisible(stealthPerkCount > 0)
+                    text = stealthPerkCount.toString()
+                }
+                counterVampirism.apply {
+                    setVisible(vampirismPerkCount > 0)
+                    text = vampirismPerkCount.toString()
+                }
+                counterLycanthropy.apply {
+                    setVisible(lycanthropyPerkCount > 0)
+                    text = lycanthropyPerkCount.toString()
+                }
             }
         }
     }
+
+    private fun View.setVisible(visible: Boolean) {
+        visibility = if (visible)
+            View.VISIBLE
+        else
+            View.GONE
+    }
+
 }
