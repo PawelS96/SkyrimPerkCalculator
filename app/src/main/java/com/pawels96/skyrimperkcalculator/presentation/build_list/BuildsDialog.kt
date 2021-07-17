@@ -122,8 +122,8 @@ class BuildsDialog : BaseDialog() {
         super.onActivityCreated(savedInstanceState)
 
         model.buildList.observe(this, {
-            val index = it.indexOfFirst { b -> b.name == model.currentBuild.value!!.name }
-            buildAdapter.display(it, index, model.multiplier)
+            val currentIndex = it.indexOfFirst { b -> b.id == model.currentBuild.value?.id }
+            buildAdapter.display(it, currentIndex, model.multiplier)
         })
     }
 
