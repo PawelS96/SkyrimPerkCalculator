@@ -64,8 +64,13 @@ class MainActivity : AppCompatActivity() {
         model.requiredLevel.observe(this, { updateRequiredLevel(it) })
         binding.tabs.addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(binding.viewPager))
 
-        if (prefs.firstLaunch)
-            Handler(Looper.getMainLooper()).postDelayed({ showTutorial() }, 1500)
+        if (prefs.firstLaunch) {
+            Handler(Looper.getMainLooper()).postDelayed({
+                if (!isFinishing) {
+                    showTutorial()
+                }
+            }, 1500)
+        }
 
         observeAttachedFragments()
     }
