@@ -24,7 +24,7 @@ fun RecyclerView.configureEffects(
         override fun createEdgeEffect(recyclerView: RecyclerView, direction: Int): EdgeEffect {
             return object : EdgeEffect(recyclerView.context) {
 
-                override fun onPull(deltaDistance: Float) {
+                /*override fun onPull(deltaDistance: Float) {
                     super.onPull(deltaDistance)
                     onTouch(true)
                     handlePull(deltaDistance)
@@ -68,7 +68,7 @@ fun RecyclerView.configureEffects(
                             .setStartVelocity(translationVelocity)
                             .start()
                     }
-                }
+                }*/
             }.apply {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     color = ContextCompat.getColor(context, R.color.colorOverscroll)

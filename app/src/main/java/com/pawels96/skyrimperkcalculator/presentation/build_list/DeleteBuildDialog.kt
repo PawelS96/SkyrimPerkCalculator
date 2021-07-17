@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.pawels96.skyrimperkcalculator.Injector
 import com.pawels96.skyrimperkcalculator.R
 import com.pawels96.skyrimperkcalculator.presentation.dialogs.BaseDialog
+import com.pawels96.skyrimperkcalculator.presentation.setButtonColors
 import com.pawels96.skyrimperkcalculator.presentation.viewmodels.BuildsViewModel
 
 class DeleteBuildDialog : BaseDialog() {
@@ -34,7 +35,11 @@ class DeleteBuildDialog : BaseDialog() {
                 }
             }
             .setNegativeButton(R.string.cancel) { _, _ -> dismiss() }
-            .create()
+            .create().apply {
+                setOnShowListener {
+                    setButtonColors(requireContext())
+                }
+            }
     }
 
     override fun getDialogTag(): String = TAG

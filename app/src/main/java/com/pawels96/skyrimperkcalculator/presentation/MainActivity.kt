@@ -16,6 +16,7 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.TabLayoutOnPageChangeListener
 import com.pawels96.skyrimperkcalculator.Injector
 import com.pawels96.skyrimperkcalculator.R
+import com.pawels96.skyrimperkcalculator.TutorialDialog
 import com.pawels96.skyrimperkcalculator.databinding.ActivityMainBinding
 import com.pawels96.skyrimperkcalculator.domain.ISkill
 import com.pawels96.skyrimperkcalculator.domain.EMainSkill
@@ -75,7 +76,7 @@ class MainActivity : AppCompatActivity() {
         if (prefs.firstLaunch) {
             Handler(Looper.getMainLooper()).postDelayed({
                 if (!isFinishing) {
-                    showTutorial()
+                    TutorialDialog().show(supportFragmentManager)
                 }
             }, 1500)
         }
@@ -127,16 +128,6 @@ class MainActivity : AppCompatActivity() {
     private fun updateRequiredLevel(level: Int) {
         val requiredLevelText = getString(R.string.required_lvl) + ": " + level
         binding.reqLevel.text = requiredLevelText
-    }
-
-    private fun showTutorial() {
-        CustomDialogBuilder(this)
-                .setMessage(getString(R.string.msg_tutorial))
-                .setPositiveButton(getString(R.string.ok_alt)) { dialog: DialogInterface, which: Int ->
-                    prefs.firstLaunch = false
-                    dialog.dismiss()
-                }
-                .create().show()
     }
 
     override fun onDestroy() {

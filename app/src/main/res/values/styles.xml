@@ -1,12 +1,12 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorGrayDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:itemBackground">@color/colorGrayDark</item>
         <item name="android:textColor">@color/colorFont</item>
-        <item name="android:forceDarkAllowed">false</item>
+        <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
@@ -64,8 +64,18 @@
         <item name="android:textAlignment">center</item>
     </style>
 
-    <style name="RadioStyle">
-        <item name="android:layout_margin">5dp</item>
+    <style name="RadioGroupHeader">
+        <item name="android:layout_marginBottom">5dp</item>
+        <item name="android:layout_marginStart">5dp</item>
+        <item name="android:layout_marginEnd">5dp</item>
+        <item name="android:textColor">@color/colorFont</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="RadioButton">
+        <item name="android:layout_marginStart">5dp</item>
+        <item name="android:layout_marginEnd">5dp</item>
         <item name="android:textColor">@color/colorFont</item>
         <item name="buttonTint">@color/colorAccent</item>
         <item name="android:layout_width">match_parent</item>
@@ -80,6 +90,31 @@
         <item name="colorControlHighlight">@color/colorRipple</item>
     </style>
 
+    <style name="MaterialCircleButton">
+        <item name="android:layout_width">50dp</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="iconSize">25dp</item>
+        <item name="iconGravity">textStart</item>
+        <item name="iconPadding">0dp</item>
+        <item name="android:insetLeft">0dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetRight">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="cornerRadius">50dp</item>
+    </style>
 
+    <style name="MaterialButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">28dp</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:insetLeft">0dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetRight">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="cornerRadius">10dp</item>
+        <item name="android:textColor">@color/colorFont</item>
+        <item name="textAllCaps">true</item>
+        <item name="backgroundTint">@color/colorBlue</item>
+    </style>
 
 </resources>

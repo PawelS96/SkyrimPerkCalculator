@@ -11,6 +11,7 @@ import com.pawels96.skyrimperkcalculator.R
 import com.pawels96.skyrimperkcalculator.databinding.PopupBuildDescriptionBinding
 import com.pawels96.skyrimperkcalculator.presentation.dialogs.BaseDialog
 import com.pawels96.skyrimperkcalculator.presentation.hideKeyboard
+import com.pawels96.skyrimperkcalculator.presentation.setButtonColors
 import com.pawels96.skyrimperkcalculator.presentation.showKeyboard
 import com.pawels96.skyrimperkcalculator.presentation.viewBinding
 import com.pawels96.skyrimperkcalculator.presentation.viewmodels.BuildsViewModel
@@ -51,6 +52,7 @@ class BuildDescriptionDialog : BaseDialog() {
 
         dialog.setOnShowListener {
 
+            dialog.setButtonColors(requireContext())
             val positiveButton = dialog.getButton(DialogInterface.BUTTON_POSITIVE)
             positiveButton.setOnClickListener {
 

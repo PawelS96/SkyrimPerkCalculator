@@ -11,6 +11,7 @@ import com.pawels96.skyrimperkcalculator.R
 import com.pawels96.skyrimperkcalculator.databinding.PopopOptionsBinding
 import com.pawels96.skyrimperkcalculator.domain.VampirePerkSystem
 import com.pawels96.skyrimperkcalculator.domain.WerewolfPerkSystem
+import com.pawels96.skyrimperkcalculator.presentation.setButtonColors
 import com.pawels96.skyrimperkcalculator.presentation.viewBinding
 import com.pawels96.skyrimperkcalculator.presentation.viewmodels.BuildsViewModel
 
@@ -96,7 +97,12 @@ class OptionsDialog : BaseDialog() {
         return getBuilder()
             .setPositiveButton(R.string.close) { _, _ -> dismiss() }
             .setView(binding.root)
-            .create()
+            .create().apply {
+                setOnShowListener {
+                    setButtonColors(requireContext())
+                }
+            }
+
     }
 
     private fun Float.format(): String {

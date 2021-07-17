@@ -14,6 +14,7 @@ import com.pawels96.skyrimperkcalculator.databinding.PopupSaveBinding
 import com.pawels96.skyrimperkcalculator.domain.Build
 import com.pawels96.skyrimperkcalculator.presentation.dialogs.BaseDialog
 import com.pawels96.skyrimperkcalculator.presentation.hideKeyboard
+import com.pawels96.skyrimperkcalculator.presentation.setButtonColors
 import com.pawels96.skyrimperkcalculator.presentation.toast
 import com.pawels96.skyrimperkcalculator.presentation.viewBinding
 import com.pawels96.skyrimperkcalculator.presentation.viewmodels.BuildsViewModel
@@ -65,6 +66,7 @@ class NameInputDialog : BaseDialog() {
             }
 
         dialog.setOnShowListener { di: DialogInterface ->
+            dialog.setButtonColors(requireContext())
             dialog.getButton(Dialog.BUTTON_POSITIVE).setOnClickListener { v: View? ->
                 val name = binding.nameEdit.text.toString().trim()
                 val build = this.build

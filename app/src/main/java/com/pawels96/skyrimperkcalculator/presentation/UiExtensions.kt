@@ -1,6 +1,8 @@
 package com.pawels96.skyrimperkcalculator.presentation
 
 import android.app.Activity
+import android.app.AlertDialog
+import android.app.Dialog
 import android.content.Context
 import android.graphics.Rect
 import android.text.SpannableString
@@ -13,6 +15,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.pawels96.skyrimperkcalculator.R
 
 fun Activity.toast(txt: String) = Toast.makeText(this, txt, Toast.LENGTH_SHORT).show()
 
@@ -46,4 +49,10 @@ fun String.colored(color: Int): SpannableString {
     return SpannableString(this).apply {
         setSpan(ForegroundColorSpan(color), 0, this.length, 0)
     }
+}
+
+fun AlertDialog.setButtonColors(context: Context) {
+    val textColor = ContextCompat.getColor(context, R.color.colorFont)
+    getButton(Dialog.BUTTON_NEGATIVE)?.setTextColor(textColor)
+    getButton(Dialog.BUTTON_POSITIVE)?.setTextColor(textColor)
 }

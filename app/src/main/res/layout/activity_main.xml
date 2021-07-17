@@ -15,13 +15,15 @@
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay">
 
-    <com.google.android.material.tabs.TabLayout
-
-        android:background="@android:color/black"
-        android:id="@+id/tabs"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        app:tabMode="scrollable">
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@android:color/black"
+            app:tabIndicator="@null"
+            app:tabMode="scrollable"
+            app:tabSelectedTextColor="@color/skillCombatBright"
+            app:tabTextColor="@color/colorFontAlt">
 
     </com.google.android.material.tabs.TabLayout>
 
@@ -31,6 +33,7 @@
         android:layout_below="@id/appbar"
         android:layout_above="@id/textViews"
         android:id="@+id/viewPager"
+        android:overScrollMode="never"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -71,48 +74,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <Button
-            android:background="@drawable/round_backgr"
-            android:focusable="false"
-            android:text="@string/builds"
-            android:textAllCaps="true"
-            android:foreground="?attr/selectableItemBackgroundBorderless"
-            android:theme="@style/colorControlHighlight_blue"
-            android:textColor="@color/colorFont"
-            android:layout_marginEnd="15dp"
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/loadButton"
+            style="@style/MaterialButton"
+            android:layout_marginEnd="15dp"
             android:layout_toStartOf="@id/skillsButton"
+            android:text="@string/builds" />
 
-            android:layout_width="wrap_content"
-            android:layout_height="24dp" />
-
-        <Button
-            android:background="@drawable/round_backgr"
-            android:text="@string/skills"
-            android:textAllCaps="true"
-            android:textColor="@color/colorFont"
-            android:foreground="?attr/selectableItemBackgroundBorderless"
-            android:theme="@style/colorControlHighlight_blue"
-            android:layout_centerHorizontal="true"
-
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/skillsButton"
-            android:layout_width="wrap_content"
-            android:layout_height="24dp" />
+            style="@style/MaterialButton"
+            android:layout_centerHorizontal="true"
+            android:text="@string/skills" />
 
-        <Button
-            android:text="@string/options"
-            android:textAllCaps="true"
-            android:foreground="?attr/selectableItemBackgroundBorderless"
-            android:theme="@style/colorControlHighlight_blue"
-            android:textColor="@color/colorFont"
-            android:layout_toEndOf="@id/skillsButton"
-            android:layout_marginStart="15dp"
-            android:background="@drawable/round_backgr"
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/optionsButton"
-            android:layout_width="wrap_content"
-            android:layout_height="24dp" />
-
-
+            style="@style/MaterialButton"
+            android:layout_marginStart="15dp"
+            android:layout_toEndOf="@id/skillsButton"
+            android:text="@string/options" />
 
     </RelativeLayout>
 </RelativeLayout>
