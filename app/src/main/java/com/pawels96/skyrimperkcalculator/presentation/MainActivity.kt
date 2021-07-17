@@ -1,6 +1,5 @@
 package com.pawels96.skyrimperkcalculator.presentation
 
-import android.content.DialogInterface
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
@@ -84,6 +83,11 @@ class MainActivity : AppCompatActivity() {
         observeAttachedFragments()
     }
 
+    override fun onPause() {
+        super.onPause()
+        prefs.selectedPage = binding.viewPager.currentItem
+    }
+
     private fun observeAttachedFragments() {
         supportFragmentManager.addFragmentOnAttachListener { fragmentManager, fragment ->
             when (fragment) {
@@ -128,11 +132,6 @@ class MainActivity : AppCompatActivity() {
     private fun updateRequiredLevel(level: Int) {
         val requiredLevelText = getString(R.string.required_lvl) + ": " + level
         binding.reqLevel.text = requiredLevelText
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        prefs.selectedPage = binding.viewPager.currentItem
     }
 
     private fun showSkillsPopup() {
