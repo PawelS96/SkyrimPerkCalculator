@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
@@ -19,6 +20,7 @@ import com.pawels96.skyrimperkcalculator.databinding.ActivityMainBinding
 import com.pawels96.skyrimperkcalculator.domain.ISkill
 import com.pawels96.skyrimperkcalculator.domain.EMainSkill
 import com.pawels96.skyrimperkcalculator.domain.ESpecialSkill
+import com.pawels96.skyrimperkcalculator.domain.SkillType
 import com.pawels96.skyrimperkcalculator.presentation.Utils.getSkillName
 import com.pawels96.skyrimperkcalculator.presentation.build_list.BuildsDialog
 import com.pawels96.skyrimperkcalculator.presentation.dialogs.*
@@ -52,9 +54,15 @@ class MainActivity : AppCompatActivity() {
 
         binding.viewPager.apply {
             adapter = skillFragmentAdapter
-            addOnPageChangeListener(TabLayoutOnPageChangeListener(binding.tabs))
+            addOnPageChangeListener(object : TabLayoutOnPageChangeListener(binding.tabs) {
+                override fun onPageSelected(position: Int) {
+                    super.onPageSelected(position)
+                    updateTabColor(position)
+                }
+            })
             enableLoop(DISPLAYED_SKILLS.size)
             setListener { getFragment(this.currentItem)?.cancelHold() }
+            updateTabColor(prefs.selectedPage)
             currentItem = prefs.selectedPage
         }
 
@@ -83,6 +91,23 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun updateTabColor(position: Int) {
+        val skill = DISPLAYED_SKILLS[position]
+        val colorRes = when (skill.type) {
+            SkillType.STEALTH -> R.color.skillStealthBright
+            SkillType.COMBAT -> R.color.skillCombatBright
+            SkillType.MAGIC -> R.color.skillMagicBright
+            SkillType.SPECIAL -> when (skill) {
+                ESpecialSkill.SKILL_VAMPIRISM -> R.color.skillVampireBright
+                ESpecialSkill.SKILL_LYCANTHROPY -> R.color.skillWerewolfBright
+                else -> R.color.colorAccent
+            }
+        }
+        val selectedColor = ContextCompat.getColor(this, colorRes)
+        val normalColor = ContextCompat.getColor(this, R.color.colorFontAlt)
+        binding.tabs.setTabTextColors(normalColor, selectedColor)
     }
 
     private fun getFragment(id: Int): SkillTreeFragment? {
