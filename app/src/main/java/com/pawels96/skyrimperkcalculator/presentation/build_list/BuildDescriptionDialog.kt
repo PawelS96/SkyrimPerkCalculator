@@ -41,7 +41,7 @@ class BuildDescriptionDialog : BaseDialog() {
             .setCancelable(true)
             .setView(binding.root)
             .setPositiveButton(getString(R.string.edit), null)
-            .setNegativeButton(getString(R.string.close)) { dialog, which ->
+            .setNegativeButton(getString(R.string.close)) { _, _ ->
                 binding.root.hideKeyboard()
                 dismiss()
             }

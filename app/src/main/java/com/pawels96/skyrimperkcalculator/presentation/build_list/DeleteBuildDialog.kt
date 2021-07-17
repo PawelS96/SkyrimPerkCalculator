@@ -28,12 +28,12 @@ class DeleteBuildDialog : BaseDialog() {
         return getBuilder()
             .setTitle(R.string.delete_build)
             .setCancelable(true)
-            .setPositiveButton(R.string.delete) { dialog, which ->
+            .setPositiveButton(R.string.delete) { _, _ ->
                 buildId?.let {
                     model.deleteBuild(it)
                 }
             }
-            .setNegativeButton(R.string.cancel) { dialog, which -> dismiss() }
+            .setNegativeButton(R.string.cancel) { _, _ -> dismiss() }
             .create()
     }
 

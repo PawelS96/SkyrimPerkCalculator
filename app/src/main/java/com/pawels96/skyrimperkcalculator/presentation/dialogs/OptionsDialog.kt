@@ -7,6 +7,7 @@ import android.widget.CompoundButton
 import android.widget.SeekBar
 import androidx.lifecycle.ViewModelProvider
 import com.pawels96.skyrimperkcalculator.Injector
+import com.pawels96.skyrimperkcalculator.R
 import com.pawels96.skyrimperkcalculator.databinding.PopopOptionsBinding
 import com.pawels96.skyrimperkcalculator.domain.VampirePerkSystem
 import com.pawels96.skyrimperkcalculator.domain.WerewolfPerkSystem
@@ -93,7 +94,7 @@ class OptionsDialog : BaseDialog() {
         })
 
         return getBuilder()
-            .setPositiveButton("OK") { dialog: DialogInterface, _: Int -> dialog.dismiss() }
+            .setPositiveButton(R.string.close) { _, _ -> dismiss() }
             .setView(binding.root)
             .create()
     }

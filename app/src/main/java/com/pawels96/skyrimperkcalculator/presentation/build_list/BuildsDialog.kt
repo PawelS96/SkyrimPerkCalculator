@@ -82,6 +82,7 @@ class BuildsDialog : BaseDialog() {
 
         val dialog = getBuilder().setView(binding.root)
             .setPositiveButton(R.string.new_build, null)
+            .setNegativeButton(R.string.close) { _, _ -> dismiss() }
             .create()
 
         dialog.setOnShowListener {
