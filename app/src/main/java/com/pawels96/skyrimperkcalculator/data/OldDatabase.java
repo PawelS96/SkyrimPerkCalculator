@@ -30,9 +30,9 @@ public class OldDatabase extends SQLiteOpenHelper {
 
     private static final int DBVER = 4;
 
-    private Repository repoForMigration;
+    private BuildRepository repoForMigration;
 
-    public OldDatabase(Context context, Repository repoForMigration) {
+    public OldDatabase(Context context, BuildRepository repoForMigration) {
         super(context, DBNAME, null, DBVER);
         this.repoForMigration = repoForMigration;
         getWritableDatabase();

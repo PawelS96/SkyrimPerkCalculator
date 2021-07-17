@@ -20,6 +20,12 @@ class Preferences(private val sp: SharedPreferences) {
             }
         }
 
+    var selectedBuildId: Long
+        set(value) {
+            sp.edit().putLong("selected_build_id", value).apply()
+        }
+        get() = sp.getLong("selected_build_id", -1L)
+
     var selectedBuild: String
         set(value) {
             sp.edit().putString("build_selected", value).apply()

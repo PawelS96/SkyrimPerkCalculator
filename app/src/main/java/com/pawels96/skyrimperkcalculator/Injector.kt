@@ -10,12 +10,12 @@ object Injector {
     lateinit var prefs: Preferences
 
     private lateinit var db: AppDatabase
-    private lateinit var repo: Repository
+    private lateinit var repo: BuildRepository
 
     fun init(context: Context) {
         db = AppDatabase.getDatabase(context)
         prefs = Preferences(context.getSharedPreferences("prefs", Context.MODE_PRIVATE))
-        repo = Repository(db.buildDAO())
+        repo = BuildRepository(db.buildDAO())
         oldDb = OldDatabase(context, repo)
         repo.populate()
     }

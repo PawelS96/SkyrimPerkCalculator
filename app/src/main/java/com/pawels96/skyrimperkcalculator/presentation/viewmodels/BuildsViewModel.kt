@@ -1,17 +1,17 @@
 package com.pawels96.skyrimperkcalculator.presentation.viewmodels
 
-import android.util.Log
 import androidx.lifecycle.*
 import com.pawels96.skyrimperkcalculator.R
 import com.pawels96.skyrimperkcalculator.data.Preferences
-import com.pawels96.skyrimperkcalculator.data.Repository
+import com.pawels96.skyrimperkcalculator.data.BuildRepository
 import com.pawels96.skyrimperkcalculator.domain.*
+import kotlinx.coroutines.*
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.NonCancellable
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
-class BuildsViewModel(private val repo: Repository, private val prefs: Preferences) : ViewModel() {
+class BuildsViewModel(
+    private val repo: BuildRepository,
+    private val prefs: Preferences,
+    ) : ViewModel() {
 
     private val _currentBuild = MutableLiveData<Build>()
     val currentBuild: LiveData<Build> = _currentBuild
@@ -28,14 +28,18 @@ class BuildsViewModel(private val repo: Repository, private val prefs: Preferenc
     val allCurrentBuildSkills: List<Skill> get() = ArrayList(_currentBuild.value!!.getAllSkills())
 
     private val builds: MutableList<Build> get() = _currentBuildList.value!!
-    private var currentPerkSystem: PerkSystem = prefs.selectedPerkSystem.also { Log.d("prefs", it.toString()) }
+    private var currentPerkSystem: PerkSystem = prefs.selectedPerkSystem
 
     var multiplier: Float = prefs.perkMultiplier
         private set
 
     init {
-        _currentBuild.value = repo.getByNameOrDefault(prefs.selectedBuild, currentPerkSystem)
+        loadBuilds()
+    }
+
+    private fun loadBuilds() {
         _currentBuildList.value = repo.getByPerkSystem(currentPerkSystem, true).toMutableList()
+        _currentBuild.value = repo.getByIdOrDefault(prefs.selectedBuildId, currentPerkSystem)
     }
 
     fun setPerkMultiplier(multiplier: Float) {
@@ -67,7 +71,7 @@ class BuildsViewModel(private val repo: Repository, private val prefs: Preferenc
         _currentBuild.postNotifyObserver()
         _currentBuildList.notifyObserver()
 
-        viewModelScope.launch(Dispatchers.IO + NonCancellable) {
+        viewModelScope.launch(Dispatchers.IO) {
             repo.update(_currentBuild.value!!)
         }
     }
@@ -127,26 +131,24 @@ class BuildsViewModel(private val repo: Repository, private val prefs: Preferenc
 
         newBuild.apply { name = buildName }
 
-        val success = repo.insert(newBuild)
+        val savedBuild = repo.insert(newBuild)
+        val success = savedBuild != null
         val message = if (success) R.string.msg_build_saved else R.string.msg_error
         dispatchEvent(AppEvent.BuildSaved(success, message))
 
-        if (success) {
-            val fromDb = repo.getByNameOrDefault(buildName, currentPerkSystem)
-            _currentBuildList.value?.add(fromDb)
+        if (savedBuild != null) {
+            _currentBuildList.value?.add(savedBuild)
             _currentBuildList.postNotifyObserver()
-            selectBuild(fromDb)
+            selectBuild(savedBuild)
         }
     }
 
     fun selectBuild(build: Build) {
         _currentBuild.value = build
-        prefs.selectedBuild = build.name
+        prefs.selectedBuildId = build.id
     }
 
     fun renameBuild(build: Build, newName: String) {
-
-        val renamingCurrentBuild = build.name == _currentBuild.value?.name
 
         if (newName.trim().isEmpty()) {
             dispatchEvent(AppEvent.BuildRenamed(false, R.string.msg_name_empty))
@@ -167,9 +169,7 @@ class BuildsViewModel(private val repo: Repository, private val prefs: Preferenc
         val success = repo.update(build)
         val message = if (success) R.string.msg_name_changed else R.string.msg_error
         if (success) {
-            if (renamingCurrentBuild) {
-                selectBuild(build)
-            }
+            _currentBuildList.value?.find { it.id == build.id }?.name = newName
             _currentBuildList.postNotifyObserver()
         }
 
@@ -177,14 +177,11 @@ class BuildsViewModel(private val repo: Repository, private val prefs: Preferenc
     }
 
     fun changePerkSystem(perkSystem: PerkSystem) {
+        currentPerkSystem = perkSystem
+        prefs.selectedPerkSystem = currentPerkSystem
 
         viewModelScope.launch(Dispatchers.IO) {
-
-            currentPerkSystem = perkSystem
-            prefs.selectedPerkSystem = currentPerkSystem
-
             val builds = repo.getByPerkSystem(perkSystem, true).toMutableList()
-
             withContext(Dispatchers.Main) {
                 selectBuild(builds[0])
                 _currentBuildList.value = builds
@@ -212,8 +209,12 @@ class BuildsViewModel(private val repo: Repository, private val prefs: Preferenc
         _events.value = LiveEvent(event)
     }
 
-    class Factory(private val repo: Repository, private val prefs: Preferences) : ViewModelProvider.Factory {
-        override fun <T : ViewModel?> create(modelClass: Class<T>): T = BuildsViewModel(repo, prefs) as T
+    class Factory(
+        private val repo: BuildRepository,
+        private val prefs: Preferences
+    ) : ViewModelProvider.Factory {
+        override fun <T : ViewModel?> create(modelClass: Class<T>): T =
+            BuildsViewModel(repo, prefs) as T
     }
 
     private fun MutableLiveData<*>.notifyObserver() {

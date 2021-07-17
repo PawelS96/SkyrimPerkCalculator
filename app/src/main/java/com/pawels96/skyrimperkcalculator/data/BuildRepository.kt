@@ -3,15 +3,25 @@ package com.pawels96.skyrimperkcalculator.data
 import com.pawels96.skyrimperkcalculator.domain.Build
 import com.pawels96.skyrimperkcalculator.domain.PerkSystem
 
-class Repository(private val dao: BuildDAO) {
+class BuildRepository(private val dao: BuildDAO) {
 
-    fun insert(build: Build) = dao.insert(BuildMapper.toEntity(build)) > 0
+    fun insert(builds: List<Build>): Boolean {
+        val entities = builds.map { BuildMapper.toEntity(it) }
+        return dao.insert(entities).isNotEmpty()
+    }
 
-    fun insert(builds: List<Build>) = dao.insert(builds.map { BuildMapper.toEntity(it) }).isNotEmpty()
+    fun insert(build: Build): Build? {
+        val id = dao.insert(BuildMapper.toEntity(build))
+        if (id == -1L) {
+            return null
+        }
+        val savedBuild = dao.getByID(id) ?: return null
+        return BuildMapper.fromEntity(savedBuild)
+    }
 
-    fun delete(buildId: Long) = dao.delete(buildId) > 0
+    fun delete(buildId: Long): Boolean = dao.delete(buildId) > 0
 
-    fun update(build: Build) = dao.update(BuildMapper.toEntity(build)) > 0
+    fun update(build: Build): Boolean = dao.update(BuildMapper.toEntity(build)) > 0
 
     fun getByPerkSystem(perkSystem: PerkSystem, insertIfEmpty: Boolean): List<Build> {
 
@@ -29,19 +39,21 @@ class Repository(private val dao: BuildDAO) {
         return dao.getByName(name, perkSystem) == null
     }
 
-    fun getByNameOrDefault(name: String, perkSystem: PerkSystem): Build {
+    fun getByIdOrDefault(id: Long, perkSystem: PerkSystem): Build {
+        val byId = dao.getByID(id) ?: dao.getFirst(perkSystem)
 
-        val byName = dao.getByName(name, perkSystem) ?: dao.getFirst(perkSystem)
-
-        return if (byName == null) {
+        if (byId == null) {
             insert(Build.create(perkSystem))
-            BuildMapper.fromEntity(dao.getFirst(perkSystem)!!)
-        } else BuildMapper.fromEntity(byName)
+            val first = dao.getFirst(perkSystem)
+            return BuildMapper.fromEntity(first!!)
+        }
+
+        return BuildMapper.fromEntity(byId)
     }
 
     fun count() = dao.count()
 
-    fun getById(id: Long) : Build? {
+    fun getById(id: Long): Build? {
         val build = dao.getByID(id) ?: return null
         return BuildMapper.fromEntity(build)
     }

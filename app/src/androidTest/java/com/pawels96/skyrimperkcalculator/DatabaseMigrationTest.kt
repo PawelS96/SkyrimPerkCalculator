@@ -1,22 +1,21 @@
 package com.pawels96.skyrimperkcalculator
 
-import android.content.Context
-import androidx.test.InstrumentationRegistry
+import androidx.test.platform.app.InstrumentationRegistry
 import com.pawels96.skyrimperkcalculator.data.AppDatabase
 import com.pawels96.skyrimperkcalculator.data.OldDatabase
-import com.pawels96.skyrimperkcalculator.data.Repository
+import com.pawels96.skyrimperkcalculator.data.BuildRepository
 import com.pawels96.skyrimperkcalculator.domain.Build
 import com.pawels96.skyrimperkcalculator.domain.PerkSystem
-import junit.framework.Assert.assertEquals
+import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
 
 class DatabaseMigrationTest {
 
-    val context: Context = InstrumentationRegistry.getTargetContext()
+    private val context = InstrumentationRegistry.getInstrumentation().targetContext
 
     private var newDb = AppDatabase.getInMemoryDatabase(context)
-    private val repo = Repository(newDb.buildDAO())
+    private val repo = BuildRepository(newDb.buildDAO())
     private val oldDb: OldDatabase = OldDatabase(context, repo)
 
     @Before
@@ -59,6 +58,4 @@ class DatabaseMigrationTest {
             checkEquality_excludeID(it.first, it.second)
         }
     }
-
-
 }
