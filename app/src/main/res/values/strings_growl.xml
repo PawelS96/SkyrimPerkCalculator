@@ -40,7 +40,7 @@
     <string name="d_gro_lyc_gorging">Feeding heals 100 points more.</string>
     <string name="d_gro_lyc_savage_feeding">Able to feed off the undead in beast form, and loot their corpses.</string>
     <string name="d_gro_lyc_bury_the_beast">No longer forced to transform at night.</string>
-    <string name="d_gro_lyc_wolf_among_men">The frequency of Silver Hand Elite werebeast hunters is reduced by 75%.</string>
+    <string name="d_gro_lyc_wolf_among_men">The frequency of Silver Hand Elite werebeast hunters is reduced by 80%.</string>
 
 
 </resources>

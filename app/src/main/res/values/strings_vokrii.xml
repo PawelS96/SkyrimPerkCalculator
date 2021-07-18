@@ -179,6 +179,7 @@
     <string name="p_vok_des_augmented_frost">Augmented Frost</string>
     <string name="p_vok_des_augmented_shock">Augmented Shock</string>
     <string name="p_vok_des_rune_master">Rune Master</string>
+    <string name="p_vok_des_raw_power">Raw Power</string>
     <string name="p_vok_des_devouring_flames">Devouring Flames</string>
     <string name="p_vok_des_chilling_frost">Chilling Frost</string>
     <string name="p_vok_des_deafening_shock">Deafening Shock</string>
@@ -196,15 +197,16 @@
     <string name="d_vok_des_augmented_flames">Fire spells and effects are 20/40% more powerful.</string>
     <string name="d_vok_des_augmented_frost">Frost spells and effects are 20/40% more powerful.</string>
     <string name="d_vok_des_augmented_shock">Shock spells and effects are 20/40% more powerful.</string>
-    <string name="d_vok_des_rune_master">Can place runes three times as far away/at any distance, and place an additional rune.</string>
+    <string name="d_vok_des_rune_master">Can place runes three times as far away/at any distance, and runes are 10/20% more powerful.</string>
+    <string name="d_vok_des_raw_power">Non-elemental Destruction spells and effects are 10/20/30% more powerful.</string>
     <string name="d_vok_des_devouring_flames">Fire spells ignite targets below 20% Health, dealing extra damage for 5 seconds.</string>
-    <string name="d_vok_des_chilling_frost">Frost spells reduce attack speed by 20% for 10 seconds.</string>
-    <string name="d_vok_des_deafening_shock">Shock spells have 15% chance to silence targets for 2 seconds.</string>
+    <string name="d_vok_des_chilling_frost">Frost spells reduce attack speed by 20% and inflict 15% weakness to frost for 10 seconds.</string>
+    <string name="d_vok_des_deafening_shock">Shock spells have 20% chance to silence targets for 2 seconds.</string>
     <string name="d_vok_des_hethoths_disjunction">All opponents affected by a Destruction cloak get 25% weakness to that element.</string>
     <string name="d_vok_des_impact">Projectile based Destruction spells have 30% chance to stagger their targets when dual cast.</string>
     <string name="d_vok_des_scorched_earth">Fire spells burn their victims to cinders, leaving a pyre that ignites opponents, dealing extra damage for 10 seconds.</string>
     <string name="d_vok_des_winters_grasp">Frost spells freeze targets below 20% Health in a block of ice for 5 seconds.</string>
-    <string name="d_vok_des_crackling_sphere">Shock spells have 15% chance to levitate targets for 2 seconds.</string>
+    <string name="d_vok_des_crackling_sphere">Shock spells have 20% chance to levitate targets for 2 seconds.</string>
     <string name="d_vok_des_elemental_barrier">Destruction walls and cloaks deal 50% more damage, and the damage persists for 15 seconds.</string>
     <string name="d_vok_des_elemental_shield">Destruction cloaks grant 50% resistance to their element.</string>
     <string name="d_vok_des_hellstorm">Deal double elemental damage to targets that are ignited, frozen, silenced or levitated.</string>
@@ -220,14 +222,14 @@
     <string name="p_vok_enc_scroll_hunter">Scroll Hunter</string>
     <string name="p_vok_enc_soul_enchanter">Soul Enchanter</string>
     <string name="p_vok_enc_thunderstruck">Thunderstruck</string>
-    <string name="p_vok_enc_defensive_runes">Defensive Runes</string>
+    <string name="p_vok_enc_defensive_runes">Mana Shield</string>
     <string name="p_vok_enc_regalia_enchanter">Regalia Enchanter</string>
     <string name="p_vok_enc_staff_recharge">Staff Recharge</string>
     <string name="p_vok_enc_spider_hunter">Spider Hunter</string>
     <string name="p_vok_enc_extra_effect">Extra Effect</string>
 
     <string name="d_vok_enc_enchanting_mastery">New enchantments are 1% stronger per level of Enchanting.</string>
-    <string name="d_vok_enc_power_stone">Staves are 25/50/100% stronger, and an equipped staff improves other weapon enchantments by 25/50/100%.</string>
+    <string name="d_vok_enc_power_stone">Staves are 20/35/50% stronger, and an equipped staff improves other weapon enchantments by 20/35/50%.</string>
     <string name="d_vok_enc_soul_squeezer">Soul gems replenish 250 extra charge when used to recharge weapons.</string>
     <string name="d_vok_enc_weapon_enchanter">New enchantments placed on weapons are 25% stronger.</string>
     <string name="d_vok_enc_armor_enchanter">New enchantments placed on armor pieces or clothing are 25% stronger.</string>
@@ -447,7 +449,7 @@
     <string name="d_vok_rst_inner_light">Regenerate an extra 1/2% of your total Magicka per second.</string>
     <string name="d_vok_rst_respite">Healing spells also restore Stamina.</string>
     <string name="d_vok_rst_vigilant_ward">Wards cost 50/80% less Magicka and reduce incoming damage by 30/50%.</string>
-    <string name="d_vok_rst_harm">Casting healing spells on opponents in combat deals damage instead.</string>
+    <string name="d_vok_rst_harm">Casting healing spells or effects on opponents in combat deals damage instead. The damage is equal to half of the healing amount.</string>
     <string name="d_vok_rst_suns_judgment">Sun spells deal 75%/full damage to the living, daedra, automatons and dragons.</string>
     <string name="d_vok_rst_ward_absorb">When your ward blocks a spell, you gain Magicka equal to 30% of that spell\'s cost.</string>
     <string name="d_vok_rst_necromage">All spells and effects from any school are 25% stronger or last 50% longer on the undead.</string>
@@ -508,7 +510,7 @@
     <string name="d_vok_snk_silent_movement">Movement noise is reduced by 50/100%.</string>
     <string name="d_vok_snk_silent_roll">Sprinting while sneaking executes a silent forward roll for 15 Stamina./ You are 100% harder to detect while rolling.</string>
     <string name="d_vok_snk_deadly_aim">Sneak attacks with bows deal 50% more damage.</string>
-    <string name="d_vok_snk_shadowcaster">Elemental spells are twice as powerful against targets that are not detecting you.</string>
+    <string name="d_vok_snk_shadowcaster">Destruction spells are twice as powerful against targets that are not detecting you.</string>
     <string name="d_vok_snk_assassins_blade">Sneak attacks with daggers deal 150% more damage.</string>
     <string name="d_vok_snk_blind_spot">You are up to 30% harder to detect by those within 30 feet when sneaking.</string>
     <string name="d_vok_snk_dodge_roll">Performing a silent roll briefly causes all incoming attacks and spells to miss.</string>
