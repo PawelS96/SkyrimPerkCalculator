@@ -8,6 +8,12 @@
     android:orientation="horizontal">
 
     <com.google.android.material.button.MaterialButton
+        android:id="@+id/counter_stealth"
+        style="@style/PerkCounter"
+        app:backgroundTint="@color/skillStealthBright"
+        tools:text="123" />
+
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/counter_combat"
         style="@style/PerkCounter"
         app:backgroundTint="@color/skillCombatBright"
@@ -18,12 +24,6 @@
         style="@style/PerkCounter"
         app:backgroundTint="@color/skillMagicBright"
         tools:text="31" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/counter_stealth"
-        style="@style/PerkCounter"
-        app:backgroundTint="@color/skillStealthBright"
-        tools:text="123" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/counter_vampirism"
