@@ -75,6 +75,7 @@ class MainActivity : AppCompatActivity() {
         if (prefs.firstLaunch) {
             Handler(Looper.getMainLooper()).postDelayed({
                 if (!isFinishing) {
+                    prefs.firstLaunch = false
                     TutorialDialog().show(supportFragmentManager)
                 }
             }, 1500)

@@ -16,7 +16,9 @@ class TutorialDialog : BaseDialog() {
                 dismiss()
             }
             .create().apply {
-                setButtonColors(requireContext())
+                setOnShowListener {
+                    setButtonColors(requireContext())
+                }
             }
     }
 
