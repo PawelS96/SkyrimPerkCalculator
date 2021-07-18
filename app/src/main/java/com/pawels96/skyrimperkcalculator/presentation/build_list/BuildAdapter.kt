@@ -22,13 +22,6 @@ class BuildAdapter(
 
     private val items = mutableListOf<Build>()
     private var selected: Int = 0
-
-    private val stealth = ContextCompat.getColor(context, R.color.skillStealthBright)
-    private val combat = ContextCompat.getColor(context, R.color.skillCombatBright)
-    private val magic = ContextCompat.getColor(context, R.color.skillMagicBright)
-    private val vampire = ContextCompat.getColor(context, R.color.skillVampireBright)
-    private val werewolf = ContextCompat.getColor(context, R.color.skillWerewolfBright)
-
     private var multiplier = 0f
 
     interface BuildAdapterCallback {
@@ -73,7 +66,13 @@ class BuildAdapter(
             with(binding) {
                 root.setOnClickListener { callback.onClick(build) }
                 contextMenu.setOnClickListener { callback.onContextMenuClick(build, contextMenu) }
-                nameEdit.text = if (isSelected) build.name.colored(magic) else build.name
+                nameEdit.text = if (isSelected) build.name.colored(
+                    ContextCompat.getColor(
+                        context,
+                        R.color.colorAccent
+                    )
+                ) else build.name
+
                 level.text = getRequiredLevelText(build)
                 description.text = build.description
                 description.setVisible(build.description.isNotEmpty())
