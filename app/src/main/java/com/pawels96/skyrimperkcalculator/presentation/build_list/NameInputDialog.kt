@@ -1,13 +1,14 @@
 package com.pawels96.skyrimperkcalculator.presentation.build_list
 
-import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.DialogInterface
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
 import android.view.WindowManager
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.pawels96.skyrimperkcalculator.Injector
 import com.pawels96.skyrimperkcalculator.R
 import com.pawels96.skyrimperkcalculator.databinding.PopupSaveBinding
@@ -18,7 +19,9 @@ import com.pawels96.skyrimperkcalculator.presentation.setButtonColors
 import com.pawels96.skyrimperkcalculator.presentation.toast
 import com.pawels96.skyrimperkcalculator.presentation.viewBinding
 import com.pawels96.skyrimperkcalculator.presentation.viewmodels.BuildsViewModel
-import com.pawels96.skyrimperkcalculator.presentation.viewmodels.AppEvent
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 
 class NameInputDialog : BaseDialog() {
 
@@ -41,6 +44,8 @@ class NameInputDialog : BaseDialog() {
             buildId = id
             build = model.getBuildById(id)
         }
+
+        observeEvents()
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -88,23 +93,19 @@ class NameInputDialog : BaseDialog() {
         return dialog
     }
 
-    @SuppressLint("FragmentLiveDataObserve")
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
-        model.events.observe(this) {
-            when (val content = it.getContentIfNotHandled()) {
-                is AppEvent.BuildRenamed, is AppEvent.BuildSaved -> {
-                    content.messageID?.let { message ->
-                        activity?.toast(message)
+    private fun observeEvents() {
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                model.events.onEach { event ->
+                    event.messageID?.let { message ->
+                        requireActivity().toast(message)
                     }
 
-                    if (content.success) {
+                    if (event.success) {
                         binding.root.hideKeyboard()
                         dismiss()
                     }
-                }
-                else -> Unit
+                }.collect()
             }
         }
     }

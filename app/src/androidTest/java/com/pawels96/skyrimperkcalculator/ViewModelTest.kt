@@ -4,19 +4,23 @@ import android.content.Context
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.test.platform.app.InstrumentationRegistry
 import com.pawels96.skyrimperkcalculator.data.AppDatabase
-import com.pawels96.skyrimperkcalculator.data.Preferences
 import com.pawels96.skyrimperkcalculator.data.BuildRepository
+import com.pawels96.skyrimperkcalculator.data.Preferences
 import com.pawels96.skyrimperkcalculator.domain.EMainSkill
 import com.pawels96.skyrimperkcalculator.domain.PerkSystem
 import com.pawels96.skyrimperkcalculator.domain.skills_vanilla.Alchemy
 import com.pawels96.skyrimperkcalculator.presentation.Utils
 import com.pawels96.skyrimperkcalculator.presentation.viewmodels.BuildsViewModel
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.drop
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.test.runTest
 import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 
+@OptIn(ExperimentalCoroutinesApi::class)
 class ViewModelTest {
 
     @get:Rule
@@ -45,7 +49,7 @@ class ViewModelTest {
     }
 
     @Test
-    fun should_set_created_build_as_current() {
+    fun should_set_created_build_as_current() = runTest {
         val name = "new"
         model.createBuild(name, false)
         val current = model.currentBuild.value
@@ -54,7 +58,7 @@ class ViewModelTest {
     }
 
     @Test
-    fun should_load_last_selected_build_on_next_launch() {
+    fun should_load_last_selected_build_on_next_launch() = runTest {
         model.changePerkSystem(PerkSystem.ORDINATOR)
         model.createBuild("new", false)
         val buildId = model.currentBuild.value?.id
@@ -65,7 +69,7 @@ class ViewModelTest {
     }
 
     @Test
-    fun should_load_first_available_build_when_last_selected_is_invalid() {
+    fun should_load_first_available_build_when_last_selected_is_invalid() = runTest {
         val name = "new"
         model.createBuild(name, false)
         prefs.selectedBuildId = 100
@@ -77,48 +81,48 @@ class ViewModelTest {
     }
 
     @Test
-    fun should_emit_error_when_trying_to_create_with_duplicated_name() {
+    fun should_emit_error_when_trying_to_create_with_duplicated_name() = runTest {
         model.createBuild("name", false)
         model.createBuild("name", false)
-        assertEquals(false, model.events.value?.getContentIfNotHandled()?.success)
+        assertFalse(model.events.drop(1).first().success)
     }
 
     @Test
-    fun should_insert_with_duplicated_name_in_different_perk_system() {
+    fun should_insert_with_duplicated_name_in_different_perk_system() = runTest {
         model.changePerkSystem(PerkSystem.VANILLA)
         model.createBuild("name", false)
         model.changePerkSystem(PerkSystem.ORDINATOR)
         model.createBuild("name", false)
-        assertEquals(true, model.events.value?.getContentIfNotHandled()?.success)
+        assertTrue( model.events.first().success)
     }
 
     @Test
-    fun should_emit_error_when_renaming_with_duplicated_name() {
+    fun should_emit_error_when_renaming_with_duplicated_name() = runTest {
         model.createBuild("name", false)
         model.createBuild("name2", false)
         val buildToRename = model.buildList.value?.find { it.name == "name" }
         model.renameBuild(buildToRename!!, "name2")
-        assertEquals(false, model.events.value?.getContentIfNotHandled()?.success)
+        assertFalse(model.events.drop(2).first().success)
     }
 
     @Test
-    fun should_emit_success_when_renaming_with_same_name() {
+    fun should_emit_success_when_renaming_with_same_name() = runTest {
         model.createBuild("name", false)
         val buildToRename = model.buildList.value?.find { it.name == "name" }
         model.renameBuild(buildToRename!!, "name")
-        assertEquals(true, model.events.value?.getContentIfNotHandled()?.success)
+        assertTrue(model.events.first().success)
     }
 
     @Test
-    fun should_emit_success_when_renaming_with_new_unique_name() {
+    fun should_emit_success_when_renaming_with_new_unique_name() = runTest {
         model.createBuild("name", false)
         val buildToRename = model.buildList.value?.find { it.name == "name" }
         model.renameBuild(buildToRename!!, "name2")
-        assertEquals(true, model.events.value?.getContentIfNotHandled()?.success)
+        assertTrue(model.events.first().success)
     }
 
     @Test
-    fun should_persist_changes_after_exit() = runBlocking {
+    fun should_persist_changes_after_exit() = runTest {
         model.createBuild("name0", false)
         model.createBuild("name", false)
 
@@ -142,7 +146,7 @@ class ViewModelTest {
     }
 
     @Test
-    fun should_not_allow_deleting_the_only_existing_build() {
+    fun should_not_allow_deleting_the_only_existing_build() = runTest {
         assertEquals(1, model.buildList.value?.size)
         assertFalse(model.canDeleteBuild())
         model.createBuild("name0", false)
@@ -150,7 +154,7 @@ class ViewModelTest {
     }
 
     @Test
-    fun should_select_previous_build_after_deleting_current() {
+    fun should_select_previous_build_after_deleting_current() = runTest {
         model.createBuild("name0", false)
         model.createBuild("name1", false)
         model.deleteBuild(model.currentBuild.value!!.id)
@@ -158,7 +162,7 @@ class ViewModelTest {
     }
 
     @Test
-    fun should_select_next_build_after_deleting_current() {
+    fun should_select_next_build_after_deleting_current() = runTest {
         model.createBuild("name0", false)
         model.createBuild("name1", false)
         model.selectBuild(model.buildList.value!!.first())

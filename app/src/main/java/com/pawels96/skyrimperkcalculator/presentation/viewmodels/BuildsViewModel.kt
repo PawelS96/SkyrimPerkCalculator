@@ -7,6 +7,9 @@ import com.pawels96.skyrimperkcalculator.data.BuildRepository
 import com.pawels96.skyrimperkcalculator.domain.*
 import kotlinx.coroutines.*
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.receiveAsFlow
 
 class BuildsViewModel(
     private val repo: BuildRepository,
@@ -22,8 +25,8 @@ class BuildsViewModel(
     private val _requiredLevel = MutableLiveData<Int>()
     val requiredLevel: LiveData<Int> = _requiredLevel
 
-    private val _events = MutableLiveData<LiveEvent<AppEvent>>()
-    val events: LiveData<LiveEvent<AppEvent>> = _events
+    private val _events = Channel<AppEvent>()
+    val events: Flow<AppEvent> = _events.receiveAsFlow()
 
     val allCurrentBuildSkills: List<Skill> get() = ArrayList(_currentBuild.value!!.getAllSkills())
 
@@ -206,7 +209,9 @@ class BuildsViewModel(
     }
 
     private fun dispatchEvent(event: AppEvent) {
-        _events.value = LiveEvent(event)
+        viewModelScope.launch {
+            _events.send(event)
+        }
     }
 
     class Factory(
