@@ -213,8 +213,9 @@ class BuildsViewModel(
         private val repo: BuildRepository,
         private val prefs: Preferences
     ) : ViewModelProvider.Factory {
-        override fun <T : ViewModel?> create(modelClass: Class<T>): T =
-            BuildsViewModel(repo, prefs) as T
+        override fun <T : ViewModel> create(modelClass: Class<T>): T {
+            return BuildsViewModel(repo, prefs) as T
+        }
     }
 
     private fun MutableLiveData<*>.notifyObserver() {

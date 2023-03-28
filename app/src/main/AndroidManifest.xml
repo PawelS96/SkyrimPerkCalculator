@@ -13,6 +13,7 @@
         android:windowSoftInputMode="stateAlwaysHidden">
         <activity
             android:name="com.pawels96.skyrimperkcalculator.presentation.MainActivity"
+            android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

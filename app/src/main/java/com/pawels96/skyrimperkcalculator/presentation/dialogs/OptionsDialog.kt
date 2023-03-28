@@ -31,6 +31,7 @@ class OptionsDialog : BaseDialog() {
         when (model.currentBuild.value?.vampirePerkSystem) {
             VampirePerkSystem.VANILLA -> binding.radioVampireVanilla.isChecked = true
             VampirePerkSystem.SACROSANCT -> binding.radioVampireSacrosanct.isChecked = true
+            else -> Unit
         }
 
         val vampireRadioClickListener =
@@ -54,6 +55,7 @@ class OptionsDialog : BaseDialog() {
         when (model.currentBuild.value?.werewolfPerkSystem) {
             WerewolfPerkSystem.VANILLA -> binding.radioWereVanilla.isChecked = true
             WerewolfPerkSystem.GROWL -> binding.radioWereGrowl.isChecked = true
+            else -> Unit
         }
 
         val werewolfRadioClickListener =

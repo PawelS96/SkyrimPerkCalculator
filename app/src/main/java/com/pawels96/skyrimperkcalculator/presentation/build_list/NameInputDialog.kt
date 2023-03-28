@@ -93,11 +93,8 @@ class NameInputDialog : BaseDialog() {
         super.onActivityCreated(savedInstanceState)
 
         model.events.observe(this) {
-
             when (val content = it.getContentIfNotHandled()) {
-
                 is AppEvent.BuildRenamed, is AppEvent.BuildSaved -> {
-
                     content.messageID?.let { message ->
                         activity?.toast(message)
                     }
@@ -107,6 +104,7 @@ class NameInputDialog : BaseDialog() {
                         dismiss()
                     }
                 }
+                else -> Unit
             }
         }
     }
