@@ -22,6 +22,7 @@ import com.pawels96.skyrimperkcalculator.presentation.viewmodels.BuildsViewModel
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 class NameInputDialog : BaseDialog() {
 
@@ -42,7 +43,7 @@ class NameInputDialog : BaseDialog() {
         if (requireArguments().containsKey(ARG_BUILD_ID)) {
             val id = requireArguments().getLong(ARG_BUILD_ID)
             buildId = id
-            build = model.getBuildById(id)
+            build = runBlocking { model.getBuildById(id) }
         }
 
         observeEvents()

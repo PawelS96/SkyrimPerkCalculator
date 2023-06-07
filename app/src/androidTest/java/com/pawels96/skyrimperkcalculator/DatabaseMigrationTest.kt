@@ -3,19 +3,22 @@ package com.pawels96.skyrimperkcalculator
 import androidx.test.platform.app.InstrumentationRegistry
 import com.pawels96.skyrimperkcalculator.data.AppDatabase
 import com.pawels96.skyrimperkcalculator.data.OldDatabase
-import com.pawels96.skyrimperkcalculator.data.BuildRepository
+import com.pawels96.skyrimperkcalculator.data.DefaultBuildRepository
 import com.pawels96.skyrimperkcalculator.domain.Build
 import com.pawels96.skyrimperkcalculator.domain.PerkSystem
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
 
+@OptIn(ExperimentalCoroutinesApi::class)
 class DatabaseMigrationTest {
 
     private val context = InstrumentationRegistry.getInstrumentation().targetContext
 
     private var newDb = AppDatabase.getInMemoryDatabase(context)
-    private val repo = BuildRepository(newDb.buildDAO())
+    private val repo = DefaultBuildRepository(newDb.buildDAO())
     private val oldDb: OldDatabase = OldDatabase(context, repo)
 
     @Before
@@ -38,7 +41,7 @@ class DatabaseMigrationTest {
     }
 
     @Test
-    fun testMigration() {
+    fun testMigration() = runTest {
 
         val builds = PerkSystem.values().mapIndexed { index, perkSystem -> Build.create(perkSystem) }
         builds.forEach { oldDb.saveBuild(it) }
@@ -50,7 +53,10 @@ class DatabaseMigrationTest {
 
         oldDb.onUpgrade(oldDb.writableDatabase,3, 4)
 
-        val fromNewDB = PerkSystem.values().map { repo.getByPerkSystem(it, false) }.toMutableList().flatten()
+        val fromNewDB = PerkSystem.values()
+            .map { repo.getByPerkSystem(it) }
+            .toMutableList()
+            .flatten()
 
         assertEquals(fromOldDB.size, fromNewDB.size)
 

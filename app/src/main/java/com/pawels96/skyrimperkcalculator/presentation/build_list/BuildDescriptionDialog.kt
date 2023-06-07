@@ -15,6 +15,7 @@ import com.pawels96.skyrimperkcalculator.presentation.setButtonColors
 import com.pawels96.skyrimperkcalculator.presentation.showKeyboard
 import com.pawels96.skyrimperkcalculator.presentation.viewBinding
 import com.pawels96.skyrimperkcalculator.presentation.viewmodels.BuildsViewModel
+import kotlinx.coroutines.runBlocking
 
 class BuildDescriptionDialog : BaseDialog() {
 
@@ -35,7 +36,7 @@ class BuildDescriptionDialog : BaseDialog() {
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val build = model.getBuildById(buildId)
+        val build = runBlocking { model.getBuildById(buildId) }
         binding.buildDesc.text = build?.description
 
         val dialog = getBuilder().setTitle(build?.name)

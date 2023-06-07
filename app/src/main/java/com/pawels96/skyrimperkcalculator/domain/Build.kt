@@ -51,22 +51,27 @@ data class Build(
 
     companion object {
 
-        fun create(perkSystem: PerkSystem, id: Long = 0) : Build{
+        fun create(
+            perkSystem: PerkSystem,
+            id: Long = 0,
+            name: String = DEFAULT_BUILD_NAME
+        ): Build {
 
-            val skills: Map<EMainSkill, Skill> = EMainSkill.values()
-                    .associate { s -> s to SkillFactory.create(s, perkSystem) }
-
-            val vampireSkill: Map<VampirePerkSystem, SpecialSkill> = VampirePerkSystem.values()
-                    .associateWith { SkillFactory.create(ESpecialSkill.SKILL_VAMPIRISM, it) as SpecialSkill }
-
-            val werewolfSkill: Map<WerewolfPerkSystem, SpecialSkill> = WerewolfPerkSystem.values()
-                    .associateWith { SkillFactory.create(ESpecialSkill.SKILL_LYCANTHROPY, it) as SpecialSkill }
-
+            val skills =
+                EMainSkill.values().associateWith { s -> SkillFactory.create(s, perkSystem) }
+            val vampireSkill = VampirePerkSystem.values()
+                .associateWith {
+                    SkillFactory.create(ESpecialSkill.SKILL_VAMPIRISM, it) as SpecialSkill
+                }
+            val werewolfSkill = WerewolfPerkSystem.values()
+                .associateWith {
+                    SkillFactory.create(ESpecialSkill.SKILL_LYCANTHROPY, it) as SpecialSkill
+                }
 
             return Build(
                     id,
                     perkSystem,
-                    DEFAULT_BUILD_NAME,
+                    name,
                     "",
                     skills,
                     VampirePerkSystem.VANILLA,

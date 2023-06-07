@@ -8,39 +8,36 @@ import com.pawels96.skyrimperkcalculator.domain.PerkSystem
 interface BuildDAO {
 
     @Insert
-    fun insert(buildEntity: BuildEntity): Long
+    suspend fun insert(buildEntity: BuildEntity): Long
 
     @Insert
-    fun insert(entities: List<BuildEntity>): LongArray
+    suspend fun insert(entities: List<BuildEntity>): LongArray
 
     @Delete
-    fun delete(buildEntity: BuildEntity): Int
+    suspend fun delete(buildEntity: BuildEntity): Int
 
     @Update
-    fun update(buildEntity: BuildEntity): Int
+    suspend fun update(buildEntity: BuildEntity): Int
 
     @Query("SELECT * FROM buildentity WHERE perkSystem=:perkSystem")
-    fun getAllByPerkSystem(perkSystem: PerkSystem): List<BuildEntity>
+    suspend fun getAllByPerkSystem(perkSystem: PerkSystem): List<BuildEntity>
 
     @Query("DELETE FROM buildentity WHERE id=:id")
-    fun delete(id: Long): Int
+    suspend fun delete(id: Long): Int
 
     @Query("SELECT COUNT(*) FROM buildentity")
-    fun count(): Int
+    suspend fun count(): Int
 
     @Query("SELECT COUNT(*) FROM buildentity WHERE perkSystem=:perkSystem")
-    fun countByPerkSystem(perkSystem: PerkSystem): Int
+    suspend fun countByPerkSystem(perkSystem: PerkSystem): Int
 
     @Query("SELECT * FROM buildentity WHERE id=:id")
-    fun getByID(id: Long): BuildEntity?
+    suspend fun getByID(id: Long): BuildEntity?
 
     @Query("SELECT * FROM buildentity WHERE name=:name AND perkSystem=:perkSystem")
-    fun getByName(name: String, perkSystem: PerkSystem): BuildEntity?
+    suspend fun getByName(name: String, perkSystem: PerkSystem): BuildEntity?
 
     @Query("DELETE FROM buildentity")
-    fun clear()
-
-    @Query("SELECT * FROM buildentity WHERE perkSystem=:perkSystem LIMIT 1")
-    fun getFirst(perkSystem: PerkSystem): BuildEntity?
+    suspend fun clear()
 }
 

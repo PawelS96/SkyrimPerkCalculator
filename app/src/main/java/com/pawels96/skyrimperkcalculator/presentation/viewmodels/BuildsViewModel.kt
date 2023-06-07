@@ -1,20 +1,22 @@
 package com.pawels96.skyrimperkcalculator.presentation.viewmodels
 
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
 import com.pawels96.skyrimperkcalculator.R
 import com.pawels96.skyrimperkcalculator.data.Preferences
-import com.pawels96.skyrimperkcalculator.data.BuildRepository
 import com.pawels96.skyrimperkcalculator.domain.*
-import kotlinx.coroutines.*
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.receiveAsFlow
+import kotlinx.coroutines.launch
 
 class BuildsViewModel(
     private val repo: BuildRepository,
-    private val prefs: Preferences,
-    ) : ViewModel() {
+    private val prefs: Preferences
+) : ViewModel() {
 
     private val _currentBuild = MutableLiveData<Build>()
     val currentBuild: LiveData<Build> = _currentBuild
@@ -40,15 +42,18 @@ class BuildsViewModel(
         loadBuilds()
     }
 
-    private fun loadBuilds() {
-        _currentBuildList.value = repo.getByPerkSystem(currentPerkSystem, true).toMutableList()
-        _currentBuild.value = repo.getByIdOrDefault(prefs.selectedBuildId, currentPerkSystem)
+    private fun loadBuilds() = viewModelScope.launch {
+        repo.populate()
+        val allBuilds = repo.getByPerkSystem(currentPerkSystem).sortedBy { it.name }.toMutableList()
+        val currentBuild = allBuilds.find { it.id == prefs.selectedBuildId } ?: allBuilds.firstOrNull()
+        _currentBuildList.value = allBuilds
+        _currentBuild.value = currentBuild ?: Build.create(currentPerkSystem)
     }
 
     fun setPerkMultiplier(multiplier: Float) {
         this.multiplier = multiplier
         val level = _currentBuild.value!!.getRequiredLevel(multiplier)
-        _requiredLevel.postValue(level)
+        _requiredLevel.value = level
     }
 
     fun savePerkMultiplier() {
@@ -74,27 +79,27 @@ class BuildsViewModel(
         _currentBuild.postNotifyObserver()
         _currentBuildList.notifyObserver()
 
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             repo.update(_currentBuild.value!!)
         }
     }
 
-    fun updateDescription(build: Build, description: String) {
-
+    fun updateDescription(build: Build, description: String) = viewModelScope.launch {
         repo.update(build.apply { this.description = description })
         builds.find { it.name == build.name }?.description = description
         _currentBuildList.postNotifyObserver()
     }
 
     fun canDeleteBuild() : Boolean {
-        return buildList.value?.size ?: 0 > 1
+        val count = buildList.value?.size ?: 0
+        return count > 1
     }
 
-    fun deleteBuild(buildId: Long) {
+    fun deleteBuild(buildId: Long) = viewModelScope.launch {
 
         if (_currentBuildList.value?.size == 1) {
             dispatchEvent(AppEvent.BuildDeleted(false, R.string.msg_cant_delete))
-            return
+            return@launch
         }
 
         val deletingCurrent = buildId == _currentBuild.value!!.id
@@ -115,16 +120,15 @@ class BuildsViewModel(
         dispatchEvent(AppEvent.BuildDeleted(deleted, message))
     }
 
-    fun createBuild(buildName: String, copyCurrent: Boolean) {
-
+    fun createBuild(buildName: String, copyCurrent: Boolean) = viewModelScope.launch {
         if (buildName.trim().isEmpty()) {
             dispatchEvent(AppEvent.BuildSaved(false, R.string.msg_name_empty))
-            return
+            return@launch
         }
 
         if (!repo.isNameAvailable(buildName, currentPerkSystem)) {
             dispatchEvent(AppEvent.BuildSaved(false, R.string.msg_name_in_use))
-            return
+            return@launch
         }
 
         val newBuild = if (copyCurrent)
@@ -132,7 +136,7 @@ class BuildsViewModel(
         else
             Build.create(currentPerkSystem)
 
-        newBuild.apply { name = buildName }
+        newBuild.name = buildName
 
         val savedBuild = repo.insert(newBuild)
         val success = savedBuild != null
@@ -151,21 +155,21 @@ class BuildsViewModel(
         prefs.selectedBuildId = build.id
     }
 
-    fun renameBuild(build: Build, newName: String) {
+    fun renameBuild(build: Build, newName: String) = viewModelScope.launch {
 
         if (newName.trim().isEmpty()) {
             dispatchEvent(AppEvent.BuildRenamed(false, R.string.msg_name_empty))
-            return
+            return@launch
         }
 
         if (build.name == newName) {
             dispatchEvent(AppEvent.BuildRenamed(true, null))
-            return
+            return@launch
         }
 
         if (!repo.isNameAvailable(newName, currentPerkSystem)) {
             dispatchEvent(AppEvent.BuildSaved(false, R.string.msg_name_in_use))
-            return
+            return@launch
         }
 
         build.name = newName
@@ -183,28 +187,26 @@ class BuildsViewModel(
         currentPerkSystem = perkSystem
         prefs.selectedPerkSystem = currentPerkSystem
 
-        viewModelScope.launch(Dispatchers.IO) {
-            val builds = repo.getByPerkSystem(perkSystem, true).toMutableList()
-            withContext(Dispatchers.Main) {
-                selectBuild(builds[0])
-                _currentBuildList.value = builds
-            }
+        viewModelScope.launch {
+            val builds = repo.getByPerkSystem(perkSystem).sortedBy { it.name }.toMutableList()
+            builds.firstOrNull()?.let { selectBuild(it) }
+            _currentBuildList.postValue(builds)
         }
     }
 
-    fun changeVampirePerkSystem(perkSystem: VampirePerkSystem) {
+    fun changeVampirePerkSystem(perkSystem: VampirePerkSystem) = viewModelScope.launch {
         _currentBuild.value!!.vampirePerkSystem = perkSystem
         repo.update(_currentBuild.value!!)
         _currentBuild.notifyObserver()
     }
 
-    fun changeWerewolfPerkSystem(perkSystem: WerewolfPerkSystem) {
+    fun changeWerewolfPerkSystem(perkSystem: WerewolfPerkSystem) = viewModelScope.launch {
         _currentBuild.value!!.werewolfPerkSystem = perkSystem
         repo.update(_currentBuild.value!!)
         _currentBuild.notifyObserver()
     }
 
-    fun getBuildById(id: Long) : Build? {
+    suspend fun getBuildById(id: Long) : Build? {
         return repo.getById(id)
     }
 

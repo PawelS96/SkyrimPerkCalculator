@@ -30,9 +30,9 @@ public class OldDatabase extends SQLiteOpenHelper {
 
     private static final int DBVER = 4;
 
-    private BuildRepository repoForMigration;
+    private DefaultBuildRepository repoForMigration;
 
-    public OldDatabase(Context context, BuildRepository repoForMigration) {
+    public OldDatabase(Context context, DefaultBuildRepository repoForMigration) {
         super(context, DBNAME, null, DBVER);
         this.repoForMigration = repoForMigration;
         getWritableDatabase();
@@ -77,7 +77,7 @@ public class OldDatabase extends SQLiteOpenHelper {
 
     private Build getBuild(Cursor cursor, PerkSystem system) {
 
-        Build build = Build.Companion.create(system, 0);
+        Build build = Build.Companion.create(system, 0, DEFAULT_BUILD_NAME);
 
         for (EMainSkill s : EMainSkill.values()) {
             for (IPerk p : build.getSkill(s).getPerks().keySet()) {
@@ -157,7 +157,7 @@ public class OldDatabase extends SQLiteOpenHelper {
     }
 
     private void addDefaultBuild(PerkSystem system, SQLiteDatabase db) {
-        Build build = Build.Companion.create(system, 0);
+        Build build = Build.Companion.create(system, 0, DEFAULT_BUILD_NAME);
         build.setName(DEFAULT_BUILD_NAME + "_FromOldDB");
         insertBuild(getTable(system), processBuild(build), db);
     }

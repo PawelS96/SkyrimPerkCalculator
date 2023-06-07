@@ -9,7 +9,7 @@ typealias PerkMap = MutableMap<String, Int>
 
 class DatabaseUpdater(val dao: BuildDAO) {
 
-    fun updatePerks(perkSystem: PerkSystem) {
+    suspend fun updatePerks(perkSystem: PerkSystem) {
 
         val builds = dao.getAllByPerkSystem(perkSystem)
 
