@@ -10,7 +10,7 @@ public enum Vok_Speech implements IPerk {
     VOK_SPC_BRIBERY (0.8f, 0.825f, 30),
     VOK_SPC_KINSHIP (0.15f, 0.75f, 30),
     VOK_SPC_SPEAK_WITH_ANIMALS (0.475f, 0.6f, 40),
-    VOK_SPC_WORDS_OF_POWER (0.75f, 0.45f, 40, 70, 100),
+    VOK_SPC_WORDS_OF_POWER (0.75f, 0.45f, 40, 70),
     VOK_SPC_ELOQUENT (0.9f, 0.6f, 50),
     VOK_SPC_SALESMAN (0.3f, 0.35f, 50),
     VOK_SPC_INVESTOR (0.15f, 0.325f, 60),
