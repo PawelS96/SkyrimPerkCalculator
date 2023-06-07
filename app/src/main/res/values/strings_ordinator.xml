@@ -168,6 +168,7 @@
     <string name="p_ord_des_stormblast">Stormblast</string>
     <string name="p_ord_des_winters_majesty">Winter\'s Majesty</string>
     <string name="p_ord_des_absolute_power">Absolute Power</string>
+    <string name="p_ord_des_raw_power">Raw Power</string>
     <string name="p_ord_des_cataclysm">Cataclysm</string>
     <string name="p_ord_des_glacial_prison">Glacial Prison</string>
 
@@ -675,6 +676,7 @@
     <string name="d_ord_des_stormblast">You accumulate static energy from the ambient air. Every 6–12 seconds in combat, your next shock spell triggers a ground discharge that radiates outward from the target. All enemies in the area take 60 points of shock damage to Health and Magicka.</string>
     <string name="d_ord_des_winters_majesty">You radiate freezing cold, reducing the frost resistance of enemies within 25 feet by 50%. This penalty is applied on top of Shatter.</string>
     <string name="d_ord_des_absolute_power">Aiming a Sparks, Lightning Bolt, Chain Lightning, Thunderbolt or Lightning Storm spell directly at a target will magnetically levitate them in front of you for 6 seconds, reducing magic resistance by 25%. This effect has a 45 second cooldown.</string>
+    <string name="d_ord_des_raw_power">Destruction spells that do not deal fire, frost or shock damage are 10/20/30% more powerful.</string>
     <string name="d_ord_des_cataclysm">Fire spells that hit targets affected by burning ground explode for 20% of their current Health (max. 250 damage), blasting them into the air and reducing magic resistance by 25% for 6 seconds. This effect has a 45 second cooldown.</string>
     <string name="d_ord_des_glacial_prison">Frost spells immobilize (non-essential) targets in a block of ice for 6 seconds, reducing magic resistance by 25%. This effect has a 120 second cooldown, but killing a victim affected by Glacial Prison or Hypothermia immediately ends the cooldown.</string>
 
