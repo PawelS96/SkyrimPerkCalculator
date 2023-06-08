@@ -29,12 +29,12 @@ class SkillTreeFragment : Fragment(R.layout.fragment_skilltree) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        displayedSkill = requireArguments().getSerializable(ARG_SKILL) as ISkill
+        displayedSkill = requireArguments().getSerializable(ARG_SKILL, ISkill::class.java) as ISkill
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.graph.setListener(listener)
+        binding.graph.listener = listener
         model.currentBuild.observe(viewLifecycleOwner) { displayBuild(it) }
     }
 
