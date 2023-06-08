@@ -1,9 +1,9 @@
-package com.pawels96.skyrimperkcalculator.domain.skills_vanilla;
+package com.pawels96.skyrimperkcalculator.domain.skills_vanilla
 
-import com.pawels96.skyrimperkcalculator.domain.IPerk;
-import com.pawels96.skyrimperkcalculator.domain.PerkInfo;
+import com.pawels96.skyrimperkcalculator.domain.IPerk
+import com.pawels96.skyrimperkcalculator.domain.PerkInfo
 
-public enum LightArmor implements IPerk {
+enum class LightArmor(x: Float, y: Float, vararg skill: Int) : IPerk {
 
     VAN_LAR_AGILE_DEFENDER             (0.55f,  0.95f,   0, 20, 40, 60, 80),
     VAN_LAR_CUSTOM_FIT                 (0.5f,   0.7f,    30),
@@ -12,14 +12,5 @@ public enum LightArmor implements IPerk {
     VAN_LAR_WIND_WALKER                (0.35f,  0.25f,   60),
     VAN_LAR_DEFT_MOVEMENT              (0.5f,   0.1f,    100);
 
-    LightArmor(float x, float y, int... skill) {
-        info = new PerkInfo(skill, x, y);
-    }
-
-    private PerkInfo info;
-
-    @Override
-    public PerkInfo getPerkInfo() {
-        return info;
-    }
+    override val perkInfo: PerkInfo = PerkInfo(skill, x, y)
 }

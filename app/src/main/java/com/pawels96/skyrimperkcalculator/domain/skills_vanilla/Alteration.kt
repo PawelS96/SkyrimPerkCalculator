@@ -1,9 +1,9 @@
-package com.pawels96.skyrimperkcalculator.domain.skills_vanilla;
+package com.pawels96.skyrimperkcalculator.domain.skills_vanilla
 
-import com.pawels96.skyrimperkcalculator.domain.IPerk;
-import com.pawels96.skyrimperkcalculator.domain.PerkInfo;
+import com.pawels96.skyrimperkcalculator.domain.IPerk
+import com.pawels96.skyrimperkcalculator.domain.PerkInfo
 
-public enum Alteration implements IPerk {
+enum class Alteration(x: Float, y: Float, vararg skill: Int) : IPerk {
 
     VAN_ALT_NOVICE_ALTERATION             (0.5f,     0.95f,    0),
     VAN_ALT_ALTERATION_DUAL_CASTING       (0.35f,    0.75f,    20),
@@ -16,15 +16,5 @@ public enum Alteration implements IPerk {
     VAN_ALT_STABILITY                     (0.375f,   0.25f,    70),
     VAN_ALT_MAGE_ARMOR                    (0.35f,    0.45f,    30, 50, 70);
 
-
-    Alteration(float x, float y, int... skill) {
-        info = new PerkInfo(skill, x, y);
-    }
-
-    private PerkInfo info;
-
-    @Override
-    public PerkInfo getPerkInfo() {
-        return info;
-    }
+    override val perkInfo: PerkInfo = PerkInfo(skill, x, y)
 }

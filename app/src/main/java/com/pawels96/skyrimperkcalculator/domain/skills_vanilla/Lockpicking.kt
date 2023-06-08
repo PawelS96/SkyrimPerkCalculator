@@ -1,9 +1,9 @@
-package com.pawels96.skyrimperkcalculator.domain.skills_vanilla;
+package com.pawels96.skyrimperkcalculator.domain.skills_vanilla
 
-import com.pawels96.skyrimperkcalculator.domain.IPerk;
-import com.pawels96.skyrimperkcalculator.domain.PerkInfo;
+import com.pawels96.skyrimperkcalculator.domain.IPerk
+import com.pawels96.skyrimperkcalculator.domain.PerkInfo
 
-public enum Lockpicking implements IPerk {
+enum class Lockpicking(x: Float, y: Float, vararg skill: Int) : IPerk {
 
     VAN_LCK_NOVICE_LOCKS          (0.5f,    0.95f,  0),
     VAN_LCK_APPRENTICE_LOCKS      (0.625f,  0.7f,   20),
@@ -17,14 +17,5 @@ public enum Lockpicking implements IPerk {
     VAN_LCK_UNBREAKABLE           (0.45f,   0.15f,  100),
     VAN_LCK_MASTER_LOCKS          (0.775f,  0.1f,   100);
 
-    Lockpicking(float x, float y, int... skill) {
-        info = new PerkInfo(skill, x, y);
-    }
-
-    private PerkInfo info;
-
-    @Override
-    public PerkInfo getPerkInfo() {
-        return info;
-    }
+    override val perkInfo: PerkInfo = PerkInfo(skill, x, y)
 }

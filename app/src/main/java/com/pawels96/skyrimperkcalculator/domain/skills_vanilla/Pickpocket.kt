@@ -1,9 +1,9 @@
-package com.pawels96.skyrimperkcalculator.domain.skills_vanilla;
+package com.pawels96.skyrimperkcalculator.domain.skills_vanilla
 
-import com.pawels96.skyrimperkcalculator.domain.IPerk;
-import com.pawels96.skyrimperkcalculator.domain.PerkInfo;
+import com.pawels96.skyrimperkcalculator.domain.IPerk
+import com.pawels96.skyrimperkcalculator.domain.PerkInfo
 
-public enum Pickpocket implements IPerk {
+enum class Pickpocket(x: Float, y: Float, vararg skill: Int) : IPerk {
 
     VAN_PCK_LIGHT_FINGERS                 (0.4f ,  0.95f,   0, 20, 40, 60, 80),
     VAN_PCK_NIGHT_THIEF                   (0.5f,   0.75f,   30),
@@ -14,14 +14,5 @@ public enum Pickpocket implements IPerk {
     VAN_PCK_EXTRA_POCKETS                 (0.75f,  0.5f,    50),
     VAN_PCK_POISONED                      (0.4f,   0.5f ,   40);
 
-    Pickpocket(float x, float y, int... skill) {
-        info = new PerkInfo(skill, x, y);
-    }
-
-    private PerkInfo info;
-
-    @Override
-    public PerkInfo getPerkInfo() {
-        return info;
-    }
+    override val perkInfo: PerkInfo = PerkInfo(skill, x, y)
 }

@@ -1,9 +1,9 @@
-package com.pawels96.skyrimperkcalculator.domain.skills_ordinator;
+package com.pawels96.skyrimperkcalculator.domain.skills_ordinator
 
-import com.pawels96.skyrimperkcalculator.domain.IPerk;
-import com.pawels96.skyrimperkcalculator.domain.PerkInfo;
+import com.pawels96.skyrimperkcalculator.domain.IPerk
+import com.pawels96.skyrimperkcalculator.domain.PerkInfo
 
-public enum Ord_Lockpicking implements IPerk {
+enum class Ord_Lockpicking(x: Float, y: Float, vararg skill: Int) : IPerk {
 
     ORD_LCK_MASTERY                     (0.5f,     0.95f,     0, 20),
     ORD_LCK_GAME_OF_FATE                (0.1f,     0.9f,      20),
@@ -27,16 +27,5 @@ public enum Ord_Lockpicking implements IPerk {
     ORD_LCK_WAX_KEY                     (0.9f,     0.9f,      30),
     ORD_LCK_SEEN_THIS_BEFORE            (0.9f,     0.55f,     100);
 
-    Ord_Lockpicking(float x, float y, int... skill) {
-        info = new PerkInfo(skill, x, y);
-    }
-
-    private PerkInfo info;
-
-    @Override
-    public PerkInfo getPerkInfo() {
-        return info;
-    }
+    override val perkInfo: PerkInfo = PerkInfo(skill, x, y)
 }
-
-

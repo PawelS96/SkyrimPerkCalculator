@@ -1,12 +1,12 @@
-package com.pawels96.skyrimperkcalculator.domain.skills_ordinator;
+package com.pawels96.skyrimperkcalculator.domain.skills_ordinator
 
-import com.pawels96.skyrimperkcalculator.domain.IPerk;
-import com.pawels96.skyrimperkcalculator.domain.PerkInfo;
+import com.pawels96.skyrimperkcalculator.domain.IPerk
+import com.pawels96.skyrimperkcalculator.domain.PerkInfo
 
-public enum Ord_HeavyArmor implements IPerk {
+enum class Ord_HeavyArmor(x: Float, y: Float, vararg skill: Int) : IPerk {
 
-    ORD_HAR_MASTERY             (0.5f,    0.95f,   0,20),
-    ORD_HAR_CUSHIONED           (0.45f,   0.8f,    20,50),
+    ORD_HAR_MASTERY             (0.5f,    0.95f,   0, 20),
+    ORD_HAR_CUSHIONED           (0.45f,   0.8f,    20, 50),
     ORD_HAR_BATTLE_WEARY        (0.3f,    0.85f,   30),
     ORD_HAR_HEAVY_ARMOR_FIT     (0.7f,    0.85f,   30),
     ORD_HAR_BREAK_UPON_ME       (0.15f,   0.75f,   60),
@@ -28,16 +28,5 @@ public enum Ord_HeavyArmor implements IPerk {
     ORD_HAR_DOOMBRINGER         (0.9f,    0.25f,   90),
     ORD_HAR_IMMORTAL            (0.8f,    0.2f,    90);
 
-    Ord_HeavyArmor(float x, float y, int... skill) {
-        info = new PerkInfo(skill, x, y);
-    }
-
-    private PerkInfo info;
-
-    @Override
-    public PerkInfo getPerkInfo() {
-        return info;
-    }
-
-
+    override val perkInfo: PerkInfo = PerkInfo(skill, x, y)
 }

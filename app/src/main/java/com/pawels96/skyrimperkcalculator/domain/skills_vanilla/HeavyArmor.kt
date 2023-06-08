@@ -1,9 +1,9 @@
-package com.pawels96.skyrimperkcalculator.domain.skills_vanilla;
+package com.pawels96.skyrimperkcalculator.domain.skills_vanilla
 
-import com.pawels96.skyrimperkcalculator.domain.IPerk;
-import com.pawels96.skyrimperkcalculator.domain.PerkInfo;
+import com.pawels96.skyrimperkcalculator.domain.IPerk
+import com.pawels96.skyrimperkcalculator.domain.PerkInfo
 
-public enum HeavyArmor implements IPerk {
+enum class HeavyArmor(x: Float, y: Float, vararg skill: Int) : IPerk {
 
     VAN_HAR_JUGGERNAUT         (0.5f,   0.95f,  0, 20, 40, 60, 80),
     VAN_HAR_FISTS_OF_STEEL     (0.3f,   0.75f,  30),
@@ -14,14 +14,5 @@ public enum HeavyArmor implements IPerk {
     VAN_HAR_MATCHING_SET       (0.8f,   0.3f,   70),
     VAN_HAR_REFLECT_BLOWS      (0.75f,  0.1f,   100);
 
-    HeavyArmor(float x, float y, int... skill) {
-        info = new PerkInfo(skill, x, y);
-    }
-
-    private PerkInfo info;
-
-    @Override
-    public PerkInfo getPerkInfo() {
-        return info;
-    }
+    override val perkInfo: PerkInfo  = PerkInfo(skill, x, y)
 }

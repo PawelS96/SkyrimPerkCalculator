@@ -1,9 +1,9 @@
-package com.pawels96.skyrimperkcalculator.domain.skills_vanilla;
+package com.pawels96.skyrimperkcalculator.domain.skills_vanilla
 
-import com.pawels96.skyrimperkcalculator.domain.IPerk;
-import com.pawels96.skyrimperkcalculator.domain.PerkInfo;
+import com.pawels96.skyrimperkcalculator.domain.IPerk
+import com.pawels96.skyrimperkcalculator.domain.PerkInfo
 
-public enum Sneak implements IPerk {
+enum class Sneak(x: Float, y: Float, vararg skill: Int) : IPerk {
 
     VAN_SNK_STEALTH                    (0.5f,    0.95f,   0, 20, 40, 60, 80),
     VAN_SNK_BACKSTAB                   (0.75f,   0.75f,   30),
@@ -15,14 +15,5 @@ public enum Sneak implements IPerk {
     VAN_SNK_SILENCE                    (0.55f,   0.3f,    70),
     VAN_SNK_SHADOW_WARRIOR             (0.75f,   0.2f,    100);
 
-    Sneak(float x, float y, int... skill) {
-        info = new PerkInfo(skill, x, y);
-    }
-
-    private PerkInfo info;
-
-    @Override
-    public PerkInfo getPerkInfo() {
-        return info;
-    }
+    override val perkInfo: PerkInfo = PerkInfo(skill, x, y)
 }

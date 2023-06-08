@@ -1,9 +1,9 @@
-package com.pawels96.skyrimperkcalculator.domain.skills_vanilla;
+package com.pawels96.skyrimperkcalculator.domain.skills_vanilla
 
-import com.pawels96.skyrimperkcalculator.domain.IPerk;
-import com.pawels96.skyrimperkcalculator.domain.PerkInfo;
+import com.pawels96.skyrimperkcalculator.domain.IPerk
+import com.pawels96.skyrimperkcalculator.domain.PerkInfo
 
-public enum Alchemy implements IPerk {
+enum class Alchemy(x: Float, y: Float, vararg skill: Int) : IPerk {
 
     VAN_ALC_ALCHEMIST                   (0.25f,     0.95f,   0, 20, 40, 60, 80),
     VAN_ALC_PHYSICIAN                   (0.75f,     0.85f,   20),
@@ -15,14 +15,5 @@ public enum Alchemy implements IPerk {
     VAN_ALC_SNAKEBLOOD                  (0.6f,      0.2f,    80),
     VAN_ALC_PURITY                      (0.525f,    0.075f,  100);
 
-    Alchemy(float x, float y, int... skill) {
-        info = new PerkInfo(skill, x, y);
-    }
-
-    private PerkInfo info;
-
-    @Override
-    public PerkInfo getPerkInfo() {
-        return info;
-    }
+    override val perkInfo: PerkInfo = PerkInfo(skill, x, y)
 }

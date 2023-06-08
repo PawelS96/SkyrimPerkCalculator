@@ -1,9 +1,9 @@
-package com.pawels96.skyrimperkcalculator.domain.skills_vanilla;
+package com.pawels96.skyrimperkcalculator.domain.skills_vanilla
 
-import com.pawels96.skyrimperkcalculator.domain.IPerk;
-import com.pawels96.skyrimperkcalculator.domain.PerkInfo;
+import com.pawels96.skyrimperkcalculator.domain.IPerk
+import com.pawels96.skyrimperkcalculator.domain.PerkInfo
 
-public enum Smithing implements IPerk {
+enum class Smithing(x: Float, y: Float, vararg skill: Int) : IPerk {
 
     VAN_SMT_STEEL_SMITHING                (0.35f,  0.95f,  0),
     VAN_SMT_ARCANE_BLACKSMITH             (0.35f,  0.75f,  60),
@@ -16,14 +16,5 @@ public enum Smithing implements IPerk {
     VAN_SMT_GLASS_SMITHING                (0.25f,  0.45f,  70),
     VAN_SMT_DRAGON_ARMOR                  (0.5f,   0.45f,  100);
 
-    Smithing(float x, float y, int... skill) {
-        info = new PerkInfo(skill, x, y);
-    }
-
-    private PerkInfo info;
-
-    @Override
-    public PerkInfo getPerkInfo() {
-        return info;
-    }
+    override val perkInfo: PerkInfo = PerkInfo(skill, x, y)
 }

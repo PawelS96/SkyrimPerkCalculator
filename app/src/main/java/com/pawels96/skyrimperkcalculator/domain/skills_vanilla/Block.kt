@@ -1,9 +1,9 @@
-package com.pawels96.skyrimperkcalculator.domain.skills_vanilla;
+package com.pawels96.skyrimperkcalculator.domain.skills_vanilla
 
-import com.pawels96.skyrimperkcalculator.domain.IPerk;
-import com.pawels96.skyrimperkcalculator.domain.PerkInfo;
+import com.pawels96.skyrimperkcalculator.domain.IPerk
+import com.pawels96.skyrimperkcalculator.domain.PerkInfo
 
-public enum Block implements IPerk {
+enum class Block(x: Float, y: Float, vararg skill: Int) : IPerk {
 
     VAN_BLC_SHIELD_WALL                    (0.5f,    0.95f,    0, 20, 40, 60, 80),
     VAN_BLC_DEFLECT_ARROWS                 (0.15f,   0.75f,    30),
@@ -15,14 +15,5 @@ public enum Block implements IPerk {
     VAN_BLC_SHIELD_CHARGE                  (0.5f,    0.3f,     100),
     VAN_BLC_QUICK_REFLEXES                 (0.4f,    0.65f,    30);
 
-    Block(float x, float y, int... skill) {
-        info = new PerkInfo(skill, x, y);
-    }
-
-    private PerkInfo info;
-
-    @Override
-    public PerkInfo getPerkInfo() {
-        return info;
-    }
+    override val perkInfo: PerkInfo = PerkInfo(skill, x, y)
 }
