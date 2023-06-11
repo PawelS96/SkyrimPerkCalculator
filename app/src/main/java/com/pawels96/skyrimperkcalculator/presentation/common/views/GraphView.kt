@@ -1,4 +1,4 @@
-package com.pawels96.skyrimperkcalculator.presentation.views
+package com.pawels96.skyrimperkcalculator.presentation.common.views
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -18,7 +18,7 @@ import com.pawels96.skyrimperkcalculator.domain.Perk
 import com.pawels96.skyrimperkcalculator.domain.Perk.Companion.areNodesSelected
 import com.pawels96.skyrimperkcalculator.domain.Skill
 import com.pawels96.skyrimperkcalculator.domain.SkillType
-import com.pawels96.skyrimperkcalculator.presentation.Utils
+import com.pawels96.skyrimperkcalculator.presentation.common.Utils
 
 class GraphView(context: Context, attrs: AttributeSet?) : View(context, attrs) {
 

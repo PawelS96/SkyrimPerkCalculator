@@ -1,7 +1,6 @@
 package com.pawels96.skyrimperkcalculator.presentation.build_list
 
 import android.content.Context
-import android.text.SpannableStringBuilder
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,40 +10,35 @@ import com.pawels96.skyrimperkcalculator.R
 import com.pawels96.skyrimperkcalculator.databinding.ListItemBuildBinding
 import com.pawels96.skyrimperkcalculator.domain.Build
 import com.pawels96.skyrimperkcalculator.domain.SkillType
-import com.pawels96.skyrimperkcalculator.presentation.Bounceable
-import com.pawels96.skyrimperkcalculator.presentation.AnimatedHolder
-import com.pawels96.skyrimperkcalculator.presentation.colored
+import com.pawels96.skyrimperkcalculator.presentation.common.Bounceable
+import com.pawels96.skyrimperkcalculator.presentation.common.AnimatedHolder
+import com.pawels96.skyrimperkcalculator.presentation.common.colored
 
 class BuildAdapter(
     private val context: Context,
     private val callback: BuildAdapterCallback
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private val items = mutableListOf<Build>()
-    private var selected: Int = 0
-    private var multiplier = 0f
+    private val items = mutableListOf<BuildListItem>()
 
     interface BuildAdapterCallback {
         fun onClick(build: Build)
         fun onContextMenuClick(build: Build, view: View)
     }
 
-    fun display(items: List<Build>, selectedIndex: Int, multiplier: Float) {
+    fun display(items: List<BuildListItem>) {
         this.items.clear()
         this.items.addAll(items)
-        this.multiplier = multiplier
-        selected = selectedIndex
         notifyDataSetChanged()
     }
 
     override fun onBindViewHolder(viewHolder: RecyclerView.ViewHolder, i: Int) {
         val holder = viewHolder as Holder
-        holder.bind(items[i], i == selected)
+        holder.bind(items[i])
     }
 
-    private fun getRequiredLevelText(build: Build): String {
-        val lvl = build.getRequiredLevel(multiplier).toString()
-        return context.getString(R.string.level) + ": " + lvl
+    private fun getRequiredLevelText(item: BuildListItem): String {
+        return context.getString(R.string.level) + ": " + item.level
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -61,19 +55,19 @@ class BuildAdapter(
         val binding: ListItemBuildBinding,
     ) : RecyclerView.ViewHolder(binding.root), AnimatedHolder by Bounceable(binding.root) {
 
-        fun bind(build: Build, isSelected: Boolean) {
-
+        fun bind(item: BuildListItem) {
+            val build = item.build
             with(binding) {
                 root.setOnClickListener { callback.onClick(build) }
                 contextMenu.setOnClickListener { callback.onContextMenuClick(build, contextMenu) }
-                nameEdit.text = if (isSelected) build.name.colored(
+                nameEdit.text = if (item.isSelected) build.name.colored(
                     ContextCompat.getColor(
                         context,
                         R.color.colorAccent
                     )
                 ) else build.name
 
-                level.text = getRequiredLevelText(build)
+                level.text = getRequiredLevelText(item)
                 description.text = build.description
                 description.setVisible(build.description.isNotEmpty())
             }
@@ -123,5 +117,4 @@ class BuildAdapter(
         else
             View.GONE
     }
-
 }

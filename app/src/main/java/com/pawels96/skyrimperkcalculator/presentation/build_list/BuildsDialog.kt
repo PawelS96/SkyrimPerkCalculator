@@ -8,30 +8,32 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.PopupMenu
-import androidx.core.content.ContextCompat
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.pawels96.skyrimperkcalculator.Injector
 import com.pawels96.skyrimperkcalculator.R
 import com.pawels96.skyrimperkcalculator.databinding.DialogListBuildsBinding
 import com.pawels96.skyrimperkcalculator.domain.Build
 import com.pawels96.skyrimperkcalculator.domain.PerkSystem
-import com.pawels96.skyrimperkcalculator.presentation.Utils
-import com.pawels96.skyrimperkcalculator.presentation.configureEffects
-import com.pawels96.skyrimperkcalculator.presentation.dialogs.BaseDialog
-import com.pawels96.skyrimperkcalculator.presentation.setButtonColors
-import com.pawels96.skyrimperkcalculator.presentation.viewBinding
-import com.pawels96.skyrimperkcalculator.presentation.viewmodels.BuildsViewModel
+import com.pawels96.skyrimperkcalculator.presentation.common.Utils
+import com.pawels96.skyrimperkcalculator.presentation.common.configureEffects
+import com.pawels96.skyrimperkcalculator.presentation.common.dialogs.BaseDialog
+import com.pawels96.skyrimperkcalculator.presentation.common.setButtonColors
+import com.pawels96.skyrimperkcalculator.presentation.common.viewBinding
+import kotlinx.coroutines.launch
 
 class BuildsDialog : BaseDialog() {
 
     private val binding by viewBinding(DialogListBuildsBinding::inflate)
 
-    private val model: BuildsViewModel by lazy {
+    private val model: BuildListViewModel by lazy {
         ViewModelProvider(
-            requireActivity(),
-            Injector.provideVmFactory()
-        )[BuildsViewModel::class.java]
+            this,
+            Injector.provideListVmFactory()
+        )[BuildListViewModel::class.java]
     }
 
     private lateinit var buildAdapter: BuildAdapter
@@ -42,7 +44,7 @@ class BuildsDialog : BaseDialog() {
 
         binding.spinner.apply {
             adapter = ArrayAdapter(requireContext(), R.layout.spinner_item, spinnerItems)
-            setSelection(PerkSystem.values().indexOf(model.currentBuild.value!!.system))
+            setSelection(PerkSystem.values().indexOf(model.currentPerkSystem))
             onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
 
                 private var firstSelection = true
@@ -55,7 +57,6 @@ class BuildsDialog : BaseDialog() {
                     position: Int,
                     id: Long
                 ) {
-
                     if (firstSelection)
                         firstSelection = false
                     else
@@ -124,10 +125,11 @@ class BuildsDialog : BaseDialog() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        model.buildList.observe(this, {
-            val currentIndex = it.indexOfFirst { b -> b.id == model.currentBuild.value?.id }
-            buildAdapter.display(it, currentIndex, model.multiplier)
-        })
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                model.buildList.collect { buildAdapter.display(it) }
+            }
+        }
     }
 
     override fun getDialogTag(): String = TAG

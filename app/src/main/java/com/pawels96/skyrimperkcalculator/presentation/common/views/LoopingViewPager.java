@@ -1,4 +1,4 @@
-package com.pawels96.skyrimperkcalculator.presentation.views;
+package com.pawels96.skyrimperkcalculator.presentation.common.views;
 
 import android.content.Context;
 

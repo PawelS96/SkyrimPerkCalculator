@@ -1,21 +1,24 @@
-package com.pawels96.skyrimperkcalculator.presentation.dialogs
+package com.pawels96.skyrimperkcalculator.presentation.current_build
 
 import android.annotation.SuppressLint
 import android.app.Dialog
 import android.os.Bundle
 import android.view.Gravity
-import android.view.LayoutInflater
 import android.view.View
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.pawels96.skyrimperkcalculator.Injector
 import com.pawels96.skyrimperkcalculator.R
 import com.pawels96.skyrimperkcalculator.databinding.PopupPerkDescriptionBinding
 import com.pawels96.skyrimperkcalculator.domain.ISkill
 import com.pawels96.skyrimperkcalculator.domain.Perk
 import com.pawels96.skyrimperkcalculator.domain.SpecialSkillPerk
-import com.pawels96.skyrimperkcalculator.presentation.Utils
-import com.pawels96.skyrimperkcalculator.presentation.viewBinding
-import com.pawels96.skyrimperkcalculator.presentation.viewmodels.BuildsViewModel
+import com.pawels96.skyrimperkcalculator.presentation.common.Utils
+import com.pawels96.skyrimperkcalculator.presentation.common.dialogs.BaseDialog
+import com.pawels96.skyrimperkcalculator.presentation.common.viewBinding
+import kotlinx.coroutines.launch
 
 class PerkInfoDialog : BaseDialog() {
 
@@ -24,11 +27,11 @@ class PerkInfoDialog : BaseDialog() {
     private lateinit var skill: ISkill
     private lateinit var perk: Perk
 
-    private val model: BuildsViewModel by lazy {
+    private val model: CurrentBuildViewModel by lazy {
         ViewModelProvider(
             requireActivity(),
-            Injector.provideVmFactory()
-        )[BuildsViewModel::class.java]
+            Injector.providerCurrentBuildVmFactory()
+        )[CurrentBuildViewModel::class.java]
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -74,8 +77,16 @@ class PerkInfoDialog : BaseDialog() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        model.currentBuild.observe(this) {
-            updateStateInfo(it.getSkill(skill)[perk.perk]!!)
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                model.currentBuild.collect { build ->
+                    build?.let {
+                        val perk = it.getSkill(skill)[perk.perk]!!
+                        this@PerkInfoDialog.perk = perk
+                        updateStateInfo(perk)
+                    }
+                }
+            }
         }
     }
 
@@ -96,6 +107,5 @@ class PerkInfoDialog : BaseDialog() {
                 }
             }
         }
-
     }
 }

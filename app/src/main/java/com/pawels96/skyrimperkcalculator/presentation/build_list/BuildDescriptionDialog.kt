@@ -3,18 +3,16 @@ package com.pawels96.skyrimperkcalculator.presentation.build_list
 import android.app.Dialog
 import android.content.DialogInterface
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import com.pawels96.skyrimperkcalculator.Injector
 import com.pawels96.skyrimperkcalculator.R
 import com.pawels96.skyrimperkcalculator.databinding.PopupBuildDescriptionBinding
-import com.pawels96.skyrimperkcalculator.presentation.dialogs.BaseDialog
-import com.pawels96.skyrimperkcalculator.presentation.hideKeyboard
-import com.pawels96.skyrimperkcalculator.presentation.setButtonColors
-import com.pawels96.skyrimperkcalculator.presentation.showKeyboard
-import com.pawels96.skyrimperkcalculator.presentation.viewBinding
-import com.pawels96.skyrimperkcalculator.presentation.viewmodels.BuildsViewModel
+import com.pawels96.skyrimperkcalculator.presentation.common.dialogs.BaseDialog
+import com.pawels96.skyrimperkcalculator.presentation.common.hideKeyboard
+import com.pawels96.skyrimperkcalculator.presentation.common.setButtonColors
+import com.pawels96.skyrimperkcalculator.presentation.common.showKeyboard
+import com.pawels96.skyrimperkcalculator.presentation.common.viewBinding
 import kotlinx.coroutines.runBlocking
 
 class BuildDescriptionDialog : BaseDialog() {
@@ -23,11 +21,11 @@ class BuildDescriptionDialog : BaseDialog() {
 
     private var buildId: Long = 0
 
-    private val model: BuildsViewModel by lazy {
+    private val model: BuildListViewModel by lazy {
         ViewModelProvider(
-            requireActivity(),
-            Injector.provideVmFactory()
-        )[BuildsViewModel::class.java]
+            requireParentFragment(),
+            Injector.provideListVmFactory()
+        )[BuildListViewModel::class.java]
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -3,17 +3,16 @@ package com.pawels96.skyrimperkcalculator.data
 import com.pawels96.skyrimperkcalculator.domain.Build
 import com.pawels96.skyrimperkcalculator.domain.BuildRepository
 import com.pawels96.skyrimperkcalculator.domain.PerkSystem
-import kotlinx.coroutines.DelicateCoroutinesApi
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.emitAll
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.onEach
 
-class DefaultBuildRepository(private val dao: BuildDAO): BuildRepository {
+class DefaultBuildRepository(private val dao: BuildDAO) : BuildRepository {
 
-    @OptIn(DelicateCoroutinesApi::class)
-    fun insert(builds: List<Build>) = GlobalScope.launch {
-        val entities = builds.map { it.toEntity() }
-        dao.insert(entities)
-    }
+    private var cachedBuilds = emptyList<Build>()
 
     override suspend fun insert(build: Build): Build? {
         val id = dao.insert(build.toEntity())
@@ -28,11 +27,25 @@ class DefaultBuildRepository(private val dao: BuildDAO): BuildRepository {
         return dao.getByName(name, perkSystem) == null
     }
 
-    override suspend fun getByPerkSystem(system: PerkSystem): List<Build> {
-        return dao.getAllByPerkSystem(system).map { it.toDomain() }
+    override suspend fun getByPerkSystem(perkSystem: PerkSystem): List<Build> {
+        return dao.observeByPerkSystem(perkSystem).first().map { it.toDomain() }
     }
 
-    override suspend fun getById(id: Long): Build? {
-       return dao.getByID(id)?.toDomain()
+    override fun observeByPerkSystem(perkSystem: PerkSystem): Flow<List<Build>> {
+        val cached = cachedBuilds.filter { it.system == perkSystem }
+        val databaseFlow = dao.observeByPerkSystem(perkSystem)
+            .map { it.map { build -> build.toDomain() } }
+            .onEach { cachedBuilds = it }
+
+        return flow {
+            if (cached.isNotEmpty()) {
+                emit(cached)
+            }
+            emitAll(databaseFlow)
+        }
+    }
+
+    override fun observeById(id: Long): Flow<Build?> {
+        return dao.observeById(id).map { it?.toDomain() }
     }
 }

@@ -13,12 +13,11 @@ import com.pawels96.skyrimperkcalculator.Injector
 import com.pawels96.skyrimperkcalculator.R
 import com.pawels96.skyrimperkcalculator.databinding.PopupSaveBinding
 import com.pawels96.skyrimperkcalculator.domain.Build
-import com.pawels96.skyrimperkcalculator.presentation.dialogs.BaseDialog
-import com.pawels96.skyrimperkcalculator.presentation.hideKeyboard
-import com.pawels96.skyrimperkcalculator.presentation.setButtonColors
-import com.pawels96.skyrimperkcalculator.presentation.toast
-import com.pawels96.skyrimperkcalculator.presentation.viewBinding
-import com.pawels96.skyrimperkcalculator.presentation.viewmodels.BuildsViewModel
+import com.pawels96.skyrimperkcalculator.presentation.common.dialogs.BaseDialog
+import com.pawels96.skyrimperkcalculator.presentation.common.hideKeyboard
+import com.pawels96.skyrimperkcalculator.presentation.common.setButtonColors
+import com.pawels96.skyrimperkcalculator.presentation.common.toast
+import com.pawels96.skyrimperkcalculator.presentation.common.viewBinding
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
@@ -31,11 +30,11 @@ class NameInputDialog : BaseDialog() {
     private var buildId: Long? = null
     private var build: Build? = null
 
-    private val model: BuildsViewModel by lazy {
+    private val model: BuildListViewModel by lazy {
         ViewModelProvider(
-            requireActivity(),
-            Injector.provideVmFactory()
-        )[BuildsViewModel::class.java]
+            requireParentFragment(),
+            Injector.provideListVmFactory()
+        )[BuildListViewModel::class.java]
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

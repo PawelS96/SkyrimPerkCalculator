@@ -2,8 +2,8 @@ package com.pawels96.skyrimperkcalculator
 
 import android.app.Dialog
 import android.os.Bundle
-import com.pawels96.skyrimperkcalculator.presentation.dialogs.BaseDialog
-import com.pawels96.skyrimperkcalculator.presentation.setButtonColors
+import com.pawels96.skyrimperkcalculator.presentation.common.dialogs.BaseDialog
+import com.pawels96.skyrimperkcalculator.presentation.common.setButtonColors
 
 class TutorialDialog : BaseDialog() {
 

@@ -1,7 +1,6 @@
-package com.pawels96.skyrimperkcalculator.presentation.dialogs
+package com.pawels96.skyrimperkcalculator.presentation.current_build
 
 import android.app.Dialog
-import android.content.DialogInterface
 import android.os.Bundle
 import android.widget.CompoundButton
 import android.widget.SeekBar
@@ -11,19 +10,19 @@ import com.pawels96.skyrimperkcalculator.R
 import com.pawels96.skyrimperkcalculator.databinding.PopopOptionsBinding
 import com.pawels96.skyrimperkcalculator.domain.VampirePerkSystem
 import com.pawels96.skyrimperkcalculator.domain.WerewolfPerkSystem
-import com.pawels96.skyrimperkcalculator.presentation.setButtonColors
-import com.pawels96.skyrimperkcalculator.presentation.viewBinding
-import com.pawels96.skyrimperkcalculator.presentation.viewmodels.BuildsViewModel
+import com.pawels96.skyrimperkcalculator.presentation.common.dialogs.BaseDialog
+import com.pawels96.skyrimperkcalculator.presentation.common.setButtonColors
+import com.pawels96.skyrimperkcalculator.presentation.common.viewBinding
 
 class OptionsDialog : BaseDialog() {
 
     private val binding by viewBinding(PopopOptionsBinding::inflate)
 
-    private val model: BuildsViewModel by lazy {
+    private val model: CurrentBuildViewModel by lazy {
         ViewModelProvider(
             requireActivity(),
-            Injector.provideVmFactory()
-        )[BuildsViewModel::class.java]
+            Injector.providerCurrentBuildVmFactory()
+        )[CurrentBuildViewModel::class.java]
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -76,8 +75,9 @@ class OptionsDialog : BaseDialog() {
             it.setOnCheckedChangeListener(werewolfRadioClickListener)
         }
 
-        val seekBarProgress = model.multiplier * 10 + 1
-        val perkCountText = ": ${model.multiplier.format()}"
+        val multiplier = model.perkMultiplier
+        val seekBarProgress = multiplier * 10 + 1
+        val perkCountText = ": ${multiplier.format()}"
         binding.perksSeekbar.progress = seekBarProgress.toInt()
         binding.perksValue.text = perkCountText
 
@@ -86,14 +86,12 @@ class OptionsDialog : BaseDialog() {
                 val value = progress.toFloat() / 10 + 0.1f
                 val perkText = ": ${value.format()}"
                 binding.perksValue.text = perkText
-                model.setPerkMultiplier(value)
+                model.perkMultiplier = value
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) {}
 
-            override fun onStopTrackingTouch(seekBar: SeekBar?) {
-                model.savePerkMultiplier()
-            }
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {}
         })
 
         return getBuilder()

@@ -5,19 +5,18 @@ import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
 import com.pawels96.skyrimperkcalculator.Injector
 import com.pawels96.skyrimperkcalculator.R
-import com.pawels96.skyrimperkcalculator.presentation.dialogs.BaseDialog
-import com.pawels96.skyrimperkcalculator.presentation.setButtonColors
-import com.pawels96.skyrimperkcalculator.presentation.viewmodels.BuildsViewModel
+import com.pawels96.skyrimperkcalculator.presentation.common.dialogs.BaseDialog
+import com.pawels96.skyrimperkcalculator.presentation.common.setButtonColors
 
 class DeleteBuildDialog : BaseDialog() {
 
     private var buildId: Long? = null
 
-    private val model: BuildsViewModel by lazy {
+    private val model: BuildListViewModel by lazy {
         ViewModelProvider(
-            requireActivity(),
-            Injector.provideVmFactory()
-        )[BuildsViewModel::class.java]
+            requireParentFragment(),
+            Injector.provideListVmFactory()
+        )[BuildListViewModel::class.java]
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

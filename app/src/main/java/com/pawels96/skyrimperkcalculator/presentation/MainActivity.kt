@@ -10,7 +10,10 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.TabLayoutOnPageChangeListener
 import com.pawels96.skyrimperkcalculator.Injector
@@ -21,17 +24,21 @@ import com.pawels96.skyrimperkcalculator.domain.ISkill
 import com.pawels96.skyrimperkcalculator.domain.EMainSkill
 import com.pawels96.skyrimperkcalculator.domain.ESpecialSkill
 import com.pawels96.skyrimperkcalculator.domain.SkillType
-import com.pawels96.skyrimperkcalculator.presentation.Utils.getSkillName
+import com.pawels96.skyrimperkcalculator.presentation.common.Utils.getSkillName
 import com.pawels96.skyrimperkcalculator.presentation.build_list.BuildsDialog
-import com.pawels96.skyrimperkcalculator.presentation.dialogs.*
-import com.pawels96.skyrimperkcalculator.presentation.skill_list.SkillListDialog
-import com.pawels96.skyrimperkcalculator.presentation.viewmodels.BuildsViewModel
+import com.pawels96.skyrimperkcalculator.presentation.common.Utils
+import com.pawels96.skyrimperkcalculator.presentation.common.viewBinding
+import com.pawels96.skyrimperkcalculator.presentation.current_build.OptionsDialog
+import com.pawels96.skyrimperkcalculator.presentation.current_build.SkillListDialog
+import com.pawels96.skyrimperkcalculator.presentation.current_build.CurrentBuildViewModel
+import com.pawels96.skyrimperkcalculator.presentation.current_build.SkillTreeFragment
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
     private val binding by viewBinding(ActivityMainBinding::inflate)
     private val prefs = Injector.prefs
-    private val model: BuildsViewModel by lazy { ViewModelProvider(this, Injector.provideVmFactory())[BuildsViewModel::class.java] }
+    private val model: CurrentBuildViewModel by lazy { ViewModelProvider(this, Injector.providerCurrentBuildVmFactory())[CurrentBuildViewModel::class.java] }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -68,8 +75,20 @@ class MainActivity : AppCompatActivity() {
 
         skillFragmentAdapter.notifyDataSetChanged()
 
-        model.currentBuild.observe(this, { updateBuildInfo(it) })
-        model.requiredLevel.observe(this, { updateRequiredLevel(it) })
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                model.currentBuild.collect { build ->
+                    build?.let { updateBuildInfo(it) }
+                }
+            }
+        }
+
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                model.requiredLevel.collect { updateRequiredLevel(it) }
+            }
+        }
+
         binding.tabs.addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(binding.viewPager))
 
         if (prefs.firstLaunch) {
@@ -92,7 +111,7 @@ class MainActivity : AppCompatActivity() {
     private fun observeAttachedFragments() {
         supportFragmentManager.addFragmentOnAttachListener { fragmentManager, fragment ->
             when (fragment) {
-                is SkillListDialog -> fragment.onSelect = {index ->
+                is SkillListDialog -> fragment.onSelect = { index ->
                     binding.viewPager.setCurrentItem(index, false)
                 }
             }
@@ -127,7 +146,6 @@ class MainActivity : AppCompatActivity() {
         val specialPerksText = if (specialPerkSum > 0) " (+$specialPerkSum)" else ""
         val allPerksText = getString(R.string.all_active_perks) + ": " + build.getSelectedPerksCount() + specialPerksText
         binding.allPerks.text = allPerksText
-        updateRequiredLevel(build.getRequiredLevel(model.multiplier))
     }
 
     private fun updateRequiredLevel(level: Int) {

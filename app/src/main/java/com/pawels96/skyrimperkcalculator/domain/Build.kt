@@ -1,6 +1,6 @@
 package com.pawels96.skyrimperkcalculator.domain
 
-import com.pawels96.skyrimperkcalculator.presentation.Utils.DEFAULT_BUILD_NAME
+import com.pawels96.skyrimperkcalculator.presentation.common.Utils.DEFAULT_BUILD_NAME
 
 data class Build(
         val id: Long,
@@ -110,5 +110,4 @@ data class Build(
             return build
         }
     }
-
 }

@@ -1,4 +1,4 @@
-package com.pawels96.skyrimperkcalculator.presentation
+package com.pawels96.skyrimperkcalculator.presentation.common
 
 import android.view.LayoutInflater
 import android.view.View

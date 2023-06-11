@@ -1,4 +1,4 @@
-package com.pawels96.skyrimperkcalculator.presentation.skill_list
+package com.pawels96.skyrimperkcalculator.presentation.current_build
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -9,10 +9,10 @@ import com.pawels96.skyrimperkcalculator.databinding.ListItemSkillBinding
 import com.pawels96.skyrimperkcalculator.domain.ESpecialSkill
 import com.pawels96.skyrimperkcalculator.domain.Skill
 import com.pawels96.skyrimperkcalculator.domain.SkillType
-import com.pawels96.skyrimperkcalculator.presentation.Bounceable
-import com.pawels96.skyrimperkcalculator.presentation.AnimatedHolder
-import com.pawels96.skyrimperkcalculator.presentation.Utils.getSkillName
-import com.pawels96.skyrimperkcalculator.presentation.colored
+import com.pawels96.skyrimperkcalculator.presentation.common.Bounceable
+import com.pawels96.skyrimperkcalculator.presentation.common.AnimatedHolder
+import com.pawels96.skyrimperkcalculator.presentation.common.Utils.getSkillName
+import com.pawels96.skyrimperkcalculator.presentation.common.colored
 
 class SkillAdapter(
     private val onClick: (Int) -> Unit

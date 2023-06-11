@@ -9,13 +9,14 @@ import com.pawels96.skyrimperkcalculator.domain.EMainSkill
 import com.pawels96.skyrimperkcalculator.domain.PerkSystem
 import com.pawels96.skyrimperkcalculator.domain.VampirePerkSystem
 import com.pawels96.skyrimperkcalculator.domain.skills_vanilla.Alchemy
-import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.last
+import kotlinx.coroutines.flow.take
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
 
-@OptIn(ExperimentalCoroutinesApi::class)
 class BuildRepositoryTest {
 
     private lateinit var db: AppDatabase
@@ -43,7 +44,7 @@ class BuildRepositoryTest {
         repo.insert(build1)
         repo.insert(build2)
 
-        val fromDb = repo.getByPerkSystem(PerkSystem.VANILLA)
+        val fromDb = repo.observeByPerkSystem(PerkSystem.VANILLA).take(2).last()
         assertEquals(listOf(build1, build2), fromDb)
     }
 
@@ -83,8 +84,8 @@ class BuildRepositoryTest {
         savedBuild.vampirePerkSystem = VampirePerkSystem.SACROSANCT
         repo.update(savedBuild)
 
-        val updatedBuild = repo.getById(build.id)!!
-        assertEquals(VampirePerkSystem.SACROSANCT, updatedBuild.vampirePerkSystem)
+        val updatedBuild = repo.observeById(build.id).first()
+        assertEquals(VampirePerkSystem.SACROSANCT, updatedBuild?.vampirePerkSystem)
     }
 
     @Test
@@ -96,8 +97,8 @@ class BuildRepositoryTest {
         savedBuild.name = "newName"
         repo.update(savedBuild)
 
-        val updatedBuild = repo.getById(build.id)!!
-        assertEquals("newName", updatedBuild.name)
+        val updatedBuild = repo.observeById(build.id).first()
+        assertEquals("newName", updatedBuild?.name)
         assertEquals(true, repo.isNameAvailable(oldName, ps))
     }
 }

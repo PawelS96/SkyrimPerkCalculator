@@ -4,7 +4,8 @@ import android.content.Context
 import com.pawels96.skyrimperkcalculator.data.AppDatabase
 import com.pawels96.skyrimperkcalculator.data.DefaultBuildRepository
 import com.pawels96.skyrimperkcalculator.data.Preferences
-import com.pawels96.skyrimperkcalculator.presentation.viewmodels.BuildsViewModel
+import com.pawels96.skyrimperkcalculator.presentation.build_list.BuildListViewModel
+import com.pawels96.skyrimperkcalculator.presentation.current_build.CurrentBuildViewModel
 
 object Injector {
 
@@ -19,5 +20,7 @@ object Injector {
         repo = DefaultBuildRepository(db.buildDAO())
     }
 
-    fun provideVmFactory() = BuildsViewModel.Factory(repo, prefs)
+    fun providerCurrentBuildVmFactory() = CurrentBuildViewModel.Factory(repo, prefs)
+
+    fun provideListVmFactory() = BuildListViewModel.Factory(repo, prefs)
 }

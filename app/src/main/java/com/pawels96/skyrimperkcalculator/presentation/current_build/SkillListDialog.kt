@@ -1,4 +1,4 @@
-package com.pawels96.skyrimperkcalculator.presentation.skill_list
+package com.pawels96.skyrimperkcalculator.presentation.current_build
 
 import android.app.Dialog
 import android.os.Bundle
@@ -6,11 +6,10 @@ import androidx.lifecycle.ViewModelProvider
 import com.pawels96.skyrimperkcalculator.Injector
 import com.pawels96.skyrimperkcalculator.R
 import com.pawels96.skyrimperkcalculator.databinding.DialogSkillsBinding
-import com.pawels96.skyrimperkcalculator.presentation.addDivider
-import com.pawels96.skyrimperkcalculator.presentation.configureEffects
-import com.pawels96.skyrimperkcalculator.presentation.dialogs.BaseDialog
-import com.pawels96.skyrimperkcalculator.presentation.viewBinding
-import com.pawels96.skyrimperkcalculator.presentation.viewmodels.BuildsViewModel
+import com.pawels96.skyrimperkcalculator.presentation.common.addDivider
+import com.pawels96.skyrimperkcalculator.presentation.common.configureEffects
+import com.pawels96.skyrimperkcalculator.presentation.common.dialogs.BaseDialog
+import com.pawels96.skyrimperkcalculator.presentation.common.viewBinding
 
 class SkillListDialog : BaseDialog() {
 
@@ -19,11 +18,11 @@ class SkillListDialog : BaseDialog() {
     lateinit var onSelect: (Int) -> Unit
     private var indexToScroll: Int = 0
 
-    private val model: BuildsViewModel by lazy {
+    private val model: CurrentBuildViewModel by lazy {
         ViewModelProvider(
             requireActivity(),
-            Injector.provideVmFactory()
-        )[BuildsViewModel::class.java]
+            Injector.providerCurrentBuildVmFactory()
+        )[CurrentBuildViewModel::class.java]
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -1,18 +1,19 @@
-package com.pawels96.skyrimperkcalculator.presentation
+package com.pawels96.skyrimperkcalculator.presentation.current_build
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.pawels96.skyrimperkcalculator.Injector
 import com.pawels96.skyrimperkcalculator.R
 import com.pawels96.skyrimperkcalculator.databinding.FragmentSkilltreeBinding
 import com.pawels96.skyrimperkcalculator.domain.*
-import com.pawels96.skyrimperkcalculator.presentation.dialogs.PerkInfoDialog
-import com.pawels96.skyrimperkcalculator.presentation.viewmodels.BuildsViewModel
-import com.pawels96.skyrimperkcalculator.presentation.views.GraphView.OnNodeClickedListener
+import com.pawels96.skyrimperkcalculator.presentation.common.views.GraphView.OnNodeClickedListener
+import com.pawels96.skyrimperkcalculator.presentation.common.viewBinding
+import kotlinx.coroutines.launch
 
 class SkillTreeFragment : Fragment(R.layout.fragment_skilltree) {
 
@@ -20,22 +21,28 @@ class SkillTreeFragment : Fragment(R.layout.fragment_skilltree) {
 
     private lateinit var displayedSkill: ISkill
 
-    private val model: BuildsViewModel by lazy {
+    private val model: CurrentBuildViewModel by lazy {
         ViewModelProvider(
             requireActivity(),
-            Injector.provideVmFactory()
-        )[BuildsViewModel::class.java]
+            Injector.providerCurrentBuildVmFactory()
+        )[CurrentBuildViewModel::class.java]
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        displayedSkill = requireArguments().getSerializable(ARG_SKILL, ISkill::class.java) as ISkill
+        displayedSkill = requireArguments().getSerializable(ARG_SKILL) as ISkill
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.graph.listener = listener
-        model.currentBuild.observe(viewLifecycleOwner) { displayBuild(it) }
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                model.currentBuild.collect { build ->
+                    build?.let { displayBuild(it) }
+                }
+            }
+        }
     }
 
     private fun displayBuild(build: Build) {

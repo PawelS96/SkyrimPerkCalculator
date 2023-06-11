@@ -1,4 +1,4 @@
-package com.pawels96.skyrimperkcalculator.presentation.dialogs
+package com.pawels96.skyrimperkcalculator.presentation.common.dialogs
 
 import android.app.AlertDialog
 import android.os.Build
