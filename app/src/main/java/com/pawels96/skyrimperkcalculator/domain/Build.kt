@@ -28,14 +28,14 @@ data class Build(
     }
 
     fun getPerkDistribution(): Map<SkillType, Int> {
-        return SkillType.values().associate { type ->
-            type to skills.values
-                    .filter { skill -> skill.type == type }
-                    .sumBy { skill -> skill.selectedPerksCount }
+        return SkillType.values().associateWith { type ->
+            skills.values
+                .filter { skill -> skill.type == type }
+                .sumOf { skill -> skill.selectedPerksCount }
         }
     }
 
-    fun getSelectedPerksCount(): Int = skills.values.sumBy { it.selectedPerksCount }
+    fun getSelectedPerksCount(): Int = skills.values.sumOf { it.selectedPerksCount }
 
     fun getRequiredLevel(multiplier: Float): Int {
 

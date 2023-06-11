@@ -21,6 +21,7 @@ enum class ESpecialSkill : ISkill {
     override val type: SkillType
         get() = SPECIAL
 
+    @Suppress("UNCHECKED_CAST")
     override fun getPerks(system: IPerkSystem): Array<IPerk> {
 
         return when (this) {
@@ -128,8 +129,7 @@ enum class ESpecialSkill : ISkill {
     }
 }
 
-
-enum class EMainSkill(val skillType: SkillType) : ISkill {
+enum class EMainSkill(private val skillType: SkillType) : ISkill {
 
     SKILL_LOCKPICKING(STEALTH),
     SKILL_PICKPOCKET(STEALTH),
@@ -153,10 +153,9 @@ enum class EMainSkill(val skillType: SkillType) : ISkill {
     override val type: SkillType
         get() = skillType
 
+    @Suppress("UNCHECKED_CAST")
     override fun getPerks(system: IPerkSystem): Array<IPerk> {
-
         when (system as PerkSystem) {
-
             ORDINATOR -> return when (this) {
                 SKILL_LOCKPICKING -> Ord_Lockpicking.values()
                 SKILL_ALCHEMY -> Ord_Alchemy.values()
@@ -222,8 +221,8 @@ enum class EMainSkill(val skillType: SkillType) : ISkill {
         }
     }
 
-    override fun getConnectionsMap(perkSystem: IPerkSystem): Map<IPerk, Array<IPerk>> {
-        return when (perkSystem as PerkSystem) {
+    override fun getConnectionsMap(system: IPerkSystem): Map<IPerk, Array<IPerk>> {
+        return when (system as PerkSystem) {
             ORDINATOR -> getOrdinatorConnections()
             VANILLA -> getVanillaConnections()
             VOKRII -> getVokriiConnections()

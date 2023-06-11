@@ -1,6 +1,5 @@
 package com.pawels96.skyrimperkcalculator.presentation.build_list
 
-import android.annotation.SuppressLint
 import android.app.Dialog
 import android.os.Bundle
 import android.view.MenuItem
@@ -37,6 +36,16 @@ class BuildsDialog : BaseDialog() {
     }
 
     private lateinit var buildAdapter: BuildAdapter
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                model.buildList.collect { buildAdapter.display(it) }
+            }
+        }
+    }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
 
@@ -119,17 +128,6 @@ class BuildsDialog : BaseDialog() {
 
     private fun showRenameDialog(build: Build) {
         NameInputDialog.create(build.id).show(childFragmentManager)
-    }
-
-    @SuppressLint("FragmentLiveDataObserve")
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
-        lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                model.buildList.collect { buildAdapter.display(it) }
-            }
-        }
     }
 
     override fun getDialogTag(): String = TAG

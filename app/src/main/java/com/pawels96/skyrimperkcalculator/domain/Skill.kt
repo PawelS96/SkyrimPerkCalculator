@@ -17,38 +17,42 @@ interface ISkill : Serializable {
 
 class SpecialSkill(iskill: ESpecialSkill, perkSystem: IPerkSystem, perks: Map<IPerk, Perk>) : Skill(iskill, perkSystem, perks) {
 
-    private val vanillaVampirePerkTable = IntRange(1, Vampirism.values().sumBy { maxPerks }).map {
-        it to when (it) {
-            0 -> 0
-            1 -> 5
-            2 -> 6
-            3 -> 9
-            else -> it * 2 + 2
+    private val vanillaVampirePerkTable =
+        IntRange(1, Vampirism.values().sumOf { maxPerks }).associateWith {
+            when (it) {
+                0 -> 0
+                1 -> 5
+                2 -> 6
+                3 -> 9
+                else -> it * 2 + 2
+            }
         }
-    }.toMap()
 
-    private val vanillaWerewolfPerkTable = IntRange(1, Lycanthropy.values().sumBy { maxPerks }).map {
-        it to when (it) {
-            0 -> 0
-            2 -> 6
-            else -> it * 2 + 3
+    private val vanillaWerewolfPerkTable =
+        IntRange(1, Lycanthropy.values().sumOf { maxPerks }).associateWith {
+            when (it) {
+                0 -> 0
+                2 -> 6
+                else -> it * 2 + 3
+            }
         }
-    }.toMap()
 
-    private val sacrosanctPerkTable = IntRange(1, Sac_Vampirism.values().sumBy { maxPerks }).map {
-        it to when (it) {
-            0 -> 0
-            1 -> 4
-            else -> it + 4
+    private val sacrosanctPerkTable =
+        IntRange(1, Sac_Vampirism.values().sumOf { maxPerks }).associateWith {
+            when (it) {
+                0 -> 0
+                1 -> 4
+                else -> it + 4
+            }
         }
-    }.toMap()
 
-    private val growlPerkTable = IntRange(1, Gro_Lycanthropy.values().sumBy { maxPerks }).map {
-        it to when (it) {
-            0 -> 0
-            else -> it + 4
+    private val growlPerkTable =
+        IntRange(1, Gro_Lycanthropy.values().sumOf { maxPerks }).associateWith {
+            when (it) {
+                0 -> 0
+                else -> it + 4
+            }
         }
-    }.toMap()
 
     override val requiredSkillLevel: Int
         get() {
@@ -108,7 +112,7 @@ object SkillFactory {
 
 open class Skill(val iskill: ISkill, val perkSystem: IPerkSystem, val perks: Map<IPerk, Perk>) {
 
-    val maxPerks = perks.values.sumBy { it.maxState }
+    val maxPerks = perks.values.sumOf { it.maxState }
 
     val type: SkillType
         get() = iskill.type

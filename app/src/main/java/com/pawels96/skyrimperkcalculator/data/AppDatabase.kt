@@ -5,8 +5,6 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.pawels96.skyrimperkcalculator.domain.Build
-import com.pawels96.skyrimperkcalculator.domain.PerkSystem
 
 @Database(entities = [BuildEntity::class], version = 1, exportSchema = false)
 @TypeConverters(Converters::class)

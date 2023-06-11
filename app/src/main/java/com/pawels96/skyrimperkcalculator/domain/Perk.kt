@@ -40,10 +40,7 @@ class Perk(val perk: IPerk) : Serializable {
     fun hasChildren(): Boolean = children.isNotEmpty()
 
     private val isNoParentConnected: Boolean
-        get() {
-            for (n in parents) if (n.isSelected) return false
-            return true
-        }
+        get() = parents.none { it.isSelected }
 
     private fun onStateChanged() {
         if (state == 0) stateIncreasing = true else if (state == maxState) stateIncreasing = false

@@ -38,6 +38,18 @@ class PerkInfoDialog : BaseDialog() {
         super.onCreate(savedInstanceState)
         perk = requireArguments().getSerializable(ARG_PERK) as Perk
         skill = requireArguments().getSerializable(ARG_SKILL) as ISkill
+
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                model.currentBuild.collect { build ->
+                    build?.let {
+                        val perk = it.getSkill(skill)[perk.perk]!!
+                        this@PerkInfoDialog.perk = perk
+                        updateStateInfo(perk)
+                    }
+                }
+            }
+        }
     }
 
     @SuppressLint("SetTextI18n")
@@ -71,23 +83,6 @@ class PerkInfoDialog : BaseDialog() {
             .setCancelable(true)
             .create()
             .apply { window?.setGravity(Gravity.BOTTOM) }
-    }
-
-    @SuppressLint("FragmentLiveDataObserve")
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
-        lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                model.currentBuild.collect { build ->
-                    build?.let {
-                        val perk = it.getSkill(skill)[perk.perk]!!
-                        this@PerkInfoDialog.perk = perk
-                        updateStateInfo(perk)
-                    }
-                }
-            }
-        }
     }
 
     override fun getDialogTag(): String = TAG
