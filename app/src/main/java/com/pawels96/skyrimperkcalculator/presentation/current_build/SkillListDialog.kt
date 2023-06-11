@@ -2,11 +2,10 @@ package com.pawels96.skyrimperkcalculator.presentation.current_build
 
 import android.app.Dialog
 import android.os.Bundle
+import android.view.Gravity
 import androidx.lifecycle.ViewModelProvider
 import com.pawels96.skyrimperkcalculator.Injector
-import com.pawels96.skyrimperkcalculator.R
 import com.pawels96.skyrimperkcalculator.databinding.DialogSkillsBinding
-import com.pawels96.skyrimperkcalculator.presentation.common.addDivider
 import com.pawels96.skyrimperkcalculator.presentation.common.configureEffects
 import com.pawels96.skyrimperkcalculator.presentation.common.dialogs.BaseDialog
 import com.pawels96.skyrimperkcalculator.presentation.common.viewBinding
@@ -43,10 +42,11 @@ class SkillListDialog : BaseDialog() {
         listDialog.setOnShowListener {
             skillAdapter.display(model.allCurrentBuildSkills)
             recycler.scrollToPosition(indexToScroll)
-            recycler.addDivider(R.drawable.divider)
             recycler.configureEffects {}
             recycler.adapter = skillAdapter
         }
+
+        listDialog.window?.setGravity(Gravity.BOTTOM)
 
         return listDialog
     }
