@@ -40,7 +40,7 @@ class BuildListViewModel(
                 repo.observeByPerkSystem(perkSystem)
             ) { selectedId, builds ->
                 builds
-                    .sortedBy { it.name }
+                    .sortedBy { it.name.lowercase() }
                     .map { build ->
                         BuildListItem(
                             build = build,
