@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.pawels96.skyrimperkcalculator.R
 import com.pawels96.skyrimperkcalculator.databinding.ListItemBuildBinding
@@ -17,41 +19,36 @@ import com.pawels96.skyrimperkcalculator.presentation.common.colored
 class BuildAdapter(
     private val context: Context,
     private val callback: BuildAdapterCallback
-) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+) : ListAdapter<BuildListItem, BuildAdapter.BuildViewHolder>(BuildDiffCallback()) {
 
-    private val items = mutableListOf<BuildListItem>()
+    private class BuildDiffCallback : DiffUtil.ItemCallback<BuildListItem>() {
+        override fun areItemsTheSame(oldItem: BuildListItem, newItem: BuildListItem): Boolean =
+            oldItem.build.id == newItem.build.id
+
+        override fun areContentsTheSame(oldItem: BuildListItem, newItem: BuildListItem): Boolean =
+            oldItem == newItem
+    }
 
     interface BuildAdapterCallback {
         fun onClick(build: Build)
         fun onContextMenuClick(build: Build, view: View)
     }
 
-    fun display(items: List<BuildListItem>) {
-        this.items.clear()
-        this.items.addAll(items)
-        notifyDataSetChanged()
+    override fun onBindViewHolder(viewHolder: BuildViewHolder, i: Int) {
+        viewHolder.bind(currentList[i])
     }
 
-    override fun onBindViewHolder(viewHolder: RecyclerView.ViewHolder, i: Int) {
-        val holder = viewHolder as Holder
-        holder.bind(items[i])
-    }
-
-    private fun getRequiredLevelText(item: BuildListItem): String {
-        return context.getString(R.string.level) + ": " + item.level
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BuildViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = ListItemBuildBinding.inflate(inflater, parent, false)
-        return Holder(binding)
+        return BuildViewHolder(binding)
     }
 
     override fun getItemViewType(position: Int): Int = R.layout.list_item_build
 
-    override fun getItemCount(): Int = items.size
+    override fun getItemCount(): Int = currentList.size
 
-    private inner class Holder(
+    inner class BuildViewHolder(
         val binding: ListItemBuildBinding,
     ) : RecyclerView.ViewHolder(binding.root), AnimatedHolder by Bounceable(binding.root) {
 
@@ -73,6 +70,10 @@ class BuildAdapter(
             }
 
             displayPerks(build)
+        }
+
+        private fun getRequiredLevelText(item: BuildListItem): String {
+            return context.getString(R.string.level) + ": " + item.level
         }
 
         private fun displayPerks(build: Build) {

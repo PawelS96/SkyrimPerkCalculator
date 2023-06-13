@@ -42,7 +42,13 @@ class BuildsDialog : BaseDialog() {
 
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                model.buildList.collect { buildAdapter.display(it) }
+                model.buildList.collect { list ->
+                    // this list should never be empty except for the initial state
+                    // skipping displaying the empty list makes displaying the list with values smoother
+                    if (list.isNotEmpty()) {
+                        buildAdapter.submitList(list)
+                    }
+                }
             }
         }
     }
