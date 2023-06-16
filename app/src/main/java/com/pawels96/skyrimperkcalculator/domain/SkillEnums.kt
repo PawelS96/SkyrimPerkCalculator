@@ -13,6 +13,7 @@ import com.pawels96.skyrimperkcalculator.domain.lycanthropy.Lycanthropy
 import com.pawels96.skyrimperkcalculator.domain.lycanthropy.Lycanthropy.*
 import com.pawels96.skyrimperkcalculator.domain.lycanthropy.Gro_Lycanthropy.*
 import com.pawels96.skyrimperkcalculator.domain.lycanthropy.Gro_Lycanthropy
+import com.pawels96.skyrimperkcalculator.domain.skills_adamant.*
 
 enum class ESpecialSkill : ISkill {
     SKILL_VAMPIRISM,
@@ -40,7 +41,12 @@ enum class ESpecialSkill : ISkill {
 
         val map = mutableMapOf<IPerk, Array<IPerk>>()
 
-        map[VAN_VAM_POWER_OF_THE_GRAVE] = arrayOf(VAN_VAM_DETECT_ALL_CREATURES, VAN_VAM_VAMPIRIC_GRIP, VAN_VAM_UNEARTHLY_WILL, VAN_VAM_BLOOD_HEALING)
+        map[VAN_VAM_POWER_OF_THE_GRAVE] = arrayOf(
+            VAN_VAM_DETECT_ALL_CREATURES,
+            VAN_VAM_VAMPIRIC_GRIP,
+            VAN_VAM_UNEARTHLY_WILL,
+            VAN_VAM_BLOOD_HEALING
+        )
         map[VAN_VAM_DETECT_ALL_CREATURES] = arrayOf(VAN_VAM_MIST_FORM)
         map[VAN_VAM_MIST_FORM] = arrayOf(VAN_VAM_SUPERNATURAL_REFLEXES)
         map[VAN_VAM_UNEARTHLY_WILL] = arrayOf(VAN_VAM_POISON_TALONS)
@@ -56,7 +62,15 @@ enum class ESpecialSkill : ISkill {
 
         val map = mutableMapOf<IPerk, Array<IPerk>>()
 
-        map[SAC_VAM_POWER_IS_POWER] = arrayOf(SAC_VAM_ECHOLOCATION, SAC_VAM_FOUNTAIN_OF_YOUTH, SAC_VAM_WINGS_OF_THE_STRIX, SAC_VAM_UNEARTHLY_WILL, SAC_VAM_COURTS_CHEF, SAC_VAM_EXSANGUINATE, SAC_VAM_CHOKEHOLD)
+        map[SAC_VAM_POWER_IS_POWER] = arrayOf(
+            SAC_VAM_ECHOLOCATION,
+            SAC_VAM_FOUNTAIN_OF_YOUTH,
+            SAC_VAM_WINGS_OF_THE_STRIX,
+            SAC_VAM_UNEARTHLY_WILL,
+            SAC_VAM_COURTS_CHEF,
+            SAC_VAM_EXSANGUINATE,
+            SAC_VAM_CHOKEHOLD
+        )
         map[SAC_VAM_ECHOLOCATION] = arrayOf(SAC_VAM_MIST_FORM)
         map[SAC_VAM_MIST_FORM] = arrayOf(SAC_VAM_THE_REAPING)
         map[SAC_VAM_THE_REAPING] = arrayOf(SAC_VAM_TREMBLE)
@@ -87,7 +101,12 @@ enum class ESpecialSkill : ISkill {
 
         val map = mutableMapOf<IPerk, Array<IPerk>>()
 
-        map[VAN_LYC_BESTIAL_STRENGTH] = arrayOf(VAN_LYC_TOTEM_OF_ICE_BROTHERS, VAN_LYC_TOTEM_OF_THE_PREDATOR, VAN_LYC_TOTEM_OF_TERROR, VAN_LYC_ANIMAL_VIGOR)
+        map[VAN_LYC_BESTIAL_STRENGTH] = arrayOf(
+            VAN_LYC_TOTEM_OF_ICE_BROTHERS,
+            VAN_LYC_TOTEM_OF_THE_PREDATOR,
+            VAN_LYC_TOTEM_OF_TERROR,
+            VAN_LYC_ANIMAL_VIGOR
+        )
         map[VAN_LYC_TOTEM_OF_ICE_BROTHERS] = arrayOf(VAN_LYC_TOTEM_OF_THE_MOON)
         map[VAN_LYC_ANIMAL_VIGOR] = arrayOf(VAN_LYC_GORGING)
         map[VAN_LYC_GORGING] = arrayOf(VAN_LYC_SAVAGE_FEEDING)
@@ -98,15 +117,26 @@ enum class ESpecialSkill : ISkill {
     private fun growlConnections(): Map<IPerk, Array<IPerk>> {
         val map = mutableMapOf<IPerk, Array<IPerk>>()
 
-        map[GRO_LYC_BESTIAL_STRENGTH] = arrayOf(GRO_LYC_BURY_THE_BEAST, GRO_LYC_LYCANTHROPIC_SPEED, GRO_LYC_ANIMAL_VIGOR, GRO_LYC_FERAL_INSTINCTS, GRO_LYC_GORGING)
+        map[GRO_LYC_BESTIAL_STRENGTH] = arrayOf(
+            GRO_LYC_BURY_THE_BEAST,
+            GRO_LYC_LYCANTHROPIC_SPEED,
+            GRO_LYC_ANIMAL_VIGOR,
+            GRO_LYC_FERAL_INSTINCTS,
+            GRO_LYC_GORGING
+        )
         map[GRO_LYC_BURY_THE_BEAST] = arrayOf(GRO_LYC_WOLF_AMONG_MEN)
         map[GRO_LYC_LYCANTHROPIC_SPEED] = arrayOf(GRO_LYC_LYCANTHROPIC_REGENERATION)
         map[GRO_LYC_LYCANTHROPIC_REGENERATION] = arrayOf(GRO_LYC_SPREAD_THE_BEASTBLOOD)
-        map[GRO_LYC_ANIMAL_VIGOR] = arrayOf(GRO_LYC_INFINITE_DURESS, GRO_LYC_SUPERNATURAL_STRENGTH, GRO_LYC_ROADKILL)
+        map[GRO_LYC_ANIMAL_VIGOR] =
+            arrayOf(GRO_LYC_INFINITE_DURESS, GRO_LYC_SUPERNATURAL_STRENGTH, GRO_LYC_ROADKILL)
         map[GRO_LYC_INFINITE_DURESS] = arrayOf(GRO_LYC_RAMPAGE)
         map[GRO_LYC_ROADKILL] = arrayOf(GRO_LYC_RAMPAGE)
         map[GRO_LYC_SUPERNATURAL_STRENGTH] = arrayOf(GRO_LYC_RAMPAGE)
-        map[GRO_LYC_RAMPAGE] = arrayOf(GRO_LYC_TOTEM_OF_ICE_BROTHERS, GRO_LYC_TOTEM_OF_TERROR, GRO_LYC_TOTEM_OF_THE_HUNT)
+        map[GRO_LYC_RAMPAGE] = arrayOf(
+            GRO_LYC_TOTEM_OF_ICE_BROTHERS,
+            GRO_LYC_TOTEM_OF_TERROR,
+            GRO_LYC_TOTEM_OF_THE_HUNT
+        )
         map[GRO_LYC_FERAL_INSTINCTS] = arrayOf(GRO_LYC_IMPROVED_BLOODTHIRST)
         map[GRO_LYC_GORGING] = arrayOf(GRO_LYC_SAVAGE_FEEDING)
         map[GRO_LYC_IMPROVED_BLOODTHIRST] = arrayOf(GRO_LYC_SWIPE)
@@ -218,6 +248,27 @@ enum class EMainSkill(private val skillType: SkillType) : ISkill {
                 SKILL_LIGHT_ARMOR -> Vok_LightArmor.values()
                 SKILL_RESTORATION -> Vok_Restoration.values()
             } as Array<IPerk>
+
+            ADAMANT -> return when (this) {
+                SKILL_LOCKPICKING -> Ada_Lockpicking.values()
+                SKILL_ALCHEMY -> Ada_Alchemy.values()
+                SKILL_HEAVY_ARMOR -> Ada_HeavyArmor.values()
+                SKILL_ILLUSION -> Ada_Illusion.values()
+                SKILL_CONJURATION -> Ada_Conjuration.values()
+                SKILL_DESTRUCTION -> Ada_Destruction.values()
+                SKILL_BLOCK -> Ada_Block.values()
+                SKILL_SNEAK -> Ada_Sneak.values()
+                SKILL_SPEECH -> Ada_Speech.values()
+                SKILL_ARCHERY -> Ada_Archery.values()
+                SKILL_SMITHING -> Ada_Smithing.values()
+                SKILL_ALTERATION -> Ada_Alteration.values()
+                SKILL_ENCHANTING -> Ada_Enchanting.values()
+                SKILL_ONE_HANDED -> Ada_OneHanded.values()
+                SKILL_PICKPOCKET -> Ada_Pickpocket.values()
+                SKILL_TWO_HANDED -> Ada_TwoHanded.values()
+                SKILL_LIGHT_ARMOR -> Ada_LightArmor.values()
+                SKILL_RESTORATION -> Ada_Restoration.values()
+            } as Array<IPerk>
         }
     }
 
@@ -226,6 +277,7 @@ enum class EMainSkill(private val skillType: SkillType) : ISkill {
             ORDINATOR -> getOrdinatorConnections()
             VANILLA -> getVanillaConnections()
             VOKRII -> getVokriiConnections()
+            ADAMANT -> getAdamantConnections()
         }
     }
 }

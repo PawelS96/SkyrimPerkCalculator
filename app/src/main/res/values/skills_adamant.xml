@@ -1,0 +1,463 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="p_ada_alc_herbalist">Herbalist</string>
+    <string name="p_ada_alc_intensity">Intensity</string>
+    <string name="p_ada_alc_solvency">Solvency</string>
+    <string name="p_ada_alc_concentration">Concentration</string>
+    <string name="p_ada_alc_potency">Potency</string>
+    <string name="p_ada_alc_experimenter">Experimenter</string>
+    <string name="p_ada_alc_green_thumb">Green Thumb</string>
+    <string name="p_ada_alc_chemist">Chemist</string>
+
+    <string name="d_ada_alc_herbalist">Potions and poisons you make are 25/50% stronger.</string>
+    <string name="d_ada_alc_intensity">Poisons last two/four additional hits.</string>
+    <string name="d_ada_alc_solvency">Poisons you mix are 25/50% stronger.</string>
+    <string name="d_ada_alc_concentration">Potions last 50/100% longer.</string>
+    <string name="d_ada_alc_potency">Potions you mix are 25/50% stronger.</string>
+    <string name="d_ada_alc_experimenter">Eating an ingredient reveals all of its effects.</string>
+    <string name="d_ada_alc_green_thumb">You gather one/two extra ingredients from plants.</string>
+    <string name="d_ada_alc_chemist">Create twice as many potions and poisons from the same number of ingredients.</string>
+
+    <string name="p_ada_alt_philosopher">Philosopher</string>
+    <string name="p_ada_alt_mage_robes">Mage Robes</string>
+    <string name="p_ada_alt_mage_armor">Mage Armor</string>
+    <string name="p_ada_alt_meditation">Meditation</string>
+    <string name="p_ada_alt_magicka_well">Magicka Well</string>
+    <string name="p_ada_alt_barrier">Barrier</string>
+    <string name="p_ada_alt_bastion">Bastion</string>
+    <string name="p_ada_alt_balance">Balance</string>
+    <string name="p_ada_alt_stability">Stability</string>
+    <string name="p_ada_alt_spell_shield">Spell Shield</string>
+    <string name="p_ada_alt_spell_sip">Spell Sip</string>
+
+    <string name="d_ada_alt_philosopher">Alteration spells cost 25/50% less Magicka.</string>
+    <string name="d_ada_alt_mage_robes">You have 50/100% extra Magicka Regeneration while wearing robes.</string>
+    <string name="d_ada_alt_mage_armor">Armor spells are 50/100% stronger while wearing robes.</string>
+    <string name="d_ada_alt_meditation">Spells and enchantments cost 10% less while wearing robes.</string>
+    <string name="d_ada_alt_magicka_well">Your Magicka regenerates twice as fast when you fall below half Magicka while wearing robes.</string>
+    <string name="d_ada_alt_barrier">Protection spells like Oakflesh and Fire Shell last three times as long when dual cast.</string>
+    <string name="d_ada_alt_bastion">Protection spells like Oakflesh and Fire Shell affect nearby allies when dual cast.</string>
+    <string name="d_ada_alt_balance">Alteration spells last 50/100% longer.</string>
+    <string name="d_ada_alt_stability">You resist 50% of incoming stagger while under the effects of an armor spell.</string>
+    <string name="d_ada_alt_spell_shield">You have 25% Magic Resistance while under the effect of an armor spell.</string>
+    <string name="d_ada_alt_spell_sip">You have a 25% chance to absorb the Magicka from incoming spells while under the effect of an armor spell.</string>
+
+    <string name="p_ada_arc_marksman">Marksman</string>
+    <string name="p_ada_arc_quick_draw">Quick Draw</string>
+    <string name="p_ada_arc_power_shot">Power Shot</string>
+    <string name="p_ada_arc_ranger">Ranger</string>
+    <string name="p_ada_arc_eagle_eye">Eagle Eye</string>
+    <string name="p_ada_arc_grim_focus">Grim Focus</string>
+    <string name="p_ada_arc_steady_hand">Steady Hand</string>
+    <string name="p_ada_arc_bullseye">Bullseye</string>
+
+    <string name="d_ada_arc_marksman">Bows deal 25/50% more damage.</string>
+    <string name="d_ada_arc_quick_draw">You draw your bow 20/40% faster.</string>
+    <string name="d_ada_arc_power_shot">Bows have a 50% chance to stagger enemies.</string>
+    <string name="d_ada_arc_ranger">You can move faster with a drawn bow.</string>
+    <string name="d_ada_arc_eagle_eye">Bows have a 10/20% chance of dealing critical damage.</string>
+    <string name="d_ada_arc_grim_focus">Critical hits with bows deal three times/five times damage.</string>
+    <string name="d_ada_arc_steady_hand">Zooming in with a bow slows down time.</string>
+    <string name="d_ada_arc_bullseye">Bows deal guaranteed critical damage to enemies at full Health.</string>
+
+    <string name="p_ada_blc_gladiator">Gladiator</string>
+    <string name="p_ada_blc_defensive_maneuvers">Defensive Maneuvers</string>
+    <string name="p_ada_blc_discipline">Discipline</string>
+    <string name="p_ada_blc_deflection">Deflection</string>
+    <string name="p_ada_blc_determination">Determination</string>
+    <string name="p_ada_blc_deliverance">Deliverance</string>
+    <string name="p_ada_blc_deadly_bash">Deadly Bash</string>
+    <string name="p_ada_blc_stunning_strike">Stunning Strike</string>
+    <string name="p_ada_blc_disorienting_blow">Disorienting Blow</string>
+    <string name="p_ada_blc_battering_ram">Battering Ram</string>
+
+    <string name="d_ada_blc_gladiator">Blocking is  25/50% more effective.</string>
+    <string name="d_ada_blc_defensive_maneuvers">Blocking no longer slows your movement.</string>
+    <string name="d_ada_blc_discipline">Blocking with a shield reduces incoming arrow damage by 50%.</string>
+    <string name="d_ada_blc_deflection">Blocking with a shield reduces incoming magic damage by 50%.</string>
+    <string name="d_ada_blc_determination">Blocking with a shield has a 50% chance to stagger your attacker.</string>
+    <string name="d_ada_blc_deliverance">Blocking with a shield slows down time during an enemy power attack.</string>
+    <string name="d_ada_blc_deadly_bash">Bashing does five/ten times more damage.</string>
+    <string name="d_ada_blc_stunning_strike">Bashes also deals damage to Magicka and Stamina.</string>
+    <string name="d_ada_blc_disorienting_blow">Bashing causes enemies to take 25% extra damage for 10 seconds.</string>
+    <string name="d_ada_blc_battering_ram">Bashing an enemy below half Health has a chance to knock them to the ground.</string>
+
+    <string name="p_ada_con_summoner">Summoner</string>
+    <string name="p_ada_con_dark_oath">Dark Oath</string>
+    <string name="p_ada_con_armor_of_shadows">Armor of Shadows</string>
+    <string name="p_ada_con_ritual_of_power">Ritual of Power</string>
+    <string name="p_ada_con_daedric_pact">Daedric Pact</string>
+    <string name="p_ada_con_undead_servant">Undead Servant</string>
+    <string name="p_ada_con_deathly_vigor">Deathly Vigor</string>
+    <string name="p_ada_con_corpse_preparation">Corpse Preparation</string>
+    <string name="p_ada_con_necropotence">Necropotence</string>
+    <string name="p_ada_con_doors_of_oblivion">Doors of Oblivion</string>
+    <string name="p_ada_con_arcane_binding">Arcane Binding</string>
+    <string name="p_ada_con_chaos_binding">Chaos Binding</string>
+    <string name="p_ada_con_mystic_binding">Mystic Binding</string>
+    <string name="p_ada_con_curse_binding">Curse Binding</string>
+    <string name="p_ada_con_cultist">Cultist</string>
+
+    <string name="d_ada_con_summoner">Conjuration spells cost 25/50% less Magicka.</string>
+    <string name="d_ada_con_dark_oath">Summoned creatures last 50/100% longer.</string>
+    <string name="d_ada_con_armor_of_shadows">Summoned creatures gain 150/300 Armor Rating and 25/50% Magic Resistance.</string>
+    <string name="d_ada_con_ritual_of_power">Summoned creatures deal 25/50% more damage.</string>
+    <string name="d_ada_con_daedric_pact">Summoned creatures have 100 extra Health, Magicka, and Stamina.</string>
+    <string name="d_ada_con_undead_servant">Reanimated zombies last five times longer / until killed.</string>
+    <string name="d_ada_con_deathly_vigor">Reanimated zombies move 25/50% faster.</string>
+    <string name="d_ada_con_corpse_preparation">Reanimated zombies no longer disintegrate when they die.</string>
+    <string name="d_ada_con_necropotence">Reanimated zombies regenerate Magicka and Stamina / Health, Magicka, and Stamina over time.</string>
+    <string name="d_ada_con_doors_of_oblivion">You can summon or reanimate one additional minion.</string>
+    <string name="d_ada_con_arcane_binding">Bound weapons last five times longer.</string>
+    <string name="d_ada_con_chaos_binding">Bound weapons have a chance to deal Fire, Frost, and Shock damage / extra Fire, Frost, and Shock damage.</string>
+    <string name="d_ada_con_mystic_binding">Bound weapons deal extra damage/ even more damage.</string>
+    <string name="d_ada_con_curse_binding">Bound weapons reduce enemy Magic Resistance by 50% for 10 seconds.</string>
+    <string name="d_ada_con_cultist">Daedric shrines are twice as strong, / and you receive additional bonuses when you pray at their shrines.</string>
+
+    <string name="p_ada_des_elementalist">Elementalist</string>
+    <string name="p_ada_des_spell_surge">Spell Surge</string>
+    <string name="p_ada_des_impact">Impact</string>
+    <string name="p_ada_des_rune_mage">Rune Mage</string>
+    <string name="p_ada_des_augmented_flames">Augmented Flames</string>
+    <string name="p_ada_des_firebrand">Firebrand</string>
+    <string name="p_ada_des_combustion">Combustion</string>
+    <string name="p_ada_des_wildfire">Wildfire</string>
+    <string name="p_ada_des_augmented_frost">Augmented Frost</string>
+    <string name="p_ada_des_north_wind">North Wind</string>
+    <string name="p_ada_des_permafrost">Permafrost</string>
+    <string name="p_ada_des_deep_freeze">Deep Freeze</string>
+    <string name="p_ada_des_augmented_shock">Augmented Shock</string>
+    <string name="p_ada_des_unstable_current">Unstable Current</string>
+    <string name="p_ada_des_static_field">Static Field</string>
+    <string name="p_ada_des_power_surge">Power Surge</string>
+
+    <string name="d_ada_des_elementalist">Destruction spells cost 25/50% less Magicka.</string>
+    <string name="d_ada_des_spell_surge">Destruction spells cost 25% less when dual cast.</string>
+    <string name="d_ada_des_impact">Destruction spells have a 50% chance to stagger enemies when dual cast.</string>
+    <string name="d_ada_des_rune_mage">You can maintain up to two/three runes at once.</string>
+    <string name="d_ada_des_augmented_flames">Fire spells deal 25/50% more damage.</string>
+    <string name="d_ada_des_firebrand">Fire spells brand enemies for 10 seconds. Branded targets take 25/50% extra damage from fire spells.</string>
+    <string name="d_ada_des_combustion">Fire spells ignite enemies, dealing extra damage over 10 seconds.</string>
+    <string name="d_ada_des_wildfire">Fire spells have a chance to incinerate targets when they fall below half Health.</string>
+    <string name="d_ada_des_augmented_frost">Frost spells deal 25/50% more damage.</string>
+    <string name="d_ada_des_north_wind">When you have a frost spell equipped, you reduce the Frost Resistance of all nearby enemies by up to 50/100%.</string>
+    <string name="d_ada_des_permafrost">Frost spells reduce enemy attack damage by 25% for 10 seconds.</string>
+    <string name="d_ada_des_deep_freeze">Frost spells have a chance to freeze targets who fall below half Health.</string>
+    <string name="d_ada_des_augmented_shock">Shock spells deal 25/50% more damage.</string>
+    <string name="d_ada_des_unstable_current">Shock spells have a 25/50% chance to deal double damage.</string>
+    <string name="d_ada_des_static_field">Shock spells prevent their targets from regenerating Magicka for 10 seconds.</string>
+    <string name="d_ada_des_power_surge">Shock spells have a chance to overload targets who fall below half Health.</string>
+
+
+    <string name="p_ada_enc_artificer">Artificer</string>
+    <string name="p_ada_enc_seeker">Seeker</string>
+    <string name="p_ada_enc_scribe">Scribe</string>
+    <string name="p_ada_enc_resonance">Resonance</string>
+    <string name="p_ada_enc_soul_siphon">Soul Siphon</string>
+    <string name="p_ada_enc_conduit">Conduit</string>
+    <string name="p_ada_enc_channeler">Channeler</string>
+    <string name="p_ada_enc_jewelry_enchanter">Jewelry Enchanter</string>
+    <string name="p_ada_enc_armor_enchanter">Armor Enchanter</string>
+    <string name="p_ada_enc_corpus_enchanter">Corpus Enchanter</string>
+    <string name="p_ada_enc_elemental_enchanter">Elemental Enchanter</string>
+    <string name="p_ada_enc_insightful_enchanter">Insightful Enchanter</string>
+    <string name="p_ada_enc_twin_secrets">Twin Secrets</string>
+
+    <string name="d_ada_enc_artificer">New enchantments are 25/50% stronger.</string>
+    <string name="d_ada_enc_seeker">Scrolls last three/five times as long.</string>
+    <string name="d_ada_enc_scribe">Scrolls are twice/three times as strong.</string>
+    <string name="d_ada_enc_resonance">Weapon enchantments consume 50% less charge.</string>
+    <string name="d_ada_enc_soul_siphon">Enchanted weapons regenerate some of their lost charge when they deal a killing blow.</string>
+    <string name="d_ada_enc_conduit">Staff enchantments consume 50% less charge.</string>
+    <string name="d_ada_enc_channeler">Staves now regenerate some of their lost charge over time.</string>
+    <string name="d_ada_enc_jewelry_enchanter">New enchantments on jewelry are 25% stronger.</string>
+    <string name="d_ada_enc_armor_enchanter">New enchantments on armor are 25% stronger.</string>
+    <string name="d_ada_enc_corpus_enchanter">Health, Magicka, and Stamina enchantments are 25% stronger.</string>
+    <string name="d_ada_enc_elemental_enchanter">Elemental enchantments are 25% stronger.</string>
+    <string name="d_ada_enc_insightful_enchanter">Skill enchantments are 25% stronger.</string>
+    <string name="d_ada_enc_twin_secrets">You can place two enchantments on a single item.</string>
+
+
+    <string name="p_ada_har_defender">Defender</string>
+    <string name="p_ada_har_juggernaut">Juggernaut</string>
+    <string name="p_ada_har_unstoppable">Unstoppable</string>
+    <string name="p_ada_har_perfect_fit">Perfect Fit</string>
+    <string name="p_ada_har_defiance">Defiance</string>
+    <string name="p_ada_har_conditioning">Conditioning</string>
+    <string name="p_ada_har_immovable">Immovable</string>
+    <string name="p_ada_har_constitution">Constitution</string>
+    <string name="p_ada_har_invincible">Invincible</string>
+    <string name="p_ada_har_fists_of_steel">Fists of Steel</string>
+    <string name="p_ada_har_fists_of_war">Fists of War</string>
+    <string name="p_ada_har_fists_of_fury">Fists of Fury</string>
+    <string name="p_ada_har_brace">Brace</string>
+    <string name="p_ada_har_overwhelm">Overwhelm</string>
+    <string name="p_ada_har_knockout_punch">Knockout Punch</string>
+
+    <string name="d_ada_har_defender">Heavy armor is 25/50% more effective.</string>
+    <string name="d_ada_har_juggernaut">You receive a 25% bonus to armor rating when wearing three pieces of heavy armor.</string>
+    <string name="d_ada_har_unstoppable">Your Armor weighs nothing and doesn’t slow you down when wearing three pieces of heavy armor.</string>
+    <string name="d_ada_har_perfect_fit">You receive a 25% bonus to armor rating when wearing three matching pieces of heavy armor.</string>
+    <string name="d_ada_har_defiance">You take 25% less damage when you fall below half Health while wearing three pieces of heavy armor.</string>
+    <string name="d_ada_har_conditioning">You gain 50/100% Health Regeneration when wearing three pieces of heavy armor.</string>
+    <string name="d_ada_har_immovable">You resist 50% of incoming stagger when wearing three pieces of heavy armor.</string>
+    <string name="d_ada_har_constitution">You take 25/50% less damage while power attacking, drawing a bow, or casting a spell while wearing three pieces of heavy armor.</string>
+    <string name="d_ada_har_invincible">Your Health regenerates twice as fast when you fall below half Health while wearing three pieces of heavy armor.</string>
+    <string name="d_ada_har_fists_of_steel">You deal 25/50% unarmed damage while wearing heavy gauntlets.</string>
+    <string name="d_ada_har_fists_of_war">Unarmed power attacks deal 25/50% more damage while wearing heavy gauntlets.</string>
+    <string name="d_ada_har_fists_of_fury">Unarmed attacks deal Stamina damage / and prevent enemies from regenerating Stamina for 10 seconds.</string>
+    <string name="d_ada_har_brace">You resist 25% of incoming damage while unarmed and wearing heavy gauntlets.</string>
+    <string name="d_ada_har_overwhelm">Unarmed power attacks deal 50% extra damage to targets who fall below half Health.</string>
+    <string name="d_ada_har_knockout_punch">Unarmed power attacks have a chance to knock enemies down when they fall below half Health.</string>
+
+    <string name="p_ada_ilu_illusionist">Illusionist</string>
+    <string name="p_ada_ilu_captivating_presence">Captivating Presence</string>
+    <string name="p_ada_ilu_indomitable_will">Indomitable Will</string>
+    <string name="p_ada_ilu_master_of_the_mind">Master of the Mind</string>
+    <string name="p_ada_ilu_guidance">Guidance</string>
+    <string name="p_ada_ilu_serenity">Serenity</string>
+    <string name="p_ada_ilu_tranquility">Tranquility</string>
+    <string name="p_ada_ilu_stasis">Stasis</string>
+    <string name="p_ada_ilu_howl_of_rage">Howl of Rage</string>
+    <string name="p_ada_ilu_aspect_of_terror">Aspect of Terror</string>
+    <string name="p_ada_ilu_voice_of_authority">Voice of Authority</string>
+
+    <string name="d_ada_ilu_illusionist">Illusion spells cost 25/50% less Magicka.</string>
+    <string name="d_ada_ilu_captivating_presence">Your Illusion spells last 50/100% longer.</string>
+    <string name="d_ada_ilu_indomitable_will">Your Illusion spells are 50/100% stronger.</string>
+    <string name="d_ada_ilu_master_of_the_mind">Your Illusion spells affect the undead / undead, Daedra, and Dwarven automatons.</string>
+    <string name="d_ada_ilu_guidance">Courage spells last three times longer.</string>
+    <string name="d_ada_ilu_serenity">Calm spells persist through one additional hit.</string>
+    <string name="d_ada_ilu_tranquility">Silence spells dispel any magical effects on the target.</string>
+    <string name="d_ada_ilu_stasis">Paralysis spells last three times longer.</string>
+    <string name="d_ada_ilu_howl_of_rage">Frenzy spells increase the target’s weapon damage by 50% against everyone except the caster.</string>
+    <string name="d_ada_ilu_aspect_of_terror">Fear spells reduce the target’s Armor Rating by 150 and their Magic Resistance by 25%.</string>
+    <string name="d_ada_ilu_voice_of_authority">Command spells increase the target’s Armor Rating by 150 and their Magic Resistance by 25%.</string>
+
+    <string name="p_ada_lar_scout">Scout</string>
+    <string name="p_ada_lar_specialist">Specialist</string>
+    <string name="p_ada_lar_unhindered">Unhindered</string>
+    <string name="p_ada_lar_custom_fit">Custom Fit</string>
+    <string name="p_ada_lar_endurance">Endurance</string>
+    <string name="p_ada_lar_agility">Agility</string>
+    <string name="p_ada_lar_athletics">Athletics</string>
+    <string name="p_ada_lar_adrenaline">Adrenaline</string>
+    <string name="p_ada_lar_second_wind">Second Wind</string>
+
+    <string name="d_ada_lar_scout">Light armor is 25/50% more effective.</string>
+    <string name="d_ada_lar_specialist">You receive a 25% armor bonus when wearing three pieces of light armor.</string>
+    <string name="d_ada_lar_unhindered">Your armor weighs nothing and doesn’t slow you down when wearing three pieces of light armor.</string>
+    <string name="d_ada_lar_custom_fit">You receive a 25% armor bonus when wearing three matching pieces of light armor.</string>
+    <string name="d_ada_lar_endurance">You spend 25% less Stamina when power attacking or drawing a bow when wearing three pieces of light armor.</string>
+    <string name="d_ada_lar_agility">You gain 50/100% Stamina Regeneration when wearing three pieces of light armor.</string>
+    <string name="d_ada_lar_athletics">You move 10/20% faster when wearing three pieces of light armor.</string>
+    <string name="d_ada_lar_adrenaline">You move 20% faster when sprinting while wearing three pieces of light armor.</string>
+    <string name="d_ada_lar_second_wind">Your Stamina regenerates twice as fast when you fall below half Stamina while wearing three pieces of light armor.</string>
+
+    <string name="p_ada_lck_locksmith">Locksmith</string>
+    <string name="p_ada_lck_golden_touch">Golden Touch</string>
+    <string name="p_ada_lck_quick_hands">Quick Hands</string>
+    <string name="p_ada_lck_rare_gems">Rare Gems</string>
+    <string name="p_ada_lck_deep_pockets">Deep Pockets</string>
+    <string name="p_ada_lck_dungeon_delver">Dungeon Delver</string>
+    <string name="p_ada_lck_tumblerbane">Tumblerbane</string>
+    <string name="p_ada_lck_treasure_hunter">Treasure Hunter</string>
+
+    <string name="d_ada_lck_locksmith">You are 25/50% better at picking locks.</string>
+    <string name="d_ada_lck_golden_touch">You find more gold on your adventures.</string>
+    <string name="d_ada_lck_quick_hands">You can pick locks without being seen.</string>
+    <string name="d_ada_lck_rare_gems">You find valuable gems in unexpected places.</string>
+    <string name="d_ada_lck_deep_pockets">Your carrying capacity is increased by 50/100.</string>
+    <string name="d_ada_lck_dungeon_delver">You find more rare loot in dungeons.</string>
+    <string name="d_ada_lck_tumblerbane">Your lockpicks start close to their opening position.</string>
+    <string name="d_ada_lck_treasure_hunter">You find valuable treasure wherever you go.</string>
+
+
+    <string name="p_ada_onh_skirmisher">Skirmisher</string>
+    <string name="p_ada_onh_fighters_stance">Fighter’s Stance</string>
+    <string name="p_ada_onh_overrun">Overrun</string>
+    <string name="p_ada_onh_execute">Execute</string>
+    <string name="p_ada_onh_onslaught">Onslaught</string>
+    <string name="p_ada_onh_flourish">Flourish</string>
+    <string name="p_ada_onh_quick_slash">Quick Slash</string>
+    <string name="p_ada_onh_precise_cuts">Precise Cuts</string>
+    <string name="p_ada_onh_hack_and_slash">Hack and Slash</string>
+    <string name="p_ada_onh_carve_and_spit">Carve and Spit</string>
+    <string name="p_ada_onh_armor_breaker">Armor Breaker</string>
+    <string name="p_ada_onh_bell_ringer">Bell Ringer</string>
+    <string name="p_ada_onh_dual_focus">Dual Focus</string>
+    <string name="p_ada_onh_dual_frenzy">Dual Frenzy</string>
+    <string name="p_ada_onh_dual_fury">Dual Fury</string>
+
+    <string name="d_ada_onh_skirmisher">One-handed weapons do 25/50% more damage.</string>
+    <string name="d_ada_onh_fighters_stance">Power attacks with one-handed weapons deal 25/50% extra damage and have a chance to decapitate your enemies.</string>
+    <string name="d_ada_onh_overrun">Power attacks with one-handed weapons deal 50% extra damage to targets who are power attacking, drawing a bow, or casting a spell.</string>
+    <string name="d_ada_onh_execute">Power Attacks with One-handed weapons deal 50% extra damage against target who fall below half Health.</string>
+    <string name="d_ada_onh_onslaught">Repeated power attacks against a single target with One-handed weapons deal up to double damage.</string>
+    <string name="d_ada_onh_flourish">You attack 20% faster with One-handed weapons.</string>
+    <string name="d_ada_onh_quick_slash">Swords and daggers have a 10/20% chance of dealing critical damage.</string>
+    <string name="d_ada_onh_precise_cuts">Critical attacks with swords and daggers deal three/five times as much damage.</string>
+    <string name="d_ada_onh_hack_and_slash">War axes deal extra damage over 5/10 seconds.</string>
+    <string name="d_ada_onh_carve_and_spit">War axes deal three/five times as much damage over time.</string>
+    <string name="d_ada_onh_armor_breaker">Maces reduce enemy armor rating by 150/300 for 10 seconds.</string>
+    <string name="d_ada_onh_bell_ringer">Maces deal 25/50% extra damage to staggered targets.</string>
+    <string name="d_ada_onh_dual_focus">Dual wield power attacks cost 25% less Stamina.</string>
+    <string name="d_ada_onh_dual_frenzy">Dual wield power attacks deal 25/50% more damage.</string>
+    <string name="d_ada_onh_dual_fury">You resist 25% of all incoming damage while dual wielding.</string>
+
+    <string name="p_ada_pck_cutpurse">Cutpurse</string>
+    <string name="p_ada_pck_nimble_fingers">Nimble Fingers</string>
+    <string name="p_ada_pck_practiced_thief">Practiced Thief</string>
+    <string name="p_ada_pck_sleight_of_hand">Sleight of Hand</string>
+    <string name="p_ada_pck_poisoned_fruit">Poisoned Fruit</string>
+    <string name="p_ada_pck_fools_gift">Fool\'s Gift</string>
+    <string name="p_ada_pck_misdirection">Misdirection</string>
+    <string name="p_ada_pck_perfect_touch">Perfect Touch</string>
+
+    <string name="d_ada_pck_cutpurse">You are 25/50% more likely to succeed at pickpocketing.</string>
+    <string name="d_ada_pck_nimble_fingers">You are more likely to succeed when pickpocketing gold or keys.</string>
+    <string name="d_ada_pck_practiced_thief">You are more likely to succeed when pickpocketing gems or jewelry.</string>
+    <string name="d_ada_pck_sleight_of_hand">You are more likely to succeed against targets who are not detecting you.</string>
+    <string name="d_ada_pck_poisoned_fruit">You can harm enemies by placing poisons in their pockets.</string>
+    <string name="d_ada_pck_fools_gift">Poisons that you place in enemy pockets are 50/100% stronger.</string>
+    <string name="d_ada_pck_misdirection">You can pickpocket equipped weapons.</string>
+    <string name="d_ada_pck_perfect_touch">You can pickpocket equipped items.</string>
+
+
+    <string name="p_ada_res_healer">Healer</string>
+    <string name="p_ada_res_recovery">Recovery</string>
+    <string name="p_ada_res_respite">Respite</string>
+    <string name="p_ada_res_repose">Repose</string>
+    <string name="p_ada_res_resolve">Resolve</string>
+    <string name="p_ada_res_renewal">Renewal</string>
+    <string name="p_ada_res_illumination">Illumination</string>
+    <string name="p_ada_res_pilgrim">Pilgrim</string>
+    <string name="p_ada_res_empowered_ward">Empowered Ward</string>
+    <string name="p_ada_res_radiant_ward">Radiant Ward</string>
+    <string name="p_ada_res_prismatic_ward">Prismatic Ward</string>
+    <string name="p_ada_res_divine_glory">Divine Glory</string>
+    <string name="p_ada_res_power_of_the_light">Power of the Light</string>
+    <string name="p_ada_res_dawns_wrath">Dawn’s Wrath</string>
+    <string name="p_ada_res_burning_light">Burning Light</string>
+    <string name="p_ada_res_affliction">Affliction</string>
+    <string name="p_ada_res_plague">Plague</string>
+    <string name="p_ada_res_scourge">Scourge</string>
+
+    <string name="d_ada_res_healer">Restoration spells cost 25/50% less Magicka.</string>
+    <string name="d_ada_res_recovery">Healing spells are 50/100% stronger.</string>
+    <string name="d_ada_res_respite">Instant healing spells such as Fast Healing and Close Wounds also restore Stamina.</string>
+    <string name="d_ada_res_repose">Regeneration, Attunement, and Circle spells last twice as long.</string>
+    <string name="d_ada_res_resolve">Healing spells are 50% stronger when the target falls below half Health.</string>
+    <string name="d_ada_res_renewal">Once per day, you fully heal yourself when your health drops below 25%.</string>
+    <string name="d_ada_res_illumination">Regeneration and Attunement spells last three times as long when dual cast.</string>
+    <string name="d_ada_res_pilgrim">Divine shrines are twice as strong, / and you receive additional bonuses when you pray at their shrines.</string>
+    <string name="d_ada_res_empowered_ward">Ward spells resist 50% of incoming weapon damage.</string>
+    <string name="d_ada_res_radiant_ward">Ward spells cost 50% less Magicka.</string>
+    <string name="d_ada_res_prismatic_ward">Ward spells absorb Magicka from incoming spells.</string>
+    <string name="d_ada_res_divine_glory">Sun spells deal 25/50% more damage.</string>
+    <string name="d_ada_res_power_of_the_light">Sun spells deal extra damage / even more damage over time.</string>
+    <string name="d_ada_res_dawns_wrath">Turn Undead spells are 50/100% stronger.</string>
+    <string name="d_ada_res_burning_light">Turn Undead spells deal damage over time.</string>
+    <string name="d_ada_res_affliction">Poison spells deal 25/50% more damage.</string>
+    <string name="d_ada_res_plague">When you have a Poison spell equipped, you reduce the Poison Resistance of all nearby enemies by up to 50/100%.</string>
+    <string name="d_ada_res_scourge">Poison spells deal 50/100% extra damage to targets who fall below half Health.</string>
+
+    <string name="p_ada_smt_craftsman">Craftsman</string>
+    <string name="p_ada_smt_blacksmith">Blacksmith</string>
+    <string name="p_ada_smt_armorer">Armorer</string>
+    <string name="p_ada_smt_forgemaster">Forgemaster</string>
+    <string name="p_ada_smt_basic_smithing">Basic Smithing</string>
+    <string name="p_ada_smt_journeyman_smithing">Journeyman Smithing</string>
+    <string name="p_ada_smt_rare_smithing">Rare Smithing</string>
+    <string name="p_ada_smt_exotic_smithing">Exotic Smithing</string>
+    <string name="p_ada_smt_intermediate_smithing">Intermediate Smithing</string>
+    <string name="p_ada_smt_advanced_smithing">Advanced Smithing</string>
+    <string name="p_ada_smt_mythic_smithing">Mythic Smithing</string>
+
+    <string name="d_ada_smt_craftsman">You can temper all items by one/two additional tiers.</string>
+    <string name="d_ada_smt_blacksmith">You can temper all items by one additional tier.</string>
+    <string name="d_ada_smt_armorer">You can temper all items by one additional tier.</string>
+    <string name="d_ada_smt_forgemaster">You can temper all items by one additional tier.</string>
+    <string name="d_ada_smt_basic_smithing">You can create Steel and Leather items at any forge.</string>
+    <string name="d_ada_smt_journeyman_smithing">You can create Dwarven, Scaled, and Steel Plate items at any forge.</string>
+    <string name="d_ada_smt_rare_smithing">You can create Elven items at any forge.</string>
+    <string name="d_ada_smt_exotic_smithing">You can create Glass items at any forge.</string>
+    <string name="d_ada_smt_intermediate_smithing">You can create Nordic and Orcish items at any forge.</string>
+    <string name="d_ada_smt_advanced_smithing">You can create Ebony items at any forge.</string>
+    <string name="d_ada_smt_mythic_smithing">You can create Daedric and Dragon items at any forge.</string>
+
+    <string name="p_ada_snk_agent">Agent</string>
+    <string name="p_ada_snk_silent_casting">Silent Casting</string>
+    <string name="p_ada_snk_shadow_casting">Shadow Casting</string>
+    <string name="p_ada_snk_deadly_aim">Deadly Aim</string>
+    <string name="p_ada_snk_merciless">Merciless</string>
+    <string name="p_ada_snk_backstab">Backstab</string>
+    <string name="p_ada_snk_assassins_blade">Assassin’s Blade</string>
+    <string name="p_ada_snk_trespasser">Trespasser</string>
+    <string name="p_ada_snk_infiltrator">Infiltrator</string>
+    <string name="p_ada_snk_hidden_threat">Hidden Threat</string>
+    <string name="p_ada_snk_living_shadow">Living Shadow</string>
+
+    <string name="d_ada_snk_agent">You are 25/50% harder to detect while sneaking.</string>
+    <string name="d_ada_snk_silent_casting">Your spells are silent to others.</string>
+    <string name="d_ada_snk_shadow_casting">Damage-dealing spells are 50/100% stronger while sneaking and undetected.</string>
+    <string name="d_ada_snk_deadly_aim">Sneak attacks with bows deal 50/100% extra damage.</string>
+    <string name="d_ada_snk_merciless">Sneak attacks with melee weapons deal 50% more damage.</string>
+    <string name="d_ada_snk_backstab">Sneak attacks with one-handed weapons 50% extra damage.</string>
+    <string name="d_ada_snk_assassins_blade">Sneak attacks with daggers deal 50/100% extra damage.</string>
+    <string name="d_ada_snk_trespasser">You no longer trigger traps, and you can execute a silent roll while sneaking.</string>
+    <string name="d_ada_snk_infiltrator">You move 25% faster while sneaking.</string>
+    <string name="d_ada_snk_hidden_threat">Once every 10 seconds, you can sneak in combat to turn invisible for 5 seconds.</string>
+    <string name="d_ada_snk_living_shadow">Once every 10 seconds, sneaking in combat causes enemies to stop searching for you.</string>
+
+
+    <string name="p_ada_spc_merchant">Merchant</string>
+    <string name="p_ada_spc_supply_and_demand">Supply and Demand</string>
+    <string name="p_ada_spc_investor">Investor</string>
+    <string name="p_ada_spc_entrepreneur">Entrepreneur</string>
+    <string name="p_ada_spc_silver_tongue">Silver Tongue</string>
+    <string name="p_ada_spc_black_market">Black Market</string>
+    <string name="p_ada_spc_deep_breath">Deep Breath</string>
+    <string name="p_ada_spc_ancient_voice">Ancient Voice</string>
+    <string name="p_ada_spc_stormcrown">Stormcrown</string>
+    <string name="p_ada_spc_dragon_of_the_north">Dragon of the North</string>
+
+    <string name="d_ada_spc_merchant">You receive 25/50% better prices.</string>
+    <string name="d_ada_spc_supply_and_demand">Merchants have extra gold / even more extra gold for bartering.</string>
+    <string name="d_ada_spc_investor">You can invest in a shopkeeper’s business to increase their available gold.</string>
+    <string name="d_ada_spc_entrepreneur">You can sell any item to any merchant in Tamriel.</string>
+    <string name="d_ada_spc_silver_tongue">You are much more likely to succeed at persuasion and intimidation, and you can bribe guards to ignore crimes.</string>
+    <string name="d_ada_spc_black_market">You can sell stolen items to any merchant.</string>
+    <string name="d_ada_spc_deep_breath">Your Shouts are 50/100% stronger.</string>
+    <string name="d_ada_spc_ancient_voice">Your Shouts last twice as long.</string>
+    <string name="d_ada_spc_stormcrown">Your Shout cooldown is decreased by 25/50%.</string>
+    <string name="d_ada_spc_dragon_of_the_north">Your Shouts have a 50% chance to have no cooldown.</string>
+
+    <string name="p_ada_twh_champion">Champion</string>
+    <string name="p_ada_twh_warriors_stance">Warrior’s Stance</string>
+    <string name="p_ada_twh_overpower">Overpower</string>
+    <string name="p_ada_twh_massacre">Massacre</string>
+    <string name="p_ada_twh_rampage">Rampage</string>
+    <string name="p_ada_twh_cleave">Cleave</string>
+    <string name="p_ada_twh_deep_cuts">Deep Cuts</string>
+    <string name="p_ada_twh_mortal_wound">Mortal Wound</string>
+    <string name="p_ada_twh_rip_and_tear">Rip and Tear</string>
+    <string name="p_ada_twh_rend_and_rake">Rend and Rake</string>
+    <string name="p_ada_twh_armor_crusher">Armor Crusher</string>
+    <string name="p_ada_twh_skull_cracker">Skull Cracker</string>
+
+    <string name="d_ada_twh_champion">Two-handed weapons do 25/50% more damage.</string>
+    <string name="d_ada_twh_warriors_stance">Power attacks with Two-handed weapons deal 25/50% extra damage  and have a chance to decapitate your enemies.</string>
+    <string name="d_ada_twh_overpower">Power attacks with Two-handed weapons deal 50% extra damage to targets who are power attacking, drawing a bow, or casting a spell.</string>
+    <string name="d_ada_twh_massacre">Power attacks with Two-handed weapons 50% extra damage to targets who fall below half Health.</string>
+    <string name="d_ada_twh_rampage">Repeated power attacks against a single target with Two-handed weapons deal up to double damage.</string>
+    <string name="d_ada_twh_cleave">Power attacks with two-handed weapons hit all targets in front of you.</string>
+    <string name="d_ada_twh_deep_cuts">Greatswords have a 10/20% chance of doing critical damage.</string>
+    <string name="d_ada_twh_mortal_wound">Critical attacks with greatswords deal three/ five times more damage.</string>
+    <string name="d_ada_twh_rip_and_tear">Battleaxes deal damage over time/ more damage over a longer time.</string>
+    <string name="d_ada_twh_rend_and_rake">Battleaxes deal three/ five times as much damage over time.</string>
+    <string name="d_ada_twh_armor_crusher">Warhammers reduce enemy armor rating by 150/300 for 10 seconds.</string>
+    <string name="d_ada_twh_skull_cracker">Warhammers deal 25/50% extra damage to staggered targets.</string>
+
+</resources>

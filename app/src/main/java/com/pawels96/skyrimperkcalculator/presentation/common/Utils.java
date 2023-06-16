@@ -53,7 +53,6 @@ public class Utils {
     }
 
     public static String getPerkSystemName(IPerkSystem system, Context c) {
-
         String asString = String.valueOf(system).toLowerCase();
         String resId = "s_" + asString;
         return getString(resId, asString, c);
