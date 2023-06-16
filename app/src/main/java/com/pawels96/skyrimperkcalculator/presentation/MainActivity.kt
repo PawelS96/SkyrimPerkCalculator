@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.loadButton.setOnClickListener { showBuildList() }
-        binding.skillsButton.setOnClickListener { showSkillsPopup() }
+        binding.skillsButton.setOnClickListener { showSkillList() }
         binding.optionsButton.setOnClickListener { showOptions() }
 
         val skillFragmentAdapter = SkillFragmentAdapter(supportFragmentManager)
@@ -153,9 +153,7 @@ class MainActivity : AppCompatActivity() {
         binding.reqLevel.text = requiredLevelText
     }
 
-    private fun showSkillsPopup() {
-        SkillListDialog.create(binding.viewPager.currentItem).show(supportFragmentManager)
-    }
+    private fun showSkillList() = SkillListDialog().show(supportFragmentManager, SkillListDialog.TAG)
 
     private fun showBuildList() = BuildsDialog().show(supportFragmentManager)
 
