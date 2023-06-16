@@ -11,8 +11,8 @@ import com.pawels96.skyrimperkcalculator.domain.Skill
 import com.pawels96.skyrimperkcalculator.domain.SkillType
 import com.pawels96.skyrimperkcalculator.presentation.common.Bounceable
 import com.pawels96.skyrimperkcalculator.presentation.common.AnimatedHolder
-import com.pawels96.skyrimperkcalculator.presentation.common.Utils.getSkillName
 import com.pawels96.skyrimperkcalculator.presentation.common.colored
+import com.pawels96.skyrimperkcalculator.presentation.common.getName
 
 class SkillAdapter(
     private val onClick: (Int) -> Unit
@@ -48,7 +48,7 @@ class SkillAdapter(
             val context = binding.root.context
             val perks = skill.selectedPerksCount
             val color = ContextCompat.getColor(context, skill.getColorRes())
-            binding.skillName.text = getSkillName(skill.iskill, context).colored(color)
+            binding.skillName.text = skill.iskill.getName(context).colored(color)
             binding.activePerks.text = if (perks > 0) perks.toString().colored(color) else ""
             binding.root.setOnClickListener { onClick(index) }
         }

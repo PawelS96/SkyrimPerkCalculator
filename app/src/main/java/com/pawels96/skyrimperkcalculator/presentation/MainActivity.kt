@@ -24,9 +24,9 @@ import com.pawels96.skyrimperkcalculator.domain.ISkill
 import com.pawels96.skyrimperkcalculator.domain.EMainSkill
 import com.pawels96.skyrimperkcalculator.domain.ESpecialSkill
 import com.pawels96.skyrimperkcalculator.domain.SkillType
-import com.pawels96.skyrimperkcalculator.presentation.common.Utils.getSkillName
 import com.pawels96.skyrimperkcalculator.presentation.build_list.BuildsDialog
 import com.pawels96.skyrimperkcalculator.presentation.common.Utils
+import com.pawels96.skyrimperkcalculator.presentation.common.getName
 import com.pawels96.skyrimperkcalculator.presentation.common.viewBinding
 import com.pawels96.skyrimperkcalculator.presentation.current_build.OptionsDialog
 import com.pawels96.skyrimperkcalculator.presentation.current_build.SkillListDialog
@@ -53,8 +53,8 @@ class MainActivity : AppCompatActivity() {
 
         val skillFragmentAdapter = SkillFragmentAdapter(supportFragmentManager)
 
-        DISPLAYED_SKILLS.forEach {
-            val skillName = getSkillName(it, this)
+        DISPLAYED_SKILLS.forEach { skill ->
+            val skillName = skill.getName(this)
             val tab = binding.tabs.newTab().apply { text = skillName }
             binding.tabs.addTab(tab)
         }

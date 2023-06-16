@@ -15,8 +15,9 @@ import com.pawels96.skyrimperkcalculator.databinding.PopupPerkDescriptionBinding
 import com.pawels96.skyrimperkcalculator.domain.ISkill
 import com.pawels96.skyrimperkcalculator.domain.Perk
 import com.pawels96.skyrimperkcalculator.domain.SpecialSkillPerk
-import com.pawels96.skyrimperkcalculator.presentation.common.Utils
 import com.pawels96.skyrimperkcalculator.presentation.common.dialogs.BaseDialog
+import com.pawels96.skyrimperkcalculator.presentation.common.getDescription
+import com.pawels96.skyrimperkcalculator.presentation.common.getName
 import com.pawels96.skyrimperkcalculator.presentation.common.viewBinding
 import kotlinx.coroutines.launch
 
@@ -67,7 +68,7 @@ class PerkInfoDialog : BaseDialog() {
             binding.perkSkill.text = skillText
         }
 
-        binding.perkDesc.text = Utils.getPerkDescription(activity, perk.perk)
+        binding.perkDesc.text = perk.perk.getDescription(requireContext())
 
         binding.decreaseState.setOnClickListener {
             model.changePerkState(skill, perk.perk, perk.state - 1)
@@ -79,7 +80,7 @@ class PerkInfoDialog : BaseDialog() {
 
         return getBuilder()
             .setView(binding.root)
-            .setTitle(Utils.getPerkName(activity, perk.perk))
+            .setTitle(perk.perk.getName(requireContext()))
             .setCancelable(true)
             .create()
             .apply { window?.setGravity(Gravity.BOTTOM) }
@@ -94,7 +95,7 @@ class PerkInfoDialog : BaseDialog() {
         private const val ARG_SKILL = "skill"
         private const val ARG_PERK = "perk"
 
-        fun create(skill: ISkill, perk: Perk) : PerkInfoDialog {
+        fun create(skill: ISkill, perk: Perk): PerkInfoDialog {
             return PerkInfoDialog().apply {
                 arguments = Bundle().apply {
                     putSerializable(ARG_PERK, perk)

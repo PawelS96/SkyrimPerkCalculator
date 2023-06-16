@@ -18,7 +18,7 @@ import com.pawels96.skyrimperkcalculator.domain.Perk
 import com.pawels96.skyrimperkcalculator.domain.Perk.Companion.areNodesSelected
 import com.pawels96.skyrimperkcalculator.domain.Skill
 import com.pawels96.skyrimperkcalculator.domain.SkillType
-import com.pawels96.skyrimperkcalculator.presentation.common.Utils
+import com.pawels96.skyrimperkcalculator.presentation.common.getName
 
 class GraphView(context: Context, attrs: AttributeSet?) : View(context, attrs) {
 
@@ -168,7 +168,7 @@ class GraphView(context: Context, attrs: AttributeSet?) : View(context, attrs) {
             val y = entry.value.y * h
 
             val perk = skill?.get(entry.key) ?: continue
-            var label = Utils.getPerkName(context, entry.key)
+            var label = entry.key.getName(context)
             if (perk.isMultiState) {
                 label += perk.stateAsString
             }

@@ -17,8 +17,8 @@ import com.pawels96.skyrimperkcalculator.R
 import com.pawels96.skyrimperkcalculator.databinding.DialogListBuildsBinding
 import com.pawels96.skyrimperkcalculator.domain.Build
 import com.pawels96.skyrimperkcalculator.domain.PerkSystem
-import com.pawels96.skyrimperkcalculator.presentation.common.Utils
 import com.pawels96.skyrimperkcalculator.presentation.common.configureEffects
+import com.pawels96.skyrimperkcalculator.presentation.common.getName
 import com.pawels96.skyrimperkcalculator.presentation.common.dialogs.BaseDialog
 import com.pawels96.skyrimperkcalculator.presentation.common.setButtonColors
 import com.pawels96.skyrimperkcalculator.presentation.common.viewBinding
@@ -55,7 +55,7 @@ class BuildsDialog : BaseDialog() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
 
-        val spinnerItems = PerkSystem.values().map { Utils.getPerkSystemName(it, context) }
+        val spinnerItems = PerkSystem.values().map { it.getName(requireContext()) }
 
         binding.spinner.apply {
             adapter = ArrayAdapter(requireContext(), R.layout.spinner_item, spinnerItems)
