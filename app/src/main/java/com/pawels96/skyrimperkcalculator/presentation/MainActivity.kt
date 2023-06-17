@@ -1,7 +1,6 @@
 package com.pawels96.skyrimperkcalculator.presentation
 
 import android.graphics.Color
-import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -28,8 +27,8 @@ import com.pawels96.skyrimperkcalculator.presentation.build_list.BuildsDialog
 import com.pawels96.skyrimperkcalculator.presentation.common.getFragmentTag
 import com.pawels96.skyrimperkcalculator.presentation.common.getName
 import com.pawels96.skyrimperkcalculator.presentation.common.viewBinding
-import com.pawels96.skyrimperkcalculator.presentation.current_build.OptionsDialog
-import com.pawels96.skyrimperkcalculator.presentation.current_build.SkillListDialog
+import com.pawels96.skyrimperkcalculator.presentation.current_build.OptionsFragment
+import com.pawels96.skyrimperkcalculator.presentation.current_build.SkillListFragment
 import com.pawels96.skyrimperkcalculator.presentation.current_build.CurrentBuildViewModel
 import com.pawels96.skyrimperkcalculator.presentation.current_build.SkillTreeFragment
 import kotlinx.coroutines.launch
@@ -110,7 +109,7 @@ class MainActivity : AppCompatActivity() {
     private fun observeAttachedFragments() {
         supportFragmentManager.addFragmentOnAttachListener { fragmentManager, fragment ->
             when (fragment) {
-                is SkillListDialog -> fragment.onSelect = { index ->
+                is SkillListFragment -> fragment.onSelect = { index ->
                     binding.viewPager.setCurrentItem(index, false)
                 }
             }
@@ -153,11 +152,11 @@ class MainActivity : AppCompatActivity() {
         binding.reqLevel.text = requiredLevelText
     }
 
-    private fun showSkillList() = SkillListDialog().show(supportFragmentManager, SkillListDialog.TAG)
+    private fun showSkillList() = SkillListFragment().show(supportFragmentManager, SkillListFragment.TAG)
 
     private fun showBuildList() = BuildsDialog().show(supportFragmentManager)
 
-    private fun showOptions() = OptionsDialog().show(supportFragmentManager)
+    private fun showOptions() = OptionsFragment().show(supportFragmentManager, OptionsFragment.TAG)
 
     private class SkillFragmentAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 

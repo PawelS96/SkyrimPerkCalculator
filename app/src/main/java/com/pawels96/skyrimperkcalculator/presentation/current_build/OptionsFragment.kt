@@ -1,22 +1,22 @@
 package com.pawels96.skyrimperkcalculator.presentation.current_build
 
-import android.app.Dialog
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.CompoundButton
 import android.widget.SeekBar
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.pawels96.skyrimperkcalculator.Injector
-import com.pawels96.skyrimperkcalculator.R
-import com.pawels96.skyrimperkcalculator.databinding.PopopOptionsBinding
+import com.pawels96.skyrimperkcalculator.databinding.FragmentOptionsBinding
 import com.pawels96.skyrimperkcalculator.domain.VampirePerkSystem
 import com.pawels96.skyrimperkcalculator.domain.WerewolfPerkSystem
-import com.pawels96.skyrimperkcalculator.presentation.common.dialogs.BaseDialog
-import com.pawels96.skyrimperkcalculator.presentation.common.setButtonColors
 import com.pawels96.skyrimperkcalculator.presentation.common.viewBinding
 
-class OptionsDialog : BaseDialog() {
+class OptionsFragment : BottomSheetDialogFragment() {
 
-    private val binding by viewBinding(PopopOptionsBinding::inflate)
+    private val binding by viewBinding(FragmentOptionsBinding::inflate)
 
     private val model: CurrentBuildViewModel by lazy {
         ViewModelProvider(
@@ -25,8 +25,15 @@ class OptionsDialog : BaseDialog() {
         )[CurrentBuildViewModel::class.java]
     }
 
-    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        return binding.root
+    }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         when (model.currentBuild.value?.vampirePerkSystem) {
             VampirePerkSystem.VANILLA -> binding.radioVampireVanilla.isChecked = true
             VampirePerkSystem.SACROSANCT -> binding.radioVampireSacrosanct.isChecked = true
@@ -35,7 +42,6 @@ class OptionsDialog : BaseDialog() {
 
         val vampireRadioClickListener =
             CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
-
                 if (isChecked) {
                     val system = when (buttonView) {
                         binding.radioVampireVanilla -> VampirePerkSystem.VANILLA
@@ -59,7 +65,6 @@ class OptionsDialog : BaseDialog() {
 
         val werewolfRadioClickListener =
             CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
-
                 if (isChecked) {
                     val system = when (buttonView) {
                         binding.radioWereVanilla -> WerewolfPerkSystem.VANILLA
@@ -93,25 +98,13 @@ class OptionsDialog : BaseDialog() {
 
             override fun onStopTrackingTouch(seekBar: SeekBar?) {}
         })
-
-        return getBuilder()
-            .setPositiveButton(R.string.close) { _, _ -> dismiss() }
-            .setView(binding.root)
-            .create().apply {
-                setOnShowListener {
-                    setButtonColors(requireContext())
-                }
-            }
-
     }
 
     private fun Float.format(): String {
         return String.format("%.1f", this).replace(",", ".")
     }
 
-    override fun getDialogTag(): String = TAG
-
     companion object {
-        const val TAG: String = "OPTIONS_DIALOG"
+        const val TAG: String = "OPTIONS_FRAGMENT"
     }
 }

@@ -9,13 +9,13 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.pawels96.skyrimperkcalculator.Injector
 import com.pawels96.skyrimperkcalculator.R
-import com.pawels96.skyrimperkcalculator.databinding.DialogSkillsBinding
+import com.pawels96.skyrimperkcalculator.databinding.FragmentSkillsBinding
 import com.pawels96.skyrimperkcalculator.presentation.common.configureEffects
 import com.pawels96.skyrimperkcalculator.presentation.common.viewBinding
 
-class SkillListDialog : BottomSheetDialogFragment() {
+class SkillListFragment : BottomSheetDialogFragment() {
 
-    private val binding by viewBinding(DialogSkillsBinding::inflate)
+    private val binding by viewBinding(FragmentSkillsBinding::inflate)
 
     lateinit var onSelect: (Int) -> Unit
 
