@@ -44,7 +44,7 @@ class BuildRepositoryTest {
         repo.insert(build1)
         repo.insert(build2)
 
-        val fromDb = repo.observeByPerkSystem(PerkSystem.VANILLA).take(2).last()
+        val fromDb = repo.observeByPerkSystem(PerkSystem.VANILLA).first()
         assertEquals(listOf(build1, build2), fromDb)
     }
 

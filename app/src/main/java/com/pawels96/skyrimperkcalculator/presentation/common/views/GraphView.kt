@@ -128,7 +128,7 @@ class GraphView(context: Context, attrs: AttributeSet?) : View(context, attrs) {
 
     private fun drawConnections(canvas: Canvas, perks: List<Perk>) {
         val selectedPaint = getSelectedPerkPaint()
-        for (parent in perks.filter { it.hasChildren() }) {
+        for (parent in perks.filter { it.hasChildren }) {
             for (child in parent.children) {
                 drawEdge(canvas, parent, child, selectedPaint)
             }

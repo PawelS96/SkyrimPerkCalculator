@@ -45,6 +45,10 @@ class DefaultBuildRepository(private val dao: BuildDAO) : BuildRepository {
         }
     }
 
+    override suspend fun getCountByPerkSystem(perkSystem: PerkSystem): Int {
+        return dao.getCountByPerkSystem(perkSystem)
+    }
+
     override fun observeById(id: Long): Flow<Build?> {
         return dao.observeById(id).map { it?.toDomain() }
     }

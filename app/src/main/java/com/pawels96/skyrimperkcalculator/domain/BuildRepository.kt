@@ -1,7 +1,6 @@
 package com.pawels96.skyrimperkcalculator.domain
 
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.first
 
 interface BuildRepository {
     suspend fun insert(build: Build): Build?
@@ -14,6 +13,8 @@ interface BuildRepository {
 
     suspend fun getByPerkSystem(perkSystem: PerkSystem): List<Build>
 
+    suspend fun getCountByPerkSystem(perkSystem: PerkSystem): Int
+
     fun observeByPerkSystem(perkSystem: PerkSystem): Flow<List<Build>>
 
     fun observeById(id: Long): Flow<Build?>
@@ -21,7 +22,7 @@ interface BuildRepository {
 
 suspend fun BuildRepository.populate() {
     PerkSystem.values().forEach {
-        if (observeByPerkSystem(it).first().isEmpty()) {
+        if (getCountByPerkSystem(it) == 0) {
             insert(Build.create(it))
         }
     }

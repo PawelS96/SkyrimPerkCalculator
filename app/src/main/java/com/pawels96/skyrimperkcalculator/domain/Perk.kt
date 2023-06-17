@@ -36,9 +36,9 @@ class Perk(val perk: IPerk) : Serializable {
 
     val stateAsString: String get() = " ($state/$maxState)"
 
-    private fun hasParent(): Boolean = parents.isNotEmpty()
+    val hasParent: Boolean get() = parents.isNotEmpty()
 
-    fun hasChildren(): Boolean = children.isNotEmpty()
+    val hasChildren: Boolean get() = children.isNotEmpty()
 
     private val isNoParentConnected: Boolean
         get() = parents.none { it.isSelected }
@@ -50,19 +50,20 @@ class Perk(val perk: IPerk) : Serializable {
         }
 
         if (isSelected) {
-            if (hasParent() && isNoParentConnected) {
+            if (hasParent && isNoParentConnected) {
                 parents[0].state = 1
             }
         } else {
             for (child in children) {
-                if (child.isNoParentConnected) child.state = 0
+                if (child.isNoParentConnected)  {
+                    child.state = 0
+                }
             }
         }
     }
 
     fun nextState() {
         if (isStateIncreasing) state++ else state--
-        onStateChanged()
     }
 
     companion object {

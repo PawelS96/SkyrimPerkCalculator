@@ -53,4 +53,8 @@ class FakeBuildRepository : BuildRepository {
     override suspend fun getByPerkSystem(perkSystem: PerkSystem): List<Build> {
         return builds.value.filter { b -> b.system == perkSystem }
     }
+
+    override suspend fun getCountByPerkSystem(perkSystem: PerkSystem): Int {
+        return getByPerkSystem(perkSystem).size
+    }
 }

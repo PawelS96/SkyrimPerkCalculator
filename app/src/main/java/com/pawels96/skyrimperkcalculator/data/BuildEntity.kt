@@ -8,14 +8,14 @@ import com.pawels96.skyrimperkcalculator.domain.WerewolfPerkSystem
 
 @Entity
 data class BuildEntity(
-        @PrimaryKey(autoGenerate = true)
-        val id: Long,
-        var name: String,
-        var description: String,
-        val perkSystem: PerkSystem,
-        val mainSkills: Map<String, MutableMap<String, Int>>,
-        val vampirePerkSystem: VampirePerkSystem,
-        val vampireSkills: Map<VampirePerkSystem, MutableMap<String, Int>>,
-        val werewolfPerkSystem: WerewolfPerkSystem,
-        val werewolfSkills: Map<WerewolfPerkSystem, MutableMap<String, Int>>
+    @PrimaryKey(autoGenerate = true)
+    val id: Long,
+    var name: String,
+    var description: String,
+    val perkSystem: PerkSystem,
+    val mainSkills: Map<String, Map<String, Int>>,
+    val vampirePerkSystem: VampirePerkSystem,
+    val vampireSkills: Map<VampirePerkSystem, Map<String, Int>>,
+    val werewolfPerkSystem: WerewolfPerkSystem,
+    val werewolfSkills: Map<WerewolfPerkSystem, Map<String, Int>>
 )

@@ -22,6 +22,9 @@ interface BuildDAO {
     @Query("SELECT * FROM buildentity WHERE name=:name AND perkSystem=:perkSystem")
     suspend fun getByName(name: String, perkSystem: PerkSystem): BuildEntity?
 
+    @Query("SELECT COUNT(*) FROM buildentity WHERE perkSystem=:perkSystem")
+    suspend fun getCountByPerkSystem(perkSystem: PerkSystem): Int
+
     @Query("SELECT * FROM buildentity WHERE perkSystem=:perkSystem")
     fun observeByPerkSystem(perkSystem: PerkSystem): Flow<List<BuildEntity>>
 
