@@ -19,6 +19,10 @@ class SkillGenerator {
 
     @Test
     fun generate() {
+        if (text.trim().isEmpty()) {
+            return
+        }
+
         val enum = generateEnum(skillName, skillPrefix, prefix, perks)
         val names = generatePerkNamesString(skillName, skillPrefix, prefix, perks)
         val descriptions = generatePerkDescriptionsString(skillName, skillPrefix, prefix, perks)

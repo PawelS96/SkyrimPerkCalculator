@@ -18,6 +18,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
@@ -46,6 +47,17 @@ class CurrentBuildViewModel(
             }
             return@flatMapLatest repo.observeById(validId)
         }
+        .onEach { build ->
+            if (build != null) {
+                lastPerkModification?.let { modification ->
+                    if (build.id == modification.buildId) {
+                        val perk = build.getSkill(modification.skill)[modification.perk]
+                        perk?.isStateIncreasing = modification.isStateIncreasing
+                    }
+                    lastPerkModification = null
+                }
+            }
+        }
         .stateIn(
             viewModelScope,
             SharingStarted.WhileSubscribed(5000),
@@ -70,9 +82,13 @@ class CurrentBuildViewModel(
         }
         get() = prefs.perkMultiplier
 
+    private var lastPerkModification: PerkModification? = null
+
     fun changePerkState(skill: ISkill, perk: IPerk, newState: Int? = null) = viewModelScope.launch {
+        val currentPerk = currentBuild.value?.getSkill(skill)?.get(perk) ?: return@launch
         val build = repo.observeById(prefs.selectedBuildId).first() ?: return@launch
         val skillPerk = build.getSkill(skill)[perk] ?: return@launch
+        skillPerk.isStateIncreasing = currentPerk.isStateIncreasing
 
         if (newState != null) {
             if (newState in (0..skillPerk.maxState)) {
@@ -81,6 +97,12 @@ class CurrentBuildViewModel(
             }
         } else {
             skillPerk.nextState()
+            lastPerkModification = PerkModification(
+                currentBuild.value?.id ?: 0L,
+                skill,
+                perk,
+                skillPerk.isStateIncreasing
+            )
             repo.update(build)
         }
     }
@@ -107,3 +129,10 @@ class CurrentBuildViewModel(
         }
     }
 }
+
+private data class PerkModification(
+    val buildId: Long,
+    val skill: ISkill,
+    val perk: IPerk,
+    val isStateIncreasing: Boolean
+)

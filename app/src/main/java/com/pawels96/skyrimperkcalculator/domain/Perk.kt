@@ -1,20 +1,21 @@
 package com.pawels96.skyrimperkcalculator.domain
 
 import java.io.Serializable
-import java.util.*
 
 class Perk(val perk: IPerk) : Serializable {
 
-    @JvmField
-    var children: MutableList<Perk> = ArrayList()
-    var parents: MutableList<Perk> = ArrayList()
+    var children: MutableList<Perk> = mutableListOf()
+    var parents: MutableList<Perk> = mutableListOf()
 
     var state = 0
-    set(value) {field = value.coerceAtMost(maxState); onStateChanged() }
+        set(value) {
+            field = value.coerceIn(0..maxState)
+            onStateChanged()
+        }
 
     val maxState: Int = perk.perkInfo.skillLevel.size
 
-    private var stateIncreasing = true
+    var isStateIncreasing = true
 
     val isSelected: Boolean get() = state != 0
 
@@ -43,20 +44,24 @@ class Perk(val perk: IPerk) : Serializable {
         get() = parents.none { it.isSelected }
 
     private fun onStateChanged() {
-        if (state == 0) stateIncreasing = true else if (state == maxState) stateIncreasing = false
+        when (state) {
+            0 -> isStateIncreasing = true
+            maxState -> isStateIncreasing = false
+        }
+
         if (isSelected) {
-            if (!hasParent()) return
-            if (isNoParentConnected) parents[0].state = 1
+            if (hasParent() && isNoParentConnected) {
+                parents[0].state = 1
+            }
         } else {
-            if (!hasChildren()) return
-            for (n in children) {
-                if (n.isNoParentConnected) n.state = 0
+            for (child in children) {
+                if (child.isNoParentConnected) child.state = 0
             }
         }
     }
 
     fun nextState() {
-        if (stateIncreasing) state++ else state--
+        if (isStateIncreasing) state++ else state--
         onStateChanged()
     }
 
