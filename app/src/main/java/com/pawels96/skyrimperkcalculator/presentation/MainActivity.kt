@@ -43,8 +43,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        if (Build.VERSION.SDK_INT >= 21) window.navigationBarColor = Color.BLACK
-
+        window.navigationBarColor = Color.BLACK
         setContentView(binding.root)
 
         binding.loadButton.setOnClickListener { showBuildList() }

@@ -70,9 +70,7 @@ fun RecyclerView.configureEffects(
                     }
                 }*/
             }.apply {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    color = ContextCompat.getColor(context, R.color.colorOverscroll)
-                }
+                color = ContextCompat.getColor(context, R.color.colorOverscroll)
             }
         }
     }
