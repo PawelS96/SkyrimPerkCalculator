@@ -1,19 +1,16 @@
 package com.pawels96.skyrimperkcalculator.domain
 
-import com.pawels96.skyrimperkcalculator.presentation.common.Utils.DEFAULT_BUILD_NAME
-
 data class Build(
-        val id: Long,
-        val system: PerkSystem,
-        var name: String,
-        var description: String,
-        var skills: Map<EMainSkill, Skill>,
-        var vampirePerkSystem: VampirePerkSystem,
-        var werewolfPerkSystem: WerewolfPerkSystem,
-        var vampireSkill: Map<VampirePerkSystem, SpecialSkill>,
-        var werewolfSkill: Map<WerewolfPerkSystem, SpecialSkill>
+    val id: Long,
+    val system: PerkSystem,
+    var name: String,
+    var description: String,
+    var skills: Map<EMainSkill, Skill>,
+    var vampirePerkSystem: VampirePerkSystem,
+    var werewolfPerkSystem: WerewolfPerkSystem,
+    var vampireSkill: Map<VampirePerkSystem, SpecialSkill>,
+    var werewolfSkill: Map<WerewolfPerkSystem, SpecialSkill>
 ) {
-
     fun getSkill(id: ISkill): Skill {
         return if (id is EMainSkill)
             skills[id]!!
@@ -51,10 +48,12 @@ data class Build(
 
     companion object {
 
+        const val DEFAULT_NAME = "New build"
+
         fun create(
             perkSystem: PerkSystem,
             id: Long = 0,
-            name: String = DEFAULT_BUILD_NAME
+            name: String = DEFAULT_NAME
         ): Build {
 
             val skills =

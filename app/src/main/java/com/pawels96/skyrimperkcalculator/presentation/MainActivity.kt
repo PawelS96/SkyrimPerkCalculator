@@ -25,7 +25,7 @@ import com.pawels96.skyrimperkcalculator.domain.EMainSkill
 import com.pawels96.skyrimperkcalculator.domain.ESpecialSkill
 import com.pawels96.skyrimperkcalculator.domain.SkillType
 import com.pawels96.skyrimperkcalculator.presentation.build_list.BuildsDialog
-import com.pawels96.skyrimperkcalculator.presentation.common.Utils
+import com.pawels96.skyrimperkcalculator.presentation.common.getFragmentTag
 import com.pawels96.skyrimperkcalculator.presentation.common.getName
 import com.pawels96.skyrimperkcalculator.presentation.common.viewBinding
 import com.pawels96.skyrimperkcalculator.presentation.current_build.OptionsDialog
@@ -135,8 +135,9 @@ class MainActivity : AppCompatActivity() {
         binding.tabs.setTabTextColors(normalColor, selectedColor)
     }
 
-    private fun getFragment(id: Int): SkillTreeFragment? {
-        return supportFragmentManager.findFragmentByTag(Utils.getFragmentTag(R.id.viewPager, id)) as SkillTreeFragment?
+    private fun getFragment(index: Int): SkillTreeFragment? {
+        val tag = binding.viewPager.getFragmentTag(index)
+        return supportFragmentManager.findFragmentByTag(tag) as SkillTreeFragment?
     }
 
     private fun updateBuildInfo(build: com.pawels96.skyrimperkcalculator.domain.Build) {

@@ -7,7 +7,6 @@ import com.pawels96.skyrimperkcalculator.data.Preferences
 import com.pawels96.skyrimperkcalculator.domain.Build
 import com.pawels96.skyrimperkcalculator.domain.BuildRepository
 import com.pawels96.skyrimperkcalculator.domain.PerkSystem
-import com.pawels96.skyrimperkcalculator.presentation.common.Utils
 import com.pawels96.skyrimperkcalculator.presentation.current_build.CurrentBuildViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.collect
@@ -49,7 +48,7 @@ class CurrentBuildViewModelTest {
         }
 
         advanceUntilIdle()
-        assertEquals(Utils.DEFAULT_BUILD_NAME, model.currentBuild.value?.name)
+        assertEquals(Build.DEFAULT_NAME, model.currentBuild.value?.name)
     }
 
     @Test
