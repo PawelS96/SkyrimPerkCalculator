@@ -23,7 +23,7 @@ import com.pawels96.skyrimperkcalculator.domain.ISkill
 import com.pawels96.skyrimperkcalculator.domain.EMainSkill
 import com.pawels96.skyrimperkcalculator.domain.ESpecialSkill
 import com.pawels96.skyrimperkcalculator.domain.SkillType
-import com.pawels96.skyrimperkcalculator.presentation.build_list.BuildsDialog
+import com.pawels96.skyrimperkcalculator.presentation.build_list.BuildListFragment
 import com.pawels96.skyrimperkcalculator.presentation.common.getFragmentTag
 import com.pawels96.skyrimperkcalculator.presentation.common.getName
 import com.pawels96.skyrimperkcalculator.presentation.common.viewBinding
@@ -154,7 +154,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun showSkillList() = SkillListFragment().show(supportFragmentManager, SkillListFragment.TAG)
 
-    private fun showBuildList() = BuildsDialog().show(supportFragmentManager)
+    private fun showBuildList() = BuildListFragment().show(supportFragmentManager, BuildListFragment.TAG)
 
     private fun showOptions() = OptionsFragment().show(supportFragmentManager, OptionsFragment.TAG)
 

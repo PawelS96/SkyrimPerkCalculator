@@ -57,7 +57,7 @@ class BuildAdapter(
             with(binding) {
                 root.setOnClickListener { callback.onClick(build) }
                 contextMenu.setOnClickListener { callback.onContextMenuClick(build, contextMenu) }
-                nameEdit.text = if (item.isSelected) build.name.colored(
+                name.text = if (item.isSelected) build.name.colored(
                     ContextCompat.getColor(
                         context,
                         R.color.colorAccent

@@ -34,7 +34,7 @@
             android:paddingBottom="6dp">
 
             <TextView
-                android:id="@+id/name_edit"
+                android:id="@+id/name"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
@@ -76,7 +76,7 @@
                 android:layout_marginEnd="8dp"
                 android:visibility="visible"
                 card_view:layout_constraintStart_toEndOf="@id/level"
-                card_view:layout_constraintTop_toBottomOf="@id/name_edit" />
+                card_view:layout_constraintTop_toBottomOf="@id/name" />
 
             <TextView
                 android:id="@+id/description"
@@ -96,15 +96,16 @@
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/context_menu"
                 style="@style/MaterialCircleButton"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="32dp"
+                android:layout_height="0dp"
                 android:stateListAnimator="@null"
                 app:backgroundTint="@color/colorGrayDarker"
                 app:elevation="0dp"
                 app:icon="@drawable/ic_baseline_more_vert_24"
+                app:iconTint="@android:color/white"
                 card_view:layout_constraintBottom_toBottomOf="parent"
                 card_view:layout_constraintEnd_toEndOf="parent"
-                card_view:layout_constraintTop_toTopOf="@id/name_edit" />
+                card_view:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

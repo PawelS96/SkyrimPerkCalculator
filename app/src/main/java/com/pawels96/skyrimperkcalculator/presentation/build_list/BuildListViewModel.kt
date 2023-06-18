@@ -31,8 +31,6 @@ class BuildListViewModel(
 
     private val builds: List<Build> get() = buildList.value.map { it.build }
 
-    val currentPerkSystem: PerkSystem get() = prefs.selectedPerkSystem
-
     val buildList: StateFlow<List<BuildListItem>> = prefs.selectedPerkSystemFlow
         .flatMapLatest { perkSystem ->
             combine(
@@ -55,6 +53,12 @@ class BuildListViewModel(
             SharingStarted.WhileSubscribed(5000),
             emptyList()
         )
+
+    val currentPerkSystem: StateFlow<PerkSystem> = prefs.selectedPerkSystemFlow.stateIn(
+        viewModelScope,
+        SharingStarted.WhileSubscribed(5000),
+        prefs.selectedPerkSystem
+    )
 
     fun updateDescription(build: Build, description: String) = viewModelScope.launch {
         repo.update(build.apply { this.description = description })
@@ -93,7 +97,7 @@ class BuildListViewModel(
             return@launch
         }
 
-        if (!repo.isNameAvailable(buildName, currentPerkSystem)) {
+        if (!repo.isNameAvailable(buildName, currentPerkSystem.value)) {
             dispatchEvent(BuildListEvent.BuildSaved(false, R.string.msg_name_in_use))
             return@launch
         }
@@ -102,7 +106,7 @@ class BuildListViewModel(
         val newBuild = if (copyCurrent)
             Build.clone(currentBuild!!)
         else
-            Build.create(currentPerkSystem)
+            Build.create(currentPerkSystem.value)
 
         newBuild.name = buildName
 
@@ -132,7 +136,7 @@ class BuildListViewModel(
             return@launch
         }
 
-        if (!repo.isNameAvailable(newName, currentPerkSystem)) {
+        if (!repo.isNameAvailable(newName, currentPerkSystem.value)) {
             dispatchEvent(BuildListEvent.BuildSaved(false, R.string.msg_name_in_use))
             return@launch
         }

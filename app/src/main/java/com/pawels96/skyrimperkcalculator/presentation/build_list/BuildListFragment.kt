@@ -1,32 +1,32 @@
 package com.pawels96.skyrimperkcalculator.presentation.build_list
 
-import android.app.Dialog
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.Menu.NONE
 import android.view.MenuItem
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
+import android.view.ViewGroup
 import android.widget.PopupMenu
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.pawels96.skyrimperkcalculator.Injector
 import com.pawels96.skyrimperkcalculator.R
-import com.pawels96.skyrimperkcalculator.databinding.DialogListBuildsBinding
+import com.pawels96.skyrimperkcalculator.databinding.FragmentBuildListBinding
 import com.pawels96.skyrimperkcalculator.domain.Build
 import com.pawels96.skyrimperkcalculator.domain.PerkSystem
 import com.pawels96.skyrimperkcalculator.presentation.common.configureEffects
 import com.pawels96.skyrimperkcalculator.presentation.common.getName
-import com.pawels96.skyrimperkcalculator.presentation.common.dialogs.BaseDialog
-import com.pawels96.skyrimperkcalculator.presentation.common.setButtonColors
 import com.pawels96.skyrimperkcalculator.presentation.common.viewBinding
 import kotlinx.coroutines.launch
 
-class BuildsDialog : BaseDialog() {
+class BuildListFragment : BottomSheetDialogFragment() {
 
-    private val binding by viewBinding(DialogListBuildsBinding::inflate)
+    private val binding by viewBinding(FragmentBuildListBinding::inflate)
 
     private val model: BuildListViewModel by lazy {
         ViewModelProvider(
@@ -51,35 +51,21 @@ class BuildsDialog : BaseDialog() {
                 }
             }
         }
-    }
 
-    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-
-        val spinnerItems = PerkSystem.values().map { it.getName(requireContext()) }
-
-        binding.spinner.apply {
-            adapter = ArrayAdapter(requireContext(), R.layout.spinner_item, spinnerItems)
-            setSelection(PerkSystem.values().indexOf(model.currentPerkSystem))
-            onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-
-                private var firstSelection = true
-
-                override fun onNothingSelected(parent: AdapterView<*>?) {}
-
-                override fun onItemSelected(
-                    parent: AdapterView<*>?,
-                    view: View?,
-                    position: Int,
-                    id: Long
-                ) {
-                    if (firstSelection)
-                        firstSelection = false
-                    else
-                        model.changePerkSystem(PerkSystem.values()[position])
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                model.currentPerkSystem.collect { perkSystem ->
+                    binding.picker.text = perkSystem.getName(requireContext())
                 }
             }
         }
+    }
 
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         val adapterCallback = object : BuildAdapter.BuildAdapterCallback {
             override fun onClick(build: Build) {
                 model.selectBuild(build)
@@ -91,6 +77,19 @@ class BuildsDialog : BaseDialog() {
             }
         }
 
+        binding.createBuild.setOnClickListener { showCreateBuildDialog() }
+        binding.picker.setOnClickListener {
+            val popup = PopupMenu(context, binding.picker)
+            PerkSystem.values().forEach {
+                popup.menu.add(NONE, it.ordinal, it.ordinal, it.getName(requireContext()))
+            }
+            popup.setOnMenuItemClickListener { item ->
+                model.changePerkSystem(PerkSystem.values()[item.itemId])
+                return@setOnMenuItemClickListener true
+            }
+            popup.show()
+        }
+
         buildAdapter = BuildAdapter(requireContext(), adapterCallback)
         binding.recycler.apply {
             layoutManager = LinearLayoutManager(context)
@@ -98,17 +97,19 @@ class BuildsDialog : BaseDialog() {
             adapter = buildAdapter
         }
 
-        val dialog = getBuilder().setView(binding.root)
-            .setPositiveButton(R.string.new_build, null)
-            .setNegativeButton(R.string.close) { _, _ -> dismiss() }
-            .create()
+        return binding.root
+    }
 
-        dialog.setOnShowListener {
-            dialog.setButtonColors(requireContext())
-            dialog.getButton(Dialog.BUTTON_POSITIVE).setOnClickListener { showCreateBuildDialog() }
+    override fun onStart() {
+        super.onStart()
+        dialog?.let {
+            val bottomSheet =
+                it.findViewById<View>(com.google.android.material.R.id.design_bottom_sheet)
+            bottomSheet?.let { sheet ->
+                val behavior = BottomSheetBehavior.from(sheet)
+                behavior.state = BottomSheetBehavior.STATE_EXPANDED
+            }
         }
-
-        return dialog
     }
 
     private fun showContextMenu(build: Build, view: View) {
@@ -135,8 +136,6 @@ class BuildsDialog : BaseDialog() {
     private fun showRenameDialog(build: Build) {
         NameInputDialog.create(build.id).show(childFragmentManager)
     }
-
-    override fun getDialogTag(): String = TAG
 
     companion object {
         const val TAG: String = "BUILDS_DIALOG"
