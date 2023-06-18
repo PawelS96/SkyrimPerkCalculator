@@ -17,8 +17,7 @@
         <item name="dialogTheme">@style/CustomDialogTheme</item>
     </style>
 
-    <style name="CustomDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
-        <item name="android:windowBackground">@android:color/transparent</item>
+    <style name="CustomDialogTheme" parent="Theme.MaterialComponents.DayNight.Dialog.Alert">
         <item name="android:background">@drawable/dialog_background</item>
         <item name="android:textColor">@color/colorFont</item>
         <item name="android:textColorPrimary">@color/colorFont</item>
