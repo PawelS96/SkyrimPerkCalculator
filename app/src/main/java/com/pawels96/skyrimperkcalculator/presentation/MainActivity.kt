@@ -2,8 +2,6 @@ package com.pawels96.skyrimperkcalculator.presentation
 
 import android.graphics.Color
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -19,18 +17,20 @@ import com.pawels96.skyrimperkcalculator.Injector
 import com.pawels96.skyrimperkcalculator.R
 import com.pawels96.skyrimperkcalculator.TutorialDialog
 import com.pawels96.skyrimperkcalculator.databinding.ActivityMainBinding
-import com.pawels96.skyrimperkcalculator.domain.ISkill
 import com.pawels96.skyrimperkcalculator.domain.EMainSkill
 import com.pawels96.skyrimperkcalculator.domain.ESpecialSkill
+import com.pawels96.skyrimperkcalculator.domain.ISkill
 import com.pawels96.skyrimperkcalculator.domain.SkillType
 import com.pawels96.skyrimperkcalculator.presentation.build_list.BuildListFragment
 import com.pawels96.skyrimperkcalculator.presentation.common.getFragmentTag
 import com.pawels96.skyrimperkcalculator.presentation.common.getName
 import com.pawels96.skyrimperkcalculator.presentation.common.viewBinding
+import com.pawels96.skyrimperkcalculator.presentation.current_build.CurrentBuildViewModel
 import com.pawels96.skyrimperkcalculator.presentation.current_build.OptionsFragment
 import com.pawels96.skyrimperkcalculator.presentation.current_build.SkillListFragment
-import com.pawels96.skyrimperkcalculator.presentation.current_build.CurrentBuildViewModel
 import com.pawels96.skyrimperkcalculator.presentation.current_build.SkillTreeFragment
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
@@ -38,6 +38,7 @@ class MainActivity : AppCompatActivity() {
     private val binding by viewBinding(ActivityMainBinding::inflate)
     private val prefs = Injector.prefs
     private val model: CurrentBuildViewModel by lazy { ViewModelProvider(this, Injector.providerCurrentBuildVmFactory())[CurrentBuildViewModel::class.java] }
+    private var firstLaunchJob: Job? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -90,12 +91,11 @@ class MainActivity : AppCompatActivity() {
         binding.tabs.addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(binding.viewPager))
 
         if (prefs.firstLaunch) {
-            Handler(Looper.getMainLooper()).postDelayed({
-                if (!isFinishing) {
-                    prefs.firstLaunch = false
-                    TutorialDialog().show(supportFragmentManager)
-                }
-            }, 1500)
+            firstLaunchJob = lifecycleScope.launch {
+                delay(1500)
+                TutorialDialog().show(supportFragmentManager)
+                prefs.firstLaunch = false
+            }
         }
 
         observeAttachedFragments()
@@ -103,6 +103,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onPause() {
         super.onPause()
+        firstLaunchJob?.cancel()
         prefs.selectedPage = binding.viewPager.currentItem
     }
 
