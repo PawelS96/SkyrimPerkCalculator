@@ -1,9 +1,9 @@
 package com.pawels96.skyrimperkcalculator.presentation
 
-import android.graphics.Color
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.view.WindowCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
@@ -37,13 +37,19 @@ class MainActivity : AppCompatActivity() {
 
     private val binding by viewBinding(ActivityMainBinding::inflate)
     private val prefs = Injector.prefs
-    private val model: CurrentBuildViewModel by lazy { ViewModelProvider(this, Injector.providerCurrentBuildVmFactory())[CurrentBuildViewModel::class.java] }
+    private val model: CurrentBuildViewModel by lazy {
+        ViewModelProvider(
+            this,
+            Injector.providerCurrentBuildVmFactory()
+        )[CurrentBuildViewModel::class.java]
+    }
+
     private var firstLaunchJob: Job? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        window.navigationBarColor = Color.BLACK
+        WindowCompat.setDecorFitsSystemWindows(window, false)
         setContentView(binding.root)
 
         binding.loadButton.setOnClickListener { showBuildList() }
@@ -108,7 +114,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun observeAttachedFragments() {
-        supportFragmentManager.addFragmentOnAttachListener { fragmentManager, fragment ->
+        supportFragmentManager.addFragmentOnAttachListener { _, fragment ->
             when (fragment) {
                 is SkillListFragment -> fragment.onSelect = { index ->
                     binding.viewPager.setCurrentItem(index, false)

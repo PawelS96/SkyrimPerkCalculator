@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="25dp"
-    android:background="@color/colorGrayDarker"
+    android:background="@color/colorGrayDark"
     android:orientation="horizontal">
 
     <com.google.android.material.button.MaterialButton

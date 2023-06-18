@@ -6,7 +6,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_centerInParent="true"
-    android:background="@color/colorGrayDark"
+    android:background="@color/colorGray"
     android:orientation="vertical"
     android:padding="20dp">
 
@@ -36,7 +36,7 @@
 
         <CheckBox
             android:layout_alignParentEnd="true"
-            android:buttonTint="@color/colorBlue"
+            android:buttonTint="@color/colorAccent"
             android:id="@+id/copyCurrentCheckbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />

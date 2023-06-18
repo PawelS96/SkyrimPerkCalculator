@@ -83,7 +83,7 @@ class GraphView(context: Context, attrs: AttributeSet?) : View(context, attrs) {
         selectedWerewolfPaint.strokeWidth = 5f
         selectedWerewolfPaint.flags = Paint.ANTI_ALIAS_FLAG
 
-        notSelectedPaint.color = ContextCompat.getColor(context, R.color.colorGray)
+        notSelectedPaint.color = ContextCompat.getColor(context, R.color.colorGrayLight)
         notSelectedPaint.strokeWidth = 5f
         notSelectedPaint.flags = Paint.ANTI_ALIAS_FLAG
 
@@ -139,7 +139,7 @@ class GraphView(context: Context, attrs: AttributeSet?) : View(context, attrs) {
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         nodeRadius = getNodeRadius(width)
-        canvas.drawColor(Color.BLACK)
+        canvas.drawColor(ContextCompat.getColor(context, R.color.colorAlmostBlack))
         w = width.toFloat()
         h = height.toFloat()
 

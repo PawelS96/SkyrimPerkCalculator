@@ -67,7 +67,7 @@ class PerkInfoFragment : BottomSheetDialogFragment() {
         view.setTransparentBackground()
 
         if (perk.perk is SpecialSkillPerk) {
-            binding.perkSkill.visibility = View.INVISIBLE
+            binding.perkSkill.visibility = View.GONE
         } else {
             val skillText = getString(R.string.required_skill) + ": " + perk.allSkillLevels
             binding.perkSkill.text = skillText
@@ -85,9 +85,9 @@ class PerkInfoFragment : BottomSheetDialogFragment() {
         }
     }
 
-    @SuppressLint("SetTextI18n")
     private fun updateStateInfo(perk: Perk) {
-        binding.perkLevelText.text = "${perk.state}/${perk.maxState}"
+        val text = "${perk.state}/${perk.maxState}"
+        binding.perkLevelText.text = text
     }
 
     companion object {

@@ -10,8 +10,8 @@
         android:id="@+id/recycler"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="8dp"
         android:clipToPadding="false"
+        android:paddingTop="12dp"
         app:layout_constrainedHeight="true"
         app:layout_constraintBottom_toTopOf="@id/buttons"
         app:layout_constraintEnd_toEndOf="parent"
@@ -26,7 +26,8 @@
         android:id="@+id/buttons"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:layout_margin="8dp"
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginVertical="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -36,9 +37,10 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginEnd="8dp"
+            android:stateListAnimator="@null"
             android:textColor="@android:color/white"
             android:textSize="12sp"
-            app:backgroundTint="@color/colorBlue"
+            app:backgroundTint="@color/colorGrayDark"
             app:cornerRadius="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/createBuild"
@@ -52,7 +54,8 @@
             android:id="@+id/createBuild"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            app:backgroundTint="@color/colorBlue"
+            android:stateListAnimator="@null"
+            app:backgroundTint="@color/colorAccent"
             app:cornerRadius="8dp"
             app:icon="@android:drawable/ic_input_add"
             app:iconGravity="textStart"
@@ -64,6 +67,7 @@
             app:layout_constraintStart_toEndOf="@+id/picker"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="SpeakableTextPresentCheck" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

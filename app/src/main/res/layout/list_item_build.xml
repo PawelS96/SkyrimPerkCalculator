@@ -7,11 +7,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorGrayDark"
+    tools:background="@color/colorGray"
     android:descendantFocusability="blocksDescendants"
     android:orientation="horizontal"
-    android:paddingStart="8dp"
-    android:paddingEnd="8dp">
+    android:paddingStart="12dp"
+    android:paddingEnd="12dp">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -19,8 +19,9 @@
         android:layout_gravity="center"
         android:layout_marginTop="2dp"
         android:layout_marginBottom="2dp"
+        card_view:cardElevation="0dp"
         android:foreground="?attr/selectableItemBackground"
-        card_view:cardBackgroundColor="@color/colorGrayDarker"
+        card_view:cardBackgroundColor="@color/colorGrayDark"
         card_view:cardCornerRadius="8dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -99,7 +100,7 @@
                 android:layout_width="32dp"
                 android:layout_height="0dp"
                 android:stateListAnimator="@null"
-                app:backgroundTint="@color/colorGrayDarker"
+                app:backgroundTint="@color/colorGrayDark"
                 app:elevation="0dp"
                 app:icon="@drawable/ic_baseline_more_vert_24"
                 app:iconTint="@android:color/white"

@@ -6,7 +6,7 @@ import android.view.Menu.NONE
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.PopupMenu
+import androidx.appcompat.widget.PopupMenu
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -66,7 +66,13 @@ class BuildListFragment : BottomSheetDialogFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View = binding.root
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        view.setTransparentBackground()
+
         val adapterCallback = object : BuildAdapter.BuildAdapterCallback {
             override fun onClick(build: Build) {
                 model.selectBuild(build)
@@ -80,7 +86,7 @@ class BuildListFragment : BottomSheetDialogFragment() {
 
         binding.createBuild.setOnClickListener { showCreateBuildDialog() }
         binding.picker.setOnClickListener {
-            val popup = PopupMenu(context, binding.picker)
+            val popup = PopupMenu(requireContext(), binding.picker)
             PerkSystem.values().forEach {
                 popup.menu.add(NONE, it.ordinal, it.ordinal, it.getName(requireContext()))
             }
@@ -97,14 +103,6 @@ class BuildListFragment : BottomSheetDialogFragment() {
             configureEffects(overscrollMagnitude = 0.01f, flingMagnitude = 0.01f) {}
             adapter = buildAdapter
         }
-
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        view.setTransparentBackground()
     }
 
     override fun onStart() {
@@ -120,7 +118,7 @@ class BuildListFragment : BottomSheetDialogFragment() {
     }
 
     private fun showContextMenu(build: Build, view: View) {
-        val popup = PopupMenu(context, view)
+        val popup = PopupMenu(requireContext(), view)
         popup.menuInflater.inflate(R.menu.menu_list_item, popup.menu)
 
         if (!model.canDeleteBuild()) popup.menu.findItem(R.id.delete).isVisible = false

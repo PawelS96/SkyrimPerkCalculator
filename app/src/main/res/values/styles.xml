@@ -1,59 +1,27 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorGrayDark</item>
+        <item name="colorPrimaryDark">@color/colorGray</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:itemBackground">@color/colorGrayDark</item>
         <item name="android:textColor">@color/colorFont</item>
         <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="popupMenuStyle">@style/PopupMenuStyle</item>
+        <item name="bottomSheetDialogTheme">@style/BottomSheetTheme</item>
+        <item name="dialogTheme">@style/CustomDialogTheme</item>
     </style>
 
     <style name="CustomDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:background">@drawable/dialog_background</item>
         <item name="android:textColor">@color/colorFont</item>
         <item name="android:textColorPrimary">@color/colorFont</item>
-    </style>
-
-    <style name="CustomDialogThemeApi21" parent="Theme.AppCompat.Dialog.Alert" />
-
-    <style name="SkillButton">
-        <item name="android:clickable">true</item>
-        <item name="android:focusable">true</item>
-        <item name="android:orientation">vertical</item>
-        <item name="android:layout_width">90dp</item>
-        <item name="android:layout_height">90dp</item>
-        <item name="android:layout_columnSpan">1</item>
-        <item name="android:layout_rowSpan">1</item>
-    </style>
-
-    <style name="SkillPerkCount">
-        <item name="android:textColor">@color/colorFont</item>
-        <item name="android:layout_centerInParent">true</item>
-        <item name="android:textAlignment">center</item>
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-    </style>
-
-    <style name="SkillLabel">
-        <item name="android:textColor">@color/colorFont</item>
-        <item name="android:layout_alignParentBottom">true</item>
-        <item name="android:textAlignment">center</item>
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginBottom">4dp</item>
-        <item name="android:textSize">12sp</item>
-
-    </style>
-
-    <style name="ListButton">
-        <item name="android:clickable">false</item>
-        <item name="android:textSize">24sp</item>
-        <item name="android:textColor">@color/colorFont</item>
-        <item name="android:background">@android:color/transparent</item>
-        <item name="android:textAlignment">center</item>
     </style>
 
     <style name="RadioGroupHeader">
@@ -61,21 +29,21 @@
         <item name="android:layout_marginStart">5dp</item>
         <item name="android:layout_marginEnd">5dp</item>
         <item name="android:textColor">@color/colorFont</item>
+        <item name="android:textStyle">bold</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
 
     <style name="RadioButton">
-        <item name="android:layout_marginStart">5dp</item>
-        <item name="android:layout_marginEnd">5dp</item>
+        <item name="android:paddingStart">8dp</item>
+        <item name="android:layout_marginStart">4dp</item>
+        <item name="android:layout_marginEnd">4dp</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingBottom">12dp</item>
         <item name="android:textColor">@color/colorFont</item>
         <item name="buttonTint">@color/colorAccent</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-    </style>
-
-    <style name="spinner_style" parent="Widget.AppCompat.Spinner">
-        <item name="backgroundTint">@color/colorFont</item>
     </style>
 
     <style name="MaterialCircleButton">
@@ -102,7 +70,7 @@
         <item name="cornerRadius">10dp</item>
         <item name="android:textColor">@color/colorFont</item>
         <item name="textAllCaps">true</item>
-        <item name="backgroundTint">@color/colorBlue</item>
+        <item name="backgroundTint">@color/colorAccent</item>
     </style>
 
     <style name="PerkCounter" parent="MaterialCircleButton">
@@ -120,6 +88,16 @@
     <style name="BottomSheetFadeAnimation">
         <item name="android:windowEnterAnimation">@anim/fade_in</item>
         <item name="android:windowExitAnimation">@anim/fade_out</item>
+    </style>
+
+    <style name="BottomSheetTheme" parent="@style/Theme.Design.BottomSheetDialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:navigationBarColor">@color/colorGray</item>
+    </style>
+
+    <style name="PopupMenuStyle" parent="Widget.MaterialComponents.PopupMenu">
+        <item name="android:popupBackground">@drawable/dialog_background</item>
+        <item name="android:itemBackground">?attr/selectableItemBackgroundBorderless</item>
     </style>
 
 </resources>

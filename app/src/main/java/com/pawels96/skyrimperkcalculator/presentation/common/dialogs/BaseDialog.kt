@@ -1,6 +1,6 @@
 package com.pawels96.skyrimperkcalculator.presentation.common.dialogs
 
-import android.app.AlertDialog
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
 
@@ -11,6 +11,6 @@ abstract class BaseDialog : DialogFragment() {
     fun show(fm: FragmentManager) = show(fm, getDialogTag())
 
     protected fun getBuilder(): AlertDialog.Builder {
-        return CustomDialogBuilder(context)
+        return AlertDialog.Builder(requireContext())
     }
 }

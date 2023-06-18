@@ -7,8 +7,9 @@
     android:layout_height="wrap_content"
     android:layout_margin="4dp"
     android:foreground="?android:attr/selectableItemBackgroundBorderless"
-    card_view:cardBackgroundColor="@color/colorGrayDarker"
-    card_view:cardCornerRadius="16dp">
+    card_view:cardBackgroundColor="@color/colorGrayDark"
+    card_view:cardCornerRadius="8dp"
+    card_view:cardElevation="0dp">
 
     <RelativeLayout
         android:layout_width="match_parent"

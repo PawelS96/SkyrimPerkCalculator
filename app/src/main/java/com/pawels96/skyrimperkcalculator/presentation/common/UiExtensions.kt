@@ -1,7 +1,6 @@
 package com.pawels96.skyrimperkcalculator.presentation.common
 
 import android.app.Activity
-import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Context
 import android.content.res.ColorStateList
@@ -13,6 +12,7 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.viewpager.widget.ViewPager
 import com.pawels96.skyrimperkcalculator.R

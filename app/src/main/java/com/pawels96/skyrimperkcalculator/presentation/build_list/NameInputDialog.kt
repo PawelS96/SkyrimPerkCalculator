@@ -71,6 +71,7 @@ class NameInputDialog : BaseDialog() {
             }
 
         dialog.setOnShowListener { di: DialogInterface ->
+            // crash here
             dialog.setButtonColors(requireContext())
             dialog.getButton(Dialog.BUTTON_POSITIVE).setOnClickListener { v: View? ->
                 val name = binding.nameEdit.text.toString().trim()

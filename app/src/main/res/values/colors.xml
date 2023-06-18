@@ -3,15 +3,13 @@
     <color name="colorPrimary">#11a5e0</color>
     <color name="colorPrimaryDark">#3F51B5</color>
     <color name="colorAccent">#3075e5</color>
-    <color name="colorGray">#484949</color>
     <color name="colorFont">#ffffff</color>
     <color name="colorFontAlt">#adb3bc</color>
-    <color name="colorGrayDark">#2e2f35</color>
-    <color name="colorGrayDarker">#232429</color>
-    <color name="colorRipple">#5b5e61</color>
+    <color name="colorGrayLight">#484949</color>
+    <color name="colorGray">#2e2f35</color>
+    <color name="colorGrayDark">#232429</color>
+    <color name="colorAlmostBlack">#121212</color>
     <color name="colorOverscroll">@android:color/white</color>
-
-    <color name="colorBlue">#3075e5</color>
 
     <color name="skillMagic">#2a497a</color>
     <color name="skillCombat">#7a2c28</color>

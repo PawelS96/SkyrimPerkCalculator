@@ -5,8 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/black"
+    android:background="@color/colorAlmostBlack"
     android:orientation="vertical"
+    android:fitsSystemWindows="true"
     tools:context=".presentation.MainActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -18,7 +19,7 @@
             android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:background="@android:color/black"
+            android:background="@color/colorAlmostBlack"
             app:tabIndicator="@null"
             app:tabMode="scrollable"
             app:tabSelectedTextColor="@color/skillCombatBright"
@@ -37,7 +38,6 @@
         android:layout_height="wrap_content">
 
     </com.pawels96.skyrimperkcalculator.presentation.common.views.LoopingViewPager>
-
 
     <LinearLayout
         android:layout_marginStart="15dp"

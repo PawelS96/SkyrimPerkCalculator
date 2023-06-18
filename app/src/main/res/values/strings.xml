@@ -22,7 +22,7 @@
     <string name="delete">Delete</string>
     <string name="edit">Edit</string>
     <string name="skills">Skills</string>
-
+    <string name="close">Close</string>
     <string name="delete_build">Do you want to delete %s?</string>
 
     <string name="skill_alchemy">Alchemy</string>
@@ -52,7 +52,8 @@
     <string name="required_lvl">Required level</string>
     <string name="rename">Rename</string>
     <string name="description">Description</string>
-
+    <string name="vampire_perks">Vampire perks</string>
+    <string name="werewolf_perks">Werewolf perks</string>
     <string name="perks_per_level">Perks per level</string>
     <string name="msg_tutorial">Tip: Hold perks to see their descriptions and required skill levels.</string>
     <string name="ok_alt">Got it!</string>
@@ -64,5 +65,5 @@
     <string name="s_vokrii">Vokrii - Minimalistic Perks of Skyrim</string>
     <string name="s_vanilla">Skyrim</string>
     <string name="s_adamant">Adamant - A Perk Overhaul</string>
-    <string name="close">Close</string>
+
 </resources>

@@ -18,7 +18,7 @@ class SkillListFragment : BottomSheetDialogFragment() {
 
     private val binding by viewBinding(FragmentSkillsBinding::inflate)
 
-    lateinit var onSelect: (Int) -> Unit
+    var onSelect: ((Int) -> Unit)? = null
 
     private val model: CurrentBuildViewModel by lazy {
         ViewModelProvider(
@@ -31,9 +31,7 @@ class SkillListFragment : BottomSheetDialogFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-        return binding.root
-    }
+    ): View = binding.root
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -42,7 +40,7 @@ class SkillListFragment : BottomSheetDialogFragment() {
 
         val recycler = binding.skillList
         val skillAdapter = SkillAdapter { index ->
-            onSelect(index)
+            onSelect?.invoke(index)
             dismiss()
         }
 
