@@ -117,4 +117,9 @@
         <item name="android:textSize">10sp</item>
     </style>
 
+    <style name="BottomSheetFadeAnimation">
+        <item name="android:windowEnterAnimation">@anim/fade_in</item>
+        <item name="android:windowExitAnimation">@anim/fade_out</item>
+    </style>
+
 </resources>

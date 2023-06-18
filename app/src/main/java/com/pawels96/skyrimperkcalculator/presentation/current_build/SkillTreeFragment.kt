@@ -72,7 +72,8 @@ class SkillTreeFragment : Fragment(R.layout.fragment_skilltree) {
     }
 
     private fun showPerkDescription(perk: Perk) {
-        PerkInfoDialog.create(displayedSkill, perk).show(childFragmentManager)
+        val fragment = PerkInfoFragment.create(displayedSkill, perk)
+        fragment.show(childFragmentManager, PerkInfoFragment.TAG)
     }
 
     companion object {
