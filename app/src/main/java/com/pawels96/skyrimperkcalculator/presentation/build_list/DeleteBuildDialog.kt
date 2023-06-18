@@ -25,8 +25,9 @@ class DeleteBuildDialog : BaseDialog() {
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        val name = model.buildList.value.firstOrNull { it.build.id == buildId }?.build?.name
         return getBuilder()
-            .setTitle(R.string.delete_build)
+            .setTitle(getString(R.string.delete_build).format(name ?: ""))
             .setCancelable(true)
             .setPositiveButton(R.string.delete) { _, _ ->
                 buildId?.let {

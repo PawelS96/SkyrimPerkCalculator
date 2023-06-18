@@ -23,7 +23,7 @@
     <string name="edit">Edit</string>
     <string name="skills">Skills</string>
 
-    <string name="delete_build">Delete build?</string>
+    <string name="delete_build">Do you want to delete %s?</string>
 
     <string name="skill_alchemy">Alchemy</string>
     <string name="skill_alteration">Alteration</string>
