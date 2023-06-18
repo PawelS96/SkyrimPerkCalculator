@@ -21,6 +21,7 @@ import com.pawels96.skyrimperkcalculator.domain.Build
 import com.pawels96.skyrimperkcalculator.domain.PerkSystem
 import com.pawels96.skyrimperkcalculator.presentation.common.configureEffects
 import com.pawels96.skyrimperkcalculator.presentation.common.getName
+import com.pawels96.skyrimperkcalculator.presentation.common.setTransparentBackground
 import com.pawels96.skyrimperkcalculator.presentation.common.viewBinding
 import kotlinx.coroutines.launch
 
@@ -98,6 +99,12 @@ class BuildListFragment : BottomSheetDialogFragment() {
         }
 
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        view.setTransparentBackground()
     }
 
     override fun onStart() {

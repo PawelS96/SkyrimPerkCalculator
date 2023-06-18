@@ -11,6 +11,7 @@ import com.pawels96.skyrimperkcalculator.Injector
 import com.pawels96.skyrimperkcalculator.R
 import com.pawels96.skyrimperkcalculator.databinding.FragmentSkillsBinding
 import com.pawels96.skyrimperkcalculator.presentation.common.configureEffects
+import com.pawels96.skyrimperkcalculator.presentation.common.setTransparentBackground
 import com.pawels96.skyrimperkcalculator.presentation.common.viewBinding
 
 class SkillListFragment : BottomSheetDialogFragment() {
@@ -36,6 +37,8 @@ class SkillListFragment : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        view.setTransparentBackground()
 
         val recycler = binding.skillList
         val skillAdapter = SkillAdapter { index ->

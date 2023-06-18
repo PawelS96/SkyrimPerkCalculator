@@ -4,6 +4,9 @@ import android.app.Activity
 import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Context
+import android.content.res.ColorStateList
+import android.graphics.Color
+import android.graphics.PorterDuff
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
 import android.view.View
@@ -42,4 +45,12 @@ fun AlertDialog.setButtonColors(context: Context) {
 
 fun ViewPager.getFragmentTag(index: Int): String {
     return "android:switcher:$id:$index"
+}
+
+fun View.setTransparentBackground() {
+    (parent as? View)?.let {
+        it.backgroundTintMode = PorterDuff.Mode.CLEAR
+        it.backgroundTintList = ColorStateList.valueOf(Color.TRANSPARENT)
+        it.setBackgroundColor(Color.TRANSPARENT)
+    }
 }

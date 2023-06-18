@@ -12,6 +12,7 @@ import com.pawels96.skyrimperkcalculator.Injector
 import com.pawels96.skyrimperkcalculator.databinding.FragmentOptionsBinding
 import com.pawels96.skyrimperkcalculator.domain.VampirePerkSystem
 import com.pawels96.skyrimperkcalculator.domain.WerewolfPerkSystem
+import com.pawels96.skyrimperkcalculator.presentation.common.setTransparentBackground
 import com.pawels96.skyrimperkcalculator.presentation.common.viewBinding
 
 class OptionsFragment : BottomSheetDialogFragment() {
@@ -34,6 +35,10 @@ class OptionsFragment : BottomSheetDialogFragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        view.setTransparentBackground()
+
         when (model.currentBuild.value?.vampirePerkSystem) {
             VampirePerkSystem.VANILLA -> binding.radioVampireVanilla.isChecked = true
             VampirePerkSystem.SACROSANCT -> binding.radioVampireSacrosanct.isChecked = true
