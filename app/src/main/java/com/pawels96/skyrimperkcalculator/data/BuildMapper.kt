@@ -79,8 +79,11 @@ private fun Skill.updatePerksRecursively(stateForPerk: (IPerk) -> Int) {
     fun updatePerk(perk: Perk) {
         val childStates = perk.children.associate { it.perk to stateForPerk(it.perk) }
         val sortedChildren = perk.children.sortedByDescending { childStates[it.perk] }
-        perk.state = stateForPerk(perk.perk)
-        sortedChildren.forEach { updatePerk(it) }
+        val state = stateForPerk(perk.perk)
+        if (state > 0) {
+            perk.state = stateForPerk(perk.perk)
+            sortedChildren.forEach { updatePerk(it) }
+        }
     }
 
     updatePerk(rootPerk)
