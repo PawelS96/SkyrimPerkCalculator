@@ -10,31 +10,31 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/counter_stealth"
         style="@style/PerkCounter"
-        app:backgroundTint="@color/skillStealthBright"
+        app:backgroundTint="@color/colorStealth"
         tools:text="123" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/counter_combat"
         style="@style/PerkCounter"
-        app:backgroundTint="@color/skillCombatBright"
+        app:backgroundTint="@color/colorCombat"
         tools:text="1" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/counter_magic"
         style="@style/PerkCounter"
-        app:backgroundTint="@color/skillMagicBright"
+        app:backgroundTint="@color/colorMagic"
         tools:text="31" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/counter_vampirism"
         style="@style/PerkCounter"
-        app:backgroundTint="@color/skillVampireBright"
+        app:backgroundTint="@color/colorVampire"
         tools:text="0" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/counter_lycanthropy"
         style="@style/PerkCounter"
-        app:backgroundTint="@color/skillWerewolfBright"
+        app:backgroundTint="@color/colorWerewolf"
         tools:text="12" />
 
 </LinearLayout>

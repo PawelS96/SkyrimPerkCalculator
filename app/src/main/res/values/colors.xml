@@ -11,16 +11,10 @@
     <color name="colorAlmostBlack">#121212</color>
     <color name="colorOverscroll">@android:color/white</color>
 
-    <color name="skillMagic">#2a497a</color>
-    <color name="skillCombat">#7a2c28</color>
-    <color name="skillStealth">#386d1c</color>
-    <color name="skillVampire">#6a169c</color>
-    <color name="skillWerewolf">#824214</color>
-
-    <color name="skillMagicBright">#3582ff</color>
-    <color name="skillCombatBright">#e82117</color>
-    <color name="skillStealthBright">#51ce0e</color>
-    <color name="skillVampireBright">#a121ed</color>
-    <color name="skillWerewolfBright">#d96e21</color>
+    <color name="colorMagic">#3582ff</color>
+    <color name="colorCombat">#e82117</color>
+    <color name="colorStealth">#51ce0e</color>
+    <color name="colorVampire">#a121ed</color>
+    <color name="colorWerewolf">#d96e21</color>
 
 </resources>

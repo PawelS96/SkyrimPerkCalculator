@@ -15,7 +15,6 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.TabLayoutOnPageChangeListener
 import com.pawels96.skyrimperkcalculator.Injector
 import com.pawels96.skyrimperkcalculator.R
-import com.pawels96.skyrimperkcalculator.TutorialDialog
 import com.pawels96.skyrimperkcalculator.databinding.ActivityMainBinding
 import com.pawels96.skyrimperkcalculator.domain.EMainSkill
 import com.pawels96.skyrimperkcalculator.domain.ESpecialSkill
@@ -126,12 +125,12 @@ class MainActivity : AppCompatActivity() {
     private fun updateTabColor(position: Int) {
         val skill = DISPLAYED_SKILLS[position]
         val colorRes = when (skill.type) {
-            SkillType.STEALTH -> R.color.skillStealthBright
-            SkillType.COMBAT -> R.color.skillCombatBright
-            SkillType.MAGIC -> R.color.skillMagicBright
+            SkillType.STEALTH -> R.color.colorStealth
+            SkillType.COMBAT -> R.color.colorCombat
+            SkillType.MAGIC -> R.color.colorMagic
             SkillType.SPECIAL -> when (skill) {
-                ESpecialSkill.SKILL_VAMPIRISM -> R.color.skillVampireBright
-                ESpecialSkill.SKILL_LYCANTHROPY -> R.color.skillWerewolfBright
+                ESpecialSkill.SKILL_VAMPIRISM -> R.color.colorVampire
+                ESpecialSkill.SKILL_LYCANTHROPY -> R.color.colorWerewolf
                 else -> R.color.colorAccent
             }
         }

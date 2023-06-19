@@ -7,7 +7,7 @@ import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import com.pawels96.skyrimperkcalculator.Injector
 import com.pawels96.skyrimperkcalculator.R
-import com.pawels96.skyrimperkcalculator.databinding.PopupBuildDescriptionBinding
+import com.pawels96.skyrimperkcalculator.databinding.FragmentBuildDescriptionBinding
 import com.pawels96.skyrimperkcalculator.presentation.common.dialogs.BaseDialog
 import com.pawels96.skyrimperkcalculator.presentation.common.hideKeyboard
 import com.pawels96.skyrimperkcalculator.presentation.common.setButtonColors
@@ -17,7 +17,7 @@ import kotlinx.coroutines.runBlocking
 
 class BuildDescriptionDialog : BaseDialog() {
 
-    private val binding by viewBinding(PopupBuildDescriptionBinding::inflate)
+    private val binding by viewBinding(FragmentBuildDescriptionBinding::inflate)
 
     private var buildId: Long = 0
 

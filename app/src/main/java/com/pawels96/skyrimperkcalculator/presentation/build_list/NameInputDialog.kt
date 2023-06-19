@@ -11,7 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.pawels96.skyrimperkcalculator.Injector
 import com.pawels96.skyrimperkcalculator.R
-import com.pawels96.skyrimperkcalculator.databinding.PopupSaveBinding
+import com.pawels96.skyrimperkcalculator.databinding.FragmentNameInputBinding
 import com.pawels96.skyrimperkcalculator.domain.Build
 import com.pawels96.skyrimperkcalculator.presentation.common.dialogs.BaseDialog
 import com.pawels96.skyrimperkcalculator.presentation.common.hideKeyboard
@@ -25,7 +25,7 @@ import kotlinx.coroutines.runBlocking
 
 class NameInputDialog : BaseDialog() {
 
-    private val binding by viewBinding(PopupSaveBinding::inflate)
+    private val binding by viewBinding(FragmentNameInputBinding::inflate)
 
     private var buildId: Long? = null
     private var build: Build? = null

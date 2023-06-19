@@ -22,7 +22,7 @@
             android:background="@color/colorAlmostBlack"
             app:tabIndicator="@null"
             app:tabMode="scrollable"
-            app:tabSelectedTextColor="@color/skillCombatBright"
+            app:tabSelectedTextColor="@color/colorCombat"
             app:tabTextColor="@color/colorFontAlt">
 
     </com.google.android.material.tabs.TabLayout>

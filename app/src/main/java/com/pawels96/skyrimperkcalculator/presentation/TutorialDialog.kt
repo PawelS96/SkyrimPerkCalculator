@@ -1,7 +1,8 @@
-package com.pawels96.skyrimperkcalculator
+package com.pawels96.skyrimperkcalculator.presentation
 
 import android.app.Dialog
 import android.os.Bundle
+import com.pawels96.skyrimperkcalculator.R
 import com.pawels96.skyrimperkcalculator.presentation.common.dialogs.BaseDialog
 import com.pawels96.skyrimperkcalculator.presentation.common.setButtonColors
 

@@ -33,7 +33,7 @@
             android:textColor="@color/colorFont"
             android:textSize="18sp"
             tools:text="@string/skill_heavy_armor"
-            tools:textColor="@color/skillCombatBright" />
+            tools:textColor="@color/colorCombat" />
 
         <TextView
             android:id="@+id/active_perks"
@@ -50,7 +50,7 @@
             android:textColor="@color/colorFont"
             android:textSize="18sp"
             tools:text="12"
-            tools:textColor="@color/skillCombatBright" />
+            tools:textColor="@color/colorCombat" />
 
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

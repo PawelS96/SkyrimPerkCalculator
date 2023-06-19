@@ -56,12 +56,12 @@ class SkillAdapter(
         private fun Skill.getColorRes(): Int {
 
             return when (type) {
-                SkillType.COMBAT -> R.color.skillCombatBright
-                SkillType.MAGIC -> R.color.skillMagicBright
-                SkillType.STEALTH -> R.color.skillStealthBright
+                SkillType.COMBAT -> R.color.colorCombat
+                SkillType.MAGIC -> R.color.colorMagic
+                SkillType.STEALTH -> R.color.colorStealth
                 SkillType.SPECIAL -> when (iskill) {
-                    ESpecialSkill.SKILL_LYCANTHROPY -> R.color.skillWerewolfBright
-                    ESpecialSkill.SKILL_VAMPIRISM -> R.color.skillVampireBright
+                    ESpecialSkill.SKILL_LYCANTHROPY -> R.color.colorWerewolf
+                    ESpecialSkill.SKILL_VAMPIRISM -> R.color.colorVampire
                     else -> R.color.colorFont
                 }
             }

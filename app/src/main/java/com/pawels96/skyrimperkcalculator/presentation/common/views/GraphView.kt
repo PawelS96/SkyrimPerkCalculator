@@ -71,15 +71,15 @@ class GraphView(context: Context, attrs: AttributeSet?) : View(context, attrs) {
         selectedCombatPaint.strokeWidth = 5f
         selectedCombatPaint.flags = Paint.ANTI_ALIAS_FLAG
 
-        selectedMagicPaint.color = ContextCompat.getColor(context, R.color.skillMagicBright)
+        selectedMagicPaint.color = ContextCompat.getColor(context, R.color.colorMagic)
         selectedMagicPaint.strokeWidth = 5f
         selectedMagicPaint.flags = Paint.ANTI_ALIAS_FLAG
 
-        selectedVampirePaint.color = ContextCompat.getColor(context, R.color.skillVampireBright)
+        selectedVampirePaint.color = ContextCompat.getColor(context, R.color.colorVampire)
         selectedVampirePaint.strokeWidth = 5f
         selectedVampirePaint.flags = Paint.ANTI_ALIAS_FLAG
 
-        selectedWerewolfPaint.color = ContextCompat.getColor(context, R.color.skillWerewolfBright)
+        selectedWerewolfPaint.color = ContextCompat.getColor(context, R.color.colorWerewolf)
         selectedWerewolfPaint.strokeWidth = 5f
         selectedWerewolfPaint.flags = Paint.ANTI_ALIAS_FLAG
 
