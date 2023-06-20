@@ -20,8 +20,12 @@ import com.pawels96.skyrimperkcalculator.databinding.FragmentBuildListBinding
 import com.pawels96.skyrimperkcalculator.domain.Build
 import com.pawels96.skyrimperkcalculator.domain.PerkSystem
 import com.pawels96.skyrimperkcalculator.presentation.common.getName
+import com.pawels96.skyrimperkcalculator.presentation.common.hideKeyboard
 import com.pawels96.skyrimperkcalculator.presentation.common.setTransparentBackground
+import com.pawels96.skyrimperkcalculator.presentation.common.toast
 import com.pawels96.skyrimperkcalculator.presentation.common.viewBinding
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 
 class BuildListFragment : BottomSheetDialogFragment() {
@@ -57,6 +61,12 @@ class BuildListFragment : BottomSheetDialogFragment() {
                 model.currentPerkSystem.collect { perkSystem ->
                     binding.picker.text = perkSystem.getName(requireContext())
                 }
+            }
+        }
+
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                model.events.onEach(::handleEvent).collect()
             }
         }
     }
@@ -111,6 +121,28 @@ class BuildListFragment : BottomSheetDialogFragment() {
             bottomSheet?.let { sheet ->
                 val behavior = BottomSheetBehavior.from(sheet)
                 behavior.state = BottomSheetBehavior.STATE_EXPANDED
+            }
+        }
+    }
+
+    private fun handleEvent(event: BuildListEvent) {
+        event.messageID?.let { message ->
+            requireActivity().toast(message)
+        }
+
+        if (event.success) {
+            when (event) {
+                is BuildListEvent.BuildDeleted -> {
+                    val dialog = childFragmentManager.findFragmentByTag(DeleteBuildDialog.TAG)
+                    (dialog as? DeleteBuildDialog)?.dismiss()
+                }
+                is BuildListEvent.BuildRenamed, is BuildListEvent.BuildSaved -> {
+                    val dialog = childFragmentManager.findFragmentByTag(NameInputDialog.TAG)
+                    (dialog as? NameInputDialog)?.let {
+                        view?.hideKeyboard()
+                        dismiss()
+                    }
+                }
             }
         }
     }

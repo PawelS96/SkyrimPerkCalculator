@@ -87,7 +87,7 @@ class BuildListViewModel(
             selectBuild(buildToSelect)
         }
 
-        val message = if (didDelete) R.id.delete else R.string.msg_error
+        val message = if (didDelete) R.string.msg_build_deleted else R.string.msg_error
         dispatchEvent(BuildListEvent.BuildDeleted(didDelete, message))
     }
 

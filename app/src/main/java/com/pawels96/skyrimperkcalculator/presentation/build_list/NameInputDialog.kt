@@ -6,10 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
 import android.view.inputmethod.EditorInfo
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import com.pawels96.skyrimperkcalculator.Injector
 import com.pawels96.skyrimperkcalculator.R
 import com.pawels96.skyrimperkcalculator.databinding.FragmentNameInputBinding
@@ -17,11 +14,7 @@ import com.pawels96.skyrimperkcalculator.domain.Build
 import com.pawels96.skyrimperkcalculator.presentation.common.dialogs.BaseDialog
 import com.pawels96.skyrimperkcalculator.presentation.common.hideKeyboard
 import com.pawels96.skyrimperkcalculator.presentation.common.setButtonColors
-import com.pawels96.skyrimperkcalculator.presentation.common.toast
 import com.pawels96.skyrimperkcalculator.presentation.common.viewBinding
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
 class NameInputDialog : BaseDialog() {
@@ -45,8 +38,6 @@ class NameInputDialog : BaseDialog() {
             buildId = id
             build = runBlocking { model.getBuildById(id) }
         }
-
-        observeEvents()
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -100,23 +91,6 @@ class NameInputDialog : BaseDialog() {
                 name,
                 binding.copyCurrentCheckbox.isChecked
             )
-        }
-    }
-
-    private fun observeEvents() {
-        lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                model.events.onEach { event ->
-                    event.messageID?.let { message ->
-                        requireActivity().toast(message)
-                    }
-
-                    if (event.success) {
-                        binding.root.hideKeyboard()
-                        dismiss()
-                    }
-                }.collect()
-            }
         }
     }
 
