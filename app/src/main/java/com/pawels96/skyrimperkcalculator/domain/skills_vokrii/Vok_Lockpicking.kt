@@ -19,4 +19,21 @@ enum class Vok_Lockpicking(x: Float, y: Float, vararg skill: Int) : IPerk {
     VOK_LCK_LOCKMASTER          (0.8f,   0.15f,  100);
 
     override val perkInfo: PerkInfo = PerkInfo(skill, x, y)
+
+    override val childPerks: List<IPerk>
+        get() = when (this) {
+            VOK_LCK_LOCKPICKING_MASTERY -> listOf(
+                VOK_LCK_LOOTER,
+                VOK_LCK_LOCKDOWN,
+                VOK_LCK_QUICK_HANDS
+            )
+            VOK_LCK_LOOTER -> listOf(VOK_LCK_TREASURE_HUNTER)
+            VOK_LCK_LOCKDOWN -> listOf(VOK_LCK_HOTWIRE)
+            VOK_LCK_QUICK_HANDS -> listOf(VOK_LCK_DUNGEON_MASTER, VOK_LCK_WAX_KEY)
+            VOK_LCK_TREASURE_HUNTER -> listOf(VOK_LCK_ARCHAEOLOGIST)
+            VOK_LCK_HOTWIRE -> listOf(VOK_LCK_OVERDRIVE)
+            VOK_LCK_WAX_KEY -> listOf(VOK_LCK_LUCKY_GUESS)
+            VOK_LCK_LUCKY_GUESS -> listOf(VOK_LCK_LOCKMASTER)
+            else -> emptyList()
+        }
 }

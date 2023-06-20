@@ -30,4 +30,36 @@ enum class Ord_LightArmor(x: Float, y: Float, vararg skill: Int) : IPerk {
     ORD_LAR_TEMPTING_FATE            (0.375f,   0.05f,  100);
 
     override val perkInfo: PerkInfo = PerkInfo(skill, x + 0.05f, y)
+
+    override val childPerks: List<IPerk>
+        get() = when (this) {
+            ORD_LAR_LIGHT_ARMOR_MASTERY -> listOf(
+                ORD_LAR_ANNOYING_MOSQUITOES,
+                ORD_LAR_IRON_FIST,
+                ORD_LAR_LIGHT_ARMOR_FIT,
+                ORD_LAR_AS_A_LEAF
+            )
+            ORD_LAR_IRON_FIST -> listOf(ORD_LAR_SWEEPING_WIND)
+            ORD_LAR_LIGHT_ARMOR_FIT -> listOf(
+                ORD_LAR_UNHINDERED,
+                ORD_LAR_INITIATIVE,
+                ORD_LAR_EVASIVE_LEAP,
+                ORD_LAR_KEEN_SENSES
+            )
+            ORD_LAR_INITIATIVE -> listOf(
+                ORD_LAR_LIGHTNING_STRIKE,
+                ORD_LAR_FIGHT_OR_FLIGHT,
+                ORD_LAR_WINDRUNNER
+            )
+            ORD_LAR_SWEEPING_WIND -> listOf(ORD_LAR_RUSHING_TIDE, ORD_LAR_UNHINDERED)
+            ORD_LAR_RUSHING_TIDE -> listOf(ORD_LAR_HISSING_DRAGON, ORD_LAR_BREAKING_WAVES)
+            ORD_LAR_UNHINDERED -> listOf(ORD_LAR_INTO_THE_MAELSTROM)
+            ORD_LAR_WINDRUNNER -> listOf(ORD_LAR_WARDANCER)
+            ORD_LAR_EVASIVE_LEAP -> listOf(ORD_LAR_WILD_AND_FREE)
+            ORD_LAR_FIGHT_OR_FLIGHT -> listOf(ORD_LAR_SURVIVAL_INSTINCT)
+            ORD_LAR_WARDANCER -> listOf(ORD_LAR_GLANCING_BLOWS, ORD_LAR_SPELLDANCER)
+            ORD_LAR_SURVIVAL_INSTINCT -> listOf(ORD_LAR_TEMPTING_FATE)
+            ORD_LAR_GLANCING_BLOWS -> listOf(ORD_LAR_TEMPTING_FATE)
+            else -> emptyList()
+        }
 }

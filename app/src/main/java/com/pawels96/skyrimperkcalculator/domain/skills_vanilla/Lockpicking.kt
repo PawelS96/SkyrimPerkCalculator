@@ -18,4 +18,16 @@ enum class Lockpicking(x: Float, y: Float, vararg skill: Int) : IPerk {
     VAN_LCK_MASTER_LOCKS          (0.775f,  0.1f,   100);
 
     override val perkInfo: PerkInfo = PerkInfo(skill, x, y)
+
+    override val childPerks: List<IPerk>
+        get() = when (this) {
+            VAN_LCK_NOVICE_LOCKS -> listOf(VAN_LCK_APPRENTICE_LOCKS)
+            VAN_LCK_APPRENTICE_LOCKS -> listOf(VAN_LCK_ADEPT_LOCKS, VAN_LCK_QUICK_HANDS)
+            VAN_LCK_QUICK_HANDS -> listOf(VAN_LCK_WAX_KEY)
+            VAN_LCK_ADEPT_LOCKS -> listOf(VAN_LCK_EXPERT_LOCKS, VAN_LCK_GOLDEN_TOUCH)
+            VAN_LCK_EXPERT_LOCKS -> listOf(VAN_LCK_MASTER_LOCKS, VAN_LCK_LOCKSMITH)
+            VAN_LCK_GOLDEN_TOUCH -> listOf(VAN_LCK_TREASURE_HUNTER)
+            VAN_LCK_LOCKSMITH -> listOf(VAN_LCK_UNBREAKABLE)
+            else -> emptyList()
+        }
 }

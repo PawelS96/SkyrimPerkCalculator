@@ -16,4 +16,16 @@ enum class Sneak(x: Float, y: Float, vararg skill: Int) : IPerk {
     VAN_SNK_SHADOW_WARRIOR             (0.75f,   0.2f,    100);
 
     override val perkInfo: PerkInfo = PerkInfo(skill, x, y)
+
+    override val childPerks: List<IPerk>
+        get() = when (this) {
+            VAN_SNK_STEALTH -> listOf(VAN_SNK_MUFFLED_MOVEMENT, VAN_SNK_BACKSTAB)
+            VAN_SNK_BACKSTAB -> listOf(VAN_SNK_DEADLY_AIM)
+            VAN_SNK_DEADLY_AIM -> listOf(VAN_SNK_ASSASSINS_BLADE)
+            VAN_SNK_MUFFLED_MOVEMENT -> listOf(VAN_SNK_LIGHT_FOOT)
+            VAN_SNK_LIGHT_FOOT -> listOf(VAN_SNK_SILENT_ROLL)
+            VAN_SNK_SILENT_ROLL -> listOf(VAN_SNK_SILENCE)
+            VAN_SNK_SILENCE -> listOf(VAN_SNK_SHADOW_WARRIOR)
+            else -> emptyList()
+        }
 }

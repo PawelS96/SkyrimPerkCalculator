@@ -16,4 +16,16 @@ enum class Archery(x: Float, y: Float, vararg skill: Int) : IPerk {
     VAN_ARC_BULLSEYE                     (0.45f,  0.1f,   100);
 
     override val perkInfo: PerkInfo = PerkInfo(skill, x, y)
+
+    override val childPerks: List<IPerk>
+        get() = when (this) {
+            VAN_ARC_OVERDRAW -> listOf(VAN_ARC_CRITICAL_SHOT, VAN_ARC_EAGLE_EYE)
+            VAN_ARC_CRITICAL_SHOT -> listOf(VAN_ARC_HUNTERS_DISCIPLINE)
+            VAN_ARC_HUNTERS_DISCIPLINE -> listOf(VAN_ARC_RANGER)
+            VAN_ARC_RANGER -> listOf(VAN_ARC_BULLSEYE)
+            VAN_ARC_EAGLE_EYE -> listOf(VAN_ARC_POWER_SHOT, VAN_ARC_STEADY_HAND)
+            VAN_ARC_POWER_SHOT -> listOf(VAN_ARC_QUICK_SHOT)
+            VAN_ARC_QUICK_SHOT -> listOf(VAN_ARC_BULLSEYE)
+            else -> emptyList()
+        }
 }

@@ -15,4 +15,15 @@ enum class HeavyArmor(x: Float, y: Float, vararg skill: Int) : IPerk {
     VAN_HAR_REFLECT_BLOWS      (0.75f,  0.1f,   100);
 
     override val perkInfo: PerkInfo  = PerkInfo(skill, x, y)
+
+    override val childPerks: List<IPerk>
+        get() = when (this) {
+            VAN_HAR_JUGGERNAUT -> listOf(VAN_HAR_FISTS_OF_STEEL, VAN_HAR_WELL_FITTED)
+            VAN_HAR_FISTS_OF_STEEL -> listOf(VAN_HAR_CUSHIONED)
+            VAN_HAR_CUSHIONED -> listOf(VAN_HAR_CONDITIONING)
+            VAN_HAR_WELL_FITTED -> listOf(VAN_HAR_TOWER_OF_STRENGTH)
+            VAN_HAR_TOWER_OF_STRENGTH -> listOf(VAN_HAR_MATCHING_SET)
+            VAN_HAR_MATCHING_SET -> listOf(VAN_HAR_REFLECT_BLOWS)
+            else -> emptyList()
+        }
 }

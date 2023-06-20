@@ -24,4 +24,27 @@ enum class Vok_Alteration(x: Float, y: Float, vararg skill: Int) : IPerk {
     VOK_ALT_RITUALIST               (0.275f, 0.1f,   100);
 
     override val perkInfo: PerkInfo = PerkInfo(skill, x, y)
+
+    override val childPerks: List<IPerk>
+        get() = when (this) {
+            VOK_ALT_ALTERATION_MASTERY -> listOf(
+                VOK_ALT_TELEKINETIC_FORCE,
+                VOK_ALT_ALTERATION_DUAL_CASTING,
+                VOK_ALT_MAGE_ARMOR,
+                VOK_ALT_MAGIC_RESISTANCE,
+                VOK_ALT_BATTLEMAGE
+            )
+            VOK_ALT_MAGIC_RESISTANCE -> listOf(VOK_ALT_ALTER_SELF)
+            VOK_ALT_ALTER_SELF -> listOf(VOK_ALT_ATRONACH, VOK_ALT_ARCANE_GUIDANCE)
+            VOK_ALT_MAGE_ARMOR -> listOf(
+                VOK_ALT_OCATOS_PREPARATION,
+                VOK_ALT_STABILITY,
+                VOK_ALT_SORCERERS_ROBES
+            )
+            VOK_ALT_STABILITY -> listOf(VOK_ALT_INITIATE, VOK_ALT_RITUALIST)
+            VOK_ALT_SORCERERS_ROBES -> listOf(VOK_ALT_FORCE_OF_WILL)
+            VOK_ALT_TELEKINETIC_FORCE -> listOf(VOK_ALT_TELEKINETIC_PRODIGY)
+            VOK_ALT_ARCANE_GUIDANCE -> listOf(VOK_ALT_HETHOTHS_ESCAPE)
+            else -> emptyList()
+        }
 }

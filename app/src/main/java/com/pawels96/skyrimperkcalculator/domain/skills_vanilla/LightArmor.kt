@@ -13,4 +13,14 @@ enum class LightArmor(x: Float, y: Float, vararg skill: Int) : IPerk {
     VAN_LAR_DEFT_MOVEMENT              (0.5f,   0.1f,    100);
 
     override val perkInfo: PerkInfo = PerkInfo(skill, x, y)
+
+    override val childPerks: List<IPerk>
+        get() = when (this) {
+            VAN_LAR_AGILE_DEFENDER -> listOf(VAN_LAR_CUSTOM_FIT)
+            VAN_LAR_CUSTOM_FIT -> listOf(VAN_LAR_UNHINDERED, VAN_LAR_MATCHING_SET)
+            VAN_LAR_MATCHING_SET -> listOf(VAN_LAR_DEFT_MOVEMENT)
+            VAN_LAR_UNHINDERED -> listOf(VAN_LAR_WIND_WALKER)
+            VAN_LAR_WIND_WALKER -> listOf(VAN_LAR_DEFT_MOVEMENT)
+            else -> emptyList()
+        }
 }

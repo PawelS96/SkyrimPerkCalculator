@@ -15,4 +15,18 @@ enum class Ada_Pickpocket(x: Float, y: Float, vararg skill: Int) : IPerk {
     ADA_PCK_PERFECT_TOUCH  (0.625f,  0.05f, 100);
 
     override val perkInfo: PerkInfo = PerkInfo(skill, x, y)
+
+    override val childPerks: List<IPerk>
+        get() = when (this) {
+            ADA_PCK_CUTPURSE -> listOf(ADA_PCK_NIMBLE_FINGERS)
+            ADA_PCK_NIMBLE_FINGERS -> listOf(
+                ADA_PCK_SLEIGHT_OF_HAND,
+                ADA_PCK_PRACTICED_THIEF,
+                ADA_PCK_POISONED_FRUIT
+            )
+            ADA_PCK_PRACTICED_THIEF -> listOf(ADA_PCK_MISDIRECTION)
+            ADA_PCK_MISDIRECTION -> listOf(ADA_PCK_PERFECT_TOUCH)
+            ADA_PCK_POISONED_FRUIT -> listOf(ADA_PCK_FOOLS_GIFT)
+            else -> emptyList()
+        }
 }

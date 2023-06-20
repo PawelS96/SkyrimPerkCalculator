@@ -17,4 +17,21 @@ enum class Smithing(x: Float, y: Float, vararg skill: Int) : IPerk {
     VAN_SMT_DRAGON_ARMOR                  (0.5f,   0.45f,  100);
 
     override val perkInfo: PerkInfo = PerkInfo(skill, x, y)
+
+    override val childPerks: List<IPerk>
+        get() = when (this) {
+            VAN_SMT_STEEL_SMITHING -> listOf(
+                VAN_SMT_ARCANE_BLACKSMITH,
+                VAN_SMT_ELVEN_SMITHING,
+                VAN_SMT_DWARVEN_SMITHING
+            )
+            VAN_SMT_DWARVEN_SMITHING -> listOf(VAN_SMT_ORCISH_SMITHING)
+            VAN_SMT_ORCISH_SMITHING -> listOf(VAN_SMT_EBONY_SMITHING)
+            VAN_SMT_EBONY_SMITHING -> listOf(VAN_SMT_DAEDRIC_SMITHING)
+            VAN_SMT_DAEDRIC_SMITHING -> listOf(VAN_SMT_DRAGON_ARMOR)
+            VAN_SMT_ELVEN_SMITHING -> listOf(VAN_SMT_ADVANCED_ARMORS)
+            VAN_SMT_ADVANCED_ARMORS -> listOf(VAN_SMT_GLASS_SMITHING)
+            VAN_SMT_GLASS_SMITHING -> listOf(VAN_SMT_DRAGON_ARMOR)
+            else -> emptyList()
+        }
 }

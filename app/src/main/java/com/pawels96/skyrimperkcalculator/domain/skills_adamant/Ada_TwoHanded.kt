@@ -19,4 +19,21 @@ enum class Ada_TwoHanded(x: Float, y: Float, vararg skill: Int) : IPerk {
     ADA_TWH_SKULL_CRACKER  (0.875f, 0.475f, 40, 90);
 
     override val perkInfo: PerkInfo = PerkInfo(skill, x, y)
+
+    override val childPerks: List<IPerk>
+        get() = when (this) {
+            ADA_TWH_CHAMPION -> listOf(
+                ADA_TWH_DEEP_CUTS,
+                ADA_TWH_WARRIORS_STANCE,
+                ADA_TWH_RIP_AND_TEAR,
+                ADA_TWH_ARMOR_CRUSHER
+            )
+            ADA_TWH_DEEP_CUTS -> listOf(ADA_TWH_MORTAL_WOUND)
+            ADA_TWH_WARRIORS_STANCE -> listOf(ADA_TWH_OVERPOWER, ADA_TWH_CLEAVE, ADA_TWH_MASSACRE)
+            ADA_TWH_OVERPOWER -> listOf(ADA_TWH_RAMPAGE)
+            ADA_TWH_MASSACRE -> listOf(ADA_TWH_RAMPAGE)
+            ADA_TWH_RIP_AND_TEAR -> listOf(ADA_TWH_REND_AND_RAKE)
+            ADA_TWH_ARMOR_CRUSHER -> listOf(ADA_TWH_SKULL_CRACKER)
+            else -> emptyList()
+        }
 }

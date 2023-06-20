@@ -16,4 +16,20 @@ enum class Enchanting(x: Float, y: Float, vararg skill: Int) : IPerk {
     VAN_ENC_SOUL_SIPHON                  (0.7f,   0.2f,  40);
 
     override val perkInfo: PerkInfo = PerkInfo(skill, x, y)
+
+    override val childPerks: List<IPerk>
+        get() = when (this) {
+            VAN_ENC_ENCHANTER -> listOf(
+                VAN_ENC_SOUL_SQUEEZER,
+                VAN_ENC_INSIGHTFUL_ENCHANTER,
+                VAN_ENC_FIRE_ENCHANTER
+            )
+            VAN_ENC_FIRE_ENCHANTER -> listOf(VAN_ENC_FROST_ENCHANTER)
+            VAN_ENC_FROST_ENCHANTER -> listOf(VAN_ENC_STORM_ENCHANTER)
+            VAN_ENC_STORM_ENCHANTER -> listOf(VAN_ENC_EXTRA_EFFECT)
+            VAN_ENC_INSIGHTFUL_ENCHANTER -> listOf(VAN_ENC_CORPUS_ENCHANTER)
+            VAN_ENC_CORPUS_ENCHANTER -> listOf(VAN_ENC_EXTRA_EFFECT)
+            VAN_ENC_SOUL_SQUEEZER -> listOf(VAN_ENC_SOUL_SIPHON)
+            else -> emptyList()
+        }
 }

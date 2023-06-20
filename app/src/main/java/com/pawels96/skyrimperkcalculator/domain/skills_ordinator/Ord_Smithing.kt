@@ -25,4 +25,28 @@ enum class Ord_Smithing(x: Float, y: Float, vararg skill: Int) : IPerk {
     ORD_SMT_HEART_OF_CREATION          (0.55f,   0.1f,     100);
 
     override val perkInfo: PerkInfo = PerkInfo(skill, x, y)
+
+    override val childPerks: List<IPerk>
+        get() = when (this) {
+            ORD_SMT_SMITHING_MASTERY -> listOf(
+                ORD_SMT_MERIC_SMITHING,
+                ORD_SMT_DWARVEN_AUTOCANNON,
+                ORD_SMT_ARCANE_BLACKSMITH,
+                ORD_SMT_ADVANCED_WORKSHOP
+            )
+            ORD_SMT_DWARVEN_AUTOCANNON -> listOf(ORD_SMT_REMOTE_CONTROL, ORD_SMT_ELECTROBOLT)
+            ORD_SMT_ADVANCED_WORKSHOP -> listOf(
+                ORD_SMT_RECYCLE_MATERIALS,
+                ORD_SMT_SMITHING_SPECIALIZATION
+            )
+            ORD_SMT_MERIC_SMITHING -> listOf(ORD_SMT_EXPERT_SMITHING)
+            ORD_SMT_ELECTROBOLT -> listOf(ORD_SMT_FIRING_LINE, ORD_SMT_SPIN_UP)
+            ORD_SMT_RECYCLE_MATERIALS -> listOf(ORD_SMT_SANDSTONE_SHEATH, ORD_SMT_FUEL_THE_INFERNO)
+            ORD_SMT_EXPERT_SMITHING -> listOf(ORD_SMT_EXOTIC_SMITHING)
+            ORD_SMT_SMITHING_SPECIALIZATION -> listOf(ORD_SMT_IRON_LORE, ORD_SMT_FUEL_THE_INFERNO)
+            ORD_SMT_EXOTIC_SMITHING -> listOf(ORD_SMT_PLANAR_SMITHING)
+            ORD_SMT_PLANAR_SMITHING -> listOf(ORD_SMT_HEART_OF_CREATION)
+            ORD_SMT_FUEL_THE_INFERNO -> listOf(ORD_SMT_HEART_OF_CREATION)
+            else -> emptyList()
+        }
 }

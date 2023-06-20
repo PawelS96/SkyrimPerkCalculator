@@ -18,4 +18,15 @@ enum class Ada_Alteration(x: Float, y: Float, vararg skill: Int) : IPerk {
     ADA_ALT_SPELL_SIP   (0.65f, 0.05f,  90);
 
     override val perkInfo: PerkInfo = PerkInfo(skill, x, y)
+
+    override val childPerks: List<IPerk>
+        get() = when (this) {
+            ADA_ALT_PHILOSOPHER -> listOf(ADA_ALT_MAGE_ROBES, ADA_ALT_BARRIER, ADA_ALT_BALANCE)
+            ADA_ALT_MAGE_ROBES -> listOf(ADA_ALT_MAGE_ARMOR)
+            ADA_ALT_MAGE_ARMOR -> listOf(ADA_ALT_MEDITATION, ADA_ALT_MAGICKA_WELL)
+            ADA_ALT_BARRIER -> listOf(ADA_ALT_BASTION)
+            ADA_ALT_BALANCE -> listOf(ADA_ALT_STABILITY)
+            ADA_ALT_STABILITY -> listOf(ADA_ALT_SPELL_SIP, ADA_ALT_SPELL_SHIELD)
+            else -> emptyList()
+        }
 }

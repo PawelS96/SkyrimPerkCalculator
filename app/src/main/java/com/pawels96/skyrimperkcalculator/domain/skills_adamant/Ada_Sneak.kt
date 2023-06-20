@@ -18,4 +18,21 @@ enum class Ada_Sneak(x: Float, y: Float, vararg skill: Int) : IPerk {
     ADA_SNK_LIVING_SHADOW  (0.675f, 0.05f,  100);
 
     override val perkInfo: PerkInfo = PerkInfo(skill, x, y)
+
+    override val childPerks: List<IPerk>
+        get() = when (this) {
+            ADA_SNK_AGENT -> listOf(
+                ADA_SNK_TRESPASSER,
+                ADA_SNK_SILENT_CASTING,
+                ADA_SNK_DEADLY_AIM,
+                ADA_SNK_MERCILESS
+            )
+            ADA_SNK_TRESPASSER -> listOf(ADA_SNK_INFILTRATOR)
+            ADA_SNK_INFILTRATOR -> listOf(ADA_SNK_HIDDEN_THREAT)
+            ADA_SNK_HIDDEN_THREAT -> listOf(ADA_SNK_LIVING_SHADOW)
+            ADA_SNK_SILENT_CASTING -> listOf(ADA_SNK_SHADOW_CASTING)
+            ADA_SNK_MERCILESS -> listOf(ADA_SNK_BACKSTAB)
+            ADA_SNK_BACKSTAB -> listOf(ADA_SNK_ASSASSINS_BLADE)
+            else -> emptyList()
+        }
 }

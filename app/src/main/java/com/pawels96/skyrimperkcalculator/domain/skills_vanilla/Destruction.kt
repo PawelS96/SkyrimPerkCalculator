@@ -21,4 +21,23 @@ enum class Destruction(x: Float, y: Float, vararg skill: Int) : IPerk {
     VAN_DES_IMPACT                      (0.9f,    0.65f,  40);
 
     override val perkInfo: PerkInfo = PerkInfo(skill, x, y)
+
+    override val childPerks: List<IPerk>
+        get() = when (this) {
+            VAN_DES_NOVICE_DESTRUCTION -> listOf(
+                VAN_DES_DESTRUCTION_DUAL_CASTING,
+                VAN_DES_AUGMENTED_SHOCK,
+                VAN_DES_AUGMENTED_FROST,
+                VAN_DES_AUGMENTED_FLAMES,
+                VAN_DES_APPRENTICE_DESTRUCTION
+            )
+            VAN_DES_APPRENTICE_DESTRUCTION -> listOf(VAN_DES_RUNE_MASTER, VAN_DES_ADEPT_DESTRUCTION)
+            VAN_DES_ADEPT_DESTRUCTION -> listOf(VAN_DES_EXPERT_DESTRUCTION)
+            VAN_DES_EXPERT_DESTRUCTION -> listOf(VAN_DES_MASTER_DESTRUCTION)
+            VAN_DES_AUGMENTED_FLAMES -> listOf(VAN_DES_INTENSE_FLAMES)
+            VAN_DES_AUGMENTED_FROST -> listOf(VAN_DES_DEEP_FREEZE)
+            VAN_DES_AUGMENTED_SHOCK -> listOf(VAN_DES_DISINTEGRATE)
+            VAN_DES_DESTRUCTION_DUAL_CASTING -> listOf(VAN_DES_IMPACT)
+            else -> emptyList()
+        }
 }

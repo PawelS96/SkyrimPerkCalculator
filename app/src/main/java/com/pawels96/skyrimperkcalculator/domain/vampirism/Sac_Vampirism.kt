@@ -1,5 +1,6 @@
 package com.pawels96.skyrimperkcalculator.domain.vampirism
 
+import com.pawels96.skyrimperkcalculator.domain.IPerk
 import com.pawels96.skyrimperkcalculator.domain.PerkInfo
 import com.pawels96.skyrimperkcalculator.domain.SpecialSkillPerk
 
@@ -40,4 +41,40 @@ enum class Sac_Vampirism(val x: Float, val y: Float) : SpecialSkillPerk {
     SAC_VAM_MAELSTROM            (0.925f, 0.55f);
 
     override val perkInfo: PerkInfo = PerkInfo(IntArray(1), x, y)
+
+    override val childPerks: List<IPerk>
+        get() = when (this) {
+            SAC_VAM_POWER_IS_POWER -> listOf(
+                SAC_VAM_ECHOLOCATION,
+                SAC_VAM_FOUNTAIN_OF_YOUTH,
+                SAC_VAM_WINGS_OF_THE_STRIX,
+                SAC_VAM_UNEARTHLY_WILL,
+                SAC_VAM_COURTS_CHEF,
+                SAC_VAM_EXSANGUINATE,
+                SAC_VAM_CHOKEHOLD
+            )
+            SAC_VAM_ECHOLOCATION -> listOf(SAC_VAM_MIST_FORM)
+            SAC_VAM_MIST_FORM -> listOf(SAC_VAM_THE_REAPING)
+            SAC_VAM_THE_REAPING -> listOf(SAC_VAM_TREMBLE)
+            SAC_VAM_COURTS_CHEF -> listOf(SAC_VAM_WHITE_WOLF)
+            SAC_VAM_WHITE_WOLF -> listOf(SAC_VAM_PSYCHIC_VAMPIRE)
+            SAC_VAM_PSYCHIC_VAMPIRE -> listOf(SAC_VAM_EMBRACE_THE_BEAST, SAC_VAM_FOSTER_CHILDE)
+            SAC_VAM_FOSTER_CHILDE -> listOf(SAC_VAM_AMARANTH)
+            SAC_VAM_FOUNTAIN_OF_YOUTH -> listOf(SAC_VAM_LION_AMONG_SHEEP, SAC_VAM_ASTRAL_POISON)
+            SAC_VAM_LION_AMONG_SHEEP -> listOf(SAC_VAM_SLASHER)
+            SAC_VAM_SLASHER -> listOf(SAC_VAM_CELERITY, SAC_VAM_DRAGON_AT_MIDNIGHT)
+            SAC_VAM_ASTRAL_POISON -> listOf(SAC_VAM_NIGHT_CLOAK)
+            SAC_VAM_NIGHT_CLOAK -> listOf(SAC_VAM_DRAGON_AT_MIDNIGHT)
+            SAC_VAM_UNEARTHLY_WILL -> listOf(SAC_VAM_ASTRAL_POISON, SAC_VAM_BLOOD_FROM_A_STONE)
+            SAC_VAM_BLOOD_FROM_A_STONE -> listOf(SAC_VAM_LORD_OF_DESTRUCTION)
+            SAC_VAM_LORD_OF_DESTRUCTION -> listOf(SAC_VAM_DRAGON_AT_MIDNIGHT, SAC_VAM_BLOOD_STORM)
+            SAC_VAM_EXSANGUINATE -> listOf(SAC_VAM_STARVING_ARTIST)
+            SAC_VAM_STARVING_ARTIST -> listOf(SAC_VAM_MAKE_THEM_BEAUTIFUL)
+            SAC_VAM_MAKE_THEM_BEAUTIFUL -> listOf(SAC_VAM_AUSPEX, SAC_VAM_CURTAIN_CALL)
+            SAC_VAM_CURTAIN_CALL -> listOf(SAC_VAM_LAMAES_PYRE)
+            SAC_VAM_CHOKEHOLD -> listOf(SAC_VAM_CONJURE_GARGOYLE)
+            SAC_VAM_CONJURE_GARGOYLE -> listOf(SAC_VAM_GUTWRENCH)
+            SAC_VAM_GUTWRENCH -> listOf(SAC_VAM_MAELSTROM)
+            else -> emptyList()
+        }
 }

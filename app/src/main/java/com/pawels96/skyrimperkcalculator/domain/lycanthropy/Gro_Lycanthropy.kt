@@ -1,5 +1,6 @@
 package com.pawels96.skyrimperkcalculator.domain.lycanthropy
 
+import com.pawels96.skyrimperkcalculator.domain.IPerk
 import com.pawels96.skyrimperkcalculator.domain.PerkInfo
 import com.pawels96.skyrimperkcalculator.domain.SpecialSkillPerk
 
@@ -30,5 +31,36 @@ enum class Gro_Lycanthropy(
     GRO_LYC_WOLF_AMONG_MEN             (0.15f,  0.5f);
 
     override val perkInfo: PerkInfo = PerkInfo(IntArray(maxLevel), x, y)
+
+    override val childPerks: List<IPerk>
+        get() = when (this) {
+            GRO_LYC_BESTIAL_STRENGTH -> listOf(
+                GRO_LYC_BURY_THE_BEAST,
+                GRO_LYC_LYCANTHROPIC_SPEED,
+                GRO_LYC_ANIMAL_VIGOR,
+                GRO_LYC_FERAL_INSTINCTS,
+                GRO_LYC_GORGING
+            )
+            GRO_LYC_BURY_THE_BEAST -> listOf(GRO_LYC_WOLF_AMONG_MEN)
+            GRO_LYC_LYCANTHROPIC_SPEED -> listOf(GRO_LYC_LYCANTHROPIC_REGENERATION)
+            GRO_LYC_LYCANTHROPIC_REGENERATION -> listOf(GRO_LYC_SPREAD_THE_BEASTBLOOD)
+            GRO_LYC_ANIMAL_VIGOR -> listOf(
+                GRO_LYC_INFINITE_DURESS,
+                GRO_LYC_SUPERNATURAL_STRENGTH,
+                GRO_LYC_ROADKILL
+            )
+            GRO_LYC_INFINITE_DURESS -> listOf(GRO_LYC_RAMPAGE)
+            GRO_LYC_ROADKILL -> listOf(GRO_LYC_RAMPAGE)
+            GRO_LYC_SUPERNATURAL_STRENGTH -> listOf(GRO_LYC_RAMPAGE)
+            GRO_LYC_RAMPAGE -> listOf(
+                GRO_LYC_TOTEM_OF_ICE_BROTHERS,
+                GRO_LYC_TOTEM_OF_TERROR,
+                GRO_LYC_TOTEM_OF_THE_HUNT
+            )
+            GRO_LYC_FERAL_INSTINCTS -> listOf(GRO_LYC_IMPROVED_BLOODTHIRST)
+            GRO_LYC_GORGING -> listOf(GRO_LYC_SAVAGE_FEEDING)
+            GRO_LYC_IMPROVED_BLOODTHIRST -> listOf(GRO_LYC_SWIPE)
+            else -> emptyList()
+        }
 }
 

@@ -45,4 +45,45 @@ enum class Ord_Conjuration(x: Float, y: Float, vararg skill: Int) : IPerk {
     ORD_CON_MARCH_OF_OBLIVION                 (0.25f,   0.05f,  100);
 
     override val perkInfo: PerkInfo = PerkInfo(skill, x, y)
+
+    override val childPerks: List<IPerk>
+        get() = when (this) {
+            ORD_CON_CONJURATION_MASTERY -> listOf(
+                ORD_CON_CONJURATION_DUAL_CASTING,
+                ORD_CON_PLANEMELD,
+                ORD_CON_RAVENOUS_DEAD,
+                ORD_CON_BONE_COLLECTOR,
+                ORD_CON_MYSTIC_BINDING,
+                ORD_CON_RAT_KING,
+                ORD_CON_FEED_THE_MONSTER
+            )
+            ORD_CON_BONE_COLLECTOR -> listOf(ORD_CON_DEAD_TIDE)
+            ORD_CON_MYSTIC_BINDING -> listOf(ORD_CON_SOUL_RAIDER)
+            ORD_CON_DEAD_TIDE -> listOf(ORD_CON_REAP_AND_SOW, ORD_CON_BARROW_LORD)
+            ORD_CON_PLANEMELD -> listOf(ORD_CON_SIGNED_IN_BLOOD, ORD_CON_ATROMANCY)
+            ORD_CON_RAVENOUS_DEAD -> listOf(ORD_CON_EDGE_OF_OBLIVION, ORD_CON_PRESERVATION)
+            ORD_CON_SOUL_RAIDER -> listOf(ORD_CON_REND_FROM_THIS_WORLD)
+            ORD_CON_ATROMANCY -> listOf(
+                ORD_CON_PACT_MAGIC,
+                ORD_CON_EDGE_OF_OBLIVION,
+                ORD_CON_ELEMENTAL_POTENCY
+            )
+            ORD_CON_BARROW_LORD -> listOf(ORD_CON_SKELETON_MAGES)
+            ORD_CON_PRESERVATION -> listOf(ORD_CON_UNDEAD_CROWN, ORD_CON_A_PLAGUE_UPON_THEE)
+            ORD_CON_REAP_AND_SOW -> listOf(ORD_CON_SKELETON_MAGES)
+            ORD_CON_REND_FROM_THIS_WORLD -> listOf(ORD_CON_VOID_BURN)
+            ORD_CON_PACT_MAGIC -> listOf(ORD_CON_MAELSTROM)
+            ORD_CON_SKELETON_MAGES -> listOf(ORD_CON_FIRE_RITUAL, ORD_CON_CONJURE_ALTAR)
+            ORD_CON_VOID_BURN -> listOf(ORD_CON_HOLLOW_BINDING)
+            ORD_CON_A_PLAGUE_UPON_THEE -> listOf(ORD_CON_CORPSE_GAS)
+            ORD_CON_CONJURE_ALTAR -> listOf(ORD_CON_PUPPET_MASTER)
+            ORD_CON_FIRE_RITUAL -> listOf(ORD_CON_KING_OF_BONES)
+            ORD_CON_HOLLOW_BINDING -> listOf(ORD_CON_DARK_WHISPERS, ORD_CON_COVENANT_OF_COLDHARBOUR)
+            ORD_CON_CORPSE_GAS -> listOf(ORD_CON_NECROMASTER)
+            ORD_CON_DARK_WHISPERS -> listOf(ORD_CON_BRAND_OF_THE_NECROMANCER)
+            ORD_CON_ELEMENTAL_POTENCY -> listOf(ORD_CON_SUMMON_RESIST, ORD_CON_UNLEASH_HELL)
+            ORD_CON_NECROMASTER -> listOf(ORD_CON_MARCH_OF_OBLIVION, ORD_CON_SHOCKED_TO_LIFE)
+            ORD_CON_SUMMON_RESIST -> listOf(ORD_CON_MARCH_OF_OBLIVION)
+            else -> emptyList()
+        }
 }

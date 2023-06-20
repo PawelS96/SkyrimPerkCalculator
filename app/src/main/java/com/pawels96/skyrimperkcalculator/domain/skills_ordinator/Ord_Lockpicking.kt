@@ -28,4 +28,34 @@ enum class Ord_Lockpicking(x: Float, y: Float, vararg skill: Int) : IPerk {
     ORD_LCK_SEEN_THIS_BEFORE            (0.9f,     0.55f,     100);
 
     override val perkInfo: PerkInfo = PerkInfo(skill, x, y)
+
+    override val childPerks: List<IPerk>
+        get() = when (this) {
+            ORD_LCK_MASTERY -> listOf(
+                ORD_LCK_GAME_OF_FATE,
+                ORD_LCK_LOCKDOWN,
+                ORD_LCK_ROBBERS_EYE,
+                ORD_LCK_BEAR_TRAPS,
+                ORD_LCK_WAX_KEY
+            )
+            ORD_LCK_LOCKDOWN -> listOf(ORD_LCK_HOTWIRE)
+            ORD_LCK_HOTWIRE -> listOf(ORD_LCK_PERCUSSIVE_MAINTENANCE)
+            ORD_LCK_ROBBERS_EYE -> listOf(
+                ORD_LCK_NOSE_FOR_TREASURE,
+                ORD_LCK_GONE_IN_FIFTEEN_SECONDS
+            )
+            ORD_LCK_GONE_IN_FIFTEEN_SECONDS -> listOf(ORD_LCK_DUNGEONEER, ORD_LCK_GOLDEN_TOUCH)
+            ORD_LCK_NOSE_FOR_TREASURE -> listOf(ORD_LCK_DUNGEONEER)
+            ORD_LCK_DUNGEONEER -> listOf(ORD_LCK_TREASURE_HUNTER)
+            ORD_LCK_BEAR_TRAPS -> listOf(ORD_LCK_LOCKJAW)
+            ORD_LCK_LOCKJAW -> listOf(ORD_LCK_BIG_GAME_HUNTER, ORD_LCK_BAIT)
+            ORD_LCK_BIG_GAME_HUNTER -> listOf(ORD_LCK_BUSHWHACK)
+            ORD_LCK_BUSHWHACK -> listOf(ORD_LCK_DRAGONS_TEETH)
+            ORD_LCK_BAIT -> listOf(ORD_LCK_BUSHWHACK, ORD_LCK_THE_REVENGE)
+            ORD_LCK_THE_REVENGE -> listOf(ORD_LCK_DRAGONS_TEETH)
+            ORD_LCK_WAX_KEY -> listOf(ORD_LCK_LOCKSMITH)
+            ORD_LCK_LOCKSMITH -> listOf(ORD_LCK_SEEN_THIS_BEFORE)
+            ORD_LCK_GOLDEN_TOUCH -> listOf(ORD_LCK_TREASURE_HUNTER)
+            else -> emptyList()
+        }
 }

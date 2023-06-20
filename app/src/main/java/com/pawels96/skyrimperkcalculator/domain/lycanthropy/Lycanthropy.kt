@@ -1,5 +1,6 @@
 package com.pawels96.skyrimperkcalculator.domain.lycanthropy
 
+import com.pawels96.skyrimperkcalculator.domain.IPerk
 import com.pawels96.skyrimperkcalculator.domain.PerkInfo
 import com.pawels96.skyrimperkcalculator.domain.SpecialSkillPerk
 
@@ -19,5 +20,19 @@ enum class Lycanthropy(
     VAN_LYC_SAVAGE_FEEDING         (0.9f,   0.35f);
 
     override val perkInfo: PerkInfo = PerkInfo(IntArray(maxLevel), x, y)
+
+    override val childPerks: List<IPerk>
+        get() = when (this) {
+            VAN_LYC_BESTIAL_STRENGTH -> listOf(
+                VAN_LYC_TOTEM_OF_ICE_BROTHERS,
+                VAN_LYC_TOTEM_OF_THE_PREDATOR,
+                VAN_LYC_TOTEM_OF_TERROR,
+                VAN_LYC_ANIMAL_VIGOR
+            )
+            VAN_LYC_TOTEM_OF_ICE_BROTHERS -> listOf(VAN_LYC_TOTEM_OF_THE_MOON)
+            VAN_LYC_ANIMAL_VIGOR -> listOf(VAN_LYC_GORGING)
+            VAN_LYC_GORGING -> listOf(VAN_LYC_SAVAGE_FEEDING)
+            else -> emptyList()
+        }
 }
 

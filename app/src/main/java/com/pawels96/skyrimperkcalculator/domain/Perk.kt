@@ -66,16 +66,9 @@ class Perk(val perk: IPerk) : Serializable {
         if (isStateIncreasing) state++ else state--
     }
 
-    companion object {
-        fun connectPerks(parent: Perk, child: Perk) {
-            parent.children.add(child)
-            child.parents.add(parent)
-        }
-
-        @JvmStatic
-        fun areNodesSelected(parent: Perk, child: Perk): Boolean {
-            return parent.isSelected && child.isSelected
-        }
+    fun connectChild(child: Perk) {
+        children.add(child)
+        child.parents.add(this)
     }
 
     override fun equals(other: Any?): Boolean {

@@ -16,4 +16,16 @@ enum class Speech(x: Float, y: Float, vararg skill: Int) : IPerk {
     VAN_SPC_INTIMIDATION  (0.75f,   0.35f, 70);
 
     override val perkInfo: PerkInfo= PerkInfo(skill, x, y)
+
+    override val childPerks: List<IPerk>
+        get() = when (this) {
+            VAN_SPC_HAGGLING -> listOf(VAN_SPC_BRIBERY, VAN_SPC_ALLURE)
+            VAN_SPC_ALLURE -> listOf(VAN_SPC_MERCHANT)
+            VAN_SPC_MERCHANT -> listOf(VAN_SPC_INVESTOR)
+            VAN_SPC_INVESTOR -> listOf(VAN_SPC_FENCE)
+            VAN_SPC_FENCE -> listOf(VAN_SPC_MASTER_TRADER)
+            VAN_SPC_BRIBERY -> listOf(VAN_SPC_PERSUASION)
+            VAN_SPC_PERSUASION -> listOf(VAN_SPC_INTIMIDATION)
+            else -> emptyList()
+        }
 }

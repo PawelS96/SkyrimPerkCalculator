@@ -22,4 +22,26 @@ enum class Conjuration(x: Float, y: Float, vararg skill: Int) : IPerk {
     VAN_CON_TWIN_SOULS                     (0.35f,  0.1f,  100);
 
     override val perkInfo: PerkInfo = PerkInfo(skill, x, y)
+
+    override val childPerks: List<IPerk>
+        get() = when (this) {
+            VAN_CON_NOVICE_CONJURATION -> listOf(
+                VAN_CON_NECROMANCY,
+                VAN_CON_MYSTIC_BINDING,
+                VAN_CON_APPRENTICE_CONJURATION,
+                VAN_CON_SUMMONER,
+                VAN_CON_CONJURATION_DUAL_CASTING
+            )
+            VAN_CON_APPRENTICE_CONJURATION -> listOf(VAN_CON_ADEPT_CONJURATION)
+            VAN_CON_ADEPT_CONJURATION -> listOf(VAN_CON_EXPERT_CONJURATION)
+            VAN_CON_EXPERT_CONJURATION -> listOf(VAN_CON_MASTER_CONJURATION)
+            VAN_CON_MYSTIC_BINDING -> listOf(VAN_CON_SOUL_STEALER)
+            VAN_CON_SOUL_STEALER -> listOf(VAN_CON_OBLIVION_BINDING)
+            VAN_CON_NECROMANCY -> listOf(VAN_CON_DARK_SOULS)
+            VAN_CON_DARK_SOULS -> listOf(VAN_CON_TWIN_SOULS)
+            VAN_CON_SUMMONER -> listOf(VAN_CON_ATROMANCY)
+            VAN_CON_ATROMANCY -> listOf(VAN_CON_ELEMENTAL_POTENCY)
+            VAN_CON_ELEMENTAL_POTENCY -> listOf(VAN_CON_TWIN_SOULS)
+            else -> emptyList()
+        }
 }

@@ -21,4 +21,24 @@ enum class Vok_Smithing(x: Float, y: Float, vararg skill: Int) : IPerk {
     VOK_SMT_DRAGON_SMITHING        (0.625f, 0.075f, 100);
 
     override val perkInfo: PerkInfo = PerkInfo(skill, x, y)
+
+    override val childPerks: List<IPerk>
+        get() = when (this) {
+            VOK_SMT_STEEL_SMITHING -> listOf(
+                VOK_SMT_DWARVEN_SMITHING,
+                VOK_SMT_ARMOR_PADDING,
+                VOK_SMT_ARCANE_BLACKSMITH,
+                VOK_SMT_ELVEN_SMITHING
+            )
+            VOK_SMT_DWARVEN_SMITHING -> listOf(VOK_SMT_ORCISH_SMITHING)
+            VOK_SMT_ORCISH_SMITHING -> listOf(VOK_SMT_EBONY_SMITHING, VOK_SMT_HIGH_YIELD_MINING)
+            VOK_SMT_EBONY_SMITHING -> listOf(VOK_SMT_DAEDRIC_SMITHING)
+            VOK_SMT_DAEDRIC_SMITHING -> listOf(VOK_SMT_DRAGON_SMITHING)
+            VOK_SMT_ARMOR_PADDING -> listOf(VOK_SMT_LAYERED_PLATES)
+            VOK_SMT_LAYERED_PLATES -> listOf(VOK_SMT_CONCEALED_ENCHANTMENTS)
+            VOK_SMT_ELVEN_SMITHING -> listOf(VOK_SMT_ADVANCED_ARMORS)
+            VOK_SMT_ADVANCED_ARMORS -> listOf(VOK_SMT_HIGH_YIELD_MINING, VOK_SMT_GLASS_SMITHING)
+            VOK_SMT_GLASS_SMITHING -> listOf(VOK_SMT_DRAGON_SMITHING)
+            else -> emptyList()
+        }
 }

@@ -15,4 +15,13 @@ enum class Ada_Lockpicking(x: Float, y: Float, vararg skill: Int) : IPerk {
     ADA_LCK_TREASURE_HUNTER(0.725f, 0.1f,   100);
 
     override val perkInfo: PerkInfo = PerkInfo(skill, x, y)
+
+    override val childPerks: List<IPerk>
+        get() = when (this) {
+            ADA_LCK_LOCKSMITH -> listOf(ADA_LCK_GOLDEN_TOUCH)
+            ADA_LCK_GOLDEN_TOUCH -> listOf(ADA_LCK_QUICK_HANDS, ADA_LCK_RARE_GEMS)
+            ADA_LCK_RARE_GEMS -> listOf(ADA_LCK_DEEP_POCKETS, ADA_LCK_DUNGEON_DELVER)
+            ADA_LCK_DUNGEON_DELVER -> listOf(ADA_LCK_TUMBLERBANE, ADA_LCK_TREASURE_HUNTER)
+            else -> emptyList()
+        }
 }

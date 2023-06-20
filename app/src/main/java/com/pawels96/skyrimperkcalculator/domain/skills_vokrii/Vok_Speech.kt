@@ -22,4 +22,23 @@ enum class Vok_Speech(x: Float, y: Float, vararg skill: Int) : IPerk {
     VOK_SPC_DOVAHZULAAN        (0.7f,   0.1f,   100);
 
     override val perkInfo: PerkInfo = PerkInfo(skill, x, y)
+
+    override val childPerks: List<IPerk>
+        get() = when (this) {
+            VOK_SPC_SPEECH_MASTERY -> listOf(
+                VOK_SPC_KINSHIP,
+                VOK_SPC_SPEAK_WITH_ANIMALS,
+                VOK_SPC_TONAL_HARMONY,
+                VOK_SPC_BRIBERY
+            )
+            VOK_SPC_BRIBERY -> listOf(VOK_SPC_ELOQUENT)
+            VOK_SPC_KINSHIP -> listOf(VOK_SPC_SALESMAN)
+            VOK_SPC_SALESMAN -> listOf(VOK_SPC_FENCE, VOK_SPC_INVESTOR)
+            VOK_SPC_INVESTOR -> listOf(VOK_SPC_PRIVATE_STOCK)
+            VOK_SPC_PRIVATE_STOCK -> listOf(VOK_SPC_MASTER_TRADER)
+            VOK_SPC_SPEAK_WITH_ANIMALS -> listOf(VOK_SPC_BEASTMASTER)
+            VOK_SPC_TONAL_HARMONY -> listOf(VOK_SPC_WORDS_OF_POWER)
+            VOK_SPC_WORDS_OF_POWER -> listOf(VOK_SPC_SKALD, VOK_SPC_DOVAHZULAAN)
+            else -> emptyList()
+        }
 }

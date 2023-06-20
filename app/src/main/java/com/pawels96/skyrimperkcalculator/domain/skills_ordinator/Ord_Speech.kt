@@ -34,4 +34,39 @@ enum class Ord_Speech(x: Float, y: Float, vararg skill: Int) : IPerk {
     ORD_SPC_DOVAHZULAAN                 (0.85f,   0.075f,  100);
 
     override val perkInfo: PerkInfo = PerkInfo(skill, x, y)
+
+    override val childPerks: List<IPerk>
+        get() = when (this) {
+            ORD_SPC_SPEECH_MASTERY -> listOf(
+                ORD_SPC_BRIBERY,
+                ORD_SPC_KINSHIP,
+                ORD_SPC_PERFORMER,
+                ORD_SPC_AND_THE_UNIVERSE_LISTENS,
+                ORD_SPC_SPEAK_WITH_ANIMALS
+            )
+            ORD_SPC_AND_THE_UNIVERSE_LISTENS -> listOf(ORD_SPC_WINDBORNE)
+            ORD_SPC_PERFORMER -> listOf(ORD_SPC_IRRESISTIBLE_DANCE, ORD_SPC_SERENADE)
+            ORD_SPC_KINSHIP -> listOf(ORD_SPC_SALESMAN, ORD_SPC_BUSINESS_RELATION)
+            ORD_SPC_IRRESISTIBLE_DANCE -> listOf(
+                ORD_SPC_GOLDEN_FIDDLE,
+                ORD_SPC_ENCORE,
+                ORD_SPC_LORD_OF_THE_DANCE
+            )
+            ORD_SPC_BUSINESS_RELATION -> listOf(ORD_SPC_INVESTOR)
+            ORD_SPC_ENCORE -> listOf(ORD_SPC_EARTHQUAKE_DRUM)
+            ORD_SPC_GOLDEN_FIDDLE -> listOf(ORD_SPC_EARTHQUAKE_DRUM)
+            ORD_SPC_WINDBORNE -> listOf(ORD_SPC_FORCE_REDOUBLED, ORD_SPC_HURRICANE_FORCE)
+            ORD_SPC_FORCE_REDOUBLED -> listOf(ORD_SPC_THUUM_OF_WAR, ORD_SPC_MERCILESS_STORM)
+            ORD_SPC_SALESMAN -> listOf(ORD_SPC_INVESTOR)
+            ORD_SPC_SPEAK_WITH_ANIMALS -> listOf(
+                ORD_SPC_HORN_OF_SOVNGARDE,
+                ORD_SPC_GIFT_OF_KYNARETH
+            )
+            ORD_SPC_EARTHQUAKE_DRUM -> listOf(ORD_SPC_WITCHING_RHYTHM)
+            ORD_SPC_INVESTOR -> listOf(ORD_SPC_FENCE)
+            ORD_SPC_FENCE -> listOf(ORD_SPC_TRADE_PRINCE)
+            ORD_SPC_MERCILESS_STORM -> listOf(ORD_SPC_DOVAHZULAAN)
+            ORD_SPC_WITCHING_RHYTHM -> listOf(ORD_SPC_WAR_DRUMMER)
+            else -> emptyList()
+        }
 }

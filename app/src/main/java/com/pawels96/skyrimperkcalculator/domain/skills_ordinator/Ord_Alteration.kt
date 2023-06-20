@@ -34,4 +34,36 @@ enum class Ord_Alteration(x: Float, y: Float, vararg skill: Int) : IPerk {
     ORD_ALT_ARCANE_THESIS            (0.85f,  0.05f,  100);
 
     override val perkInfo: PerkInfo = PerkInfo(skill, x, y)
+
+    override val childPerks: List<IPerk>
+        get() = when (this) {
+            ORD_ALT_ALTERATION_MASTERY -> listOf(
+                ORD_ALT_ALTERATION_DUAL_CASTING,
+                ORD_ALT_GEOMANCER,
+                ORD_ALT_PHILOSOPHERS_STONE,
+                ORD_ALT_ALTER_SELF_RESISTANCES,
+                ORD_ALT_SPELLBLADE,
+                ORD_ALT_VANCIAN_MAGIC,
+                ORD_ALT_WILD_SHRINES,
+                ORD_ALT_MAGE_ARMOR
+            )
+            ORD_ALT_MAGE_ARMOR -> listOf(ORD_ALT_DISTORTED_SHAPE, ORD_ALT_ENERGY_SHIELD)
+            ORD_ALT_GEOMANCER -> listOf(ORD_ALT_THRONE_OF_NIRN)
+            ORD_ALT_PHILOSOPHERS_STONE -> listOf(ORD_ALT_COMMAND_LOCK)
+            ORD_ALT_VANCIAN_MAGIC -> listOf(ORD_ALT_QUADRATIC_WIZARD)
+            ORD_ALT_WILD_SHRINES -> listOf(ORD_ALT_WELLOCS_DORMANT, ORD_ALT_INTUITIVE_MAGIC)
+            ORD_ALT_ALTER_SELF_RESISTANCES -> listOf(
+                ORD_ALT_ALTER_SELF_ATTRIBUTES,
+                ORD_ALT_HOME_MYTHAL
+            )
+            ORD_ALT_SPELLBLADE -> listOf(ORD_ALT_ENERGY_ROIL)
+            ORD_ALT_COMMAND_LOCK -> listOf(ORD_ALT_HOME_MYTHAL, ORD_ALT_AURIFICATION)
+            ORD_ALT_INTUITIVE_MAGIC -> listOf(ORD_ALT_THE_MONARCH, ORD_ALT_ARCANE_THESIS)
+            ORD_ALT_QUADRATIC_WIZARD -> listOf(ORD_ALT_DUNGEON_MASTER)
+            ORD_ALT_ALTER_SELF_ATTRIBUTES -> listOf(ORD_ALT_NULLIFIER)
+            ORD_ALT_HOME_MYTHAL -> listOf(ORD_ALT_DIMENSION_DOOR, ORD_ALT_EMERGENCY_TELEPORT)
+            ORD_ALT_DUNGEON_MASTER -> listOf(ORD_ALT_ARCANE_THESIS)
+            ORD_ALT_ENERGY_ROIL -> listOf(ORD_ALT_REND_RESISTANCES)
+            else -> emptyList()
+        }
 }

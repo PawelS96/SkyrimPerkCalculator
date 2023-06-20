@@ -25,4 +25,32 @@ enum class Vok_Destruction(x: Float, y: Float, vararg skill: Int) : IPerk {
     VOK_DES_HELLSTORM                 (0.4f,   0.05f,  100);
 
     override val perkInfo: PerkInfo = PerkInfo(skill, x, y)
+
+    override val childPerks: List<IPerk>
+        get() = when (this) {
+            VOK_DES_DESTRUCTION_MASTERY -> listOf(
+                VOK_DES_DESTRUCTION_DUAL_CASTING,
+                VOK_DES_AUGMENTED_FLAMES,
+                VOK_DES_AUGMENTED_FROST,
+                VOK_DES_AUGMENTED_SHOCK,
+                VOK_DES_RUNE_MASTER,
+                VOK_DES_RAW_POWER
+            )
+            VOK_DES_DESTRUCTION_DUAL_CASTING -> listOf(VOK_DES_IMPACT)
+            VOK_DES_AUGMENTED_FLAMES -> listOf(VOK_DES_DEVOURING_FLAMES)
+            VOK_DES_DEVOURING_FLAMES -> listOf(VOK_DES_SCORCHED_EARTH)
+            VOK_DES_SCORCHED_EARTH -> listOf(VOK_DES_HELLSTORM)
+            VOK_DES_AUGMENTED_FROST -> listOf(VOK_DES_CHILLING_FROST)
+            VOK_DES_CHILLING_FROST -> listOf(VOK_DES_WINTERS_GRASP)
+            VOK_DES_WINTERS_GRASP -> listOf(VOK_DES_HELLSTORM)
+            VOK_DES_AUGMENTED_SHOCK -> listOf(VOK_DES_DEAFENING_SHOCK)
+            VOK_DES_DEAFENING_SHOCK -> listOf(VOK_DES_CRACKLING_SPHERE)
+            VOK_DES_CRACKLING_SPHERE -> listOf(VOK_DES_HELLSTORM)
+            VOK_DES_RUNE_MASTER -> listOf(VOK_DES_HETHOTHS_DISJUNCTION)
+            VOK_DES_HETHOTHS_DISJUNCTION -> listOf(
+                VOK_DES_ELEMENTAL_BARRIER,
+                VOK_DES_ELEMENTAL_SHIELD
+            )
+            else -> emptyList()
+        }
 }

@@ -20,4 +20,24 @@ enum class Vok_HeavyArmor(x: Float, y: Float, vararg skill: Int) : IPerk {
     VOK_HAR_FACE_OF_THE_MOUNTAIN (0.225f, 0.1f,   100);
 
     override val perkInfo: PerkInfo = PerkInfo(skill, x, y)
+
+    override val childPerks: List<IPerk>
+        get() = when (this) {
+            VOK_HAR_HEAVY_ARMOR_MASTERY -> listOf(
+                VOK_HAR_BATTLE_FATIGUE,
+                VOK_HAR_CUSHIONED,
+                VOK_HAR_HEAVY_ARMOR_FIT
+            )
+            VOK_HAR_BATTLE_FATIGUE -> listOf(VOK_HAR_IMMOVABLE_OBJECT)
+            VOK_HAR_HEAVY_ARMOR_FIT -> listOf(VOK_HAR_HEAVY_ARMOR_TRAINING, VOK_HAR_FACE_OF_DEATH)
+            VOK_HAR_HEAVY_ARMOR_TRAINING -> listOf(
+                VOK_HAR_TOWER_OF_STRENGTH,
+                VOK_HAR_MATCHING_HEAVY_SET
+            )
+            VOK_HAR_TOWER_OF_STRENGTH -> listOf(VOK_HAR_ELEMENTAL_DEFENSE)
+            VOK_HAR_ELEMENTAL_DEFENSE -> listOf(VOK_HAR_GLANCING_BLOWS)
+            VOK_HAR_IMMOVABLE_OBJECT -> listOf(VOK_HAR_REAP_THE_WHIRLWIND)
+            VOK_HAR_REAP_THE_WHIRLWIND -> listOf(VOK_HAR_FACE_OF_THE_MOUNTAIN)
+            else -> emptyList()
+        }
 }

@@ -29,4 +29,30 @@ enum class Ord_Archery(x: Float, y: Float, vararg skill: Int) : IPerk {
     ORD_ARC_PERFECT_AIM            (0.3f,  0.05f,  100);
 
     override val perkInfo: PerkInfo = PerkInfo(skill, x, y)
+
+    override val childPerks: List<IPerk>
+        get() = when (this) {
+            ORD_ARC_ARCHERY_MASTERY -> listOf(
+                ORD_ARC_LONG_SHOT,
+                ORD_ARC_CRIPPLING_SHOT,
+                ORD_ARC_CLEAN_KILL,
+                ORD_ARC_STEADY_HAND,
+                ORD_ARC_WINGSTRIKE
+            )
+            ORD_ARC_CLEAN_KILL -> listOf(ORD_ARC_SNIPE, ORD_ARC_QUICK_SHOT, ORD_ARC_RANGER)
+            ORD_ARC_LONG_SHOT -> listOf(ORD_ARC_THREAD_THE_NEEDLE)
+            ORD_ARC_STEADY_HAND -> listOf(ORD_ARC_HUNTERS_DISCIPLINE)
+            ORD_ARC_CRIPPLING_SHOT -> listOf(ORD_ARC_PINNING_SHOT)
+            ORD_ARC_HUNTERS_DISCIPLINE -> listOf(ORD_ARC_HUNT_TOGETHER, ORD_ARC_TRICK_ARROWS)
+            ORD_ARC_THREAD_THE_NEEDLE -> listOf(ORD_ARC_AMBUSH_PREDATOR)
+            ORD_ARC_PINNING_SHOT -> listOf(ORD_ARC_BEAK_AND_TALON)
+            ORD_ARC_RANGER -> listOf(ORD_ARC_FOCUS_ON_THE_PREY)
+            ORD_ARC_FOCUS_ON_THE_PREY -> listOf(ORD_ARC_LIONS_ARROW)
+            ORD_ARC_QUICK_SHOT -> listOf(ORD_ARC_HAWKEYE, ORD_ARC_HAILSTORM)
+            ORD_ARC_SNIPE -> listOf(ORD_ARC_HAWKEYE)
+            ORD_ARC_AMBUSH_PREDATOR -> listOf(ORD_ARC_THREE_CROWS)
+            ORD_ARC_BEAK_AND_TALON -> listOf(ORD_ARC_PERFECT_AIM)
+            ORD_ARC_THREE_CROWS -> listOf(ORD_ARC_PERFECT_AIM)
+            else -> emptyList()
+        }
 }

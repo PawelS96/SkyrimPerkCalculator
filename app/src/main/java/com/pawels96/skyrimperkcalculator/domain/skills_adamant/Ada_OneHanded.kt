@@ -22,4 +22,24 @@ enum class Ada_OneHanded(x: Float, y: Float, vararg skill: Int) : IPerk {
     ADA_ONH_DUAL_FURY      (0.85f,  0.3f,   70);
 
     override val perkInfo: PerkInfo = PerkInfo(skill, x, y)
+
+    override val childPerks: List<IPerk>
+        get() = when (this) {
+            ADA_ONH_SKIRMISHER -> listOf(
+                ADA_ONH_QUICK_SLASH,
+                ADA_ONH_FIGHTERS_STANCE,
+                ADA_ONH_HACK_AND_SLASH,
+                ADA_ONH_ARMOR_BREAKER,
+                ADA_ONH_DUAL_FOCUS
+            )
+            ADA_ONH_QUICK_SLASH -> listOf(ADA_ONH_PRECISE_CUTS)
+            ADA_ONH_FIGHTERS_STANCE -> listOf(ADA_ONH_OVERRUN, ADA_ONH_FLOURISH, ADA_ONH_EXECUTE)
+            ADA_ONH_OVERRUN -> listOf(ADA_ONH_ONSLAUGHT)
+            ADA_ONH_EXECUTE -> listOf(ADA_ONH_ONSLAUGHT)
+            ADA_ONH_HACK_AND_SLASH -> listOf(ADA_ONH_CARVE_AND_SPIT)
+            ADA_ONH_ARMOR_BREAKER -> listOf(ADA_ONH_BELL_RINGER)
+            ADA_ONH_DUAL_FOCUS -> listOf(ADA_ONH_DUAL_FRENZY)
+            ADA_ONH_DUAL_FRENZY -> listOf(ADA_ONH_DUAL_FURY)
+            else -> emptyList()
+        }
 }

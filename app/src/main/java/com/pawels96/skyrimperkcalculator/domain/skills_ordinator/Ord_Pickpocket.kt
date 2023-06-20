@@ -25,4 +25,31 @@ enum class Ord_Pickpocket(x: Float, y: Float, vararg skill: Int) : IPerk {
     ORD_PCK_DRAGON_HOARD               (0.45f,  0.1f,   100);
 
     override val perkInfo: PerkInfo = PerkInfo(skill, x, y)
+
+    override val childPerks: List<IPerk>
+        get() = when (this) {
+            ORD_PCK_PICKPOCKET_MASTERY -> listOf(
+                ORD_PCK_TRAINED_RABBIT,
+                ORD_PCK_CUTPURSE,
+                ORD_PCK_THIEFS_EYE,
+                ORD_PCK_BLOOD_MONEY,
+                ORD_PCK_DEATHS_EMPEROR
+            )
+            ORD_PCK_CUTPURSE -> listOf(
+                ORD_PCK_BROTHERHOOD_COCKTAIL,
+                ORD_PCK_ON_THE_RUN,
+                ORD_PCK_LAWLESS_WORLD
+            )
+            ORD_PCK_THIEFS_EYE -> listOf(ORD_PCK_THIEFS_LUCK)
+            ORD_PCK_BROTHERHOOD_COCKTAIL -> listOf(ORD_PCK_TRICKSTER)
+            ORD_PCK_DEATHS_EMPEROR -> listOf(ORD_PCK_DOOMED_TO_PLUNDER)
+            ORD_PCK_ON_THE_RUN -> listOf(ORD_PCK_STALK_THE_PREY)
+            ORD_PCK_LAWLESS_WORLD -> listOf(ORD_PCK_STALK_THE_PREY)
+            ORD_PCK_THIEFS_LUCK -> listOf(ORD_PCK_CRIME_WAVE)
+            ORD_PCK_STALK_THE_PREY -> listOf(ORD_PCK_YOU_SAW_NOTHING, ORD_PCK_DRAGON_HOARD)
+            ORD_PCK_DOOMED_TO_PLUNDER -> listOf(ORD_PCK_DRAGON_HOARD, ORD_PCK_MUTINY)
+            ORD_PCK_CRIME_WAVE -> listOf(ORD_PCK_DRAGON_HOARD)
+            ORD_PCK_YOU_SAW_NOTHING -> listOf(ORD_PCK_ROBBED_BLIND)
+            else -> emptyList()
+        }
 }

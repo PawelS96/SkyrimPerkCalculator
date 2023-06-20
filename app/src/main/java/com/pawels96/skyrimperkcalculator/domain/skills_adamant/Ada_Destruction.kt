@@ -23,4 +23,26 @@ enum class Ada_Destruction(x: Float, y: Float, vararg skill: Int) : IPerk {
     ADA_DES_POWER_SURGE     (0.8f,   0.1f,  100);
 
     override val perkInfo: PerkInfo = PerkInfo(skill, x, y)
+
+    override val childPerks: List<IPerk>
+        get() = when (this) {
+            ADA_DES_ELEMENTALIST -> listOf(
+                ADA_DES_RUNE_MAGE,
+                ADA_DES_AUGMENTED_FLAMES,
+                ADA_DES_AUGMENTED_FROST,
+                ADA_DES_AUGMENTED_SHOCK,
+                ADA_DES_SPELL_SURGE
+            )
+            ADA_DES_AUGMENTED_FLAMES -> listOf(ADA_DES_FIREBRAND)
+            ADA_DES_FIREBRAND -> listOf(ADA_DES_COMBUSTION)
+            ADA_DES_COMBUSTION -> listOf(ADA_DES_WILDFIRE)
+            ADA_DES_AUGMENTED_FROST -> listOf(ADA_DES_NORTH_WIND)
+            ADA_DES_NORTH_WIND -> listOf(ADA_DES_PERMAFROST)
+            ADA_DES_PERMAFROST -> listOf(ADA_DES_DEEP_FREEZE)
+            ADA_DES_AUGMENTED_SHOCK -> listOf(ADA_DES_UNSTABLE_CURRENT)
+            ADA_DES_UNSTABLE_CURRENT -> listOf(ADA_DES_STATIC_FIELD)
+            ADA_DES_STATIC_FIELD -> listOf(ADA_DES_POWER_SURGE)
+            ADA_DES_SPELL_SURGE -> listOf(ADA_DES_IMPACT)
+            else -> emptyList()
+        }
 }

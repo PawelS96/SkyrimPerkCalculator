@@ -16,4 +16,20 @@ enum class Block(x: Float, y: Float, vararg skill: Int) : IPerk {
     VAN_BLC_QUICK_REFLEXES                 (0.4f,    0.65f,    30);
 
     override val perkInfo: PerkInfo = PerkInfo(skill, x, y)
+
+    override val childPerks: List<IPerk>
+        get() = when (this) {
+            VAN_BLC_SHIELD_WALL -> listOf(
+                VAN_BLC_POWER_BASH,
+                VAN_BLC_DEFLECT_ARROWS,
+                VAN_BLC_QUICK_REFLEXES
+            )
+            VAN_BLC_DEFLECT_ARROWS -> listOf(VAN_BLC_ELEMENTAL_PROTECTION)
+            VAN_BLC_ELEMENTAL_PROTECTION -> listOf(VAN_BLC_BLOCK_RUNNER)
+            VAN_BLC_BLOCK_RUNNER -> listOf(VAN_BLC_SHIELD_CHARGE)
+            VAN_BLC_POWER_BASH -> listOf(VAN_BLC_DEADLY_BASH)
+            VAN_BLC_DEADLY_BASH -> listOf(VAN_BLC_DISARMING_BASH)
+            VAN_BLC_DISARMING_BASH -> listOf(VAN_BLC_SHIELD_CHARGE)
+            else -> emptyList()
+        }
 }

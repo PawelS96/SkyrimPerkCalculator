@@ -25,4 +25,30 @@ enum class Vok_OneHanded(x: Float, y: Float, vararg skill: Int) : IPerk {
     VOK_ONH_VICTORY_RUSH         (0.475f, 0.05f,  100);
 
     override val perkInfo: PerkInfo = PerkInfo(skill, x, y)
+
+    override val childPerks: List<IPerk>
+        get() = when (this) {
+            VOK_ONH_ONE_HANDED_MASTERY -> listOf(
+                VOK_ONH_DUAL_FLURRY,
+                VOK_ONH_OVERPOWERING_ASSAULT,
+                VOK_ONH_GRIEVOUS_WOUNDS,
+                VOK_ONH_DENTING_BLOWS,
+                VOK_ONH_FANGS,
+                VOK_ONH_DISCIPLINED_FIGHTER
+            )
+            VOK_ONH_DUAL_FLURRY -> listOf(VOK_ONH_DUAL_SAVAGERY)
+            VOK_ONH_DUAL_SAVAGERY -> listOf(VOK_ONH_BLADEDANCER)
+            VOK_ONH_OVERPOWERING_ASSAULT -> listOf(VOK_ONH_EXECUTE)
+            VOK_ONH_EXECUTE -> listOf(VOK_ONH_VICTORY_RUSH)
+            VOK_ONH_GRIEVOUS_WOUNDS -> listOf(VOK_ONH_SHIELDBITER)
+            VOK_ONH_SHIELDBITER -> listOf(VOK_ONH_VICTORY_RUSH)
+            VOK_ONH_DENTING_BLOWS -> listOf(VOK_ONH_DISRUPTING_STRIKE)
+            VOK_ONH_DISRUPTING_STRIKE -> listOf(VOK_ONH_VICTORY_RUSH)
+            VOK_ONH_FANGS -> listOf(VOK_ONH_SPITTING_COBRA)
+            VOK_ONH_SPITTING_COBRA -> listOf(VOK_ONH_VICTORY_RUSH)
+            VOK_ONH_FURIOUS_STRENGTH -> listOf(VOK_ONH_VALOROUS_CHARGE, VOK_ONH_CRATER_MAKER)
+            VOK_ONH_CRATER_MAKER -> listOf(VOK_ONH_DISARMING_SLASH)
+            VOK_ONH_DISCIPLINED_FIGHTER -> listOf(VOK_ONH_FURIOUS_STRENGTH)
+            else -> emptyList()
+        }
 }

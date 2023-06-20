@@ -16,4 +16,16 @@ enum class Ada_LightArmor(x: Float, y: Float, vararg skill: Int) : IPerk {
     ADA_LAR_SECOND_WIND(0.4f,  0.1f,  100);
 
     override val perkInfo: PerkInfo = PerkInfo(skill, x, y)
+
+    override val childPerks: List<IPerk>
+        get() = when (this) {
+            ADA_LAR_SCOUT -> listOf(ADA_LAR_AGILITY, ADA_LAR_SPECIALIST)
+            ADA_LAR_AGILITY -> listOf(ADA_LAR_ATHLETICS)
+            ADA_LAR_ATHLETICS -> listOf(ADA_LAR_ADRENALINE)
+            ADA_LAR_ADRENALINE -> listOf(ADA_LAR_SECOND_WIND)
+            ADA_LAR_SPECIALIST -> listOf(ADA_LAR_UNHINDERED)
+            ADA_LAR_UNHINDERED -> listOf(ADA_LAR_CUSTOM_FIT)
+            ADA_LAR_CUSTOM_FIT -> listOf(ADA_LAR_ENDURANCE)
+            else -> emptyList()
+        }
 }

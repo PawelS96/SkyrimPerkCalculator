@@ -36,4 +36,39 @@ enum class Ord_TwoHanded(x: Float, y: Float, vararg skill: Int) : IPerk {
     ORD_TWH_SLAYER_OF_A_THOUSAND                (0.5f,       0.05f,  100);
 
     override val perkInfo: PerkInfo = PerkInfo(skill, x, y)
+
+    override val childPerks: List<IPerk>
+        get() = when (this) {
+            ORD_TWH_TWO_HANDED_MASTERY -> listOf(
+                ORD_TWH_TRAINED_FIGHTER,
+                ORD_TWH_BLEED_LIKE_A_DOG,
+                ORD_TWH_CRUSHING_BLOWS,
+                ORD_TWH_CLASH_OF_HEROES,
+                ORD_TWH_FEROCIOUS_STRENGTH
+            )
+            ORD_TWH_TRAINED_FIGHTER -> listOf(ORD_TWH_DEATH_OR_GLORY)
+            ORD_TWH_BLEED_LIKE_A_DOG -> listOf(ORD_TWH_RIVE)
+            ORD_TWH_CLASH_OF_HEROES -> listOf(ORD_TWH_MAUL)
+            ORD_TWH_CRUSHING_BLOWS -> listOf(ORD_TWH_BATTER)
+            ORD_TWH_BATTER -> listOf(ORD_TWH_AVALANCHE)
+            ORD_TWH_FEROCIOUS_STRENGTH -> listOf(ORD_TWH_TRAMPLE)
+            ORD_TWH_MAUL -> listOf(ORD_TWH_BREACH_THE_WALL)
+            ORD_TWH_RIVE -> listOf(ORD_TWH_EXECUTE)
+            ORD_TWH_AVALANCHE -> listOf(ORD_TWH_THE_PENDULUM)
+            ORD_TWH_BREACH_THE_WALL -> listOf(ORD_TWH_SUBJUGATE)
+            ORD_TWH_EXECUTE -> listOf(ORD_TWH_DECIMATE)
+            ORD_TWH_TRAMPLE -> listOf(ORD_TWH_MASSACRE, ORD_TWH_BEAR_HIDE)
+            ORD_TWH_DEATH_OR_GLORY -> listOf(ORD_TWH_WOLFKIN)
+            ORD_TWH_DECIMATE -> listOf(ORD_TWH_BISECT)
+            ORD_TWH_SUBJUGATE -> listOf(ORD_TWH_HUMILIATE)
+            ORD_TWH_THE_PENDULUM -> listOf(ORD_TWH_GRAND_SLAM)
+            ORD_TWH_BISECT -> listOf(ORD_TWH_RAMS_HEAD)
+            ORD_TWH_GRAND_SLAM -> listOf(ORD_TWH_DEADFALL)
+            ORD_TWH_HUMILIATE -> listOf(ORD_TWH_OVERTHROW)
+            ORD_TWH_MASSACRE -> listOf(ORD_TWH_VOICE_OF_RAGE_AND_RUIN, ORD_TWH_ENTER_THE_ARENA)
+            ORD_TWH_DEADFALL -> listOf(ORD_TWH_SLAYER_OF_A_THOUSAND)
+            ORD_TWH_OVERTHROW -> listOf(ORD_TWH_SLAYER_OF_A_THOUSAND)
+            ORD_TWH_RAMS_HEAD -> listOf(ORD_TWH_SLAYER_OF_A_THOUSAND)
+            else -> emptyList()
+        }
 }

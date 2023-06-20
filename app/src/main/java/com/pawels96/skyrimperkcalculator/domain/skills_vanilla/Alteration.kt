@@ -17,4 +17,20 @@ enum class Alteration(x: Float, y: Float, vararg skill: Int) : IPerk {
     VAN_ALT_MAGE_ARMOR                    (0.35f,    0.45f,    30, 50, 70);
 
     override val perkInfo: PerkInfo = PerkInfo(skill, x, y)
+
+    override val childPerks: List<IPerk>
+        get() = when (this) {
+            VAN_ALT_NOVICE_ALTERATION -> listOf(
+                VAN_ALT_ALTERATION_DUAL_CASTING,
+                VAN_ALT_APPRENTICE_ALTERATION
+            )
+            VAN_ALT_APPRENTICE_ALTERATION -> listOf(
+                VAN_ALT_MAGIC_RESISTANCE,
+                VAN_ALT_ADEPT_ALTERATION,
+                VAN_ALT_MAGE_ARMOR
+            )
+            VAN_ALT_ADEPT_ALTERATION -> listOf(VAN_ALT_STABILITY, VAN_ALT_EXPERT_ALTERATION)
+            VAN_ALT_EXPERT_ALTERATION -> listOf(VAN_ALT_MASTER_ALTERATION, VAN_ALT_ATRONACH)
+            else -> emptyList()
+        }
 }

@@ -17,4 +17,20 @@ enum class OneHanded(x: Float, y: Float, vararg skill: Int) : IPerk {
     VAN_ONH_HACK_AND_SLASH       (0.3f,     0.6f,     30, 60, 90);
 
     override val perkInfo = PerkInfo(skill, x, y)
+
+    override val childPerks: List<IPerk>
+        get() = when (this) {
+            VAN_ONH_ARMSMAN -> listOf(
+                VAN_ONH_DUAL_FLURRY,
+                VAN_ONH_BLADESMAN,
+                VAN_ONH_BONE_BREAKER,
+                VAN_ONH_FIGHTING_STANCE,
+                VAN_ONH_HACK_AND_SLASH
+            )
+            VAN_ONH_DUAL_FLURRY -> listOf(VAN_ONH_DUAL_SAVAGERY)
+            VAN_ONH_FIGHTING_STANCE -> listOf(VAN_ONH_CRITICAL_CHARGE, VAN_ONH_SAVAGE_STRIKE)
+            VAN_ONH_CRITICAL_CHARGE -> listOf(VAN_ONH_PARALYZING_STRIKE)
+            VAN_ONH_SAVAGE_STRIKE -> listOf(VAN_ONH_PARALYZING_STRIKE)
+            else -> emptyList()
+        }
 }

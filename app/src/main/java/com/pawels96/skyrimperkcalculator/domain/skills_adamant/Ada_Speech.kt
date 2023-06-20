@@ -17,4 +17,19 @@ enum class Ada_Speech(x: Float, y: Float, vararg skill: Int) : IPerk {
     ADA_SPC_DRAGON_OF_THE_NORTH(0.25f, 0.05f, 80);
 
     override val perkInfo: PerkInfo = PerkInfo(skill, x, y)
+
+    override val childPerks: List<IPerk>
+        get() = when (this) {
+            ADA_SPC_MERCHANT -> listOf(
+                ADA_SPC_DEEP_BREATH,
+                ADA_SPC_SILVER_TONGUE,
+                ADA_SPC_SUPPLY_AND_DEMAND
+            )
+            ADA_SPC_DEEP_BREATH -> listOf(ADA_SPC_ANCIENT_VOICE)
+            ADA_SPC_ANCIENT_VOICE -> listOf(ADA_SPC_STORMCROWN)
+            ADA_SPC_STORMCROWN -> listOf(ADA_SPC_DRAGON_OF_THE_NORTH)
+            ADA_SPC_SUPPLY_AND_DEMAND -> listOf(ADA_SPC_INVESTOR, ADA_SPC_BLACK_MARKET)
+            ADA_SPC_INVESTOR -> listOf(ADA_SPC_ENTREPRENEUR)
+            else -> emptyList()
+        }
 }

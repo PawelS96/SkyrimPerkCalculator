@@ -15,4 +15,19 @@ enum class Ada_Alchemy(x: Float, y: Float, vararg skill: Int) : IPerk {
     ADA_ALC_CHEMIST      (0.5f,  0.1f,  100);
 
     override val perkInfo: PerkInfo = PerkInfo(skill, x, y)
+
+    override val childPerks: List<IPerk>
+        get() = when (this) {
+            ADA_ALC_HERBALIST -> listOf(
+                ADA_ALC_INTENSITY,
+                ADA_ALC_EXPERIMENTER,
+                ADA_ALC_CONCENTRATION
+            )
+            ADA_ALC_INTENSITY -> listOf(ADA_ALC_SOLVENCY)
+            ADA_ALC_SOLVENCY -> listOf(ADA_ALC_CHEMIST)
+            ADA_ALC_EXPERIMENTER -> listOf(ADA_ALC_GREEN_THUMB)
+            ADA_ALC_CONCENTRATION -> listOf(ADA_ALC_POTENCY)
+            ADA_ALC_POTENCY -> listOf(ADA_ALC_CHEMIST)
+            else -> emptyList()
+        }
 }

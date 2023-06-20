@@ -19,4 +19,22 @@ enum class Restoration(x: Float, y: Float, vararg skill: Int) : IPerk {
     VAN_RST_WARD_ABSORB                   (0.3f,  0.35f, 60);
 
     override val perkInfo: PerkInfo = PerkInfo(skill, x, y)
+
+    override val childPerks: List<IPerk>
+        get() = when (this) {
+            VAN_RST_NOVICE_RESTORATION -> listOf(
+                VAN_RST_APPRENTICE_RESTORATION,
+                VAN_RST_RECOVERY,
+                VAN_RST_RESTORATION_DUAL_CASTING,
+                VAN_RST_REGENERATION,
+                VAN_RST_RESPITE,
+                VAN_RST_WARD_ABSORB
+            )
+            VAN_RST_APPRENTICE_RESTORATION -> listOf(VAN_RST_ADEPT_RESTORATION)
+            VAN_RST_ADEPT_RESTORATION -> listOf(VAN_RST_EXPERT_RESTORATION)
+            VAN_RST_EXPERT_RESTORATION -> listOf(VAN_RST_MASTER_RESTORATION)
+            VAN_RST_RECOVERY -> listOf(VAN_RST_AVOID_DEATH)
+            VAN_RST_REGENERATION -> listOf(VAN_RST_NECROMAGE)
+            else -> emptyList()
+        }
 }

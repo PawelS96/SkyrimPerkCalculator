@@ -18,4 +18,21 @@ enum class Ada_Illusion(x: Float, y: Float, vararg skill: Int) : IPerk {
     ADA_ILU_VOICE_OF_AUTHORITY  (0.75f, 0.2f,  90);
 
     override val perkInfo: PerkInfo = PerkInfo(skill, x, y)
+
+    override val childPerks: List<IPerk>
+        get() = when (this) {
+            ADA_ILU_ILLUSIONIST -> listOf(
+                ADA_ILU_SERENITY,
+                ADA_ILU_GUIDANCE,
+                ADA_ILU_CAPTIVATING_PRESENCE,
+                ADA_ILU_HOWL_OF_RAGE
+            )
+            ADA_ILU_SERENITY -> listOf(ADA_ILU_TRANQUILITY)
+            ADA_ILU_TRANQUILITY -> listOf(ADA_ILU_STASIS)
+            ADA_ILU_CAPTIVATING_PRESENCE -> listOf(ADA_ILU_INDOMITABLE_WILL)
+            ADA_ILU_INDOMITABLE_WILL -> listOf(ADA_ILU_MASTER_OF_THE_MIND)
+            ADA_ILU_HOWL_OF_RAGE -> listOf(ADA_ILU_ASPECT_OF_TERROR)
+            ADA_ILU_ASPECT_OF_TERROR -> listOf(ADA_ILU_VOICE_OF_AUTHORITY)
+            else -> emptyList()
+        }
 }

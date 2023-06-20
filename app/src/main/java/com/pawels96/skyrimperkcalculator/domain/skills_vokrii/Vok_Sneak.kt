@@ -22,4 +22,23 @@ enum class Vok_Sneak(x: Float, y: Float, vararg skill: Int) : IPerk {
     VOK_SNK_ESCAPE_ARTIST    (0.75f,  0.1f,   100);
 
     override val perkInfo: PerkInfo = PerkInfo(skill, x, y)
+
+    override val childPerks: List<IPerk>
+        get() = when (this) {
+            VOK_SNK_SNEAK_MASTERY -> listOf(
+                VOK_SNK_SILENT_ROLL,
+                VOK_SNK_SNEAK_ATTACK,
+                VOK_SNK_SILENT_MOVEMENT,
+                VOK_SNK_SHADOWCASTER
+            )
+            VOK_SNK_SILENT_ROLL -> listOf(VOK_SNK_DODGE_ROLL)
+            VOK_SNK_DODGE_ROLL -> listOf(VOK_SNK_SHADOW_WARRIOR)
+            VOK_SNK_SNEAK_ATTACK -> listOf(VOK_SNK_DEADLY_AIM, VOK_SNK_ASSASSINS_BLADE)
+            VOK_SNK_ASSASSINS_BLADE -> listOf(VOK_SNK_BACKSTAB)
+            VOK_SNK_BACKSTAB -> listOf(VOK_SNK_CLOAK_AND_DAGGER)
+            VOK_SNK_CLOAK_AND_DAGGER -> listOf(VOK_SNK_SHADOW_WARRIOR)
+            VOK_SNK_SILENT_MOVEMENT -> listOf(VOK_SNK_LIGHT_FOOT, VOK_SNK_BLIND_SPOT)
+            VOK_SNK_BLIND_SPOT -> listOf(VOK_SNK_FOG_OF_WAR, VOK_SNK_ESCAPE_ARTIST)
+            else -> emptyList()
+        }
 }

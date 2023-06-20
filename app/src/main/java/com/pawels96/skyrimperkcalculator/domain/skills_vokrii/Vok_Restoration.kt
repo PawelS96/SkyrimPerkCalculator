@@ -22,4 +22,25 @@ enum class Vok_Restoration(x: Float, y: Float, vararg skill: Int) : IPerk {
     VOK_RST_INTERVENTION             (0.9f,   0.1f,   100);
 
     override val perkInfo: PerkInfo = PerkInfo(skill, x, y)
+
+    override val childPerks: List<IPerk>
+        get() = when (this) {
+            VOK_RST_RESTORATION_MASTERY -> listOf(
+                VOK_RST_MERCY,
+                VOK_RST_RESTORATION_DUAL_CASTING,
+                VOK_RST_INSPIRE,
+                VOK_RST_INNER_LIGHT,
+                VOK_RST_VIGILANT_WARD
+            )
+            VOK_RST_MERCY -> listOf(VOK_RST_HARM, VOK_RST_RESPITE)
+            VOK_RST_HARM -> listOf(VOK_RST_SUNS_JUDGMENT)
+            VOK_RST_SUNS_JUDGMENT -> listOf(VOK_RST_REBUKE_UNDEAD)
+            VOK_RST_RESPITE -> listOf(VOK_RST_ETERNAL_FLAME)
+            VOK_RST_VIGILANT_WARD -> listOf(VOK_RST_WARD_ABSORB)
+            VOK_RST_WARD_ABSORB -> listOf(VOK_RST_MAGE_WARD)
+            VOK_RST_INSPIRE -> listOf(VOK_RST_NECROMAGE)
+            VOK_RST_INNER_LIGHT -> listOf(VOK_RST_BLESSED)
+            VOK_RST_BLESSED -> listOf(VOK_RST_INTERVENTION)
+            else -> emptyList()
+        }
 }

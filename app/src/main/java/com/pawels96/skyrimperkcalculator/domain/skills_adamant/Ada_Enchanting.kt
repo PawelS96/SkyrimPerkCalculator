@@ -20,4 +20,24 @@ enum class Ada_Enchanting(x: Float, y: Float, vararg skill: Int) : IPerk {
     ADA_ENC_TWIN_SECRETS        (0.5f,   0.05f,  100);
 
     override val perkInfo: PerkInfo = PerkInfo(skill, x, y)
+
+    override val childPerks: List<IPerk>
+        get() = when (this) {
+            ADA_ENC_ARTIFICER -> listOf(
+                ADA_ENC_SEEKER,
+                ADA_ENC_SCRIBE,
+                ADA_ENC_JEWELRY_ENCHANTER,
+                ADA_ENC_ARMOR_ENCHANTER,
+                ADA_ENC_CONDUIT,
+                ADA_ENC_RESONANCE
+            )
+            ADA_ENC_JEWELRY_ENCHANTER -> listOf(ADA_ENC_CORPUS_ENCHANTER)
+            ADA_ENC_CORPUS_ENCHANTER -> listOf(ADA_ENC_INSIGHTFUL_ENCHANTER)
+            ADA_ENC_INSIGHTFUL_ENCHANTER -> listOf(ADA_ENC_TWIN_SECRETS)
+            ADA_ENC_ARMOR_ENCHANTER -> listOf(ADA_ENC_ELEMENTAL_ENCHANTER)
+            ADA_ENC_ELEMENTAL_ENCHANTER -> listOf(ADA_ENC_INSIGHTFUL_ENCHANTER)
+            ADA_ENC_CONDUIT -> listOf(ADA_ENC_CHANNELER)
+            ADA_ENC_RESONANCE -> listOf(ADA_ENC_SOUL_SIPHON)
+            else -> emptyList()
+        }
 }

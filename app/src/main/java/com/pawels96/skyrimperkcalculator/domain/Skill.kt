@@ -5,17 +5,16 @@ import com.pawels96.skyrimperkcalculator.domain.lycanthropy.Lycanthropy
 import com.pawels96.skyrimperkcalculator.domain.vampirism.Sac_Vampirism
 import com.pawels96.skyrimperkcalculator.domain.vampirism.Vampirism
 import java.io.Serializable
-import java.util.*
 
 interface ISkill : Serializable {
+
     val type: SkillType
 
     fun getPerks(system: IPerkSystem): Array<IPerk>
-
-    fun getConnectionsMap(system: IPerkSystem): Map<IPerk, Array<IPerk>>
 }
 
-class SpecialSkill(iskill: ESpecialSkill, perkSystem: IPerkSystem, perks: Map<IPerk, Perk>) : Skill(iskill, perkSystem, perks) {
+class SpecialSkill(iskill: ESpecialSkill, perkSystem: IPerkSystem, perks: Map<IPerk, Perk>) :
+    Skill(iskill, perkSystem, perks) {
 
     private val vanillaVampirePerkTable =
         IntRange(1, Vampirism.values().sumOf { maxPerks }).associateWith {
@@ -84,18 +83,14 @@ class SpecialSkill(iskill: ESpecialSkill, perkSystem: IPerkSystem, perks: Map<IP
 object SkillFactory {
 
     private fun buildPerkTree(skillEnum: ISkill, perkSystem: IPerkSystem): Map<IPerk, Perk> {
-        val perks: MutableMap<IPerk, Perk> = HashMap()
+        val perks = skillEnum.getPerks(perkSystem).associateWith { Perk(it) }
 
-        for (element in skillEnum.getPerks(perkSystem)) {
-            val perk = Perk(element)
-            perks[perk.perk] = perk
-        }
-
-        for (start in skillEnum.getConnectionsMap(perkSystem).keys) {
-            for (end in skillEnum.getConnectionsMap(perkSystem)[start]!!) {
-                Perk.connectPerks(perks[start]!!, perks[end]!!)
+        perks.entries.forEach { entry ->
+            entry.key.childPerks.forEach { child ->
+                entry.value.connectChild(perks[child]!!)
             }
         }
+
         return perks
     }
 
@@ -118,24 +113,10 @@ open class Skill(val iskill: ISkill, val perkSystem: IPerkSystem, val perks: Map
         get() = iskill.type
 
     val selectedPerksCount: Int
-        get() {
-            var count = 0
-            for (p in perks.values) {
-                count += p.state
-            }
-            return count
-        }
+        get() = perks.values.sumOf { it.state }
 
     open val requiredSkillLevel: Int
-        get() {
-            var level = 0
-            for (p in perks.values) {
-                if (!p.isSelected) continue
-                val perkSkillLevel = p.skillLevel
-                if (perkSkillLevel > level) level = perkSkillLevel
-            }
-            return level
-        }
+        get() = perks.values.filter { it.isSelected }.maxOfOrNull { it.skillLevel } ?: 0
 
     val perkList: List<Perk>
         get() = perks.values.toList()
@@ -145,7 +126,8 @@ open class Skill(val iskill: ISkill, val perkSystem: IPerkSystem, val perks: Map
     }
 
     fun getCoordinates(): Map<IPerk, FPoint> {
-        return perks.map { it.key to FPoint(it.value.perk.perkInfo.x, it.value.perk.perkInfo.y) }.toMap()
+        return perks.map { it.key to FPoint(it.value.perk.perkInfo.x, it.value.perk.perkInfo.y) }
+            .toMap()
     }
 
     override fun equals(other: Any?): Boolean {

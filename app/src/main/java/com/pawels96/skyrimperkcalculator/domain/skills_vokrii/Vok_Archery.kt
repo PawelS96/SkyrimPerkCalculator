@@ -23,4 +23,25 @@ enum class Vok_Archery(x: Float, y: Float, vararg skill: Int) : IPerk {
     VOK_ARC_PINNING_SHOT       (0.375f,  0.05f,  100);
 
     override val perkInfo: PerkInfo = PerkInfo(skill, x, y)
+
+    override val childPerks: List<IPerk>
+        get() = when (this) {
+            VOK_ARC_ARCHERY_MASTERY -> listOf(
+                VOK_ARC_FAR_SHOT,
+                VOK_ARC_POINT_BLANK_SHOT,
+                VOK_ARC_EAGLE_EYE
+            )
+            VOK_ARC_FAR_SHOT -> listOf(VOK_ARC_IMPALING_SHOT)
+            VOK_ARC_IMPALING_SHOT -> listOf(VOK_ARC_POWER_SHOT, VOK_ARC_ARROW_TO_THE_KNEE)
+            VOK_ARC_POWER_SHOT -> listOf(VOK_ARC_RANGER)
+            VOK_ARC_ARROW_TO_THE_KNEE -> listOf(VOK_ARC_PINNING_SHOT)
+            VOK_ARC_POINT_BLANK_SHOT -> listOf(VOK_ARC_BREACHING_SHOT)
+            VOK_ARC_BREACHING_SHOT -> listOf(VOK_ARC_POWER_SHOT, VOK_ARC_GORE)
+            VOK_ARC_GORE -> listOf(VOK_ARC_PINNING_SHOT)
+            VOK_ARC_EAGLE_EYE -> listOf(VOK_ARC_HUNTERS_DISCIPLINE, VOK_ARC_STEADY_AIM)
+            VOK_ARC_STEADY_AIM -> listOf(VOK_ARC_LIONS_ARROW)
+            VOK_ARC_HUNTERS_DISCIPLINE -> listOf(VOK_ARC_HUNTERS_FOCUS)
+            VOK_ARC_RANGER -> listOf(VOK_ARC_QUICK_SHOT)
+            else -> emptyList()
+        }
 }

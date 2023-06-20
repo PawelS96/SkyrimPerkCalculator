@@ -18,4 +18,21 @@ enum class Ada_Smithing(x: Float, y: Float, vararg skill: Int) : IPerk {
     ADA_SMT_MYTHIC_SMITHING      (0.45f,  0.35f,  100);
 
     override val perkInfo: PerkInfo = PerkInfo(skill, x, y)
+
+    override val childPerks: List<IPerk>
+        get() = when (this) {
+            ADA_SMT_CRAFTSMAN -> listOf(ADA_SMT_BLACKSMITH, ADA_SMT_BASIC_SMITHING)
+            ADA_SMT_BLACKSMITH -> listOf(ADA_SMT_ARMORER)
+            ADA_SMT_ARMORER -> listOf(ADA_SMT_FORGEMASTER)
+            ADA_SMT_BASIC_SMITHING -> listOf(ADA_SMT_JOURNEYMAN_SMITHING)
+            ADA_SMT_JOURNEYMAN_SMITHING -> listOf(
+                ADA_SMT_RARE_SMITHING,
+                ADA_SMT_INTERMEDIATE_SMITHING
+            )
+            ADA_SMT_RARE_SMITHING -> listOf(ADA_SMT_EXOTIC_SMITHING)
+            ADA_SMT_EXOTIC_SMITHING -> listOf(ADA_SMT_MYTHIC_SMITHING)
+            ADA_SMT_INTERMEDIATE_SMITHING -> listOf(ADA_SMT_ADVANCED_SMITHING)
+            ADA_SMT_ADVANCED_SMITHING -> listOf(ADA_SMT_MYTHIC_SMITHING)
+            else -> emptyList()
+        }
 }

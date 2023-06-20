@@ -22,4 +22,26 @@ enum class Ada_Conjuration(x: Float, y: Float, vararg skill: Int) : IPerk {
     ADA_CON_CULTIST           (0.5f,   0.5f,   30, 60);
 
     override val perkInfo: PerkInfo = PerkInfo(skill, x, y)
+
+    override val childPerks: List<IPerk>
+        get() = when (this) {
+            ADA_CON_SUMMONER -> listOf(
+                ADA_CON_DARK_OATH,
+                ADA_CON_UNDEAD_SERVANT,
+                ADA_CON_CULTIST,
+                ADA_CON_ARCANE_BINDING
+            )
+            ADA_CON_DARK_OATH -> listOf(ADA_CON_ARMOR_OF_SHADOWS)
+            ADA_CON_ARMOR_OF_SHADOWS -> listOf(ADA_CON_RITUAL_OF_POWER)
+            ADA_CON_RITUAL_OF_POWER -> listOf(ADA_CON_DAEDRIC_PACT)
+            ADA_CON_DAEDRIC_PACT -> listOf(ADA_CON_DOORS_OF_OBLIVION)
+            ADA_CON_UNDEAD_SERVANT -> listOf(ADA_CON_DEATHLY_VIGOR)
+            ADA_CON_DEATHLY_VIGOR -> listOf(ADA_CON_CORPSE_PREPARATION)
+            ADA_CON_CORPSE_PREPARATION -> listOf(ADA_CON_NECROPOTENCE)
+            ADA_CON_NECROPOTENCE -> listOf(ADA_CON_DOORS_OF_OBLIVION)
+            ADA_CON_ARCANE_BINDING -> listOf(ADA_CON_CHAOS_BINDING)
+            ADA_CON_CHAOS_BINDING -> listOf(ADA_CON_MYSTIC_BINDING)
+            ADA_CON_MYSTIC_BINDING -> listOf(ADA_CON_CURSE_BINDING)
+            else -> emptyList()
+        }
 }

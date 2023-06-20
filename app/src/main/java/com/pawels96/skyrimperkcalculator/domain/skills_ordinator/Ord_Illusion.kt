@@ -37,4 +37,40 @@ enum class Ord_Illusion(x: Float, y: Float, vararg skill: Int) : IPerk {
     ORD_ILU_WRAITHWALKER              (0.2f,    0.05f,  100);
 
     override val perkInfo: PerkInfo = PerkInfo(skill, x, y)
+
+    override val childPerks: List<IPerk>
+        get() = when (this) {
+            ORD_ILU_ILLUSION_MASTERY -> listOf(
+                ORD_ILU_ILLUSION_DUAL_CASTING,
+                ORD_ILU_NIGHT_EYE,
+                ORD_ILU_ENTICE_BARTER,
+                ORD_ILU_IMPOSING_PRESENCE,
+                ORD_ILU_COMMANDING_PRESENCE,
+                ORD_ILU_DREAM_THIEF,
+                ORD_ILU_QUIET_BEFORE_THE_STORM
+            )
+            ORD_ILU_DREAM_THIEF -> listOf(ORD_ILU_KINDRED_MAGE)
+            ORD_ILU_COMMANDING_PRESENCE -> listOf(ORD_ILU_CROWN_OF_THE_FALSE_KING)
+            ORD_ILU_ENTICE_BARTER -> listOf(ORD_ILU_NEMESIS)
+            ORD_ILU_IMPOSING_PRESENCE -> listOf(
+                ORD_ILU_NEMESIS,
+                ORD_ILU_WILTING,
+                ORD_ILU_SHADOW_REFUGE
+            )
+            ORD_ILU_NIGHT_EYE -> listOf(ORD_ILU_GHOST_OF_THE_TENTH_EYE)
+            ORD_ILU_CROWN_OF_THE_FALSE_KING -> listOf(ORD_ILU_IMPERIOUS_SPLENDOR)
+            ORD_ILU_KINDRED_MAGE -> listOf(ORD_ILU_FICKLE_FATE, ORD_ILU_DREAM_CHARM)
+            ORD_ILU_WILTING -> listOf(ORD_ILU_NEVERWORLD, ORD_ILU_TERROR, ORD_ILU_THE_REAPER_COMES)
+            ORD_ILU_FICKLE_FATE -> listOf(ORD_ILU_MASTER_OF_THE_MIND)
+            ORD_ILU_NEMESIS -> listOf(ORD_ILU_BLIND_GUARDIAN)
+            ORD_ILU_TERROR -> listOf(ORD_ILU_SOULCRUSHER, ORD_ILU_PANDEMONIUM)
+            ORD_ILU_IMPERIOUS_SPLENDOR -> listOf(ORD_ILU_PROTECT_YOUR_GOD)
+            ORD_ILU_PANDEMONIUM -> listOf(ORD_ILU_NIGHTFALL)
+            ORD_ILU_DREAM_CHARM -> listOf(ORD_ILU_DREAM_GEAS)
+            ORD_ILU_THE_REAPER_COMES -> listOf(ORD_ILU_LAMB_TO_THE_SLAUGHTER)
+            ORD_ILU_LAMB_TO_THE_SLAUGHTER -> listOf(ORD_ILU_HEAVY_WEIGHS_THE_TAPESTRY)
+            ORD_ILU_BLIND_GUARDIAN -> listOf(ORD_ILU_WRAITHWALKER)
+            ORD_ILU_HEAVY_WEIGHS_THE_TAPESTRY -> listOf(ORD_ILU_WRAITHWALKER)
+            else -> emptyList()
+        }
 }

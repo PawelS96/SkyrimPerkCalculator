@@ -22,4 +22,24 @@ enum class Vok_Block(x: Float, y: Float, vararg skill: Int) : IPerk {
     VOK_BLC_STONEHEART           (0.45f,  0.1f,  100);
 
     override val perkInfo: PerkInfo = PerkInfo(skill, x, y)
+
+    override val childPerks: List<IPerk>
+        get() = when (this) {
+            VOK_BLC_BLOCK_MASTERY -> listOf(
+                VOK_BLC_WEAPON_BLOCK,
+                VOK_BLC_UNWAVERING_DEFENSE,
+                VOK_BLC_DEFLECT_ARROWS,
+                VOK_BLC_QUICK_REFLEXES,
+                VOK_BLC_POWER_BASH
+            )
+            VOK_BLC_DEFLECT_ARROWS -> listOf(VOK_BLC_ELEMENTAL_PROTECTION, VOK_BLC_BLOCK_RUNNER)
+            VOK_BLC_BLOCK_RUNNER -> listOf(VOK_BLC_SHIELD_CHARGE)
+            VOK_BLC_SHIELD_CHARGE -> listOf(VOK_BLC_STONEHEART)
+            VOK_BLC_UNWAVERING_DEFENSE -> listOf(VOK_BLC_POKE_THE_DRAGON)
+            VOK_BLC_POKE_THE_DRAGON -> listOf(VOK_BLC_STONEHEART)
+            VOK_BLC_POWER_BASH -> listOf(VOK_BLC_TORCH_BASH, VOK_BLC_DEADLY_BASH)
+            VOK_BLC_DEADLY_BASH -> listOf(VOK_BLC_MOCKING_BLOW, VOK_BLC_DRAGON_TAIL)
+            VOK_BLC_DRAGON_TAIL -> listOf(VOK_BLC_STONEHEART)
+            else -> emptyList()
+        }
 }

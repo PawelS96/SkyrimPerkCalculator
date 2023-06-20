@@ -28,4 +28,28 @@ enum class Ord_Enchanting(x: Float, y: Float, vararg skill: Int) : IPerk {
     ORD_ENC_MIRACLE                      (0.55f,   0.05f,  100);
 
     override val perkInfo: PerkInfo = PerkInfo(skill, x, y)
+
+    override val childPerks: List<IPerk>
+        get() = when (this) {
+            ORD_ENC_ENCHANTING_MASTERY -> listOf(
+                ORD_ENC_LAST_WORD,
+                ORD_ENC_STAFF_CHANNELER,
+                ORD_ENC_GEM_DUST,
+                ORD_ENC_SOUL_SIPHON
+            )
+            ORD_ENC_LAST_WORD -> listOf(ORD_ENC_SECRETKEEPER)
+            ORD_ENC_SOUL_SIPHON -> listOf(ORD_ENC_THUNDERSTRUCK, ORD_ENC_SPELLSCRIBE)
+            ORD_ENC_STAFF_CHANNELER -> listOf(ORD_ENC_SECRETKEEPER, ORD_ENC_STAFF_RECHARGE)
+            ORD_ENC_GEM_DUST -> listOf(ORD_ENC_PRESERVER, ORD_ENC_REGALIA)
+            ORD_ENC_SECRETKEEPER -> listOf(ORD_ENC_FLAME_OF_MAGNUS, ORD_ENC_STAFF_RECHARGE)
+            ORD_ENC_SPELLSCRIBE -> listOf(ORD_ENC_MIGHT_AND_MAGIC, ORD_ENC_POWER_ECHOES)
+            ORD_ENC_FLAME_OF_MAGNUS -> listOf(ORD_ENC_YOU_SHALL_NOT_PASS)
+            ORD_ENC_REGALIA -> listOf(ORD_ENC_ATTUNEMENT, ORD_ENC_TWIN_ENCHANTMENT)
+            ORD_ENC_STAFF_RECHARGE -> listOf(ORD_ENC_CHARGE_TAP, ORD_ENC_ATTUNEMENT)
+            ORD_ENC_ATTUNEMENT -> listOf(ORD_ENC_HEART_OF_THE_SUN)
+            ORD_ENC_CHARGE_TAP -> listOf(ORD_ENC_YOU_SHALL_NOT_PASS, ORD_ENC_HEART_OF_THE_SUN)
+            ORD_ENC_TWIN_ENCHANTMENT -> listOf(ORD_ENC_ARCANE_NEXUS)
+            ORD_ENC_ARCANE_NEXUS -> listOf(ORD_ENC_MIRACLE)
+            else -> emptyList()
+        }
 }

@@ -24,4 +24,28 @@ enum class Vok_TwoHanded(x: Float, y: Float, vararg skill: Int) : IPerk {
     VOK_TWH_CROWD_PLEASER       (0.45f,  0.05f,  100);
 
     override val perkInfo: PerkInfo = PerkInfo(skill, x, y)
+
+    override val childPerks: List<IPerk>
+        get() = when (this) {
+            VOK_TWH_TWO_HANDED_MASTERY -> listOf(
+                VOK_TWH_DEATH_OR_GLORY,
+                VOK_TWH_OVERBEARING_ASSAULT,
+                VOK_TWH_MORTAL_WOUNDS,
+                VOK_TWH_CRUSHING_BLOWS,
+                VOK_TWH_BRUTAL_FIGHTER
+            )
+            VOK_TWH_DEATH_OR_GLORY -> listOf(VOK_TWH_BERSERKER)
+            VOK_TWH_BERSERKER -> listOf(VOK_TWH_BEAR_HIDE)
+            VOK_TWH_OVERBEARING_ASSAULT -> listOf(VOK_TWH_COUP_DE_GRACE)
+            VOK_TWH_MORTAL_WOUNDS -> listOf(VOK_TWH_HOOK_BLADE)
+            VOK_TWH_HOOK_BLADE -> listOf(VOK_TWH_CROWD_PLEASER)
+            VOK_TWH_CRUSHING_BLOWS -> listOf(VOK_TWH_SHATTERING_STRIKE)
+            VOK_TWH_SHATTERING_STRIKE -> listOf(VOK_TWH_CROWD_PLEASER)
+            VOK_TWH_BRUTAL_FIGHTER -> listOf(VOK_TWH_FEROCIOUS_STRENGTH)
+            VOK_TWH_FEROCIOUS_STRENGTH -> listOf(VOK_TWH_VICIOUS_CHARGE, VOK_TWH_WARMASTER)
+            VOK_TWH_WARMASTER -> listOf(VOK_TWH_SWEEP)
+            VOK_TWH_VICIOUS_CHARGE -> listOf(VOK_TWH_ROLLING_CHARGE)
+            VOK_TWH_COUP_DE_GRACE -> listOf(VOK_TWH_CROWD_PLEASER)
+            else -> emptyList()
+        }
 }

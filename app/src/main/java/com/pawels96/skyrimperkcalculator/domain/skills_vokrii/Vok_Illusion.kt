@@ -22,4 +22,21 @@ enum class Vok_Illusion(x: Float, y: Float, vararg skill: Int) : IPerk {
     VOK_ILU_MIND_THRALL           (0.65f,  0.05f,  100);
 
     override val perkInfo: PerkInfo = PerkInfo(skill, x, y)
+
+    override val childPerks: List<IPerk>
+        get() = when (this) {
+            VOK_ILU_ILLUSION_MASTERY -> listOf(
+                VOK_ILU_ILLUSION_DUAL_CASTING,
+                VOK_ILU_NEVERWORLD,
+                VOK_ILU_QUIET_CASTING,
+                VOK_ILU_ANIMAGE
+            )
+            VOK_ILU_ANIMAGE -> listOf(VOK_ILU_MASTER_OF_THE_MIND)
+            VOK_ILU_NEVERWORLD -> listOf(VOK_ILU_LAMB_TO_THE_SLAUGHTER, VOK_ILU_TERROR)
+            VOK_ILU_TERROR -> listOf(VOK_ILU_PARALYZING_FEAR, VOK_ILU_IRON_MAIDEN)
+            VOK_ILU_IRON_MAIDEN -> listOf(VOK_ILU_ENRAGE, VOK_ILU_SPLENDOR)
+            VOK_ILU_SPLENDOR -> listOf(VOK_ILU_SPIRIT_OF_WAR, VOK_ILU_MIND_THRALL)
+            VOK_ILU_QUIET_CASTING -> listOf(VOK_ILU_BLUR)
+            else -> emptyList()
+        }
 }

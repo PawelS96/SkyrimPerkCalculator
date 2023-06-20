@@ -22,4 +22,25 @@ enum class Vok_Alchemy(x: Float, y: Float, vararg skill: Int) : IPerk {
     VOK_ALC_DOUBLE_TOIL_AND_TROUBLE  (0.45f,  0.05f,  100);
 
     override val perkInfo: PerkInfo = PerkInfo(skill, x, y)
+
+    override val childPerks: List<IPerk>
+        get() = when (this) {
+            VOK_ALC_ALCHEMY_MASTERY -> listOf(
+                VOK_ALC_BENEFACTOR,
+                VOK_ALC_POISONER,
+                VOK_ALC_PHYSICIAN
+            )
+            VOK_ALC_BENEFACTOR -> listOf(
+                VOK_ALC_SLOW_METABOLISM,
+                VOK_ALC_EXPERIMENTER,
+                VOK_ALC_STIMULANTS
+            )
+            VOK_ALC_POISONER -> listOf(VOK_ALC_CONCENTRATED_POISON)
+            VOK_ALC_EXPERIMENTER -> listOf(VOK_ALC_GREEN_THUMB)
+            VOK_ALC_STIMULANTS -> listOf(VOK_ALC_ADRENALINE)
+            VOK_ALC_GREEN_THUMB -> listOf(VOK_ALC_PURITY, VOK_ALC_DOUBLE_TOIL_AND_TROUBLE)
+            VOK_ALC_CONCENTRATED_POISON -> listOf(VOK_ALC_PURITY, VOK_ALC_ALKAHEST)
+            VOK_ALC_ALKAHEST -> listOf(VOK_ALC_PLAGUE_DOCTOR, VOK_ALC_GOURMET)
+            else -> emptyList()
+        }
 }

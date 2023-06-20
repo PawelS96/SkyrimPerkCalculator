@@ -15,4 +15,13 @@ enum class Pickpocket(x: Float, y: Float, vararg skill: Int) : IPerk {
     VAN_PCK_POISONED                      (0.4f,   0.5f ,   40);
 
     override val perkInfo: PerkInfo = PerkInfo(skill, x, y)
+
+    override val childPerks: List<IPerk>
+        get() = when (this) {
+            VAN_PCK_LIGHT_FINGERS -> listOf(VAN_PCK_NIGHT_THIEF)
+            VAN_PCK_NIGHT_THIEF -> listOf(VAN_PCK_POISONED, VAN_PCK_EXTRA_POCKETS, VAN_PCK_CUTPURSE)
+            VAN_PCK_CUTPURSE -> listOf(VAN_PCK_KEYMASTER, VAN_PCK_MISDIRECTION)
+            VAN_PCK_MISDIRECTION -> listOf(VAN_PCK_PERFECT_TOUCH)
+            else -> emptyList()
+        }
 }

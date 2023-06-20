@@ -25,4 +25,26 @@ enum class Vok_Conjuration(x: Float, y: Float, vararg skill: Int) : IPerk {
     VOK_CON_TWIN_SOULS               (0.5f,   0.1f,   100);
 
     override val perkInfo: PerkInfo = PerkInfo(skill, x, y)
+
+    override val childPerks: List<IPerk>
+        get() = when (this) {
+            VOK_CON_CONJURATION_MASTERY -> listOf(
+                VOK_CON_CONJURATION_DUAL_CASTING,
+                VOK_CON_ATROMANCY,
+                VOK_CON_NECROMANCY,
+                VOK_CON_MYSTIC_BINDING
+            )
+            VOK_CON_ATROMANCY -> listOf(VOK_CON_OBLIVION_STONE, VOK_CON_RIFT_SUMMONER)
+            VOK_CON_NECROMANCY -> listOf(VOK_CON_RIFT_SUMMONER, VOK_CON_GHOUL_FRENZY)
+            VOK_CON_MYSTIC_BINDING -> listOf(VOK_CON_SOUL_STEALER)
+            VOK_CON_SOUL_STEALER -> listOf(VOK_CON_OBLIVION_BINDING)
+            VOK_CON_OBLIVION_BINDING -> listOf(VOK_CON_HOLLOW_BINDING)
+            VOK_CON_HOLLOW_BINDING -> listOf(VOK_CON_VOID_BRAND)
+            VOK_CON_GHOUL_FRENZY -> listOf(VOK_CON_BLOOD_ZOMBIE)
+            VOK_CON_BLOOD_ZOMBIE -> listOf(VOK_CON_NECROMASTER, VOK_CON_TWIN_SOULS)
+            VOK_CON_RIFT_SUMMONER -> listOf(VOK_CON_GRAND_CONJURER)
+            VOK_CON_OBLIVION_STONE -> listOf(VOK_CON_ELEMENTAL_POTENCY)
+            VOK_CON_ELEMENTAL_POTENCY -> listOf(VOK_CON_TWIN_SOULS, VOK_CON_ELEMENTAL_CONFLUX)
+            else -> emptyList()
+        }
 }

@@ -16,4 +16,22 @@ enum class TwoHanded(x: Float, y: Float, vararg skill: Int) : IPerk {
     VAN_TWH_SKULLCRUSHER             (0.9f,     0.7f,    30, 60, 90);
 
     override val perkInfo: PerkInfo = PerkInfo(skill, x, y)
+
+    override val childPerks: List<IPerk>
+        get() = when (this) {
+            VAN_TWH_BARBARIAN -> listOf(
+                VAN_TWH_CHAMPIONS_STANCE,
+                VAN_TWH_SKULLCRUSHER,
+                VAN_TWH_DEEP_WOUNDS,
+                VAN_TWH_LIMBSPLITTER
+            )
+            VAN_TWH_CHAMPIONS_STANCE -> listOf(
+                VAN_TWH_DEVASTATING_BLOW,
+                VAN_TWH_GREAT_CRITICAL_CHARGE
+            )
+            VAN_TWH_DEVASTATING_BLOW -> listOf(VAN_TWH_SWEEP)
+            VAN_TWH_GREAT_CRITICAL_CHARGE -> listOf(VAN_TWH_SWEEP)
+            VAN_TWH_SWEEP -> listOf(VAN_TWH_WARMASTER)
+            else -> emptyList()
+        }
 }

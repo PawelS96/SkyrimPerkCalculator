@@ -23,4 +23,26 @@ enum class Vok_Enchanting(x: Float, y: Float, vararg skill: Int) : IPerk {
     VOK_ENC_EXTRA_EFFECT       (0.45f,  0.1f,   100);
 
     override val perkInfo: PerkInfo = PerkInfo(skill, x, y)
+
+    override val childPerks: List<IPerk>
+        get() = when (this) {
+            VOK_ENC_ENCHANTING_MASTERY -> listOf(
+                VOK_ENC_SOUL_SQUEEZER,
+                VOK_ENC_POWER_STONE,
+                VOK_ENC_WEAPON_ENCHANTER,
+                VOK_ENC_ARMOR_ENCHANTER,
+                VOK_ENC_SCROLL_SAGE
+            )
+            VOK_ENC_SCROLL_SAGE -> listOf(VOK_ENC_SCROLL_HUNTER)
+            VOK_ENC_SCROLL_HUNTER -> listOf(VOK_ENC_SPIDER_HUNTER)
+            VOK_ENC_ARMOR_ENCHANTER -> listOf(VOK_ENC_REGALIA_ENCHANTER)
+            VOK_ENC_REGALIA_ENCHANTER -> listOf(VOK_ENC_EXTRA_EFFECT)
+            VOK_ENC_WEAPON_ENCHANTER -> listOf(VOK_ENC_SOUL_ENCHANTER)
+            VOK_ENC_SOUL_ENCHANTER -> listOf(VOK_ENC_EXTRA_EFFECT)
+            VOK_ENC_POWER_STONE -> listOf(VOK_ENC_MANA_STONE)
+            VOK_ENC_MANA_STONE -> listOf(VOK_ENC_DEFENSIVE_RUNES, VOK_ENC_STAFF_RECHARGE)
+            VOK_ENC_SOUL_SQUEEZER -> listOf(VOK_ENC_SOUL_SIPHON)
+            VOK_ENC_SOUL_SIPHON -> listOf(VOK_ENC_THUNDERSTRUCK)
+            else -> emptyList()
+        }
 }

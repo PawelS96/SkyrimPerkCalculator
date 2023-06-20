@@ -33,4 +33,41 @@ enum class Ord_Sneak(x: Float, y: Float, vararg skill: Int) : IPerk {
     ORD_SNK_LAUGHING_GHOST            (0.8f,    0.1f,   100);
 
     override val perkInfo: PerkInfo = PerkInfo(skill, x, y)
+
+    override val childPerks: List<IPerk>
+        get() = when (this) {
+            ORD_SNK_SNEAK_MASTERY -> listOf(
+                ORD_SNK_SPOT_DETECTION,
+                ORD_SNK_TRIPWIRE,
+                ORD_SNK_SILENT_ROLL,
+                ORD_SNK_FOG_OF_WAR,
+                ORD_SNK_INFILTRATOR,
+                ORD_SNK_SNEAK_ATTACK,
+                ORD_SNK_DEMOLITION_JOB
+            )
+            ORD_SNK_SNEAK_ATTACK -> listOf(ORD_SNK_PROBLEM_SOLVER, ORD_SNK_ASSASSINS_BLADE)
+            ORD_SNK_TRIPWIRE -> listOf(ORD_SNK_WHIPLASH)
+            ORD_SNK_FOG_OF_WAR -> listOf(ORD_SNK_RIGHT_BEHIND_YOU)
+            ORD_SNK_SILENT_ROLL -> listOf(ORD_SNK_DYNAMIC_ENTRY)
+            ORD_SNK_SPOT_DETECTION -> listOf(ORD_SNK_LIGHT_FOOT)
+            ORD_SNK_ASSASSINS_BLADE -> listOf(ORD_SNK_BACKSTAB)
+            ORD_SNK_DYNAMIC_ENTRY -> listOf(ORD_SNK_DODGE_ROLL)
+            ORD_SNK_INFILTRATOR -> listOf(ORD_SNK_RIGHT_BEHIND_YOU)
+            ORD_SNK_WHIPLASH -> listOf(ORD_SNK_BACKUP_PLAN)
+            ORD_SNK_RIGHT_BEHIND_YOU -> listOf(
+                ORD_SNK_DISENGAGE,
+                ORD_SNK_BEHIND_ENEMY_LINES,
+                ORD_SNK_SMOKESCREEN,
+                ORD_SNK_CLEAN_ESCAPE
+            )
+            ORD_SNK_DODGE_ROLL -> listOf(
+                ORD_SNK_BACKUP_PLAN,
+                ORD_SNK_GREASED_LIGHTNING,
+                ORD_SNK_BEHIND_ENEMY_LINES
+            )
+            ORD_SNK_SMOKESCREEN -> listOf(ORD_SNK_PARTYSTARTER)
+            ORD_SNK_BEHIND_ENEMY_LINES -> listOf(ORD_SNK_SHADOW_WARRIOR)
+            ORD_SNK_PROBLEM_SOLVER -> listOf(ORD_SNK_LAUGHING_GHOST, ORD_SNK_CLOAK_AND_DAGGER)
+            else -> emptyList()
+        }
 }
