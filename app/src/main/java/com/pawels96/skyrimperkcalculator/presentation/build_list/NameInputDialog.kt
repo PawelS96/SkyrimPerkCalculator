@@ -5,6 +5,7 @@ import android.content.DialogInterface
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
+import android.view.inputmethod.EditorInfo
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -60,6 +61,15 @@ class NameInputDialog : BaseDialog() {
             }
         }
 
+        binding.nameEdit.maxLines = 1
+        binding.nameEdit.setOnEditorActionListener { v, actionId, event ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                onConfirm()
+                return@setOnEditorActionListener true
+            }
+            return@setOnEditorActionListener false
+        }
+
         val dialog = getBuilder()
             .setView(binding.root)
             .setCancelable(true)
@@ -73,25 +83,26 @@ class NameInputDialog : BaseDialog() {
         dialog.setOnShowListener {
             // crash here
             dialog.setButtonColors(requireContext())
-            dialog.getButton(Dialog.BUTTON_POSITIVE).setOnClickListener {
-                val name = binding.nameEdit.text.toString().trim()
-                val build = this.build
-                if (build != null) {
-                    model.renameBuild(build, name)
-                } else {
-                    model.createBuild(
-                        name,
-                        binding.copyCurrentCheckbox.isChecked
-                    )
-                }
-            }
-
+            dialog.getButton(Dialog.BUTTON_POSITIVE).setOnClickListener { onConfirm() }
             binding.nameEdit.requestFocus()
         }
 
         dialog.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE)
 
         return dialog
+    }
+
+    private fun onConfirm() {
+        val name = binding.nameEdit.text.toString().trim()
+        val build = this.build
+        if (build != null) {
+            model.renameBuild(build, name)
+        } else {
+            model.createBuild(
+                name,
+                binding.copyCurrentCheckbox.isChecked
+            )
+        }
     }
 
     private fun observeEvents() {
