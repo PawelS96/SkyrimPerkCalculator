@@ -19,7 +19,6 @@ import com.pawels96.skyrimperkcalculator.R
 import com.pawels96.skyrimperkcalculator.databinding.FragmentBuildListBinding
 import com.pawels96.skyrimperkcalculator.domain.Build
 import com.pawels96.skyrimperkcalculator.domain.PerkSystem
-import com.pawels96.skyrimperkcalculator.presentation.common.configureEffects
 import com.pawels96.skyrimperkcalculator.presentation.common.getName
 import com.pawels96.skyrimperkcalculator.presentation.common.setTransparentBackground
 import com.pawels96.skyrimperkcalculator.presentation.common.viewBinding
@@ -100,7 +99,6 @@ class BuildListFragment : BottomSheetDialogFragment() {
         buildAdapter = BuildAdapter(requireContext(), adapterCallback)
         binding.recycler.apply {
             layoutManager = LinearLayoutManager(context)
-            configureEffects(overscrollMagnitude = 0.01f, flingMagnitude = 0.01f) {}
             adapter = buildAdapter
         }
     }

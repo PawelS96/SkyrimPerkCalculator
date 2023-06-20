@@ -70,10 +70,10 @@ class NameInputDialog : BaseDialog() {
                 setCanceledOnTouchOutside(false)
             }
 
-        dialog.setOnShowListener { di: DialogInterface ->
+        dialog.setOnShowListener {
             // crash here
             dialog.setButtonColors(requireContext())
-            dialog.getButton(Dialog.BUTTON_POSITIVE).setOnClickListener { v: View? ->
+            dialog.getButton(Dialog.BUTTON_POSITIVE).setOnClickListener {
                 val name = binding.nameEdit.text.toString().trim()
                 val build = this.build
                 if (build != null) {
@@ -89,7 +89,7 @@ class NameInputDialog : BaseDialog() {
             binding.nameEdit.requestFocus()
         }
 
-        dialog?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE)
+        dialog.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE)
 
         return dialog
     }

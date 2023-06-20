@@ -10,7 +10,6 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.pawels96.skyrimperkcalculator.Injector
 import com.pawels96.skyrimperkcalculator.R
 import com.pawels96.skyrimperkcalculator.databinding.FragmentSkillsBinding
-import com.pawels96.skyrimperkcalculator.presentation.common.configureEffects
 import com.pawels96.skyrimperkcalculator.presentation.common.setTransparentBackground
 import com.pawels96.skyrimperkcalculator.presentation.common.viewBinding
 
@@ -45,7 +44,6 @@ class SkillListFragment : BottomSheetDialogFragment() {
         }
 
         skillAdapter.display(model.allCurrentBuildSkills)
-        recycler.configureEffects {}
         recycler.adapter = skillAdapter
     }
 

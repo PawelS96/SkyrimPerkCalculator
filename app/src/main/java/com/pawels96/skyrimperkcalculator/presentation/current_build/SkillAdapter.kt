@@ -9,8 +9,6 @@ import com.pawels96.skyrimperkcalculator.databinding.ListItemSkillBinding
 import com.pawels96.skyrimperkcalculator.domain.ESpecialSkill
 import com.pawels96.skyrimperkcalculator.domain.Skill
 import com.pawels96.skyrimperkcalculator.domain.SkillType
-import com.pawels96.skyrimperkcalculator.presentation.common.Bounceable
-import com.pawels96.skyrimperkcalculator.presentation.common.AnimatedHolder
 import com.pawels96.skyrimperkcalculator.presentation.common.colored
 import com.pawels96.skyrimperkcalculator.presentation.common.getName
 
@@ -40,9 +38,7 @@ class SkillAdapter(
         holder.bind(items[position], position) { onClick(it) }
     }
 
-    class SkillHolder(val binding: ListItemSkillBinding) :
-        RecyclerView.ViewHolder(binding.root),
-        AnimatedHolder by Bounceable(binding.root) {
+    class SkillHolder(val binding: ListItemSkillBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(skill: Skill, index: Int, onClick: (Int) -> Unit) {
             val context = binding.root.context

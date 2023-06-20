@@ -12,8 +12,6 @@ import com.pawels96.skyrimperkcalculator.R
 import com.pawels96.skyrimperkcalculator.databinding.ListItemBuildBinding
 import com.pawels96.skyrimperkcalculator.domain.Build
 import com.pawels96.skyrimperkcalculator.domain.SkillType
-import com.pawels96.skyrimperkcalculator.presentation.common.Bounceable
-import com.pawels96.skyrimperkcalculator.presentation.common.AnimatedHolder
 import com.pawels96.skyrimperkcalculator.presentation.common.colored
 
 class BuildAdapter(
@@ -50,7 +48,7 @@ class BuildAdapter(
 
     inner class BuildViewHolder(
         val binding: ListItemBuildBinding,
-    ) : RecyclerView.ViewHolder(binding.root), AnimatedHolder by Bounceable(binding.root) {
+    ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: BuildListItem) {
             val build = item.build

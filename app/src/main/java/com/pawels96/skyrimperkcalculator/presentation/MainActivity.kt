@@ -72,7 +72,7 @@ class MainActivity : AppCompatActivity() {
                 }
             })
             enableLoop(DISPLAYED_SKILLS.size)
-            setListener { getFragment(this.currentItem)?.cancelHold() }
+            onScrollStarted = { getFragment(currentItem)?.cancelHold() }
             updateTabColor(prefs.selectedPage)
             currentItem = prefs.selectedPage
         }

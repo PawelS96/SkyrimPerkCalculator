@@ -1,59 +1,43 @@
-package com.pawels96.skyrimperkcalculator.presentation.common.views;
+package com.pawels96.skyrimperkcalculator.presentation.common.views
 
-import android.content.Context;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.viewpager.widget.ViewPager;
-
-import android.util.AttributeSet;
+import android.content.Context
+import android.util.AttributeSet
+import androidx.viewpager.widget.ViewPager
 
 /**
  * ViewPager which allows for moving between the first and last item
  */
+class LoopingViewPager(context: Context, attrs: AttributeSet?) : ViewPager(context, attrs) {
 
-public class LoopingViewPager extends ViewPager {
-    public LoopingViewPager(@NonNull Context context, @Nullable AttributeSet attrs) {
-        super(context, attrs);
-    }
+    var onScrollStarted: (() -> Unit)? = null
 
-    public interface MovementListener {
-        void onActionDown();
-    }
+    fun enableLoop(pages: Int) {
+        addOnPageChangeListener(object : OnPageChangeListener {
+            var previousState = 0
+            var currentState = 0
 
-    private MovementListener listener;
+            override fun onPageScrolled(
+                position: Int,
+                positionOffset: Float,
+                positionOffsetPixels: Int
+            ) = Unit
 
-    public void setListener(MovementListener listener) {
-        this.listener = listener;
-    }
+            override fun onPageSelected(position: Int) = Unit
 
-    public void enableLoop(final int pages) {
+            override fun onPageScrollStateChanged(state: Int) {
+                if (state == 1) {
+                    onScrollStarted?.invoke()
+                }
 
-        addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-
-            int previousState, currentState;
-
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) { }
-
-            @Override
-            public void onPageSelected(int position) { }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-                if (state == 1)
-                    listener.onActionDown();
-
-                int currentPage = getCurrentItem();
+                val currentPage = currentItem
                 if (currentPage == pages - 1 || currentPage == 0) {
-                    previousState = currentState;
-                    currentState = state;
+                    previousState = currentState
+                    currentState = state
                     if (previousState == 1 && currentState == 0) {
-                        setCurrentItem(currentPage == 0 ? pages - 1 : 0, false);
+                        setCurrentItem(if (currentPage == 0) pages - 1 else 0, false)
                     }
                 }
             }
-        });
+        })
     }
 }
