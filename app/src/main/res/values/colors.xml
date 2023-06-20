@@ -5,6 +5,7 @@
     <color name="colorAccent">#3075e5</color>
     <color name="colorFont">#ffffff</color>
     <color name="colorFontAlt">#adb3bc</color>
+    <color name="colorWhiteDark">#919191</color>
     <color name="colorGrayLight">#484949</color>
     <color name="colorGray">#2e2f35</color>
     <color name="colorGrayDark">#232429</color>

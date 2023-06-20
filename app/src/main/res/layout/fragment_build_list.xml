@@ -47,6 +47,7 @@
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintWidth_max="360dp"
+            app:rippleColor="@color/colorWhiteDark"
             tools:ignore="TextContrastCheck"
             tools:text="@string/s_vokrii" />
 

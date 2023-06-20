@@ -45,12 +45,9 @@ class BuildDescriptionDialog : BaseDialog() {
                 binding.root.hideKeyboard()
                 dismiss()
             }
-            .create().apply {
-                setCanceledOnTouchOutside(false)
-            }
+            .create()
 
         dialog.setOnShowListener {
-
             dialog.setButtonColors(requireContext())
             val positiveButton = dialog.getButton(DialogInterface.BUTTON_POSITIVE)
             positiveButton.setOnClickListener {

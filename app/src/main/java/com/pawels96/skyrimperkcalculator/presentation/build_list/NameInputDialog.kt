@@ -76,9 +76,7 @@ class NameInputDialog : BaseDialog() {
             .setTitle(resources.getString(R.string.msg_name_your_build))
             .setPositiveButton(getString(R.string.save), null)
             .setNegativeButton(getString(R.string.cancel)) { _: DialogInterface?, _: Int -> binding.root.hideKeyboard() }
-            .create().apply {
-                setCanceledOnTouchOutside(false)
-            }
+            .create()
 
         dialog.setOnShowListener {
             // crash here
