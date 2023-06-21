@@ -7,6 +7,7 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Rect
 import android.util.AttributeSet
+import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import androidx.core.content.ContextCompat
@@ -30,7 +31,6 @@ class GraphView(context: Context, attrs: AttributeSet?) : View(context, attrs) {
     private val textPaint = Paint()
 
     private var nodeRadius = 20
-    private val textSize: Int
     private val textBounds = Rect()
 
     private var w = 0f
@@ -60,8 +60,6 @@ class GraphView(context: Context, attrs: AttributeSet?) : View(context, attrs) {
     }
 
     init {
-        textSize = spToPixels(context, 10)
-
         selectedStealthPaint.color = Color.GREEN
         selectedStealthPaint.strokeWidth = 5f
         selectedStealthPaint.flags = Paint.ANTI_ALIAS_FLAG
@@ -87,7 +85,6 @@ class GraphView(context: Context, attrs: AttributeSet?) : View(context, attrs) {
         notSelectedPaint.flags = Paint.ANTI_ALIAS_FLAG
 
         textPaint.color = Color.WHITE
-        textPaint.textSize = textSize.toFloat()
         textPaint.flags = Paint.ANTI_ALIAS_FLAG
     }
 
@@ -96,6 +93,15 @@ class GraphView(context: Context, attrs: AttributeSet?) : View(context, attrs) {
         val ratio = width.toFloat() / 720f
         val size = (baseSize * ratio).toInt()
         return size.coerceAtMost(30)
+    }
+
+    private fun getTextSize(): Int {
+        val density = resources.displayMetrics.density
+        return when {
+            density <= 2f -> 14
+            density in (2.25f..2.5f) -> 12
+            else -> 10
+        }
     }
 
     private fun drawEdge(canvas: Canvas, start: Perk, end: Perk, selectedPaint: Paint) {
@@ -138,6 +144,7 @@ class GraphView(context: Context, attrs: AttributeSet?) : View(context, attrs) {
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         nodeRadius = getNodeRadius(width)
+        textPaint.textSize = spToPixels(context, getTextSize()).toFloat()
         canvas.drawColor(ContextCompat.getColor(context, R.color.colorAlmostBlack))
         w = width.toFloat()
         h = height.toFloat()
